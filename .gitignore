@@ -1,0 +1,13 @@
+#=========================================================================
+# Git Ignore Files
+#=========================================================================
+# We explicitly ignore the site directory where the static HTML files are
+# built.
+
+.\#*
+*/site/
+.DS_Store
+*~
+.lock*
+*.swp
+
