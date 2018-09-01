@@ -2,7 +2,7 @@
 # mkdocs Configuration
 #=========================================================================
 
-site_name:   'ECE 2400 Computer Systems Programming'
+site_name:   'ECE 2400 / ENGRD 2140 Computer Systems Programming'
 site_author: 'Christopher Batten'
 
 # Repository
@@ -17,12 +17,12 @@ copyright:   'Copyright &copy; 2018 Christopher Batten'
 # Configuration
 
 theme:
-  name: 'material'
-  language: 'en'
-  favicon: 'img/favicon.ico'
+  name:       'material'
+  language:   'en'
+  favicon:    'docs/img/favicon.ico'
   palette:
-    primary: 'red'
-    accent: 'indigo'
+    primary:  'red'
+    accent:   'indigo'
 
 # Extensions
 
