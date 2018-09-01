@@ -5,7 +5,7 @@
 # built.
 
 .\#*
-*/site/
+site/
 .DS_Store
 *~
 .lock*

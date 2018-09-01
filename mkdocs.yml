@@ -1,8 +1,75 @@
-site_name: MkLorum
+#=========================================================================
+# mkdocs Configuration
+#=========================================================================
 
-pages:
-    - Home: index.md
-    - About: about.md
+site_name:   'ECE 2400 Computer Systems Programming'
+site_author: 'Christopher Batten'
 
-theme: readthedocs
+# Repository
+
+repo_name:   'cornell-ece2400/ece2400-docs'
+repo_url:    'https://github.com/cornell-ece2400/ece2400-docs'
+
+# Copyright
+
+copyright:   'Copyright &copy; 2018 Christopher Batten'
+
+# Configuration
+
+theme:
+  name: 'material'
+  language: 'en'
+  favicon: 'img/favicon.ico'
+  palette:
+    primary: 'red'
+    accent: 'indigo'
+
+# Extensions
+
+markdown_extensions:
+  - pymdownx.details
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite:
+      linenums: true
+
+# Extras
+
+extra_javascript:
+  - 'docs/js/extra.js'
+
+# Pages
+
+nav:
+
+#  - Misc Documentation:
+#     - 'PA Assessment Rubric': ece2400-pa-rubric.md
+#     - 'PA Coding Guidelines': ece2400-pa-coding-guidelines.md
+#     - 'Example Outline for PA1 Report': ece2400-pa1-outline.md
+
+  - Topic Notes:
+     - 'Topic 1: Introduction to C': ece2400-T01-intro-c-notes.md
+#     - 'Topic 2: C Recursion': ece2400-T01-recursion-notes.md
+
+  - Discussion Section:
+     - 'Section 1: Linux and Git': ece2400-sec1-linux-git.md
+     - 'Section 2: Compiling and Running C Programs': ece2400-sec2-c-basics.md
+#     - 'Section 3: C Build and Test Frameworks': ece2400-sec3-c-build-test.md
+#     - 'Section 4: C Debugging and Verification': ece2400-sec4-c-debug-verif.md
+#     - 'Section 5: C Profiling for Performance and Memory Usage': ece2400-sec5-c-profiling.md
+
+  - Tutorials:
+     - 'Tutorial 1: Linux and Git': ece2400-tut1-linux-git.md
+     - 'Tutorial 2: Compiling and Running C Programs': ece2400-tut2-c-basics.md
+#     - 'Tutorial 3: C Build and Test Frameworks': ece2400-tut3-c-build-test.md
+#     - 'Tutorial 4: C Debugging and Verification': ece2400-tut4-c-debug-verif.md
+#     - 'Tutorial 5: C Profiling for Performance and Memory Usage': ece2400-tut5-c-profiling.md
+
+  - Programming Assignments:
+     - 'PA1: Math Functions': ece2400-pa1-math.md
+#     - 'PA2: List and Vector Data Structures': ece2400-pa2-dstruct.md
+#     - 'PA3: Sorting Algorithms': ece2400-pa3-algo.md
+#     - 'PA4: Polymorphic Data Structures and Algorithms': ece2400-pa4-poly.md
+#     - 'PA5: Handwriting Recognition System': ece2400-pa5-sys.md
 
