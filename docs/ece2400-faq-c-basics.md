@@ -20,7 +20,8 @@ If I have already defined a macro, then excute the  #ifndef  directive,
 then include the content again. How does this operation skip over the
 contents of the same file?
 
-A:
+A: How do understand the include guard?
+--------------------------------------------------------------------------
 
 From my understanding, what the #ifindef conditional does is check to see
 if this macro has been defined already. If it has not then, the code below
@@ -71,3 +72,5 @@ Then the lines under #ifndef would be processed and YEARS_OLD would attain
 a value of 10.
 
 Hope this answers your question!
+
+
