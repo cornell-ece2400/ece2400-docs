@@ -73,3 +73,5 @@ nav:
 #     - 'PA4: Polymorphic Data Structures and Algorithms': ece2400-pa4-poly.md
 #     - 'PA5: Handwriting Recognition System': ece2400-pa5-sys.md
 
+  - FAQ:
+    - 'FAQ on C Basics': ece2400-faq-c-basics.md
