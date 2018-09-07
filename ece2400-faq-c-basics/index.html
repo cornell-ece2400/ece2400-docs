@@ -38,7 +38,7 @@
     
     
       
-        <title>Ece2400 tut1 linux git - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
+        <title>FAQ on C Basics - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
       
     
     
@@ -100,7 +100,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#tutorial-1-linux-and-git" tabindex="1" class="md-skip">
+      <a href="../#q-how-do-understand-the-include-guard" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -126,7 +126,7 @@
                 ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
               </span>
               <span class="md-header-nav__topic">
-                Ece2400 tut1 linux git
+                FAQ on C Basics
               </span>
             
           
@@ -301,10 +301,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       FAQ
@@ -320,11 +322,52 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../ece2400-faq-c-basics/" title="FAQ on C Basics" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        FAQ on C Basics
+      </label>
+    
+    <a href="./" title="FAQ on C Basics" class="md-nav__link md-nav__link--active">
       FAQ on C Basics
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#q-how-do-understand-the-include-guard" title="Q: How do understand the include guard?" class="md-nav__link">
+    Q: How do understand the include guard?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-how-do-understand-the-include-guard" title="A: How do understand the include guard?" class="md-nav__link">
+    A: How do understand the include guard?
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -347,8 +390,29 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#q-how-do-understand-the-include-guard" title="Q: How do understand the include guard?" class="md-nav__link">
+    Q: How do understand the include guard?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-how-do-understand-the-include-guard" title="A: How do understand the include guard?" class="md-nav__link">
+    A: How do understand the include guard?
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
   
 </nav>
                   </div>
@@ -360,10 +424,98 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-tut1-linux-git.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-faq-c-basics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="tutorial-1-linux-and-git">Tutorial 1: Linux and Git<a class="headerlink" href="#tutorial-1-linux-and-git" title="Permanent link">&para;</a></h1>
+                  <h1>FAQ on C Basics</h1>
+                
+                <p>==========================================================================</p>
+<p>This is a collection of commonly asked questions on C basics.</p>
+<h2 id="q-how-do-understand-the-include-guard">Q: How do understand the include guard?<a class="headerlink" href="#q-how-do-understand-the-include-guard" title="Permanent link">&para;</a></h2>
+<p>I noticed this on the sec2 handout</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#ifndef WARM_COLORS_TXT</span>
+<span class="cp">#define WARM_COLORS_TXT</span>
+<span class="n">red</span>
+<span class="n">orange</span>
+<span class="n">yellow</span>
+<span class="cp">#endif</span>
+</pre></div>
+</td></tr></table>
+
+<p>If I have already defined a macro, then excute the  #ifndef  directive,
+then include the content again. How does this operation skip over the
+contents of the same file?</p>
+<h2 id="a-how-do-understand-the-include-guard">A: How do understand the include guard?<a class="headerlink" href="#a-how-do-understand-the-include-guard" title="Permanent link">&para;</a></h2>
+<p>From my understanding, what the #ifindef conditional does is check to see
+if this macro has been defined already. If it has not then, the code below
+the #ifindef line is run and the macro us defined. On the other hand, if it
+already exists, meaning it has a value, these lines below #ifindef will not
+be processed. So, the preprocessor determines if the macro exists before
+including the leading code in the compilation process. In other words, if
+something has a value during the course of the program, it is stored and so
+not changed again during the rest of the compilation process.</p>
+<p>An example I saw online that might help:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#define YEARS_OLD 12</span>
+
+<span class="cp">#ifndef YEARS_OLD</span>
+<span class="cp">#define YEARS_OLD 10</span>
+<span class="cp">#endif</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;TechOnTheNet is over %d years old.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">YEARS_OLD</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>In this case, since YEARS_OLD is defined before ifndef, the code below it
+will be skipped over because the macro is already defined and so the
+compiler will skip over to #endif. If you run this code, you will see that
+YEARS_OLD has a value of 12. If we removed the first #define statement and
+just had this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#ifndef YEARS_OLD</span>
+<span class="cp">#define YEARS_OLD 10</span>
+<span class="cp">#endif</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;TechOnTheNet is over %d years old.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">YEARS_OLD</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Then the lines under #ifndef would be processed and YEARS_OLD would attain
+a value of 10.</p>
+<p>Hope this answers your question!</p>
                 
                   
                 
@@ -380,6 +532,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ece2400-sec3-c-build-test/" title="Section 3: C Build and Test Frameworks" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Section 3: C Build and Test Frameworks
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
