@@ -1,14 +1,14 @@
 
-ECE 2400 Documentation
+ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
 ==========================================================================
 
-This site includes documentation for ECE 2400 Computer Systems
-Programming. If you find any bugs or errors with this documentation, feel
-free to create a pull request in the corresponding repo:
+**Public Course Website:** <http://www.csl.cornell.edu/courses/ece2400>
 
- - <https://github.com/cornell-ece2400/ece2400-docs>
+This is the ECE 2400 / ENGRD 2140 Computer Systems Programming
+documentation site. It includes topic notes, discussion section handouts,
+tutorials, and programming assignment handouts. If you find any bugs or
+errors with this documentation, please post on Piazza or feel free to
+create a pull request in the corresponding [documentation
+repo](https://github.com/cornell-ece2400/ece2400-docs).
 
-The public website for the course is located here:
-
- - <http://www.csl.cornell.edu/courses/ece2400>
 

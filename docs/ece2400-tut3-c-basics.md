@@ -1,5 +1,5 @@
 
-Tutorial 2 : Compiling and Running C Programs
+Tutorial 3 : Compiling and Running C Programs
 ==========================================================================
 
 The first few programming assignments for this course will use the C
