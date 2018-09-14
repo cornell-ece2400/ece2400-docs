@@ -574,7 +574,7 @@ GDB prompt is at the bottom. Here are some useful GDB commands:</p>
 <li><code>record</code> : start recording the execution for reverse debugging</li>
 <li><code>step</code> : execute the next C statement, step into a function call</li>
 <li><code>next</code> : execute the next C statement, do not step into a function call</li>
-<li><code>rstep</code> : reserve step, undo the execution of current C statement</li>
+<li><code>rs</code> : reserve step, undo the execution of current C statement</li>
 <li><code>print var</code> : print a C variable</li>
 <li><code>continue</code> : continue on to the next breakpoint</li>
 <li><code>quit</code> : exit GDB</li>
@@ -622,8 +622,8 @@ the value of any variable using the <code>print</code> command:</p>
 </pre></div>
 </td></tr></table>
 
-<p>You can also step backwards using the <code>rstep</code> command:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) rstep
+<p>You can also step backwards using the <code>rs</code> command:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) rs
 </pre></div>
 </td></tr></table>
 
