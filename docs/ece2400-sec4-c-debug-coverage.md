@@ -94,7 +94,7 @@ GDB prompt is at the bottom. Here are some useful GDB commands:
   - `record` : start recording the execution for reverse debugging
   - `step` : execute the next C statement, step into a function call
   - `next` : execute the next C statement, do not step into a function call
-  - `rstep` : reserve step, undo the execution of current C statement
+  - `rs` : reserve step, undo the execution of current C statement
   - `print var` : print a C variable
   - `continue` : continue on to the next breakpoint
   - `quit` : exit GDB
@@ -134,9 +134,9 @@ the value of any variable using the `print` command:
     (gdb) print y
     (gdb) print sum
 
-You can also step backwards using the `rstep` command:
+You can also step backwards using the `rs` command:
 
-    (gdb) rstep
+    (gdb) rs
 
 Try stepping forward and backward through the `avg` function and print
 out various variables to see how they change during the execution. You

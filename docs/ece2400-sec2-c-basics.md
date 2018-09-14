@@ -43,7 +43,7 @@ We won't actually be forking repos for the programming assignments, but
 it is an easy way for you to grab some example code for the discussion
 section. Go to the example repo here:
 
- - https://github.com/cornell-ece2400/ece2400-sec2
+ - <https://github.com/cornell-ece2400/ece2400-sec2>
 
 Click on the "Fork" button. Wait a few seconds and then visit the new
 copy of this repo in your own person GitHub workspace:
