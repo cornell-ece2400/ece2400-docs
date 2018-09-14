@@ -1,0 +1,835 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="Christopher Batten">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>Section 4: C Debugging and Verification - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#section-4-c-debug-and-code-coverage" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="ECE 2400 / ENGRD 2140 Computer Systems Programming Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
+              </span>
+              <span class="md-header-nav__topic">
+                Section 4: C Debugging and Verification
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/cornell-ece2400/ece2400-docs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      cornell-ece2400/ece2400-docs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="ECE 2400 / ENGRD 2140 Computer Systems Programming Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/cornell-ece2400/ece2400-docs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      cornell-ece2400/ece2400-docs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Discussion Section
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Discussion Section
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec1-linux-git/" title="Section 1: Linux and Git" class="md-nav__link">
+      Section 1: Linux and Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec2-c-basics/" title="Section 2: Compiling and Running C Programs" class="md-nav__link">
+      Section 2: Compiling and Running C Programs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec3-c-build-test/" title="Section 3: C Build and Test Frameworks" class="md-nav__link">
+      Section 3: C Build and Test Frameworks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Section 4: C Debugging and Verification
+      </label>
+    
+    <a href="./" title="Section 4: C Debugging and Verification" class="md-nav__link md-nav__link--active">
+      Section 4: C Debugging and Verification
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-using-gdb-for-debugging" title="1. Using GDB for Debugging" class="md-nav__link">
+    1. Using GDB for Debugging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-gcov-for-code-coverage" title="2. Using GCOV for Code Coverage" class="md-nav__link">
+    2. Using GCOV for Code Coverage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-using-travisci-and-codecovio-for-continuous-integration" title="3. Using TravisCI and Codecov.io for Continuous Integration" class="md-nav__link">
+    3. Using TravisCI and Codecov.io for Continuous Integration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-try-steps-for-programming-assignments" title="4. Try Steps for Programming Assignments" class="md-nav__link">
+    4. Try Steps for Programming Assignments
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      FAQ
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        FAQ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-faq-c-basics/" title="FAQ on C Basics" class="md-nav__link">
+      FAQ on C Basics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-using-gdb-for-debugging" title="1. Using GDB for Debugging" class="md-nav__link">
+    1. Using GDB for Debugging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-gcov-for-code-coverage" title="2. Using GCOV for Code Coverage" class="md-nav__link">
+    2. Using GCOV for Code Coverage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-using-travisci-and-codecovio-for-continuous-integration" title="3. Using TravisCI and Codecov.io for Continuous Integration" class="md-nav__link">
+    3. Using TravisCI and Codecov.io for Continuous Integration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-try-steps-for-programming-assignments" title="4. Try Steps for Programming Assignments" class="md-nav__link">
+    4. Try Steps for Programming Assignments
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec4-c-debug-coverage.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="section-4-c-debug-and-code-coverage">Section 4: C Debug and Code Coverage<a class="headerlink" href="#section-4-c-debug-and-code-coverage" title="Permanent link">&para;</a></h1>
+<p>In the previous discussion section, you learned how to use C build and
+test frameworks to help automate the process of compiling and verifying
+your programs In this discussion, we will continue to learn about new
+tools that can help us better debug and verify our programs.</p>
+<p>Follow the same process as in the previous discussion section. You need
+to login to a workstation with your NetID and password. Start a terminal
+and then don't forget to source the setup script!</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
+</pre></div>
+</td></tr></table>
+
+<p>Now fork the github repo for this discussion section so you have your own
+personal copy. Go to the example repo here:</p>
+<ul>
+<li>https://github.com/cornell-ece2400/ece2400-sec4-c-debug-coverage</li>
+</ul>
+<p>Click on the "Fork" button. Wait a few seconds and then visit the new
+copy of this repo in your own person GitHub workspace:</p>
+<ul>
+<li><code>https://github.com/githubid/ece2400-sec2</code></li>
+</ul>
+<p>Where <code>githubid</code> is your GitHubID. Now clone the github repo for this
+discussion section.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+% git clone git@github.com:githubid/ece2400-sec4-c-debug-coverage sec4
+% <span class="nb">cd</span> sec4
+% ls
+</pre></div>
+</td></tr></table>
+
+<p>Where again, the <code>githubid</code> is your GitHubID. The given <code>src</code> directory
+includes the following files:</p>
+<ul>
+<li><code>avg-test.c</code>: source and test for <code>avg</code> function</li>
+<li><code>gcd-test.c</code>: source and test for <code>gcd</code> function</li>
+<li><code>utst.h</code> : simple C preprocessor macros for unit testing</li>
+<li><code>.travis.yml</code> : TravisCI configuration script</li>
+</ul>
+<h2 id="1-using-gdb-for-debugging">1. Using GDB for Debugging<a class="headerlink" href="#1-using-gdb-for-debugging" title="Permanent link">&para;</a></h2>
+<p>There are two kinds of C/C++ programmers in the world: printf debuggers
+and GDB debuggers. Prof. Batten used to be a printf debuggers but
+teaching this course has converted him to be a GDB advocate. He will
+share his perspectives on this in the discussion section.</p>
+<p>Let's start by compiling a single-file program that uses the <code>UTST</code> macros
+to test our ubiquitous <code>avg</code> function.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec4
+% gcc -Wall -g -o avg-test avg-test.c
+% ./avg-test
+</pre></div>
+</td></tr></table>
+
+<p>Notice how we include the <code>-g</code> option to turn on support for debugging.
+This code has a bug and should fail the test. Let's start by using printf
+debugging. Add some extra printfs to observe the state of the program as
+it executes.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">avg</span><span class="p">(</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;x = %d, y = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">);</span>
+  <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;sum = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">sum</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>You should be able to see that the value for the <code>sum</code> variable is
+incorrect, but the value for the <code>x</code> and <code>y</code> variables are correct. This
+means we can narrow our focus to line~4 in the above code snippet.
+Hopefully, you should be able to spot the bug. Fix the bug, recompile,
+and rerun the program.</p>
+<p>Let's now try tracing the execution of this program using GDB. Then you
+can start GDB like this</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec4
+% gdb -tui avg-test
+</pre></div>
+</td></tr></table>
+
+<p>GDB will drop you into a GDB "prompt" which you can use to interactively
+execute your program. Your source code will show up at the top, and the
+GDB prompt is at the bottom. Here are some useful GDB commands:</p>
+<ul>
+<li><code>break location</code> : set a breakpoint</li>
+<li><code>run</code> : start running the program</li>
+<li><code>record</code> : start recording the execution for reverse debugging</li>
+<li><code>step</code> : execute the next C statement, step into a function call</li>
+<li><code>next</code> : execute the next C statement, do not step into a function call</li>
+<li><code>rstep</code> : reserve step, undo the execution of current C statement</li>
+<li><code>print var</code> : print a C variable</li>
+<li><code>continue</code> : continue on to the next breakpoint</li>
+<li><code>quit</code> : exit GDB</li>
+<li><code>refresh</code> : refresh the source code display</li>
+</ul>
+<p>GDB is very sophisticated so of course there are many more commands you
+can use, but these are enough to get started. Let's start by just running
+the program in GDB:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) run
+</pre></div>
+</td></tr></table>
+
+<p>Now let's try again, but first let's set a breakpoint to tell GDB to stop
+at a certain function or line in the program. The following will set a
+breakpoint at the beginning of the <code>main</code> function.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) break main
+</pre></div>
+</td></tr></table>
+
+<p>You can see a little <code>B</code> marker in the margin next to the first statement
+in the <code>main</code> function indicating the location of the breakpoint. We can
+now use <code>run</code> to start the program running. The execution should stop at
+the beginning of the function <code>main</code>. You should see the first line of
+the function highlighted.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) run
+</pre></div>
+</td></tr></table>
+
+<p>We can use <code>record</code> to turn on recording to enable reverse debugging and
+then we can step through the execution of each C statement using the
+<code>step</code> command.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) record
+(gdb) step
+</pre></div>
+</td></tr></table>
+
+<p>Keep using <code>step</code> until you get into the <code>avg</code> function You can print out
+the value of any variable using the <code>print</code> command:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) print x
+(gdb) print y
+(gdb) print sum
+</pre></div>
+</td></tr></table>
+
+<p>You can also step backwards using the <code>rstep</code> command:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) rstep
+</pre></div>
+</td></tr></table>
+
+<p>Try stepping forward and backward through the <code>avg</code> function and print
+out various variables to see how they change during the execution. You
+can use <code>quit</code> to exit.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) quit
+</pre></div>
+</td></tr></table>
+
+<div class="admonition question">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Try compiling <code>gcd-test.c</code> and executing the resulting binary. The
+test should fail. Use GDB debugging to find the bug and fix it.</p>
+</div>
+<h2 id="2-using-gcov-for-code-coverage">2. Using GCOV for Code Coverage<a class="headerlink" href="#2-using-gcov-for-code-coverage" title="Permanent link">&para;</a></h2>
+<p>One you have developed your implementation and the corresponding basic,
+directed, and random tests, you can then move on to understanding the
+<em>quality</em> of your current set of tests. One way to do this is to use code
+coverage tools. The idea here is to use a tool which will count how many
+times each line of code in your program is executed when running all of
+your tests. If there are lines of code which have never executed, then
+this is a good indicator that you need more tests to verify that part of
+your code.</p>
+<p>Let's start by recompiling our <code>avg-test.c</code> and turning on code coverage
+support.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec4
+% gcc -Wall -g --coverage -o avg-test avg-test.c
+% ./avg-test
+</pre></div>
+</td></tr></table>
+
+<p>This will generate additional data in <code>avg-test.gcda</code>. To make this data
+easy to read and understand we need to run two more tools: <code>lcov</code> and
+<code>genhtml</code> like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec4
+% lcov --capture --directory . --output-file coverage.info
+% genhtml coverage.info --output-directory coverage-html
+</pre></div>
+</td></tr></table>
+
+<p>These tools will produce easy to read HTML reports. While you can use a
+browser like <code>firefox</code>, it is faster (especially when working on the
+server) to use a terminal based browser like <code>elinks</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% elinks coverage-html/index.html
+</pre></div>
+</td></tr></table>
+
+<p>You should be able to use your mouse to browse to the report for the
+<code>avg-test.c</code> source file and verify that you are achieving 100% code
+coverage. Note that 100% code coverage is not the same as 100% path
+coverage; ask the instructors for more on this. Also note that 100% code
+coverage does not mean your program is guaranteed to be correct!</p>
+<div class="admonition question">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Try compiling <code>gcd-test.c</code> and executing the resulting binary with
+support for code coverage. Use the code coverage reports to verify
+that the test has less than 100% code coverage. Add more tests to
+improve the code coverage to 100%.</p>
+</div>
+<h2 id="3-using-travisci-and-codecovio-for-continuous-integration">3. Using TravisCI and Codecov.io for Continuous Integration<a class="headerlink" href="#3-using-travisci-and-codecovio-for-continuous-integration" title="Permanent link">&para;</a></h2>
+<p>Continuous integration is the process of <em>continually</em> integrating,
+testing, and evaluating your code. We will be using two tools to
+facilitate continuous integration. The first is TravisCI, an online
+service which is tightly coupled to GitHub. TravisCI will automatically
+run all tests for a project every time code is pushed to GitHub. The
+second is Codecov.io, an online service for visualizing code coverage.</p>
+<p>To start, you need to enable TravisCI for the remote repository on
+GitHub. Log into TravisCI using your GitHub ID and password:</p>
+<ul>
+<li>https://travis-ci.org/profile</li>
+</ul>
+<p>Once you have signed in, you should go to your TravisCI profile and find
+the list of your public GitHub repositories. You may need to click Sync
+to ensure that TravisCI has the most recent view of your public
+repositories on GitHub. Turn on TravisCI with the little "switch" next to
+the repository we have been using in this tutorial
+(<code>githubid/ece2400-sec4-c-debug-coverage</code>). After enabling TravisCI for
+the <code>githubid/ece2400-sec4-c-debug-coverage</code> repository, you should be
+able to go to the TravisCI page for this repository:</p>
+<ul>
+<li>https://travis-ci.org/githubid/ece2400-sec4-c-debug-coverage</li>
+</ul>
+<p>TravisCI will report that there are no builds for this repository yet.
+TravisCI looks for a special file named <code>.travis.yml</code> in the top of your
+repository to determine how to build and test your project. We have
+already created one of those files for you, and you can see it here:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec4
+% cat .travis.yml
+</pre></div>
+</td></tr></table>
+
+<p>Go ahead and commit all of the work you have done in this tutorial, then
+push your local commits to the remote repository on GitHub. If you
+revisit the TravisCI page for this repository, you should see TravisCI
+starting to build and run all of your tests. You can add a little badge
+to your <code>README</code> to show if you are passing your tests.</p>
+<p>Click on the badge on the TravisCI page corresponding for this repo and
+choose "Markdown". Then cut-and-paste the code into your README for the
+repo. Add the file, commit, and push.</p>
+<ul>
+<li>https://codecov.io/gh/githubid/ece2400-sec4-c-debug-coverage</li>
+</ul>
+<p>Just like we can use TravisCI to automatically run tests, we can use
+Codecov.io to automatically prepare code coverage reports on every
+commit. You can see your code coverage reports here:</p>
+<ul>
+<li>https://codecov.io/gh/cornell-ece2400/ece2400-sec4-c-debug-coverage</li>
+</ul>
+<p>You can get a badge for your code coverage too:</p>
+<ul>
+<li>https://codecov.io/gh/cbatten/ece2400-sec4-c-debug-coverage/settings/badge</li>
+</ul>
+<h2 id="4-try-steps-for-programming-assignments">4. Try Steps for Programming Assignments<a class="headerlink" href="#4-try-steps-for-programming-assignments" title="Permanent link">&para;</a></h2>
+<p>Spend some time looking at the <code>.travis.yml</code> file for PA1. Look at the
+TravisCI results for the PA1 milestone and also look at the Codecov.io
+results.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ece2400-sec3-c-build-test/" title="Section 3: C Build and Test Frameworks" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Section 3: C Build and Test Frameworks
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../ece2400-faq-c-basics/" title="FAQ on C Basics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                FAQ on C Basics
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 Christopher Batten
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.3",url:{base:".."}})</script>
+      
+        <script src="../js/extras.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
