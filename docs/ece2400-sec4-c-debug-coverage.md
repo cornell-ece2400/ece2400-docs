@@ -243,17 +243,15 @@ Click on the badge on the TravisCI page corresponding for this repo and
 choose "Markdown". Then cut-and-paste the code into your README for the
 repo. Add the file, commit, and push.
 
- - https://codecov.io/gh/githubid/ece2400-sec4-c-debug-coverage
-
 Just like we can use TravisCI to automatically run tests, we can use
 Codecov.io to automatically prepare code coverage reports on every
 commit. You can see your code coverage reports here:
 
- - https://codecov.io/gh/cornell-ece2400/ece2400-sec4-c-debug-coverage
+ - https://codecov.io/gh/githubid/ece2400-sec4-c-debug-coverage
 
 You can get a badge for your code coverage too:
 
- - https://codecov.io/gh/cbatten/ece2400-sec4-c-debug-coverage/settings/badge
+ - https://codecov.io/gh/githubid/ece2400-sec4-c-debug-coverage/settings/badge
 
 4. Try Steps for Programming Assignments
 --------------------------------------------------------------------------
