@@ -294,9 +294,10 @@ the value 1. Recall that when `main` returns 0 it means success, and when
 `main` returns 1 it means failure. The return value enables our test
 program to inform CTest of whether or not our test passed of failed.
 
-To use CTest, we need to tell it about this new test. We can do this by
-simply adding a new line to our `CMakeLists.txt` file. Here is an example
-`CMakeLists.txt` file:
+We have provided the above test program in the repository for this
+discussion section. To use CTest, we need to tell it about this new test
+program. We can do this by simply adding a new line to our
+`CMakeLists.txt` file. Here is an example `CMakeLists.txt` file:
 
     :::cmake
     cmake_minimum_required(VERSION 2.8)
