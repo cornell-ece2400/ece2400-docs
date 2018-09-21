@@ -236,12 +236,7 @@ already created one of those files for you, and you can see it here:
 Go ahead and commit all of the work you have done in this tutorial, then
 push your local commits to the remote repository on GitHub. If you
 revisit the TravisCI page for this repository, you should see TravisCI
-starting to build and run all of your tests. You can add a little badge
-to your `README` to show if you are passing your tests.
-
-Click on the badge on the TravisCI page corresponding for this repo and
-choose "Markdown". Then cut-and-paste the code into your README for the
-repo. Add the file, commit, and push.
+starting to build and run all of your tests.
 
 Just like we can use TravisCI to automatically run tests, we can use
 Codecov.io to automatically prepare code coverage reports on every
@@ -249,14 +244,11 @@ commit. You can see your code coverage reports here:
 
  - https://codecov.io/gh/githubid/ece2400-sec4-c-debug-coverage
 
-You can get a badge for your code coverage too:
-
- - https://codecov.io/gh/githubid/ece2400-sec4-c-debug-coverage/settings/badge
-
 4. Try Steps for Programming Assignments
 --------------------------------------------------------------------------
 
 Spend some time looking at the `.travis.yml` file for PA1. Look at the
 TravisCI results for the PA1 milestone and also look at the Codecov.io
-results.
+results. You can find these results but clicking on the appropriate
+badges in your PA1 README.
 
