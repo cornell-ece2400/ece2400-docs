@@ -80,6 +80,22 @@ Absolutely no tabs are allowed. Only spaces are allowed for the purposes
 of indentation. The standard number of spaces per level of indentation is
 two. Here is an example:
 
+    ::::c
+    int gcd( int x, int y )
+    {
+      while ( y != 0 ) {
+        if ( x < y ) {
+          int temp = x;
+          y = temp;
+          x = y;
+        }
+        else {
+          x = x - y;
+        }
+      }
+      return x;
+    }
+
 ### 2.3. Vertical Whitespace
 
 Vertical whitspace can and should be used to separate conceptually
@@ -149,9 +165,9 @@ Never declare multiple variables in a single statement. Always use
 multiple statements. Here is an example:
 
     :::c
-    int a = 0, b; // incorrect
-    int a = 0;    // correct
-    int b;        // correct
+    int a, b; // incorrect
+    int a;    // correct
+    int b;    // correct
 
 ### 2.6. Conditional Statements
 
@@ -412,6 +428,17 @@ space between the closing parenthesis and the open curly brace.
       ...
     }
 
+Once we have multiple levels of nested parenthesis, it might be more
+readable to do something like this:
+
+    :::c
+    if ( (a < 0) && (b != 0) ) {
+      c = 1 / c;
+    }
+    else ( (x % 2) == 0 ) {
+      ...
+    }
+
 Here is an example of a poorly formatted return statement:
 
     :::c
@@ -433,7 +460,7 @@ Indentation should be used to make this more clear:
     }
 
 This code does not include spaces around the assignment operator, and
-isn't even consitent in its formatting:
+isn't even consistent in its formatting:
 
     :::c
     double foo= b;
