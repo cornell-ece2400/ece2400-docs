@@ -795,9 +795,9 @@ assignment operators for related variables:</p>
 multiple statements. Here is an example:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// incorrect</span>
-<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// correct</span>
-<span class="kt">int</span> <span class="n">b</span><span class="p">;</span>        <span class="c1">// correct</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// incorrect</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">;</span>    <span class="c1">// correct</span>
+<span class="kt">int</span> <span class="n">b</span><span class="p">;</span>    <span class="c1">// correct</span>
 </pre></div>
 </td></tr></table>
 
@@ -1068,6 +1068,22 @@ space between the closing parenthesis and the open curly brace.</p>
 </pre></div>
 </td></tr></table>
 
+<p>Once we have multiple levels of nested parenthesis, it might be more
+readable to do something like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">(</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
 <p>Here is an example of a poorly formatted return statement:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1099,7 +1115,7 @@ space between the closing parenthesis and the open curly brace.</p>
 </td></tr></table>
 
 <p>This code does not include spaces around the assignment operator, and
-isn't even consitent in its formatting:</p>
+isn't even consistent in its formatting:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">double</span> <span class="n">foo</span><span class="o">=</span> <span class="n">b</span><span class="p">;</span>
