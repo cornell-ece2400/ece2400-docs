@@ -455,22 +455,18 @@ void ip_insertion_sort ( int arr[], size_t size );
 the array in an ascending order.</p>
 <hr />
 <ol>
-<li>Out-of-place insertion sort (oop-insertion-sort)</li>
+<li>Sorted insertion</li>
 </ol>
-<p>The intuition behind insertion sort algorithm is simple. Let's say we have an
-array of numbers sorted in an ascending order. We want to insert a number to the
-array and keep the array still sorted after the insertion. How would we do that?</p>
-<p>Let's look at the following example.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>array = { 1, 4, 6, 10, 15 }
-value = 5
-</pre></div>
-</td></tr></table>
-
-<p>We want to insert <em>value</em> to <em>array</em>. One way to do the insertion is that we
-look for the correct position of <em>value</em> in <em>array</em>, which is in between <em>4</em> and
-<em>6</em>, insert <em>5</em> in that position, and shift the rest of the array to the right
-by one position. We can do that using the following algorithm.</p>
+<p>Before we talk about insertion sort algorithm, let's consider the following
+problem. Let's say we have an array of numbers sorted in an ascending order. We
+want to insert a new number to the array such that the array remains sorted
+after the insertion. For example, my array is <code>array = { 1, 4, 6, 10, 15 }</code>, and
+the number to be inserted is <code>value = 5</code>. After the sorted insertion, my array
+will be <code>array = { 1, 4, 5, 6, 10, 15 }</code>. How can we do that?</p>
+<p>One way to do the insertion is that we look for the correct position of <em>value</em>
+in <em>array</em>, which is in between <em>4</em> and <em>6</em>, insert <em>5</em> in that position, and
+shift the rest of the array to the right by one position. We can do that using
+the following algorithm.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -480,36 +476,47 @@ by one position. We can do that using the following algorithm.</p>
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>insert( arr, size, value ):
-  make an empty array called tmp_arr of size (size + 1)
-  for i in 0 to size - 1 (inclusive)
-    if value &lt; tmp_arr[i]
-      tmp_arr[i] = value
-      value = arr[i]
-    else
-      tmp_arr[i] = arr[i]
-  tmp_arr[size] = value
-  return tmp_arr
+10
+11
+12
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// Inputs
+//    - arr   : a sorted array
+//    - begin : beginning index of the array
+//    - end   : index of the element after the last element in the array
+//    - value : new value to be inserted
+// Outputs
+//    - arr   : a sorted array with 1 extra value
+
+sorted_insert_fwd( arr, begin, end, value ):
+  for i in begin to (end - 1) (inclusive)
+    if value &lt; arr[i]
+      swap value and arr[i]
+  arr[end] = value
 </pre></div>
 </td></tr></table>
 
-<p>We can leverage the above algorithm in our insertion sort by taking each element
-out of the input array and insert it into a sorted output array such that the
-output array remains sorted. Here is the pseudocode:</p>
+<p>The above algorithm is called forward sorted insertion. It iterates from the
+begin to the end of the array, and inserts the value into a correct position.</p>
+<p><strong>Your tasks</strong>
+- Implement the above algorithm inside function <code>sorted_insert_fwd</code> in
+<code>src/utils.c</code>
+- Write a couple of ad-hoc tests to verify the function in <code>src/sorted-insert-main.c</code>
+- Can you do the insertion more efficiently?</p>
+<hr />
+<ol>
+<li>Out-of-place insertion sort (oop-insertion-sort)</li>
+</ol>
+<p>We can leverage the sorted insertion algorithm in our insertion sort by taking
+each element out of the input array and insert it into a sorted output array
+such that the output array remains sorted. Here is the pseudocode:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>oop_insertion_sort( arr, size ):
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>oop_insertion_sort( arr, size ):
   make an empty array called tmp_arr of size &quot;size&quot;
   for i in 0 to size - 1 (inclusive)
-    tmp_arr[i] = arr[i]
-    for j in 0 to i - 1 (inclusive)
-      if tmp_arr[i] &lt; tmp_arr[j]
-        swap tmp_arr[i] and tmp_arr[j]
+    sorted_insert_fwd( tmp_arr, 0, i, arr[i] )
   copy tmp_arr to arr
 </pre></div>
 </td></tr></table>
@@ -531,13 +538,9 @@ by not using the temporary array. Instead, we can sort all elements by swapping
 them directly in the original array (i.e., in place). Here is the pseudocode:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>ip_insertion_sort( arr, size )
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>ip_insertion_sort( arr, size )
   for i in 0 to size - 1 (inclusive)
-    for j in 0 to i - 1 (inclusive)
-      if arr[i] &lt; arr[j]
-        swap arr[i] and arr[j]
+    sorted_insert_fwd( arr, 0, i, arr[i] )
 </pre></div>
 </td></tr></table>
 
