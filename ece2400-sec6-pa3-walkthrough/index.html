@@ -488,7 +488,7 @@ the following algorithm.</p>
 //    - arr   : a sorted array with 1 extra value
 
 sorted_insert_fwd( arr, begin, end, value ):
-  for i in begin to (end - 1) (inclusive)
+  for i in begin to end (excluding end)
     if value &lt; arr[i]
       swap value and arr[i]
   arr[end] = value
@@ -515,7 +515,7 @@ such that the output array remains sorted. Here is the pseudocode:</p>
 4
 5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>oop_insertion_sort( arr, size ):
   make an empty array called tmp_arr of size &quot;size&quot;
-  for i in 0 to size - 1 (inclusive)
+  for i in 0 to size (excluding size)
     sorted_insert_fwd( tmp_arr, 0, i, arr[i] )
   copy tmp_arr to arr
 </pre></div>
@@ -539,7 +539,7 @@ them directly in the original array (i.e., in place). Here is the pseudocode:</p
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>ip_insertion_sort( arr, size )
-  for i in 0 to size - 1 (inclusive)
+  for i in 0 to size (excluding size)
     sorted_insert_fwd( arr, 0, i, arr[i] )
 </pre></div>
 </td></tr></table>
