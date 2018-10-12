@@ -68,49 +68,58 @@ the array in an ascending order.
 
 ---
 
-1. Out-of-place insertion sort (oop-insertion-sort)
+1. Sorted insertion
 
-The intuition behind insertion sort algorithm is simple. Let's say we have an
-array of numbers sorted in an ascending order. We want to insert a number to the
-array and keep the array still sorted after the insertion. How would we do that?
+Before we talk about insertion sort algorithm, let's consider the following
+problem. Let's say we have an array of numbers sorted in an ascending order. We
+want to insert a new number to the array such that the array remains sorted
+after the insertion. For example, my array is `array = { 1, 4, 6, 10, 15 }`, and
+the number to be inserted is `value = 5`. After the sorted insertion, my array
+will be `array = { 1, 4, 5, 6, 10, 15 }`. How can we do that?
 
-Let's look at the following example.
-
-```
-array = { 1, 4, 6, 10, 15 }
-value = 5
-```
-
-We want to insert _value_ to _array_. One way to do the insertion is that we
-look for the correct position of _value_ in _array_, which is in between _4_ and
-_6_, insert _5_ in that position, and shift the rest of the array to the right
-by one position. We can do that using the following algorithm.
+One way to do the insertion is that we look for the correct position of _value_
+in _array_, which is in between _4_ and _6_, insert _5_ in that position, and
+shift the rest of the array to the right by one position. We can do that using
+the following algorithm.
 
 ```
-insert( arr, size, value ):
-  make an empty array called tmp_arr of size (size + 1)
-  for i in 0 to size - 1 (inclusive)
-    if value < tmp_arr[i]
-      tmp_arr[i] = value
-      value = arr[i]
-    else
-      tmp_arr[i] = arr[i]
-  tmp_arr[size] = value
-  return tmp_arr
+// Inputs
+//    - arr   : a sorted array
+//    - begin : beginning index of the array
+//    - end   : index of the element after the last element in the array
+//    - value : new value to be inserted
+// Outputs
+//    - arr   : a sorted array with 1 extra value
+
+sorted_insert_fwd( arr, begin, end, value ):
+  for i in begin to (end - 1) (inclusive)
+    if value < arr[i]
+      swap value and arr[i]
+  arr[end] = value
 ```
 
-We can leverage the above algorithm in our insertion sort by taking each element
-out of the input array and insert it into a sorted output array such that the
-output array remains sorted. Here is the pseudocode:
+The above algorithm is called forward sorted insertion. It iterates from the
+begin to the end of the array, and inserts the value into a correct position.
+
+**Your tasks**
+- Implement the above algorithm inside function `sorted_insert_fwd` in
+`src/utils.c`
+- Write a couple of ad-hoc tests to verify the function in `src/sorted-insert-main.c`
+- Can you do the insertion more efficiently?
+
+---
+
+2. Out-of-place insertion sort (oop-insertion-sort)
+
+We can leverage the sorted insertion algorithm in our insertion sort by taking
+each element out of the input array and insert it into a sorted output array
+such that the output array remains sorted. Here is the pseudocode:
 
 ```
 oop_insertion_sort( arr, size ):
   make an empty array called tmp_arr of size "size"
   for i in 0 to size - 1 (inclusive)
-    tmp_arr[i] = arr[i]
-    for j in 0 to i - 1 (inclusive)
-      if tmp_arr[i] < tmp_arr[j]
-        swap tmp_arr[i] and tmp_arr[j]
+    sorted_insert_fwd( tmp_arr, 0, i, arr[i] )
   copy tmp_arr to arr
 ```
 
@@ -125,7 +134,7 @@ temporarily store sorted elements.
 
 ---
 
-2. In-place insertion sort (ip-insertion-sort)
+3. In-place insertion sort (ip-insertion-sort)
 
 We can do better than out-of-place insertion sort in terms of space complexity
 by not using the temporary array. Instead, we can sort all elements by swapping
@@ -134,9 +143,7 @@ them directly in the original array (i.e., in place). Here is the pseudocode:
 ```
 ip_insertion_sort( arr, size )
   for i in 0 to size - 1 (inclusive)
-    for j in 0 to i - 1 (inclusive)
-      if arr[i] < arr[j]
-        swap arr[i] and arr[j]
+    sorted_insert_fwd( arr, 0, i, arr[i] )
 ```
 
 This algorithm is in-place since we do NOT need an extra array of the same size
@@ -150,7 +157,7 @@ to temporarily store sorted elements.
 
 ---
 
-3. Evaluate both implementations
+4. Evaluate both implementations
 
 **Your tasks**
 - Run the evaluation program to evaluate the performance of both implementations
