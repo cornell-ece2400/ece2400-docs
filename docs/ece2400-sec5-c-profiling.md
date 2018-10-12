@@ -18,7 +18,7 @@ the repo, just clone it.
     :::bash
     % mkdir -p ${HOME}/ece2400
     % cd ${HOME}/ece2400
-    % git clone git@github.com:cornell-ece2400/ece2400-sec5-c-profile sec5
+    % git clone git@github.com:cornell-ece2400/ece2400-sec5-c-profiling sec5
     % cd sec5
     % ls
 
