@@ -92,7 +92,7 @@ the following algorithm.
 //    - arr   : a sorted array with 1 extra value
 
 sorted_insert_fwd( arr, begin, end, value ):
-  for i in begin to (end - 1) (inclusive)
+  for i in begin to end (excluding end)
     if value < arr[i]
       swap value and arr[i]
   arr[end] = value
@@ -118,7 +118,7 @@ such that the output array remains sorted. Here is the pseudocode:
 ```
 oop_insertion_sort( arr, size ):
   make an empty array called tmp_arr of size "size"
-  for i in 0 to size - 1 (inclusive)
+  for i in 0 to size (excluding size)
     sorted_insert_fwd( tmp_arr, 0, i, arr[i] )
   copy tmp_arr to arr
 ```
@@ -142,7 +142,7 @@ them directly in the original array (i.e., in place). Here is the pseudocode:
 
 ```
 ip_insertion_sort( arr, size )
-  for i in 0 to size - 1 (inclusive)
+  for i in 0 to size (excluding size)
     sorted_insert_fwd( arr, 0, i, arr[i] )
 ```
 
