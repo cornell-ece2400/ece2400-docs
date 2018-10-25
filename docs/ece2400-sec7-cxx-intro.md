@@ -58,7 +58,7 @@ vector" if its initial point is (0, 0). In this discussion, we only work with
 terminal point. Following is an example of how vector _OA_ is represented in
 Cartesian coordinate system:
 
-![](assets/ece2400-sec7-Cxx-intro-f9d579e6.svg)
+![](doc/img/ece2400-sec7-Cxx-intro-f9d579e6.svg)
 
 Notice that its terminal point is point A whose x-coordinate is 2 and
 y-coordinate is 3. Vector OA can be represented as OA(2, 3).
