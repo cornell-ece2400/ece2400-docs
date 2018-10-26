@@ -1,25 +1,22 @@
 Section 7: Introduction to C++
 ==============================
 
-In this discussion, we will practice the following C++ concepts:
+In this discussion, we will transition from C to C++ by incrementally
+moving a simple C structure into C++. We will work on the following
+concepts in this section:
 
-- Class
-- Reference
-- Function/Operator overloading
+- C++ Structure and Class
+- Static member functions in C++ structure
+- Non-static member functions in C++ structure/class
 
-We will develop a class called **Vector** to represent Euclidean vector. Our
-**Vector** class will be based on the **Point** class shown in the lecture.
-
-Follow the same process as in the previous discussion section. You need to login
-to a workstation with your NetID and password. Start a terminal and then don't
-forget to source the setup script!
+Before you start, let's source our setup script like this:
 
 ```
 % source setup-ece2400.sh
 ```
 
-Now clone the github repo for this discussion section. No need to fork the repo,
-just clone it.
+Now clone the github repo for this discussion section. No need to fork the
+repo, just clone it.
 
 ```
 % mkdir -p ${HOME}/ece2400
@@ -31,78 +28,80 @@ just clone it.
 
 The repo includes the following files:
 
-- CMake configuration script
-  + `CMakeLists.txt`
-
-- Source and header files
-  + `src/point.h`
-  + `src/point.cc`
-  + `src/vector.h`
-  + `src/vector.cc`
-
-- Directed test file
-  + `tests/vector-directed-tests.cc`
+- `c-version/` directory
+  + `c-version/complex.c`: a C implementation of `complex_t` structure
+- `cxx-versions/` directory
+  + `cxx-versions/complex-v1.cc`: version 1 of our C++ implementation of
+  `Complex` structure. This version introduces C++ structure and static
+  member functions
+  + `cxx-versions/complex-v2.cc`: version 2 of our C++ implementation of
+  `Complex` structure. This version introduces non-static member functions
+  for a structure in C++ and how to call them.
+  + `cxx-versions/complex-v3.cc`: version 3 of our C++ implementation of
+  `Complex` structure. This version introduces how to define and use
+  constructors for a structure in C++. Students will also practice how to
+  pass a variable to a function by reference.
+  + `cxx-versions/complex-v4.cc`: version 4 of our C++ implementation of
+  `Complex` structure. This version introduces copy constructor and
+  operator overloading.
 
 ---
 
-**1. Euclidean vector**
+**1. Step 1: C version**
 
-This is a definition of Euclidean vector: "_In mathematics, physics, and
-engineering, a Euclidean vector (sometimes called a geometric or spatial vector,
-or—as here—simply a vector) is a geometric object that has magnitude (or length)
-and direction._" (from Wikipedia)
+- Understand the implementation of `complex_t` structure in `c-version/complex.c`
+- Compile and run the program like this
 
-A vector has an initial point and a terminal point. A vector is called "free
-vector" if its initial point is (0, 0). In this discussion, we only work with
-"free vector". A free vector can be represented using x and y coordinate of its
-terminal point. Following is an example of how vector _OA_ is represented in
-Cartesian coordinate system:
+```
+cd c-version/
+gcc -Wall -o complex complex.c
+./complex
+```
 
-![](img/ece2400-sec7-Cxx-intro-f9d579e6.svg)
+**2. Step 2: First C++ version of `complex_t`**
 
-Notice that its terminal point is point A whose x-coordinate is 2 and
-y-coordinate is 3. Vector OA can be represented as OA(2, 3).
+- In this version, we're making the first steps toward C++.
 
-There're several operations that can be applied to vectors. Let's say we have
-two vectors A(x_a, y_a) and B(x_b, y_b).
+- First, we change how to declare a structure. We use C++ coding convention
+  to name our structure `Complex` instead of `complex_t` in C.
 
-- Get the length of a vector
-  + `len( A ) = sqrt( x_a * x_a + y_a * y_a )`
-- Add two vectors together
-  + `A + B = ( x_a + x_b, y_a + y_b )`
-- Multiply a vector with a scalar value
-  + `A * m = ( x_a * m, y_a *m )`
-- Compare two vectors in both magnitude and direction
-  + `A = B if x_a = x_b and y_a = y_b`
+- Second, we move `add` and `print` functions inside the definition of
+  `Complex`, and make the functions `static`.
 
-**2. Implement Vector class**
+- Third, in `main`, we call the two functions using a namespace `Complex`
 
-The definition of `Vector` class is given in `src/vector.h`. The class has a
-private member called `m_terminal_point` whose type is `Point`. `Point` class is
-already implemented in `src/point.h` and `src/point.c`. You may want to look at
-how the interface of `Point` class looks like to use it in your `Vector` class.
+**Your task**: Implement the `add` function
 
-You will need implement the following functions in `Vector` class.
+**3. Step 3: Second C++ version**
 
-- `get_x`: return the x-coordinate of the terminal point of a vector
-- `get_y`: return the y-coordinate of the terminal point of a vector
-- `len`: return the length of a vector
-- `multiply`: multiply a vector with a scalar value
-- `add`: add a vector with another vector
-- `eq`: compare a vector with another vector in both magnitude and direction
+- In this version, we make both `add` and `print` functions non-static.
 
-**3. Overload some operators**
+- In `main`, we change how we call the two functions. Now every call to
+  `add` and `print` is associated with a specific instance of `Complex`.
 
-After you finish implementing all functions in `Vector` class, you will need to
-overload the following operators.
+- Also you may notice that, the `this_` variables in `complex-v1.cc` are
+  replaced with C++ keyword `this`. In C++, `this` is a pointer to the
+  current instance of a structure or class.
 
-- `operator+`: add two vectors together and return the sum vector
-- `operator*`: multiply a vector with a scalar value and return the result
-vector
-- `operator==`: compare two vectors and return true if both are equal
+**Your task**: Implement the `add` function
 
-**4. Test your implementation**
+**4. Step 4: Third C++ version**
 
-After you finish your implementation, you will need to write some directed tests
-in `tests/vector-directed-tests.cc` to verify whether your `Vector` works
-correctly.
+- In this version, we introduce a constructor for our `Complex` structure.
+  The constructor helps us initialize member fields of the structure.
+
+- In `main`, we use the constructor to initialize a structure instance
+  instead of initializing each member field directly.
+
+**Your task**: Implement the `add` function. The function now takes a
+reference to a structure instance instead of a pointer.
+
+**5. Step 5: Fourth C++ version**
+
+**Your tasks**
+
+- First, you make a copy constructor that takes a constant reference to an
+  instance of `Complex` and initialize all member fields by copying `real`
+  and `imag` from the input `x` object.
+- Second, you overload the `operator+` so that we can add two `Complex`
+  instances together.
