@@ -388,23 +388,21 @@
                 
                 
                 <h1 id="section-7-introduction-to-c">Section 7: Introduction to C++<a class="headerlink" href="#section-7-introduction-to-c" title="Permanent link">&para;</a></h1>
-<p>In this discussion, we will practice the following C++ concepts:</p>
+<p>In this discussion, we will transition from C to C++ by incrementally
+moving a simple C structure into C++. We will work on the following
+concepts in this section:</p>
 <ul>
-<li>Class</li>
-<li>Reference</li>
-<li>Function/Operator overloading</li>
+<li>C++ Structure and Class</li>
+<li>Static member functions in C++ structure</li>
+<li>Non-static member functions in C++ structure/class</li>
 </ul>
-<p>We will develop a class called <strong>Vector</strong> to represent Euclidean vector. Our
-<strong>Vector</strong> class will be based on the <strong>Point</strong> class shown in the lecture.</p>
-<p>Follow the same process as in the previous discussion section. You need to login
-to a workstation with your NetID and password. Start a terminal and then don't
-forget to source the setup script!</p>
+<p>Before you start, let's source our setup script like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c">% source setup-ece2400.sh</span>
 </pre></div>
 </td></tr></table>
 
-<p>Now clone the github repo for this discussion section. No need to fork the repo,
-just clone it.</p>
+<p>Now clone the github repo for this discussion section. No need to fork the
+repo, just clone it.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -419,77 +417,93 @@ just clone it.</p>
 
 <p>The repo includes the following files:</p>
 <ul>
-<li>CMake configuration script</li>
-<li>
-<p><code>CMakeLists.txt</code></p>
-</li>
-<li>
-<p>Source and header files</p>
-</li>
-<li><code>src/point.h</code></li>
-<li><code>src/point.cc</code></li>
-<li><code>src/vector.h</code></li>
-<li>
-<p><code>src/vector.cc</code></p>
-</li>
-<li>
-<p>Directed test file</p>
-</li>
-<li><code>tests/vector-directed-tests.cc</code></li>
+<li><code>c-version/</code> directory</li>
+<li><code>c-version/complex.c</code>: a C implementation of <code>complex_t</code> structure</li>
+<li><code>cxx-versions/</code> directory</li>
+<li><code>cxx-versions/complex-v1.cc</code>: version 1 of our C++ implementation of
+  <code>Complex</code> structure. This version introduces C++ structure and static
+  member functions</li>
+<li><code>cxx-versions/complex-v2.cc</code>: version 2 of our C++ implementation of
+  <code>Complex</code> structure. This version introduces non-static member functions
+  for a structure in C++ and how to call them.</li>
+<li><code>cxx-versions/complex-v3.cc</code>: version 3 of our C++ implementation of
+  <code>Complex</code> structure. This version introduces how to define and use
+  constructors for a structure in C++. Students will also practice how to
+  pass a variable to a function by reference.</li>
+<li><code>cxx-versions/complex-v4.cc</code>: version 4 of our C++ implementation of
+  <code>Complex</code> structure. This version introduces copy constructor and
+  operator overloading.</li>
 </ul>
 <hr />
-<p><strong>1. Euclidean vector</strong></p>
-<p>This is a definition of Euclidean vector: "<em>In mathematics, physics, and
-engineering, a Euclidean vector (sometimes called a geometric or spatial vector,
-or—as here—simply a vector) is a geometric object that has magnitude (or length)
-and direction.</em>" (from Wikipedia)</p>
-<p>A vector has an initial point and a terminal point. A vector is called "free
-vector" if its initial point is (0, 0). In this discussion, we only work with
-"free vector". A free vector can be represented using x and y coordinate of its
-terminal point. Following is an example of how vector <em>OA</em> is represented in
-Cartesian coordinate system:</p>
-<p><img alt="" src="../img/ece2400-sec7-Cxx-intro-f9d579e6.svg" /></p>
-<p>Notice that its terminal point is point A whose x-coordinate is 2 and
-y-coordinate is 3. Vector OA can be represented as OA(2, 3).</p>
-<p>There're several operations that can be applied to vectors. Let's say we have
-two vectors A(x_a, y_a) and B(x_b, y_b).</p>
+<p><strong>1. Step 1: C version</strong></p>
 <ul>
-<li>Get the length of a vector</li>
-<li><code>len( A ) = sqrt( x_a * x_a + y_a * y_a )</code></li>
-<li>Add two vectors together</li>
-<li><code>A + B = ( x_a + x_b, y_a + y_b )</code></li>
-<li>Multiply a vector with a scalar value</li>
-<li><code>A * m = ( x_a * m, y_a *m )</code></li>
-<li>Compare two vectors in both magnitude and direction</li>
-<li><code>A = B if x_a = x_b and y_a = y_b</code></li>
+<li>Understand the implementation of <code>complex_t</code> structure in <code>c-version/complex.c</code></li>
+<li>Compile and run the program like this</li>
 </ul>
-<p><strong>2. Implement Vector class</strong></p>
-<p>The definition of <code>Vector</code> class is given in <code>src/vector.h</code>. The class has a
-private member called <code>m_terminal_point</code> whose type is <code>Point</code>. <code>Point</code> class is
-already implemented in <code>src/point.h</code> and <code>src/point.c</code>. You may want to look at
-how the interface of <code>Point</code> class looks like to use it in your <code>Vector</code> class.</p>
-<p>You will need implement the following functions in <code>Vector</code> class.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cd c-version/
+gcc -Wall -o complex complex.c
+./complex
+</pre></div>
+</td></tr></table>
+
+<p><strong>2. Step 2: First C++ version of <code>complex_t</code></strong></p>
 <ul>
-<li><code>get_x</code>: return the x-coordinate of the terminal point of a vector</li>
-<li><code>get_y</code>: return the y-coordinate of the terminal point of a vector</li>
-<li><code>len</code>: return the length of a vector</li>
-<li><code>multiply</code>: multiply a vector with a scalar value</li>
-<li><code>add</code>: add a vector with another vector</li>
-<li><code>eq</code>: compare a vector with another vector in both magnitude and direction</li>
+<li>
+<p>In this version, we're making the first steps toward C++.</p>
+</li>
+<li>
+<p>First, we change how to declare a structure. We use C++ coding convention
+  to name our structure <code>Complex</code> instead of <code>complex_t</code> in C.</p>
+</li>
+<li>
+<p>Second, we move <code>add</code> and <code>print</code> functions inside the definition of
+  <code>Complex</code>, and make the functions <code>static</code>.</p>
+</li>
+<li>
+<p>Third, in <code>main</code>, we call the two functions using a namespace <code>Complex</code></p>
+</li>
 </ul>
-<p><strong>3. Overload some operators</strong></p>
-<p>After you finish implementing all functions in <code>Vector</code> class, you will need to
-overload the following operators.</p>
+<p><strong>Your task</strong>: Implement the <code>add</code> function</p>
+<p><strong>3. Step 3: Second C++ version</strong></p>
 <ul>
-<li><code>operator+</code>: add two vectors together and return the sum vector</li>
-<li><code>operator*</code>: multiply a vector with a scalar value and return the result
-vector</li>
-<li><code>operator==</code>: compare two vectors and return true if both are equal</li>
+<li>
+<p>In this version, we make both <code>add</code> and <code>print</code> functions non-static.</p>
+</li>
+<li>
+<p>In <code>main</code>, we change how we call the two functions. Now every call to
+  <code>add</code> and <code>print</code> is associated with a specific instance of <code>Complex</code>.</p>
+</li>
+<li>
+<p>Also you may notice that, the <code>this_</code> variables in <code>complex-v1.cc</code> are
+  replaced with C++ keyword <code>this</code>. In C++, <code>this</code> is a pointer to the
+  current instance of a structure or class.</p>
+</li>
 </ul>
-<p><strong>4. Test your implementation</strong></p>
-<p>After you finish your implementation, you will need to write some directed tests
-in <code>tests/vector-directed-tests.cc</code> to verify whether your <code>Vector</code> works
-correctly.</p>
+<p><strong>Your task</strong>: Implement the <code>add</code> function</p>
+<p><strong>4. Step 4: Third C++ version</strong></p>
+<ul>
+<li>
+<p>In this version, we introduce a constructor for our <code>Complex</code> structure.
+  The constructor helps us initialize member fields of the structure.</p>
+</li>
+<li>
+<p>In <code>main</code>, we use the constructor to initialize a structure instance
+  instead of initializing each member field directly.</p>
+</li>
+</ul>
+<p><strong>Your task</strong>: Implement the <code>add</code> function. The function now takes a
+reference to a structure instance instead of a pointer.</p>
+<p><strong>5. Step 5: Fourth C++ version</strong></p>
+<p><strong>Your tasks</strong></p>
+<ul>
+<li>First, you make a copy constructor that takes a constant reference to an
+  instance of <code>Complex</code> and initialize all member fields by copying <code>real</code>
+  and <code>imag</code> from the input <code>x</code> object.</li>
+<li>Second, you overload the <code>operator+</code> so that we can add two <code>Complex</code>
+  instances together.</li>
+</ul>
                 
                   
                 
