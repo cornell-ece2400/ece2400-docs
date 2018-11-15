@@ -100,4 +100,11 @@ You can run the test like this:
 
 **3. Part 3: Getting started in PA 5**
 
-Now you and your partner can clone PA 5 and start working on it!
+Now let's start working on the first part of your PA. Read the section 2.3
+in the [PA's handout]() to understand what you are asked to implement for
+this part. Basically you will implement a system that can only classify
+images of ones. This system does not use any training dataset to do the
+classification, but uses an algorithmic approach instead.
+
+Think about if you're given an image of an unlabeled handwritten digit. How
+can you recognize if the digit is `1` or not?
