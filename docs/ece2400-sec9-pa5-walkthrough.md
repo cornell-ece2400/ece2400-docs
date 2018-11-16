@@ -76,8 +76,13 @@ does not use any training dataset to do the classification, but uses an
 algorithmic approach instead.
 
 Think about if you're given an image of an unlabeled handwritten digit. How
-can you recognize if the digit is `1` or not? Discuss your solutions with
-the rest of the class.
+can you recognize if the digit is `1` or not? See the following figures of
+digit `1` and `2` represented as 2-D arrays of pixel values. Discuss your
+solutions with the rest of the class.
+
+![Digit 1](img/pa5-digit-1.JPG)
+
+![Digit 2](img/pa5-digit-2.JPG)
 
 Now clone your group's repo like this:
 
@@ -91,6 +96,12 @@ Start implementing your algorithm in `src/hrs-ones.cc`.
 
 **3. Part 3: Implementing a KNN algorithm working with Point (take-home
 exercise)**
+
+In this part, we go back to the section 9's repository.
+
+```
+% cd ~/ece2400/sec9
+```
 
 Before you start working on this part, read section 2.4 in the [PA 5's
 handout](https://www.csl.cornell.edu/courses/ece2400/handouts/ece2400-pa5-sys.pdf)
