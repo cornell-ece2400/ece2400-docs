@@ -44,8 +44,9 @@ You will see the following files in the directory:
 
 **1. Part 1: Getting familiar with Image, Label, and LabeledImage classes**
 
-Before you start this part, read section 2.1 in the [PA 5's handout]() to
-understand: (1) the interface of `Image`, `Label`, and `LabledImage`
+Before you start this part, read section 2.1 in the [PA 5's
+handout](https://www.csl.cornell.edu/courses/ece2400/handouts/ece2400-pa5-sys.pdf)
+to understand: (1) the interface of `Image`, `Label`, and `LabledImage`
 classes, (2) what they do, and (3) member functions that you will use in
 the PA.
 
@@ -64,10 +65,36 @@ see results on your terminal:
 % make run-types-adhoc
 ```
 
-**2. Part 2: Implementing a KNN algorithm working with Point**
+**2. Part 2: Brainstorming and implementing HandwritingRecSysClassifyOnes**
+
+Now let's start working on the first part of your PA. Read the section 2.3
+in the [PA's
+handout](https://www.csl.cornell.edu/courses/ece2400/handouts/ece2400-pa5-sys.pdf)
+to understand what you are asked to implement for this part. Basically you
+will implement a system that can only classify images of ones. This system
+does not use any training dataset to do the classification, but uses an
+algorithmic approach instead.
+
+Think about if you're given an image of an unlabeled handwritten digit. How
+can you recognize if the digit is `1` or not? Discuss your solutions with
+the rest of the class.
+
+Now clone your group's repo like this:
+
+```
+% cd ~/ece2400
+% git clone git@github.com:cornell-ece2400/group_<group-id>
+% cd group_<group-id>
+```
+
+Start implementing your algorithm in `src/hrs-ones.cc`.
+
+**3. Part 3: Implementing a KNN algorithm working with Point (take-home
+exercise)**
 
 Before you start working on this part, read section 2.4 in the [PA 5's
-handout]() to understand the following concepts:
+handout](https://www.csl.cornell.edu/courses/ece2400/handouts/ece2400-pa5-sys.pdf)
+to understand the following concepts:
 
 - KNN algorithm
 - Euclidean distance
@@ -97,14 +124,3 @@ You can run the test like this:
 % cmake ..
 % make check-knn
 ```
-
-**3. Part 3: Getting started in PA 5**
-
-Now let's start working on the first part of your PA. Read the section 2.3
-in the [PA's handout]() to understand what you are asked to implement for
-this part. Basically you will implement a system that can only classify
-images of ones. This system does not use any training dataset to do the
-classification, but uses an algorithmic approach instead.
-
-Think about if you're given an image of an unlabeled handwritten digit. How
-can you recognize if the digit is `1` or not?
