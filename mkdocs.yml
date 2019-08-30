@@ -22,7 +22,7 @@ theme:
   language:   'en'
   favicon:    'img/favicon.ico'
   palette:
-    primary:  'red'
+    primary:  'blue'
     accent:   'indigo'
 
 # Extensions
@@ -53,12 +53,11 @@ nav:
 #     - 'Topic 1: Introduction to C': ece2400-T01-intro-c-notes.md
 #     - 'Topic 2: C Recursion': ece2400-T01-recursion-notes.md
 
-  - Discussion Section:
-     - 'Section 1: Linux and Git': ece2400-sec1-linux-git.md
-     - 'Section 2: Compiling and Running C Programs': ece2400-sec2-c-basics.md
-     - 'Section 3: C Build and Test Frameworks': ece2400-sec3-c-build-test.md
-     - 'Section 4: C Debugging and Verification': ece2400-sec4-c-debug-coverage.md
-     - 'Section 5: C Profiling for Performance and Memory Usage': ece2400-sec5-c-profiling.md
+     - 'Section 1: Linux Development Environment': ece2400-sec1-linux.md
+#     - 'Section 2: Compiling and Running C Programs': ece2400-sec2-c-basics.md
+#     - 'Section 3: C Build and Test Frameworks': ece2400-sec3-c-build-test.md
+#     - 'Section 4: C Debugging and Verification': ece2400-sec4-c-debug-coverage.md
+#     - 'Section 5: C Profiling for Performance and Memory Usage': ece2400-sec5-c-profiling.md
 
 # Next year make linux/git a single tutorial!
 
@@ -76,5 +75,5 @@ nav:
 #     - 'PA4: Polymorphic Data Structures and Algorithms': ece2400-pa4-poly.md
 #     - 'PA5: Handwriting Recognition System': ece2400-pa5-sys.md
 
-  - FAQ:
-    - 'FAQ on C Basics': ece2400-faq-c-basics.md
+#  - FAQ:
+#    - 'FAQ on C Basics': ece2400-faq-c-basics.md
