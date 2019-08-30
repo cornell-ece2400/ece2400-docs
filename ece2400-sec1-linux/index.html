@@ -1,0 +1,1160 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="Christopher Batten">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>Section 1: Linux Development Environment - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#section-1-linux-development-environment" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="ECE 2400 / ENGRD 2140 Computer Systems Programming Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
+              </span>
+              <span class="md-header-nav__topic">
+                Section 1: Linux Development Environment
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/cornell-ece2400/ece2400-docs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      cornell-ece2400/ece2400-docs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="ECE 2400 / ENGRD 2140 Computer Systems Programming Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/cornell-ece2400/ece2400-docs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      cornell-ece2400/ece2400-docs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Section 1: Linux Development Environment
+      </label>
+    
+    <a href="./" title="Section 1: Linux Development Environment" class="md-nav__link md-nav__link--active">
+      Section 1: Linux Development Environment
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
+    1. The ecelinux Machines
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options-for-using-ecelinux-machines" title="Options For Using ecelinux Machines" class="md-nav__link">
+    Options For Using ecelinux Machines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-into-the-ecelinux-machines" title="Logging Into the ecelinux Machines" class="md-nav__link">
+    Logging Into the ecelinux Machines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ecelinux-account-setup" title="2. ecelinux Account Setup" class="md-nav__link">
+    2. ecelinux Account Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-linux-command-line" title="3. Linux Command Line" class="md-nav__link">
+    3. Linux Command Line
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hello-world" title="Hello World" class="md-nav__link">
+    Hello World
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-pages" title="Manual Pages" class="md-nav__link">
+    Manual Pages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-view-and-list-files" title="Create, View, and List Files" class="md-nav__link">
+    Create, View, and List Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-change-and-list-directories" title="Create, Change, and List Directories" class="md-nav__link">
+    Create, Change, and List Directories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy-move-and-remove-files-and-directories" title="Copy, Move, and Remove Files and Directories" class="md-nav__link">
+    Copy, Move, and Remove Files and Directories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-editors" title="Text Editors" class="md-nav__link">
+    Text Editors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-github-account-setup" title="4. GitHub Account Setup" class="md-nav__link">
+    4. GitHub Account Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-git-version-control-system" title="5. Git Version Control System" class="md-nav__link">
+    5. Git Version Control System
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fork-and-clone-a-repo-from-github" title="Fork and Clone a Repo from GitHub" class="md-nav__link">
+    Fork and Clone a Repo from GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-and-committing-files-to-local-repository" title="Adding and Committing Files to Local Repository" class="md-nav__link">
+    Adding and Committing Files to Local Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-files-to-github" title="Pushing Files to GitHub" class="md-nav__link">
+    Pushing Files to GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pulling-files-from-github" title="Pulling Files from GitHub" class="md-nav__link">
+    Pulling Files from GitHub
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
+    1. The ecelinux Machines
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options-for-using-ecelinux-machines" title="Options For Using ecelinux Machines" class="md-nav__link">
+    Options For Using ecelinux Machines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-into-the-ecelinux-machines" title="Logging Into the ecelinux Machines" class="md-nav__link">
+    Logging Into the ecelinux Machines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ecelinux-account-setup" title="2. ecelinux Account Setup" class="md-nav__link">
+    2. ecelinux Account Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-linux-command-line" title="3. Linux Command Line" class="md-nav__link">
+    3. Linux Command Line
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hello-world" title="Hello World" class="md-nav__link">
+    Hello World
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-pages" title="Manual Pages" class="md-nav__link">
+    Manual Pages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-view-and-list-files" title="Create, View, and List Files" class="md-nav__link">
+    Create, View, and List Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-change-and-list-directories" title="Create, Change, and List Directories" class="md-nav__link">
+    Create, Change, and List Directories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy-move-and-remove-files-and-directories" title="Copy, Move, and Remove Files and Directories" class="md-nav__link">
+    Copy, Move, and Remove Files and Directories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-editors" title="Text Editors" class="md-nav__link">
+    Text Editors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-github-account-setup" title="4. GitHub Account Setup" class="md-nav__link">
+    4. GitHub Account Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-git-version-control-system" title="5. Git Version Control System" class="md-nav__link">
+    5. Git Version Control System
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fork-and-clone-a-repo-from-github" title="Fork and Clone a Repo from GitHub" class="md-nav__link">
+    Fork and Clone a Repo from GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-and-committing-files-to-local-repository" title="Adding and Committing Files to Local Repository" class="md-nav__link">
+    Adding and Committing Files to Local Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-files-to-github" title="Pushing Files to GitHub" class="md-nav__link">
+    Pushing Files to GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pulling-files-from-github" title="Pulling Files from GitHub" class="md-nav__link">
+    Pulling Files from GitHub
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec1-linux.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="section-1-linux-development-environment">Section 1: Linux Development Environment<a class="headerlink" href="#section-1-linux-development-environment" title="Permanent link">&para;</a></h1>
+<p>This section serves as gentle introduction to the basics of using the
+Linux development environment on the <code>ecelinux</code> machines including how to
+log into the machines, how to work at the Linux command line, and how to
+use Git version control.</p>
+<h2 id="1-the-ecelinux-machines">1. The <code>ecelinux</code> Machines<a class="headerlink" href="#1-the-ecelinux-machines" title="Permanent link">&para;</a></h2>
+<p>We will be using the <code>ecelinux</code> workstations and servers for all of the
+programming assignments. The <code>ecelinux</code> machines all run the Red Hat
+Enterprise Linux 7 operating system, and they all use an identical setup.
+Linux is the operating system of choice for both cloud and IoT systems,
+so becoming familiar with Linux will pay dividends beyond just this
+course.</p>
+<h3 id="options-for-using-ecelinux-machines">Options For Using <code>ecelinux</code> Machines<a class="headerlink" href="#options-for-using-ecelinux-machines" title="Permanent link">&para;</a></h3>
+<ul>
+<li>directly use workstations in 314 Phillips Linux Lab</li>
+<li>log in remotely from workstations in 318 Phillips Windows Lab</li>
+<li>log in remotely from your own laptop</li>
+<li>in this discussion section, we will be logging in remotely from the
+    workstations in the 318 Phillips Windows Lab</li>
+</ul>
+<h3 id="logging-into-the-ecelinux-machines">Logging Into the <code>ecelinux</code> Machines<a class="headerlink" href="#logging-into-the-ecelinux-machines" title="Permanent link">&para;</a></h3>
+<p>The first step is to log into the Windows workstation using your NetID
+and your standard NetID password.</p>
+<p>The second step is to start MobaXterm. From the <em>Start</em> menu, choose
+<em>MobaXterm Educational Edition &gt; MobaXterm Educational Edition</em>. Then
+double click on <em>ecelinux.ece.cornell.edu</em> under <em>Saved sessions</em> in
+MobaXterm. Log in using your NetID and password. Click <em>Yes</em> when asked
+if you want to save your password. This will make it easier to open
+multiple terminals if you need to. All of your credentials will be
+deleted when you restart the workstation so there is no security concern.</p>
+<p>If you cannot log in into <code>ecelinux</code>, then it may be because you are
+either not enrolled in the course or you added the course this morning.
+We will be updating the access list often.</p>
+<h2 id="2-ecelinux-account-setup">2. <code>ecelinux</code> Account Setup<a class="headerlink" href="#2-ecelinux-account-setup" title="Permanent link">&para;</a></h2>
+<p>The very first thing you need to do after logging into a <code>ecelinux</code>
+machine is source the course setup script. This will ensure your
+environment is setup with everything you need for working on the
+programming assignments. Enter the following command on the command line:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">source</span> setup-ece2400.sh
+</pre></div>
+</td></tr></table>
+
+<p>Note that you do not need to enter <code>%</code> character. In a tutorial like
+this, the <code>%</code> simply indicates what you should type at the command line.
+You should now see <code>ECE 2400</code> in your prompt which means your environment
+is setup for the course.</p>
+<p>It can be tedious to always remember to source the course setup script.
+You can also use <em>auto setup</em> which will automatically source the course
+setup for you when you log in. Note that if the environment for ECE 2400
+conflicts with the environment required by a different course then you
+will need to manually source the setup script when you are working on
+this course. Enter the following command on the command line to use
+auto setup:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">source</span> setup-ece2400.sh --enable-auto-setup
+</pre></div>
+</td></tr></table>
+
+<p>Now quit MobaXterm, restart MobaXterm, and log back into the <code>ecelinux</code>
+server. You should see <code>ECE 2400</code> in the prompt meaning your environment
+is automatically setup for the course. If at anytime you need to disable
+auto setup you can use the following command:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">source</span> setup-ece2400.sh --disable-auto-setup
+</pre></div>
+</td></tr></table>
+
+<p>Now that we have source the course setup script we can start to explore
+the Linux command line.</p>
+<h2 id="3-linux-command-line">3. Linux Command Line<a class="headerlink" href="#3-linux-command-line" title="Permanent link">&para;</a></h2>
+<p>We will using the <code>ecelinux</code> workstations and servers which run the Red
+Hat Enterprise Linux 7 operating system for all of the programming
+assignments. The heart of the Linux operating system is the Linux command
+line. This is a text-based console where you can enter commands to
+interact with the operating system.</p>
+<h3 id="hello-world">Hello World<a class="headerlink" href="#hello-world" title="Permanent link">&para;</a></h3>
+<p>We begin with the ubiquitous "Hello, World" example. To display the
+message "Hello, World" we will use the <code>echo</code> command. The <code>echo</code> command
+simply "echoes" its input to the console.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">echo</span> <span class="s2">&quot;Hello, World&quot;</span>
+</pre></div>
+</td></tr></table>
+
+<p>The string we provide to the echo command is called a <em>command line
+argument</em>. We use command line arguments to tell commands what they
+should operate on. Again, note that you do not need to enter <code>%</code>
+character.</p>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Experiment with using the <code>echo</code> command to display different
+messages.</p>
+</div>
+<h3 id="manual-pages">Manual Pages<a class="headerlink" href="#manual-pages" title="Permanent link">&para;</a></h3>
+<p>You can learn more about any Linux command by using the <code>man</code> command.
+Try using this to learn more about the <code>echo</code> command.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % man <span class="nb">echo</span>
+</pre></div>
+</td></tr></table>
+
+<p>You can use the up/down keys to scroll the manual one line at a time, the
+space bar to scroll down one page at a time, and the <code>q</code> key to quit
+viewing the manual.</p>
+<h3 id="create-view-and-list-files">Create, View, and List Files<a class="headerlink" href="#create-view-and-list-files" title="Permanent link">&para;</a></h3>
+<p>We can use the echo command and a feature called <em>command output
+redirection</em> to create simple text files. Command output redirection is
+discussed more in the full tutorial. Command output redirection uses the
+<code>&gt;</code> operator to take the output from one command and "redirect" it to a
+file. The following commands will create a new file named
+<code>ece2400-sec1.txt</code> that simply contains the text "Computer Systems
+Programming".</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">echo</span> <span class="s2">&quot;Computer Systems Programming&quot;</span> &gt; ece2400-sec1.txt
+</pre></div>
+</td></tr></table>
+
+<p>We can use the <code>cat</code> command to quickly display the contents of a file.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % cat ece2400-sec1.txt
+</pre></div>
+</td></tr></table>
+
+<p>For larger files, <code>cat</code> will output the entire file to the console so it
+may be hard to read the file as it streams past. We can use the <code>less</code>
+command to show one screen-full of text at a time. You can use the
+up/down keys to scroll the file one line at a time, the space bar to
+scroll down one page at a time, and the <code>q</code> key to quit viewing the file.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % less ece2400-sec1.txt
+</pre></div>
+</td></tr></table>
+
+<p>You can use the <code>ls</code> command to list the filenames of the files you have
+created.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % ls
+</pre></div>
+</td></tr></table>
+
+<p>We can provide command line options to the <code>ls</code> command to modify the
+command’s behavior. For example, we can use the <code>-1</code> (i.e., a dash
+followed by the number one) command line option to list one file per
+line, and we can we can use the <code>-l</code> (i.e., a dash followed by the letter
+l) command line option to provide a longer listing with more information
+about each file.</p>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Create a new file named <code>ece2400-sec1-layer3.txt</code> which contains the
+third layer in the computing systems stack (i.e., programming
+language). Use <code>cat</code> and <code>less</code> to verify the file contents.</p>
+</div>
+<h3 id="create-change-and-list-directories">Create, Change, and List Directories<a class="headerlink" href="#create-change-and-list-directories" title="Permanent link">&para;</a></h3>
+<p>Obviously, having all files in a single location would be hard to manage
+effectively. We can use directories (also called folders) to logically
+organize our files, just like one can use physical folders to organize
+physical pieces of paper. The mechanism for organizing files and
+directories is called the file system. When you first login to an
+<code>ecelinux</code> machine, you will be in your home directory. This is your own
+private space on the server that you can use to work on the programming
+assignments and store your files. You can use the <code>pwd</code> command to print
+the directory in which you are currently working, which is known as the
+current working directory.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">pwd</span>
+ /home/netid
+</pre></div>
+</td></tr></table>
+
+<p>You should see output similar to what is shown above, but instead of
+<code>netid</code> it should show your actual NetID. The pwd command shows a
+directory path. A directory path is a list of nested directory names; it
+describes a "path" to get to a specific file or directory. So the above
+path indicates that there is a toplevel directory named home that
+contains a directory named <code>netid</code>. This is the directory path to your
+home directory. As an aside, notice that Linux uses a forward slash (<code>/</code>)
+to separate directories, while Windows uses a back slash (<code>\</code>) for the
+same purpose.</p>
+<p>We can use the <code>mkdir</code> command to make new directories. The following
+command will make a new directory named <code>ece2400</code> within your home
+directory.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % mkdir ece2400
+</pre></div>
+</td></tr></table>
+
+<p>We can use the <code>cd</code> command to change our current working directory. The
+following command will change the current working directory to be the
+newly created <code>ece2400</code> directory, before displaying the current working
+directory with the pwd command.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ece2400
+ % <span class="nb">pwd</span>
+ /home/netid/ece2400
+</pre></div>
+</td></tr></table>
+
+<p>Use the <code>mkdir</code>, <code>cd</code>, and <code>pwd</code> commands to make another directory.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % mkdir sec1
+ % <span class="nb">cd</span> sec1
+ % <span class="nb">pwd</span>
+ /home/netid/ece2400/sec1
+</pre></div>
+</td></tr></table>
+
+<p>We sometimes say that <code>sec1</code> is a subdirectory or a child directory of
+the <code>ece2400</code> directory. We might also say that the <code>ece2400</code> directory
+is the parent directory of the <code>sec1</code> directory. Use the following
+command to create a new file in this child directory.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> /home/netid/ece2400/sec1
+ % <span class="nb">echo</span> <span class="s2">&quot;Computer Systems Programming&quot;</span> &gt; ece2400-sec1.txt
+ % mkdir dirA
+ % ls
+</pre></div>
+</td></tr></table>
+
+<p>You can use the <code>tree</code> command to visualize the directory layout and
+where files are located:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400
+ % tree
+</pre></div>
+</td></tr></table>
+
+<p>Note that the tilde character (<code>~</code>) is a shortcut which always refers to
+your home directory. There are a few other very useful shortcuts. You can
+use a single dot (<code>.</code>) to refer to the current working directory, and you
+can use a double dot (<code>..</code>) to refer to the parent directory of the
+current working directory.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400/sec1
+ % <span class="nb">cd</span> ..
+ % <span class="nb">cd</span> ..
+ % <span class="nb">pwd</span>
+</pre></div>
+</td></tr></table>
+
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Experiment with creating additional directories and files within the
+<code>ece2400/sec1</code> subdirectory. Try using the <code>tree</code> command to display
+your newly created directory hierarchy.</p>
+</div>
+<h3 id="copy-move-and-remove-files-and-directories">Copy, Move, and Remove Files and Directories<a class="headerlink" href="#copy-move-and-remove-files-and-directories" title="Permanent link">&para;</a></h3>
+<p>We can use the <code>cp</code> command to copy files. The first argument is the name
+of the file you want to copy, and the second argument is the new name to
+give to the copy. The following commands will make two copies of the
+files we created in the previous section.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400/sec1
+ % cp ece2400-sec1.txt ece2400-sec1-a.txt
+ % cp ece2400-sec1.txt ece2400-sec1-b.txt
+ % ls
+</pre></div>
+</td></tr></table>
+
+<p>Instead of copying we can also move a file with the <code>mv</code> command:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400/sec1
+ % mv ece2400-sec1.txt ece2400-sec1-c.txt
+ % ls
+</pre></div>
+</td></tr></table>
+
+<p>Finally, we can use the <code>rm</code> command to remove files.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400/sec1
+ % ls
+ % rm ece2400-sec1-a.txt
+</pre></div>
+</td></tr></table>
+
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Creating additional directories and files within the <code>ece2400/sec1</code>
+subdirectory, and then use the <code>cp</code>, <code>mv</code>, and <code>rm</code> commands to copy,
+move, and remove the newly created directories and files. Use the
+<code>ls</code> and <code>tree</code> commands to display your file and directory
+organization.</p>
+</div>
+<h3 id="text-editors">Text Editors<a class="headerlink" href="#text-editors" title="Permanent link">&para;</a></h3>
+<p>Students are free to use any text editor they want. We recommend using
+either Micro or Geany. You can start Micro like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % micro ece2400-sec1.txt
+</pre></div>
+</td></tr></table>
+
+<p>Micro is a lightweight text-based text editor. Use <em>Ctrl-G</em> to learn more
+about the keyboard shortcuts you can use to in Micro.</p>
+<p>You can start Geany like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % geany ece2400-sec1.txt <span class="p">&amp;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Geany is a graphical-based text editor. Notice the <code>&amp;</code> character at the
+end of the command line. This indicates that Linux should run Geany in
+the background meaning you can still work at the command line while Geany
+is running in a different window.</p>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Try editing the <code>ece2400-sec1.txt</code> file you created earlier using
+either Micro or Geany. Save the file and then view your changes from
+the command line using <code>cat</code>.</p>
+</div>
+<h2 id="4-github-account-setup">4. GitHub Account Setup<a class="headerlink" href="#4-github-account-setup" title="Permanent link">&para;</a></h2>
+<p>We will be using GitHub for centralized repository hosting. You can check
+to see if you have a GitHub account on <code>github.com</code> using this link:
+<code>https://github.com/githubid</code> where <code>githubid</code> is your GitHub username on
+<code>github.com</code>. If the above link does not work, then you do not have an
+GitHub account on <code>github.com</code>. <strong>NOTE: We are using <code>github.com</code> not the
+Cornell hosted GitHub!</strong> You will need to create one here:</p>
+<ul>
+<li><a href="https://github.com/join">https://github.com/join</a></li>
+</ul>
+<p>Your NetID makes a great GitHub username on <code>github.com</code>. Be sure to use
+your Cornell University email address.</p>
+<p>Once your account is setup, please make sure you set your full name so we
+can know who you are on GitHub. Please also consider uploading a profile
+photo to GitHub; it makes it more fun to interact on GitHub if we all
+know what each other look like. Go to the following page and enter your
+first and last name in the Name field, and then consider uploading a
+profile photo.</p>
+<ul>
+<li><a href="https://github.com/settings/profile">https://github.com/settings/profile</a></li>
+</ul>
+<p>Once you have a GitHub ID, please fill out the following online so the
+instructors know the mapping from NetID to GitHub ID:</p>
+<ul>
+<li><a href="http://www.csl.cornell.edu/courses/ece2400/signup">http://www.csl.cornell.edu/courses/ece2400/signup</a></li>
+</ul>
+<p>Before you can begin using GitHub, you need to create an SSH key pair on
+an <code>ecelinux</code> machine and upload the corresponding SSH public key to
+GitHub. GitHub uses these keys for authentication. The course setup
+script takes care of creating an SSH key pair which you can use. View the
+contents of your public key using the following commands:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % cat ~/.ssh/ece2400-github.pub
+</pre></div>
+</td></tr></table>
+
+<p>Use the following page to upload the public key to GitHub:</p>
+<ul>
+<li><a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a></li>
+</ul>
+<p>Click on <em>New SSH Key</em>, and then cut-and-paste the public key you
+displayed using cat into the key textbox. Give the key the title
+<code>ece2400-github</code>. Then click <em>Add SSH key</em>. To test things out try the
+following command:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % ssh -T git@github.com
+</pre></div>
+</td></tr></table>
+
+<p>You may see a warning about the authenticity of the host. Don’t worry,
+this is supposed to happen the first time you access GitHub using your
+new key. Just enter <code>yes</code>. The GitHub server should output some text
+including your GitHub ID. Verify that the GitHub ID is correct, and then
+you should be all set.</p>
+<h2 id="5-git-version-control-system">5. Git Version Control System<a class="headerlink" href="#5-git-version-control-system" title="Permanent link">&para;</a></h2>
+<p>In this course, we will be using Git as our revision control and source
+code management system. Git will enable us to adopt an agile hardware
+development methodology so you (and your group) can rapidly collaborate
+and iterate on the design, verification, and evaluation of the
+assignments.</p>
+<h3 id="fork-and-clone-a-repo-from-github">Fork and Clone a Repo from GitHub<a class="headerlink" href="#fork-and-clone-a-repo-from-github" title="Permanent link">&para;</a></h3>
+<p>Fork'ing a repo means making a copy of that repo for your own local use.
+We won't actually be forking repos for the programming assignments, but
+it is an easy way for you to grab some example code for the discussion
+section. Go to the example repo here:</p>
+<ul>
+<li><a href="https://github.com/cornell-ece2400/ece2400-sec1">https://github.com/cornell-ece2400/ece2400-sec1</a></li>
+</ul>
+<p>Click on the "Fork" button. Wait a few seconds and then visit the new
+copy of this repo in your own person GitHub workspace:</p>
+<ul>
+<li><code>https://github.com/githubid/ece2400-sec1</code></li>
+</ul>
+<p>Where <code>githubid</code> is your GitHubID. Now let's clone your new repo to the
+<code>ecelinux</code> machine.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+ % git clone git@github.com:githubid/ece2400-sec1 sec1
+ % <span class="nb">cd</span> sec1
+ % cat README.md
+</pre></div>
+</td></tr></table>
+
+<p>Where <code>githubid</code> is your GitHubID.</p>
+<h3 id="adding-and-committing-files-to-local-repository">Adding and Committing Files to Local Repository<a class="headerlink" href="#adding-and-committing-files-to-local-repository" title="Permanent link">&para;</a></h3>
+<p>Now let's add some new files to the repository. Use your favorite text
+editor (e.g., Micro, Geany) to create a file named <code>warm-colors.txt</code> with
+three warm colors:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> red
+ orange
+ yellow
+</pre></div>
+</td></tr></table>
+
+<p>Now use your favorite text editor again to create a file named
+<code>cool-colors.txt</code> with three cool colors.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> blue
+ green
+ purple
+</pre></div>
+</td></tr></table>
+
+<p>Now let's add these files to our repository. First use the <code>git status</code>
+command to check on the status of the repository.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+ % git status
+</pre></div>
+</td></tr></table>
+
+<p>You should see that git has noticed two "untracked files" which are in
+the working directory but are not currently being tracked by git. Let's
+"add" these two files to git's "staging" area so it now knows it should
+keep track of them:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+ % git add warm-colors.txt
+ % git add cool-colors.txt
+ % git status
+</pre></div>
+</td></tr></table>
+
+<p>The status of these two files have changed. Git reports that both of the
+new files are ready to be committed. Let's go ahead and commit these
+changes into your local repository.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+ % git commit -m <span class="s2">&quot;add some colors&quot;</span>
+</pre></div>
+</td></tr></table>
+
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Try adding <code>cyan</code> to the <code>cool-colors.txt</code> file you created earlier
+using either Micro or Geany. Save the file and then view your changes
+from the command line using <code>cat</code>. Then use <code>git status</code>, <code>git add</code>,
+and <code>git commit</code> to add these changes to local repository.</p>
+</div>
+<h3 id="pushing-files-to-github">Pushing Files to GitHub<a class="headerlink" href="#pushing-files-to-github" title="Permanent link">&para;</a></h3>
+<p>Note that nothing has happened on GitHub yet. GitHub does <em>not</em> know
+anything about these local changes. We need to explicitly "push" our new
+commits up to GitHub like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+ % git push
+</pre></div>
+</td></tr></table>
+
+<p>Now go to the repository page using the GitHub web interface and verify
+that there are two new files.</p>
+<ul>
+<li><code>https://github.com/githubid/ece2400-sec1</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Try adding <code>mustard</code> to the <code>warm-colors.txt</code> file you created
+earlier using either Micro or Geany. Save the file and then view your
+changes from the command line using <code>cat</code>. Then use <code>git status</code>,
+<code>git add</code>, and <code>git commit</code> to add these changes to local repository,
+and then use <code>git push</code> to push these changes up to GitHub. View the
+changes using the GitHub web interface.</p>
+</div>
+<h3 id="pulling-files-from-github">Pulling Files from GitHub<a class="headerlink" href="#pulling-files-from-github" title="Permanent link">&para;</a></h3>
+<p>Let's try making a change to this repository through the GitHub
+web interface. Click on <em>Create new file</em>. Name the file <code>languages.txt</code>
+and add a list of programming languages:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> C
+ C++
+ Python
+ MATLAB
+ Java
+</pre></div>
+</td></tr></table>
+
+<p>Now click <em>Commit new file</em>. Verify that there is a new file in the repo
+using the GitHub web interface. Now let's "pull" these new changes from
+GitHub to your local repo on <code>ecelinux</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+ % git pull
+ % cat languages.txt
+</pre></div>
+</td></tr></table>
+
+<p>This will be the basic GitHub workflow were students pull and push code
+between GitHub and the <code>ecelinux</code> machines.</p>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Try editing a file using the GitHub web interface. Click on the
+<code>warm-colors.txt</code> file and then click on the pencil in the right-hand
+corner to edit this text file. Add another warm color. Click <em>Commit
+changes</em>. Then pull these changes to the local repository on the
+<code>ecelinux</code> server and verify that your new warm color is included.</p>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 Christopher Batten
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.3",url:{base:".."}})</script>
+      
+        <script src="../js/extras.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
