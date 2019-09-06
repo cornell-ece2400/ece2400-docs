@@ -21,9 +21,14 @@ theme:
   custom_dir: 'theme/'
   language:   'en'
   favicon:    'img/favicon.ico'
+#  font:
+#    text: 'Ubuntu'
+#    code: 'Ubuntu Mono'
   palette:
     primary:  'blue'
     accent:   'indigo'
+  feature:
+    tabs:     true
 
 # Extensions
 
@@ -37,6 +42,9 @@ markdown_extensions:
 
 # Extras
 
+extra_css:
+  - 'stylesheets/extra.css'
+
 extra_javascript:
   - 'js/extras.js'
 
@@ -49,12 +57,15 @@ nav:
 #     - 'PA Coding Guidelines': ece2400-pa-coding-guidelines.md
 #     - 'Example Outline for PA1 Report': ece2400-pa1-outline.md
 
-#  - Topic Notes:
-#     - 'Topic 1: Introduction to C': ece2400-T01-intro-c-notes.md
+#   - Topic Notes:
+#      - 'Topic 1: Introduction to C': ece2400-T01-intro-c.md
+
 #     - 'Topic 2: C Recursion': ece2400-T01-recursion-notes.md
 
-     - 'Section 1: Linux Development Environment': ece2400-sec1-linux.md
-#     - 'Section 2: Compiling and Running C Programs': ece2400-sec2-c-basics.md
+   - Section Notes:
+      - 'Section 1: Linux Development Environment': ece2400-sec1-linux.md
+      - 'Section 2: Compiling and Running C Programs': ece2400-sec2-c-basics.md
+
 #     - 'Section 3: C Build and Test Frameworks': ece2400-sec3-c-build-test.md
 #     - 'Section 4: C Debugging and Verification': ece2400-sec4-c-debug-coverage.md
 #     - 'Section 5: C Profiling for Performance and Memory Usage': ece2400-sec5-c-profiling.md

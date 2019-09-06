@@ -7,7 +7,7 @@ Linux development environment on the `ecelinux` machines including how to
 log into the machines, how to work at the Linux command line, and how to
 use Git version control.
 
-1. The `ecelinux` Machines
+1. The ecelinux Machines
 --------------------------------------------------------------------------
 
 We will be using the `ecelinux` workstations and servers for all of the
@@ -17,7 +17,7 @@ Linux is the operating system of choice for both cloud and IoT systems,
 so becoming familiar with Linux will pay dividends beyond just this
 course.
 
-### Options For Using `ecelinux` Machines
+### 1.1. Options For Using ecelinux Machines
 
  - directly use workstations in 314 Phillips Linux Lab
  - log in remotely from workstations in 318 Phillips Windows Lab
@@ -25,7 +25,7 @@ course.
  - in this discussion section, we will be logging in remotely from the
     workstations in the 318 Phillips Windows Lab
 
-### Using MobaXterm to Log Into the `ecelinux` Servers
+### 1.2. Using MobaXterm to Log Into the ecelinux Servers
 
 The first step is to log into the Windows workstation using your NetID
 and your standard NetID password.
@@ -42,7 +42,7 @@ If you cannot log in into `ecelinux`, then it may be because you are
 either not enrolled in the course or you added the course this morning.
 We will be updating the access list often.
 
-### Using Multiple Terminals in MobaXterm
+### 1.3. Using Multiple Terminals in MobaXterm
 
 It is often very useful to have multiple terminals open at the same time.
 From the menu, choose _Sessions > ecelinux.ece.cornell.edu_ to create a new
@@ -57,7 +57,7 @@ Drag the original MobaXterm all the way to the left so it fills up the
 right-hand size of your screen. Now you have two terminals side-by-side,
 enabling you to be doing multiple things on the server at the same time.
 
-2. `ecelinux` Account Setup
+2. ecelinux Account Setup
 --------------------------------------------------------------------------
 
 The very first thing you need to do after logging into a `ecelinux`
@@ -107,7 +107,7 @@ assignments. The heart of the Linux operating system is the Linux command
 line. This is a text-based console where you can enter commands to
 interact with the operating system.
 
-### Hello World
+### 3.1 Hello World
 
 We begin with the ubiquitous "Hello, World" example. To display the
 message "Hello, World" we will use the `echo` command. The `echo` command
@@ -127,7 +127,7 @@ character.
     Experiment with using the `echo` command to display different
     messages.
 
-### Manual Pages
+### 3.2. Manual Pages
 
 You can learn more about any Linux command by using the `man` command.
 Try using this to learn more about the `echo` command.
@@ -140,7 +140,7 @@ You can use the up/down keys to scroll the manual one line at a time, the
 space bar to scroll down one page at a time, and the `q` key to quit
 viewing the manual.
 
-### Create, View, and List Files
+### 3.3. Create, View, and List Files
 
 We can use the echo command and a feature called _command output
 redirection_ to create simple text files. Command output redirection is
@@ -190,7 +190,7 @@ about each file.
     third layer in the computing systems stack (i.e., programming
     language). Use `cat` and `less` to verify the file contents.
 
-### Create, Change, and List Directories
+### 3.4. Create, Change, and List Directories
 
 Obviously, having all files in a single location would be hard to manage
 effectively. We can use directories (also called folders) to logically
@@ -285,7 +285,7 @@ current working directory.
     `ece2400/sec1` subdirectory. Try using the `tree` command to display
     your newly created directory hierarchy.
 
-### Copy, Move, and Remove Files and Directories
+### 3.5. Copy, Move, and Remove Files and Directories
 
 We can use the `cp` command to copy files. The first argument is the name
 of the file you want to copy, and the second argument is the new name to
@@ -323,7 +323,7 @@ Finally, we can use the `rm` command to remove files.
     `ls` and `tree` commands to display your file and directory
     organization.
 
-### Text Editors
+### 3.6. Text Editors
 
 Students are free to use any text editor they want. We recommend using
 either Micro or Geany. You can start Micro like this:
@@ -426,7 +426,7 @@ development methodology so you (and your group) can rapidly collaborate
 and iterate on the design, verification, and evaluation of the
 assignments.
 
-### Fork and Clone a Repo from GitHub
+### 5.1. Fork and Clone a Repo from GitHub
 
 Fork'ing a repo means making a copy of that repo for your own local use.
 We won't actually be forking repos for the programming assignments, but
@@ -452,7 +452,7 @@ Where `githubid` is your GitHubID. Now let's clone your new repo to the
 
 Where `githubid` is your GitHubID.
 
-### Adding and Committing Files to Local Repository
+### 5.2. Adding and Committing Files to Local Repository
 
 Now let's add some new files to the repository. Use your favorite text
 editor (e.g., Micro, Geany) to create a file named `warm-colors.txt` with
@@ -509,7 +509,7 @@ changes into your local repository.
     from the command line using `cat`. Then use `git status`, `git add`,
     and `git commit` to add these changes to local repository.
 
-### Pushing Files to GitHub
+### 5.3. Pushing Files to GitHub
 
 Note that nothing has happened on GitHub yet. GitHub does _not_ know
 anything about these local changes. We need to explicitly "push" our new
@@ -534,7 +534,7 @@ that there are two new files.
     and then use `git push` to push these changes up to GitHub. View the
     changes using the GitHub web interface.
 
-### Pulling Files from GitHub
+### 5.4. Pulling Files from GitHub
 
 Let's try making a change to this repository through the GitHub
 web interface.
