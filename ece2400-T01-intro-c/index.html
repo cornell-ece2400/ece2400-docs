@@ -38,7 +38,7 @@
     
     
       
-        <title>ece2400 T01 intro c notes - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
+        <title>ece2400 T01 intro c - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
       
     
     
@@ -128,7 +128,7 @@
                 ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
               </span>
               <span class="md-header-nav__topic">
-                ece2400 T01 intro c notes
+                ece2400 T01 intro c
               </span>
             
           
@@ -331,6 +331,55 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#1-statements-syntax-semantics-state" title="1. Statements, Syntax, Semantics, State" class="md-nav__link">
+    1. Statements, Syntax, Semantics, State
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-variables-literals-operators-expressions" title="2. Variables, Literals, Operators, Expressions" class="md-nav__link">
+    2. Variables, Literals, Operators, Expressions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-variables" title="2.1. Variables" class="md-nav__link">
+    2.1. Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-literals" title="2.2. Literals" class="md-nav__link">
+    2.2. Literals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-operators" title="2.3. Operators" class="md-nav__link">
+    2.3. Operators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-expressions" title="2.4. Expressions" class="md-nav__link">
+    2.4. Expressions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-simple-c-program" title="2.5. Simple C Program" class="md-nav__link">
+    2.5. Simple C Program
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-c-basics" title="1. C Basics" class="md-nav__link">
     1. C Basics
   </a>
@@ -373,80 +422,415 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-T01-intro-c-notes.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-T01-intro-c.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="topic-1-introduction-to-c">Topic 1: Introduction to C<a class="headerlink" href="#topic-1-introduction-to-c" title="Permanent link">&para;</a></h1>
-<p>The first few programming assignments for this course will use the C
-programming language. This tutorial begins by briefly reviewing the
-basics of C functions, conditional statements, and iteration statements.
-The tutorial then discusses the C preprocessor before describing how to
-compile and execute both single-file and multi-file C programs using the
-command line. All of the tools are installed and available on the
-<code>ecelinux</code> machines. This tutorial assumes that students have completed
-the Linux and Git tutorials. We strongly recommend students also read
-Chapters 1-6 in the course text book, <em>``All of Programming,''</em> by A.
-Hilton and A. Bracy (2015). Chapters 5-6 are particularly relevant since
-they discuss the general process of compiling, testing, and debugging C
-programs.</p>
-<p>To follow along with the tutorial, access the course computing resources,
-and type the commands without the <code>%</code> character (for the <code>bash</code> prompt).
-In addition to working through the commands in the tutorial, you should
-also try the more open-ended tasks marked <strong>To-Do On Your Own</strong>.</p>
-<p>Before you begin, make sure that you have <strong>sourced the setup-ece2400.sh
-script</strong> or that you have added it to your <code>.bashrc</code> script, which will
-then source the script every time you login. Sourcing the setup script
-sets up the environment required for this class.</p>
-<p>You should start by forking the tutorial repository on GitHub. Go to the
-GitHub page for the tutorial repository located here:
-<a href="">https://github.com/cornell-ece2400/ece2400-tut3-c</a>. Click on <em>Fork</em> in
-the upper right-hand corner. If asked where to fork this repository,
-choose your personal GitHub account. After a few seconds, you should have
-a new repository in your account:
-<code>https://github.com/&lt;githubid&gt;/ece2400-tut3-c</code> Where <code>&lt;githubid&gt;</code> is your
-GitHub username on <a href="">github.com</a>. Now access an <code>ecelinux</code> machine and
-clone your copy of the tutorial repository as follows:</p>
+<p>This topic will provide a gentle introduction to procedural programming
+using the C programming language. C has a long history of use in
+<em>computer systems programming</em> which involves developing software to
+connect the low-level computer hardware to high-level, user-facing
+application software. Computer systems programming usually requires
+careful consideration of performance and resource constraints. Examples
+of computer systems software include compilers, operating systems,
+databases, numerical libraries, and embedded controllers. C was developed
+in the early 1970s at Bell Laboratories by Ken Thompson, Dennis Ritchie,
+and many others. C was originally developed for the purposes of writing
+an early version of the Unix operating system. The Linux operating system
+which you will be using in the programming assignments was inspired by
+these original versions of Unix, and the Linux kernel is also written in
+C. C provides a nice balance between high-level abstractions for
+productive software development and low-level control over the hardware,
+and thus it remains one of the primary languages chosen by computer
+systems programmers.</p>
+<p>We will assume students have taken an introductory programming course in
+a dynamic programming language (e.g., Python, MATLAB). This means we are
+assuming students are familiar with basic programming constructs such as
+variables, literals, operators, expressions, functions, conditional
+statements, and iteration statements. Therefore this topic will focus
+more on the specifics of C syntax and a precise way of illustrating
+execution semantics which we will use throughout the rest of the course.
+We will also start by focusing more on (precisely) <em>reading</em> C programs
+than on <em>writing</em> C programs. Just as when learning a foreign language,
+one must learn how to read before one can learn how to write!</p>
+<h2 id="1-statements-syntax-semantics-state">1. Statements, Syntax, Semantics, State<a class="headerlink" href="#1-statements-syntax-semantics-state" title="Permanent link">&para;</a></h2>
+<p>At a fundamental level, any procedural program can be defined by the four
+S's: statements, syntax, semantics, and state. The following diagram
+illustrates the interaction between the four S's.</p>
+<p><img alt="foo" src="../img/T01-execution-model.png" /></p>
+<p>Let's start with an example based on the English language. A <em>program</em> is
+a sequence of statements. For example the following might be an English
+language program:</p>
+<ol>
+<li>Put the letter in the envelope.</li>
+<li>Seal the envelope.</li>
+<li>Address the envelope.</li>
+<li>Put a stamp on the envelope.</li>
+<li>Put the envelope in the mailbox.</li>
+</ol>
+<p>In this context, a <em>statement</em> is just an English language sentence. For
+example, "Put the letter in the envelope." is a statement. The <em>syntax</em>
+is the proper English language grammar required for forming valid
+sentences. For example, syntax tells us that the first word of a
+statement should start with a capital letter, that a verb should have
+proper tense, and a statement should end with an appropriate choice of
+punctuation. The <em>semantics</em> is the meaning of a sentence. For example,
+semantics tells us that a letter is a "written, typed, or printed
+communication, especially one sent in an envelope by mail or messenger",
+and the semantics also help us understand that putting a letter in an
+envelope makes sense. The statement "Put the elephant in the envelope."
+would be syntatically correct but would not make much semantic sense.
+Finally, the <em>state</em> involves the memory of prior statements (i.e., the
+state of the world) as we read or "execute" these statements. To execute
+a statement, we use the syntax and semantics to understand how that
+statement changes the state of the world. The "execution arrow" points to
+the current statement we are reading or executing. So in this example,
+the state captures the current status of the envelope. Is the envelope
+sealed? Is it addressed? Does it have a stamp on it? Is it in the
+mailbox? Here is a quick summary of the four S's:</p>
+<ul>
+<li><strong>Program</strong>: sequence of statements</li>
+<li><strong>Statement</strong>: sentence</li>
+<li><strong>Syntax</strong>: sentence grammar</li>
+<li><strong>Semantics</strong>: sentence meaning</li>
+<li><strong>State</strong>: memory of prior statements</li>
+</ul>
+<p>When executing a program we often want to be more precise on exactly how
+a program's syntax and semantics modify the state. We will use <em>state
+diagrams</em> as a way to capture a program's execution precisely. Although
+drawing these diagrams may initially seem overly tedious, it is critical
+that students master this skill early. By the end of the course we will
+be drawing very complicated state diagrams to <em>precisely</em> demonstrate our
+understanding of the syntax and semantics of sophisticated programming
+paradigms; but this is only possible if students work on mastering this
+skill right from the beginning of the course.</p>
+<p>The following is an example of a state diagram for executing a simple
+English program with five statements.</p>
+<p>FIG</p>
+<p>Each statement includes a prefix with a line number and small set of
+boxes, and there is space on the right to capture the state of the
+program. To execute this program we simply use the following steps:</p>
+<ol>
+<li>Identify which statement the execution arrow is pointing to</li>
+<li>Use the syntax and semantics to understand how executing this
+     statement will change the state of the program</li>
+<li>Update the state accordingly using the space on the right</li>
+<li>Cross off the box to the left of this statement</li>
+<li>Advance the execution arrow to point to the next statement</li>
+</ol>
+<p>While we have explored statements, syntax, semantics, and state in the
+context of an English language program, our understanding applies equally
+well to computer languages. In the rest of this topic, we will learn the
+basics about statements, syntax, semanatics, and state in the C
+programming language.</p>
+<h2 id="2-variables-literals-operators-expressions">2. Variables, Literals, Operators, Expressions<a class="headerlink" href="#2-variables-literals-operators-expressions" title="Permanent link">&para;</a></h2>
+<p>We begin by exploring the statements, syntax, semantics, and state
+associated with four fundamental C concepts: variables, literals,
+operators, and expressions.</p>
+<ul>
+<li><strong>Variable</strong>: a box (in the computer's memory) which stores a value;
+     variables have names and are used for "state"</li>
+<li><strong>Literal</strong>: value written exactly as it is meant to be interpreted; a
+     literal is not a name, it is the value itself</li>
+<li><strong>Operator</strong>: symbol with speical semantics to "operate" on variables
+     and literals</li>
+<li><strong>Expression</strong>: combination of variables, literals, and operators
+     which evaluates to a new value</li>
+</ul>
+<h2 id="21-variables">2.1. Variables<a class="headerlink" href="#21-variables" title="Permanent link">&para;</a></h2>
+<p>A variable is a box in the computer's memory which stores a value. It is
+critical to keep the concept of a variable separate from the concept of a
+value. A variable is <em>not</em> a value. A variable <em>stores</em> a value. The name
+of a variable is called its <em>identifier</em>. In C, identifiers can include
+lowercase letters, uppercase letters, numbers, and underscores. However,
+identifiers cannot start with a number. These rules are part of the C
+syntax for identifiers. The following is a list of valid identifiers
+(i.e., correct syntax):</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
-% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% git clone https://github.com/&lt;githubid&gt;/ece2400-tut3-c.git tut3
-% <span class="nb">cd</span> tut3
-% <span class="nv">TUTROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>my_variable
+MY_VARIABLE
+myVariable
+MyVariable
+variable_0
+variable_1
+_variable
+__variable__
 </pre></div>
 </td></tr></table>
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It should be possible to experiment with this tutorial even if you
-are not enrolled in the course and/or do not have access to the
-course computing resources. All of the code for the tutorial is
-located on GitHub. You will not use the <code>setup-ece2400.sh</code> script,
-and your specific environment may be different from what is assumed
-in this tutorial.</p>
-</div>
+<p>The following is a list of invalid identifiers (i.e., incorrect syntax):</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>0_variable
+variable$1
+</pre></div>
+</td></tr></table>
+
+<p>The first identifier has invalid C syntax since it starts with a number,
+and the second identifier has invalid C syntax since it includes the <code>$</code>
+character. These are called <em>synatx errors</em>.</p>
+<p>There are many styles of identifiers. For example, <em>snakecase</em> favors
+using lowercase with underscores to separate words (i.e., <code>my_variable</code>),
+while <em>camelcase</em> favors using lowercase with uppercase to separate words
+(i.e., <code>myVariable</code>, <code>MyVariable</code>). Often we might favor using uppercase
+with underscores to indicate constant variables (i.e., <code>MY_VARIABLE</code>),
+and we might favor using leading and training underscores to indicate
+special internal variables (i.e., <code>__variable__</code>). Note that the C
+compiler does not care about which valid identifier a programmer uses to
+name any given variable. So why not simply name each variable <code>a0</code>, <code>a1</code>,
+<code>a2</code>, etc? While the C compiler does not care, the <em>reader</em> of your
+program <em>definitely</em> cares about which valid identifiers a programmer
+uses. Careful and consistent selection of identifiers can significantly
+improve the readability of your programs, which in turn makes your
+programs easier to debug, maintain, and extend. It is also important to
+note that in practical situations the programmer actually does not get to
+choose his or her own coding style (or coding conventions). A company or
+open-soruce project will usually have its own coding conventions that it
+expects its developers to follow. Similarly, in this course we have our
+own coding conventions that we expect students to follow. The coding
+conventions are located here:</p>
+<ul>
+<li><a href="https://cornell-ece2400.github.io/ece2400-docs/ece2400-coding-conventions">https://cornell-ece2400.github.io/ece2400-docs/ece2400-coding-conventions</a></li>
+</ul>
+<p>All variables also have a <em>type</em>. The type specifies the kind of values
+that can be stored in a variable. In dynamically typed languages (e.g.,
+Python, MATLAB) the "types" of variables are not be known until run time
+(i.e., dynamically), while in statically typed languages (e.g., C, C++)
+the "types" of variables must be known at compile time (i.e.,
+statically). This is an absolutely critical distinction that also has
+fundamental implications with respect to the tension between
+productivity- vs. efficiency-level languages. We will learn more about C
+types in Topic 3. For now, we will only use variables of type <code>int</code> which
+can store signed integer values. Signed integers include zero, negative
+whole numbers, and positive whole numbers.</p>
+<p>We can now introduce our very first example of a C statement. A <em>variable
+declaration statement</em> is used to create a new variable with a specific
+name and type. The following is a list of valid variable declaration
+statements:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int my_variable;
+int MY_VARIABLE;
+int MyVariable;
+int myVariable;
+int variable_0;
+int variable_1;
+int _variable;
+int __variable__;
+</pre></div>
+</td></tr></table>
+
+<p>Each statement creates a new box to hold a value of type <code>int</code>. Note that
+C syntax requires all C statements to end in a semicolon. Forgetting to
+include the semicolon is a syntax error (meanning the C compiler cannot
+understand the syntax).</p>
+<p>These boxes are initially undefined which is not a problem, but <em>using</em>
+an undefined variable has undefined semantics. What does it mean for
+something to have undefined semantics? If something has undefined
+semantics it could: display an error, cause your program to crash, cause
+your program to execute as expected, delete your hard drive, or crash
+your entire computer. So we should avoid doing anything which has
+undefined semantics. However, this begs the question, why does the C
+programming language even include undefined semantics? Why doesn't the C
+programming language specify that these uninitialized variables are
+automatically initialized to zero? This would certainly avoid undefined
+semantics and many common bugs. Recall that C is a computer systems
+programming language optimized for efficiency. Automatically initializing
+variables to zero would add a small but non-trivial overhead which could
+quickly have an impact on the overall performance of your programs. When
+faced with a choice between safety and efficiency, the C programming
+language will almost always choose efficiency. This is why it is an
+efficiency-level language! However, this also means that C programmers
+must be very careful in how they write their programs to avoid undefined
+behavior at all costs.</p>
+<h2 id="22-literals">2.2. Literals<a class="headerlink" href="#22-literals" title="Permanent link">&para;</a></h2>
+<p>A literal is a value written exactly as it is meant to be interpreted.
+Contrast a literal to a variable. A variable is a name for a box that can
+hold many different values (all of the same type!). A constant variable
+is a name for a box that can hold a single (constant) value. A literal is
+not a name; it is not a variable. A literal is <em>literally</em> the value
+itself. Here are some example integer literals:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>42
+-42
+0x42
+0xcafecafe
+</pre></div>
+</td></tr></table>
+
+<p>The integer literal on line 1 is literally the number 13 in base 10. The
+integer literal on line 2 is literally the number -42 in base 10. The
+integer literal on line 3 is literally the number 42 in base 16 (i.e., 66
+in base 10). Finally, the integer literal on line 4 is literally a large
+number in base 16. Notice that C syntax specifies that by default integer
+literals are assumed to be base 10, but if the number includes a <code>0x</code>
+prefix then the integer literal is in base 16.</p>
+<h2 id="23-operators">2.3. Operators<a class="headerlink" href="#23-operators" title="Permanent link">&para;</a></h2>
+<p>An operator is a symbol with special semantics to "operate" on variables
+and literals. The very first operator we will study will be the
+<em>assignment operator</em> represented with the equal symbol (<code>=</code>). The
+assignment operator "assigns" a new value to a variable (i.e., puts a
+value into the variable's box).</p>
+<p>This brings us to our second example of a C statement. An <em>assignment
+statement</em> combines the assignment operator with a left-hand side (LHS)
+and a right-hand side (RHS). The LHS specifies the variable to change,
+and the RHS specifies the new value (possibly using a literal). Here is
+an example of a program with two statements:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int my_variable;
+my_variable = 13;
+</pre></div>
+</td></tr></table>
+
+<p>The first line is a variable declaration statement, and the second line
+is an assignment statement. The semantics are that the first statement
+creates a box in the computer's memory, and the second statement stores
+the value 13 in that box.</p>
+<p>A variable declaration statement and an assignment statement can be
+combined into a single <em>initialization statement</em>. Here is an example of
+the same program implemented with a single statement:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int my_variable = 13;
+</pre></div>
+</td></tr></table>
+
+<p>We have now learned about three kinds of C statements: variable
+declaration statements, assignment statements, and initialization
+statements. It is important to distinguish between these three kinds of
+statements, especially since in C++ each of these three kinds of
+statements can result in quite different semantics.</p>
+<p>There are many other operators besides the assignment operator. For
+example, there are arithmetic opeators for addition (<code>+</code>), subtraction
+(<code>-</code>), multiplication (<code>*</code>), division (<code>/</code>), and modulus (<code>%</code>).</p>
+<p>All of these operators can operate on integer values. We will discuss in
+Topic 3 subtle issues related to the fact that the computer can only
+represent integer values up to a specific minimum and maximum value. Note
+that the division operator (<code>/</code>) is for <em>integer</em> division meaning that 6
+/ 2 is 3 and 5 / 2 is 2 not 2.5. So the result of an integer division is
+always rounded towards zero, or in other words the fractional part is
+simply removed (truncated). Why does the C programming language round
+towards zero? Why not round to the nearest whole number? Again the C
+programming language is choosing efficiency; it is slightly more
+efficient to simply remove the fractional part vs other rounding schemes.</p>
+<h2 id="24-expressions">2.4. Expressions<a class="headerlink" href="#24-expressions" title="Permanent link">&para;</a></h2>
+<p>An expression is a combination of variables, literals, and operators
+which <em>evaluates</em> to a new value. A variable's indentifier is actually an
+expression that evaluates to the value stored in that variable. Here is
+an example of an expression:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>5 - 3
+</pre></div>
+</td></tr></table>
+
+<p>This expression evaluates to the value 2. Here is another expression:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>8 / 2 * 2 + 2
+</pre></div>
+</td></tr></table>
+
+<p>This expression can evaluate to different values depending on the order
+in which we aply the sequence of operators. Here are several options:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>((8 / 2) * 2) + 2 evaluates to 10
+(8 / 2) * (2 + 2) evaluates to 16
+8 / (2 * (2 + 2)) evaluates to  1
+(8 / (2 * 2)) + 2 evaluates to  4
+8 / ((2 * 2) + 2) evaluates to  1
+</pre></div>
+</td></tr></table>
+
+<p>Note that the final expression evaluates to 1.33 but since this is the
+integer division we round towards zero resulting in a value of 1. The C
+programming language includes semantics to unambiguously specify the
+correct answer based on an operator precedence table. Here is an initial
+version of this table which just includes the operators we have already
+learned about in this topic.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Operator</th>
+<th>Associativity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multiplicative</td>
+<td><code>*</code> <code>/</code> <code>%</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Additive</td>
+<td><code>+</code> <code>-</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Assignment</td>
+<td><code>=</code></td>
+<td>right to left</td>
+</tr>
+</tbody>
+</table>
+<p>Early rows have higher precedence than lower rows. So the multiplicative
+operators have the highest precedence and then the additive operators.
+The associativity column indicates the order to apply the operators when
+those operators are at the same precedence. So for the above example, we
+first consider the multiplicative operators and then move from left to
+right applying those operators. So we apply the division operator first,
+then the multiplication operator, and finally the lower precedence
+addition operator:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>((8 / 2) * 2) + 2 = 10
+</pre></div>
+</td></tr></table>
+
+<p>Note that all operators are included in the precedence table, even the
+assignment operator. Since the assignment operator is the last row it has
+the lowest precendence. This means evaluate the LHS and RHS of the
+assignment operator first before doing the actual assignment. Here is an
+example:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>x = 5 - 3
+</pre></div>
+</td></tr></table>
+
+<p>We apply the subtraction operator first and so the LHS evaluates to the
+value 2. Then we apply the assignment operator which sets the value of
+variable <code>x</code> to be 2. Note that every expression evaluates to a value,
+and since <code>x = 5 - 3</code> is an expression then it to evaluates to a value.
+The C programming language specifies that the value of applying the
+assignment operator is the value of the LHS. This enables complicated yet
+syntatically correct expressions such as:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>y = x = 5 - 3
+</pre></div>
+</td></tr></table>
+
+<p>As before, the addition operator has the higher precendence and so the
+LHS evaluates to the value 2. We are left with two assignment operators
+and the precendence table specifies that the corresponding associativity
+is right to left. So the next step is to apply the second assignment
+operator, meaning we set the value of variable <code>x</code> to be 2. The value of
+the expression <code>x = 5 - 3</code> is the value of the RHS which is 2, so this
+means the value of the RHS for the first assignment operator is also 2.
+Applying the first assignment operator sets the value of variable <code>y</code> to
+2. In other words, this expression sets the value of both variable <code>x</code>
+and <code>y</code> to 2.</p>
+<p>One key take-away from this discussion is that while an expression might
+be syntatically correct, it doesn't mean that it is readable. We should
+always prefer explicitly using parenthesis to indicate the desired order
+of operations.</p>
+<h2 id="25-simple-c-program">2.5. Simple C Program<a class="headerlink" href="#25-simple-c-program" title="Permanent link">&para;</a></h2>
 <h2 id="1-c-basics">1. C Basics<a class="headerlink" href="#1-c-basics" title="Permanent link">&para;</a></h2>
-<p>C is a programming language that has a long history of use in <em>computer
-systems programming</em>. Computer systems programming involves developing
-software to connect the low-level computer hardware to high-level,
-user-facing application software and usually requires careful
-consideration of performance and resource constraints. Examples of
-computer systems software include compilers, operating systems,
-databases, numerical libraries, and embedded controllers. C was developed
-in the early 1970s at Bell Laboratories by Ken Thompson, Dennis Ritchie,
-and many others. C was originally developed for the purposes of writing
-an early version of the Unix operating system. The Linux operating system
-which you learned about in the first tutorial was inspired by these
-original versions of Unix, and the Linux kernel is also written in C. C
-provides a nice balance between high-level abstractions for productive
-software development and low-level control over the hardware, and thus it
-remains one of the primary languages chosen by computer systems
-programmers. In this section, we will briefly review some of the basic
-syntax and semantics of C.</p>
 <h3 id="11-using-compiler-explorer-and-replit-to-experiment-with-c-programs">1.1. Using Compiler Explorer and Repl.it to Experiment with C Programs<a class="headerlink" href="#11-using-compiler-explorer-and-replit-to-experiment-with-c-programs" title="Permanent link">&para;</a></h3>
 <p>Compiling a C program can be challenging, since it usually involves
 multiple command line tools and steps. So to get started, we will be

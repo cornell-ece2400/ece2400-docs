@@ -1,0 +1,36 @@
+/*======================================================================*/
+/* Material Stylesheet                                                  */
+/*======================================================================*/
+/*
+  Author : Christopher Batten
+  Date   : September 2019
+*/
+
+.md-typeset H1,
+.md-typeset H2,
+.md-typeset H3
+{
+  color : black;
+  font-weight : 500;
+}
+
+DIV.admonition.note
+{
+  font-size : 100%;
+}
+
+.md-typeset table:not([class])
+{
+  font-size : 100%;
+}
+
+IMG
+{
+  display: block;
+  margin: auto;
+}
+
+UL.tight-list
+{
+  color: red;
+}
