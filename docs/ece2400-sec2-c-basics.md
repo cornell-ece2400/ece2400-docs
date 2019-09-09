@@ -18,13 +18,12 @@ Follow the same process as in the last section.
 Now clone the GitHub repo we will be using in this section using the
 following commands:
 
-```bash
- % mkdir -p ${HOME}/ece2400
- % cd ${HOME}/ece2400
- % git clone git@github.com:cornell-ece2400/ece2400-sec2 sec2
- % cd sec2
- % cat README.md
-```
+    :::bash
+    % mkdir -p ${HOME}/ece2400
+    % cd ${HOME}/ece2400
+    % git clone git@github.com:cornell-ece2400/ece2400-sec2 sec2
+    % cd sec2
+    % cat README.md
 
 2. Using Online Tools to Explore C Programs
 --------------------------------------------------------------------------
@@ -43,8 +42,8 @@ enable us to quickly explore small C/C++ code snippets. Start a browser
 and go to <https://Repl.it>. You can use Repl.it without an account. You
 can always create an account later. Click _new repl_ in the upper
 right-hand corner. In the _Search for a language_ drop-down choose C and
-the click _Create repl_. You will see a default program. Replace ths
-default program with the folllowing program inspired by today's lecture.
+the click _Create repl_. You will see a default program. Replace this
+default program with the following program inspired by today's lecture.
 
     #include <stdio.h>
 
@@ -82,12 +81,12 @@ just use Repl.it!
 
 ### 2.2. Compiler Explorer
 
-Compiler Explore is a free online servce that compiles C programs to
+Compiler Explore is a free online service that compiles C programs to
 machine instructions and then displays these machine instructions for you
 to inspect completely online in your browser. It will enable us to
 quickly explore the connection between C and C++ code and the low-level
 machine instructions actually executed by the computer system. Start a
-browser and go to <https://godbold.org>. You will see a default code
+browser and go to <https://godbolt.org>. You will see a default code
 snippet. Replace this code with the following code inspired by today's
 lecture.
 
@@ -102,7 +101,7 @@ instructions on the right. It color codes C code on the left to match
 which exact machine instructions are produced by that C code on the
 right. You can right click on an instruction and select _View opcode doc_
 to learn more about what each instruction does. You can also choose from
-many different compilers targetting many different instruction set
+many different compilers targeting many different instruction set
 architectures (ISAs). Here are three different compiler/ISAs you might
 want to experiment with:
 
@@ -113,13 +112,16 @@ want to experiment with:
 Go ahead and choose x86-64. Notice that even though the C source code
 uses the integer division operator there is no division instruction on
 the right. This is because the compiler is smart enough to figure out
-that dividing by 2 is the same as shifting to the right by one bit. In th
-eopper-right corner you will see `-O3`. This is a command line option
-that tells the compiler to apply as many optimizations as it can. Delete
-`-O3` and take a look at the resulting machine instructions. First,
-notice that the compiler has generated many more instructions. Second,
-notice that it now is using a division instruction (`idiv`). The
-unoptimized code would execute far slower than the optimized code.
+that dividing by 2 is the same as shifting to the right by one bit. In
+the upper-right corner you will either see `Compiler options` or `-O3`.
+This is where you can enter command line options that are passed to the
+compiler. The command line option `-O3` tells the compiler to apply as
+many optimizations as it can. Experiment with either entering `-O3` or
+deleting `-O3` to observe the difference in the resulting machine
+instructions. Notice that without `-O3` the compiler will generate many
+more instructions, and also notice that it now is using a division
+instruction (`idiv`). The unoptimized code would execute far slower than
+the optimized code.
 
 !!! note "To-Do On Your Own"
 
@@ -134,18 +136,18 @@ unoptimized code would execute far slower than the optimized code.
 Before we can understand how to write and compile C programs, we need to
 understand the C preprocessor. The preprocessor takes an input C source
 file, preprocesses it, and generates the preprocessed version of the C
-source file. It is important to realize that the C preprocesor is not
+source file. It is important to realize that the C preprocessor is not
 really part of the C programming language. The C preprocessor simply
-manipulates the text in the C source files and knows nothing about the C
-programming language's syntax or semantics. The C preprocessor is
+manipulates the plain text in the C source files and knows nothing about
+the C programming language's syntax or semantics. The C preprocessor is
 powerful but also very easy to abuse. Using the C preprocessor can cause
 subtle bugs and is usually not necessary. Unfortunately, there are a few
 cases where we have no choice but to use the C preprocessor, so we must
 learn at least the basics.
 
 The best way to understand the C preprocessor is actually to use it to
-preprocess standard text files as opposed to C source files. Assume we
-wish to create a text file which includes both warm and cool colors. We
+preprocess plain text files as opposed to C source files. Assume we wish
+to create a plain text file which includes both warm and cool colors. We
 could simply copy-and-paste our lists from `warm-colors.txt` and
 `cool-colors.txt`, but this would be redundant and difficult to maintain
 if we wanted to add a new warm or cool color. We can instead use the C
@@ -153,10 +155,9 @@ preprocessor to _include_ the contents of one text file in another text
 file. Use Micro (or Geany) to create a new file named `colors-in.txt`
 like this:
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % micro colors-in.txt
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % micro colors-in.txt
 
 Put the following content into this file:
 
@@ -175,11 +176,10 @@ include. The file name should be be specified using double quotes (`""`).
 Now we can use the C preprocessor (`cpp`) to preprocess the `-in.txt`
 files into a final text file that contains both the warm and cool colors.
 
-```bash
+    :::bash
 % cd ${HOME}/ece2400/sec2
 % cpp -o colors.txt colors-in.txt
 % cat colors.txt
-```
 
 The `-o` command line option is used to specify the name of the output
 file. The content of the `colors.txt` should look like this:
@@ -202,17 +202,16 @@ file. The content of the `colors.txt` should look like this:
     purple
     # 2 "colors-in.txt" 2
 
-xThe C preprocessor has included all of the colors in a single output
+The C preprocessor has included all of the colors in a single output
 file, but it has also included some additional lines beginning with the
 `#` character to specify information about where all of the pieces of
 text originally came from. We can tell `cpp` to not include this extra
 metadata with the `-P` command line option.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % cpp -P -o colors.txt colors-in.txt
- % cat colors.txt
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % cpp -P -o colors.txt colors-in.txt
+    % cat colors.txt
 
 This example illustrates the first way we will use the C preprocessor. We
 will use the `#include` directive to include common C source files in
@@ -224,14 +223,37 @@ seen this use of the C preprocessor earlier in this section when we
 included the `stdio.h` header file which includes the declaration of the
 `printf` function.
 
-We will also use the C preprocessor to create _include guards_. An
-include guard is a way to ensure that the contents of a given file is
-only inserted into the output file once, even if we include it multiple
-times. For example, modify `warm-colors.txt` using Micro (or Geany) as
-follows:
+Let's now modify `colors-in.txt` to include each file three times:
 
-    #ifndef WARM_COLORS_TXT
-    #define WARM_COLORS_TXT
+    #include "warm-colors.txt"
+    #include "warm-colors.txt"
+    #include "warm-colors.txt"
+    #include "cool-colors.txt"
+    #include "cool-colors.txt"
+    #include "cool-colors.txt"
+
+Rerun the C preprocessor and verify that the warm and cool colors are
+included three times.
+
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % cpp -P -o colors.txt colors-in.txt
+    % cat colors.txt
+
+While this is fine for plain text files, we need to be very careful about
+including the same C code multiple times when we are developing our C
+programs. If the compiler sees the same function defined multiple times
+it will cause a syntax error. More modern programming languages have
+built-in features to ensure code is only included a single time
+regardless, but in C we are forced to use the C preprocessor to ensure
+code is only included once. We will use a technique called _include
+guards_. An include guard will ensure that the contents of a given file
+is only inserted into the output file once, even if we include it
+multiple times. For example, modify `warm-colors.txt` using Micro (or
+Geany) as follows:
+
+    #ifndef SEC2_WARM_COLORS_TXT
+    #define SEC2_WARM_COLORS_TXT
      red
      orange
      yellow
@@ -246,36 +268,33 @@ if not it will include the text in the file ... and _also_ define
 `WARM_COLORS_TXT` will already be defined and we will skip over the
 contents of the file. Modify `cool-colors.txt` as follows:
 
-    #ifndef COOL_COLORS_TXT
-    #define COOL_COLORS_TXT
+    #ifndef SEC2_COOL_COLORS_TXT
+    #define SEC2_COOL_COLORS_TXT
      blue
      green
      purple
     #endif
 
-And now modify `colors-in.txt` to include each file three times:
-
-    #include "warm-colors.txt"
-    #include "warm-colors.txt"
-    #include "warm-colors.txt"
-    #include "cool-colors.txt"
-    #include "cool-colors.txt"
-    #include "cool-colors.txt"
-
-If you run the C preprocessor you will see that the colors are only
+Rerun the C preprocessor and you will see that the colors are only
 included once because of the include guards.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % cpp -P -o colors.txt colors-in.txt
- % cat colors.txt
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % cpp -P -o colors.txt colors-in.txt
+    % cat colors.txt
+
+The actual macro name you use for the include guard doesn't matter as
+long as it is unique across all files. We usually use a variation of the
+filename to ensure unique include guard macros.
 
 !!! note "To-Do On Your Own"
 
-    Remove the include guards and rerun the C preprocessor on
-    `colors-in.txt`. Verify that the resulting output file `colors.txt`
-    has multiple copies of the warm and cool colors.
+    Change the name of the macro used in both `warm-colors.txt` and
+    `cool-colors.txt` to be `COLORS_TXT`. This means both files will be
+    using the same macro name for their include guards. Rerun the C
+    preprocessor. Try switching the order you include the files in
+    `colors.txt` (e.g., include the cool colors first, and then include
+    the warm colors). Can you explain what is going on?
 
 4. Compiling and Running a Single-File C Program
 --------------------------------------------------------------------------
@@ -310,11 +329,10 @@ binary (i.e., the actual bits) that the machine can understand. In this
 course we will be using the GNU C compiler (`gcc`). Let's go ahead and
 give this a try:
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % gcc -Wall -o avg-sfile avg-sfile.c
- % ls
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % gcc -Wall -o avg-sfile avg-sfile.c
+    % ls
 
 The `gcc` command takes as input the C source file to compile and the
 command line option `-o` is used to specify the output exectutable binary
@@ -324,10 +342,9 @@ takes care of running the C preprocessor for us. After running the `gcc`
 command you should see a new `avg-sfile` file in the directory. We can
 execute this binary by simply calling it as any other Linux command.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % ./avg-sfile
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % ./avg-sfile
 
 Recall that a single dot (`.`) always refers to the current working
 directory. Essentially we are telling Linux that we want to run the
@@ -336,10 +353,9 @@ directory. Repl.it is basically doing these same steps just in the cloud.
 
 Now let's examine the machine instructions using the `objdump` command.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % objdump -dC avg-sfile | less
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % objdump -dC avg-sfile | less
 
 The `objdump` command takes an executable binary and shows you the
 machine instructions in a human readable format. We are piping it through
@@ -351,11 +367,10 @@ Does it seem like the compiler generated optimized code or unoptimized
 code? You can exit `less` by pressing the `q` key. Let's recompile our
 program with optimizations.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % gcc -Wall -O3 -o avg-sfile avg-sfile.c
- % objdump -dC avg-sfile | less
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % gcc -Wall -O3 -o avg-sfile avg-sfile.c
+    % objdump -dC avg-sfile | less
 
 Now how many machine instructions are used to implement the `avg`
 function?
@@ -439,8 +454,8 @@ care of making sure the machine instructions corresponding to every
 function definition is linked together into the executable binary. Create
 a header file for `avg.c` named `avg.h` with the following contents.
 
-    #ifndef TUT3_C_AVG_H
-    #define TUT3_C_AVG_H
+    #ifndef SEC2_AVG_H
+    #define SEC2_AVG_H
 
     int avg( int x, int y );
 
@@ -450,11 +465,10 @@ Notice the include guards implemented using the C preprocessor. Let's go
 ahead and compile `avg.c` and `avg-mfile.c` into their corresponding
 object files:
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % gcc -Wall -c -o avg.o avg.c
- % gcc -Wall -c -o avg-mfile.o avg-mfile.c
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % gcc -Wall -c -o avg.o avg.c
+    % gcc -Wall -c -o avg-mfile.o avg-mfile.c
 
 We use the `-c` command line option to indicate that `gcc` should create
 an _object_ file as opposed to a complete executable binary. An object
@@ -464,11 +478,10 @@ a complete executable binary. We usually use the `.o` filename extension
 to indicate that these files are object files. Let's use `objdump` to
 look inside each of these object files.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % objdump -dC avg.o
- % objdump -dC avg-mfile.o
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % objdump -dC avg.o
+    % objdump -dC avg-mfile.o
 
 You should be able to see that each object file only contains a few
 machine instructions. The `avg.o` object file only contains machine
@@ -479,31 +492,28 @@ correspond to the `main` function.
 Let's link these two object files together to create a complete
 executable binary that we can actually run.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % gcc -Wall -o avg-mfile avg.o avg-mfile.o
- % objdump -dC avg-mfile
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % gcc -Wall -o avg-mfile avg.o avg-mfile.o
+    % objdump -dC avg-mfile
 
 Notice that the complete executable binary contains all of the machine
 instructions for _both_ the `avg` and `main` functions along with a bunch
 of additional system-level code (e.g., for the `printf` function). Let's
 go ahead and run the executable binary.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % ./avg-mfile
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % ./avg-mfile
 
 We can simplify this process and do the compilation and linking in a
 single step by specifying multiple C source files on a single command
 line.
 
-```bash
- % cd ${HOME}/ece2400/sec2
- % gcc -Wall -o avg-mfile avg.c avg-mfile.c
- % ./avg-mfile
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec2
+    % gcc -Wall -o avg-mfile avg.c avg-mfile.c
+    % ./avg-mfile
 
 !!! note "To-Do On Your Own"
 
@@ -517,7 +527,7 @@ line.
     indicating that you have two functions with the same name. The
     compiler does not know how to disambiguate these two functions. Name
     the three-input average function `avg3` and update the source file
-    (`avg3.c`), header file (`avg.h`), and `avg-mfile.c` appropriate.
+    (`avg3.c`), header file (`avg.h`), and `avg-mfile.c` appropriately.
     Recompile the object files and try linking the program together
     again. Verify that it produces the expected output.
 

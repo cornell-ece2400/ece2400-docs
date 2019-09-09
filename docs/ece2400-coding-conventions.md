@@ -145,6 +145,20 @@ Use explicit parenthesis to make operator precendence explicit:
     int a = a < 0 && b != 0;             // incorrect
     int a = ( ( a < 0 ) && ( b != 0 ) ); // correct
 
+In some cases, we should _not_ include whitespace around an operator
+because the operator is not delimiting two distinct conceptual "tokens".
+Here are some examples:
+
+    :::c
+    int a = obj . field;  // incorrect
+    int a = obj.field;    // correct
+    int a = obj -> field; // incorrect
+    int a = obj->field;   // correct
+    obj . method( b );    // incorrect
+    obj.method( b );      // correct
+    obj -> method( b );   // incorrect
+    obj->method( b );     // correct
+
 ### 2.5. Variable Declarations
 
 There should be whitespace around the assignment operator. Here is an

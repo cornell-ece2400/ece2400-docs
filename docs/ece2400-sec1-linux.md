@@ -65,9 +65,8 @@ machine is source the course setup script. This will ensure your
 environment is setup with everything you need for working on the
 programming assignments. Enter the following command on the command line:
 
-```bash
- % source setup-ece2400.sh
-```
+    :::bash
+    % source setup-ece2400.sh
 
 Note that you do not need to enter `%` character. In a tutorial like
 this, the `%` simply indicates what you should type at the command line.
@@ -82,18 +81,16 @@ will need to manually source the setup script when you are working on
 this course. Enter the following command on the command line to use
 auto setup:
 
-```bash
- % source setup-ece2400.sh --enable-auto-setup
-```
+    :::bash
+    % source setup-ece2400.sh --enable-auto-setup
 
 Now quit MobaXterm, restart MobaXterm, and log back into the `ecelinux`
 server. You should see `ECE 2400` in the prompt meaning your environment
 is automatically setup for the course. If at anytime you need to disable
 auto setup you can use the following command:
 
-```bash
- % source setup-ece2400.sh --disable-auto-setup
-```
+    :::bash
+    % source setup-ece2400.sh --disable-auto-setup
 
 Now that we have source the course setup script we can start to explore
 the Linux command line.
@@ -113,9 +110,8 @@ We begin with the ubiquitous "Hello, World" example. To display the
 message "Hello, World" we will use the `echo` command. The `echo` command
 simply "echoes" its input to the console.
 
-```bash
- % echo "Hello, World"
-```
+    :::bash
+    % echo "Hello, World"
 
 The string we provide to the echo command is called a _command line
 argument_. We use command line arguments to tell commands what they
@@ -132,9 +128,8 @@ character.
 You can learn more about any Linux command by using the `man` command.
 Try using this to learn more about the `echo` command.
 
-```bash
- % man echo
-```
+    :::bash
+    % man echo
 
 You can use the up/down keys to scroll the manual one line at a time, the
 space bar to scroll down one page at a time, and the `q` key to quit
@@ -150,15 +145,13 @@ file. The following commands will create a new file named
 `ece2400-sec1.txt` that simply contains the text "Computer Systems
 Programming".
 
-```bash
- % echo "Computer Systems Programming" > ece2400-sec1.txt
-```
+    :::bash
+    % echo "Computer Systems Programming" > ece2400-sec1.txt
 
 We can use the `cat` command to quickly display the contents of a file.
 
-```bash
- % cat ece2400-sec1.txt
-```
+    :::bash
+    % cat ece2400-sec1.txt
 
 For larger files, `cat` will output the entire file to the console so it
 may be hard to read the file as it streams past. We can use the `less`
@@ -166,16 +159,14 @@ command to show one screen-full of text at a time. You can use the
 up/down keys to scroll the file one line at a time, the space bar to
 scroll down one page at a time, and the `q` key to quit viewing the file.
 
-```bash
- % less ece2400-sec1.txt
-```
+    :::bash
+    % less ece2400-sec1.txt
 
 You can use the `ls` command to list the filenames of the files you have
 created.
 
-```bash
- % ls
-```
+    :::bash
+    % ls
 
 We can provide command line options to the `ls` command to modify the
 command’s behavior. For example, we can use the `-1` (i.e., a dash
@@ -203,10 +194,9 @@ assignments and store your files. You can use the `pwd` command to print
 the directory in which you are currently working, which is known as the
 current working directory.
 
-```bash
- % pwd
- /home/netid
-```
+    :::bash
+    % pwd
+    /home/netid
 
 You should see output similar to what is shown above, but instead of
 `netid` it should show your actual NetID. The pwd command shows a
@@ -222,49 +212,44 @@ We can use the `mkdir` command to make new directories. The following
 command will make a new directory named `ece2400` within your home
 directory.
 
-```bash
- % mkdir ece2400
-```
+    :::bash
+    % mkdir ece2400
 
 We can use the `cd` command to change our current working directory. The
 following command will change the current working directory to be the
 newly created `ece2400` directory, before displaying the current working
 directory with the pwd command.
 
-```bash
- % cd ece2400
- % pwd
- /home/netid/ece2400
-```
+    :::bash
+    % cd ece2400
+    % pwd
+    /home/netid/ece2400
 
 Use the `mkdir`, `cd`, and `pwd` commands to make another directory.
 
-```bash
- % mkdir sec1
- % cd sec1
- % pwd
- /home/netid/ece2400/sec1
-```
+    :::bash
+    % mkdir sec1
+    % cd sec1
+    % pwd
+    /home/netid/ece2400/sec1
 
 We sometimes say that `sec1` is a subdirectory or a child directory of
 the `ece2400` directory. We might also say that the `ece2400` directory
 is the parent directory of the `sec1` directory. Use the following
 command to create a new file in this child directory.
 
-```bash
- % cd /home/netid/ece2400/sec1
- % echo "Computer Systems Programming" > ece2400-sec1.txt
- % mkdir dirA
- % ls
-```
+    :::bash
+    % cd /home/netid/ece2400/sec1
+    % echo "Computer Systems Programming" > ece2400-sec1.txt
+    % mkdir dirA
+    % ls
 
 You can use the `tree` command to visualize the directory layout and
 where files are located:
 
-```bash
- % cd ~/ece2400
- % tree
-```
+    :::bash
+    % cd ~/ece2400
+    % tree
 
 Note that the tilde character (`~`) is a shortcut which always refers to
 your home directory. There are a few other very useful shortcuts. You can
@@ -272,12 +257,11 @@ use a single dot (`.`) to refer to the current working directory, and you
 can use a double dot (`..`) to refer to the parent directory of the
 current working directory.
 
-```bash
- % cd ~/ece2400/sec1
- % cd ..
- % cd ..
- % pwd
-```
+    :::bash
+    % cd ~/ece2400/sec1
+    % cd ..
+    % cd ..
+    % pwd
 
 !!! note "To-Do On Your Own"
 
@@ -292,28 +276,25 @@ of the file you want to copy, and the second argument is the new name to
 give to the copy. The following commands will make two copies of the
 files we created in the previous section.
 
-```bash
- % cd ~/ece2400/sec1
- % cp ece2400-sec1.txt ece2400-sec1-a.txt
- % cp ece2400-sec1.txt ece2400-sec1-b.txt
- % ls
-```
+    :::bash
+    % cd ~/ece2400/sec1
+    % cp ece2400-sec1.txt ece2400-sec1-a.txt
+    % cp ece2400-sec1.txt ece2400-sec1-b.txt
+    % ls
 
 Instead of copying we can also move a file with the `mv` command:
 
-```bash
- % cd ~/ece2400/sec1
- % mv ece2400-sec1.txt ece2400-sec1-c.txt
- % ls
-```
+    :::bash
+    % cd ~/ece2400/sec1
+    % mv ece2400-sec1.txt ece2400-sec1-c.txt
+    % ls
 
 Finally, we can use the `rm` command to remove files.
 
-```bash
- % cd ~/ece2400/sec1
- % ls
- % rm ece2400-sec1-a.txt
-```
+    :::bash
+    % cd ~/ece2400/sec1
+    % ls
+    % rm ece2400-sec1-a.txt
 
 !!! note "To-Do On Your Own"
 
@@ -328,18 +309,16 @@ Finally, we can use the `rm` command to remove files.
 Students are free to use any text editor they want. We recommend using
 either Micro or Geany. You can start Micro like this:
 
-```bash
- % micro ece2400-sec1-b.txt
-```
+    :::bash
+    % micro ece2400-sec1-b.txt
 
 Micro is a lightweight text-based text editor. Use _Ctrl-G_ to learn more
 about the keyboard shortcuts you can use to in Micro.
 
 You can start Geany like this:
 
-```bash
- % geany ece2400-sec1-b.txt &
-```
+    :::bash
+    % geany ece2400-sec1-b.txt &
 
 Geany is a graphical-based text editor. Notice the `&` character at the
 end of the command line. This indicates that Linux should run Geany in
@@ -355,9 +334,8 @@ is running in a different window.
 When you are finished go ahead and delete the `sec1` directory to keep
 things tidy.
 
-```bash
- % rm -rf ~/ece2400/sec1
-```
+    :::bash
+    % rm -rf ~/ece2400/sec1
 
 4. GitHub Account Setup
 --------------------------------------------------------------------------
@@ -394,9 +372,8 @@ GitHub. GitHub uses these keys for authentication. The course setup
 script takes care of creating an SSH key pair which you can use. View the
 contents of your public key using the following commands:
 
-```bash
- % cat ~/.ssh/ece2400-github.pub
-```
+    :::bash
+    % cat ~/.ssh/ece2400-github.pub
 
 Use the following page to upload the public key to GitHub:
 
@@ -407,9 +384,8 @@ displayed using cat into the key textbox. Give the key the title
 `ece2400-github`. Then click _Add SSH key_. To test things out try the
 following command:
 
-```bash
- % ssh -T git@github.com
-```
+    :::bash
+    % ssh -T git@github.com
 
 You may see a warning about the authenticity of the host. Don’t worry,
 this is supposed to happen the first time you access GitHub using your
@@ -443,12 +419,11 @@ copy of this repo in your own person GitHub workspace:
 Where `githubid` is your GitHubID. Now let's clone your new repo to the
 `ecelinux` machine.
 
-```bash
- % cd ${HOME}/ece2400
- % git clone git@github.com:githubid/ece2400-sec1 sec1
- % cd sec1
- % cat README.md
-```
+    :::bash
+    % cd ${HOME}/ece2400
+    % git clone git@github.com:githubid/ece2400-sec1 sec1
+    % cd sec1
+    % cat README.md
 
 Where `githubid` is your GitHubID.
 
@@ -458,49 +433,42 @@ Now let's add some new files to the repository. Use your favorite text
 editor (e.g., Micro, Geany) to create a file named `warm-colors.txt` with
 three warm colors:
 
-```text
- red
- orange
- yellow
-```
+    red
+    orange
+    yellow
 
 Now use your favorite text editor again to create a file named
 `cool-colors.txt` with three cool colors.
 
-```text
- blue
- green
- purple
-```
+    blue
+    green
+    purple
 
 Now let's add these files to our repository. First use the `git status`
 command to check on the status of the repository.
 
-```bash
- % cd ${HOME}/ece2400/sec1
- % git status
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec1
+    % git status
 
 You should see that git has noticed two "untracked files" which are in
 the working directory but are not currently being tracked by git. Let's
 "add" these two files to git's "staging" area so it now knows it should
 keep track of them:
 
-```bash
- % cd ${HOME}/ece2400/sec1
- % git add warm-colors.txt
- % git add cool-colors.txt
- % git status
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec1
+    % git add warm-colors.txt
+    % git add cool-colors.txt
+    % git status
 
 The status of these two files have changed. Git reports that both of the
 new files are ready to be committed. Let's go ahead and commit these
 changes into your local repository.
 
-```bash
- % cd ${HOME}/ece2400/sec1
- % git commit -m "add some colors"
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec1
+    % git commit -m "add some colors"
 
 !!! note "To-Do On Your Own"
 
@@ -515,10 +483,9 @@ Note that nothing has happened on GitHub yet. GitHub does _not_ know
 anything about these local changes. We need to explicitly "push" our new
 commits up to GitHub like this:
 
-```bash
- % cd ${HOME}/ece2400/sec1
- % git push
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec1
+    % git push
 
 Now go to the repository page using the GitHub web interface and verify
 that there are two new files.
@@ -544,23 +511,20 @@ web interface.
 Click on _Create new file_. Name the file `languages.txt` and add a list
 of programming languages:
 
-```text
- C
- C++
- Python
- MATLAB
- Java
-```
+    C
+    C++
+    Python
+    MATLAB
+    Java
 
 Now click _Commit new file_. Verify that there is a new file in the repo
 using the GitHub web interface. Now let's "pull" these new changes from
 GitHub to your local repo on `ecelinux`:
 
-```bash
- % cd ${HOME}/ece2400/sec1
- % git pull
- % cat languages.txt
-```
+    :::bash
+    % cd ${HOME}/ece2400/sec1
+    % git pull
+    % cat languages.txt
 
 This will be the basic GitHub workflow were students pull and push code
 between GitHub and the `ecelinux` machines.
