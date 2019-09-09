@@ -211,6 +211,19 @@
   
     <li class="md-tabs__item">
       
+        <a href="../ece2400-T01-intro-c/" title="Topic Notes" class="md-tabs__link">
+          Topic Notes
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
         <a href="./" title="Section Notes" class="md-tabs__link md-tabs__link--active">
           Section Notes
         </a>
@@ -268,18 +281,54 @@
       
       
 
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Topic Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Topic Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-T01-intro-c/" title="Topic 1: Introduction to C" class="md-nav__link">
+      Topic 1: Introduction to C
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
-    <label class="md-nav__link" for="nav-1">
+    <label class="md-nav__link" for="nav-2">
       Section Notes
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-1">
+      <label class="md-nav__title" for="nav-2">
         Section Notes
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -722,7 +771,7 @@ enabling you to be doing multiple things on the server at the same time.</p>
 machine is source the course setup script. This will ensure your
 environment is setup with everything you need for working on the
 programming assignments. Enter the following command on the command line:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">source</span> setup-ece2400.sh
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
 </pre></div>
 </td></tr></table>
 
@@ -737,7 +786,7 @@ conflicts with the environment required by a different course then you
 will need to manually source the setup script when you are working on
 this course. Enter the following command on the command line to use
 auto setup:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">source</span> setup-ece2400.sh --enable-auto-setup
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh --enable-auto-setup
 </pre></div>
 </td></tr></table>
 
@@ -745,7 +794,7 @@ auto setup:</p>
 server. You should see <code>ECE 2400</code> in the prompt meaning your environment
 is automatically setup for the course. If at anytime you need to disable
 auto setup you can use the following command:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">source</span> setup-ece2400.sh --disable-auto-setup
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh --disable-auto-setup
 </pre></div>
 </td></tr></table>
 
@@ -761,7 +810,7 @@ interact with the operating system.</p>
 <p>We begin with the ubiquitous "Hello, World" example. To display the
 message "Hello, World" we will use the <code>echo</code> command. The <code>echo</code> command
 simply "echoes" its input to the console.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">echo</span> <span class="s2">&quot;Hello, World&quot;</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">echo</span> <span class="s2">&quot;Hello, World&quot;</span>
 </pre></div>
 </td></tr></table>
 
@@ -777,7 +826,7 @@ messages.</p>
 <h3 id="32-manual-pages">3.2. Manual Pages<a class="headerlink" href="#32-manual-pages" title="Permanent link">&para;</a></h3>
 <p>You can learn more about any Linux command by using the <code>man</code> command.
 Try using this to learn more about the <code>echo</code> command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % man <span class="nb">echo</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% man <span class="nb">echo</span>
 </pre></div>
 </td></tr></table>
 
@@ -792,12 +841,12 @@ discussed more in the full tutorial. Command output redirection uses the
 file. The following commands will create a new file named
 <code>ece2400-sec1.txt</code> that simply contains the text "Computer Systems
 Programming".</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">echo</span> <span class="s2">&quot;Computer Systems Programming&quot;</span> &gt; ece2400-sec1.txt
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">echo</span> <span class="s2">&quot;Computer Systems Programming&quot;</span> &gt; ece2400-sec1.txt
 </pre></div>
 </td></tr></table>
 
 <p>We can use the <code>cat</code> command to quickly display the contents of a file.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % cat ece2400-sec1.txt
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% cat ece2400-sec1.txt
 </pre></div>
 </td></tr></table>
 
@@ -806,13 +855,13 @@ may be hard to read the file as it streams past. We can use the <code>less</code
 command to show one screen-full of text at a time. You can use the
 up/down keys to scroll the file one line at a time, the space bar to
 scroll down one page at a time, and the <code>q</code> key to quit viewing the file.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % less ece2400-sec1.txt
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% less ece2400-sec1.txt
 </pre></div>
 </td></tr></table>
 
 <p>You can use the <code>ls</code> command to list the filenames of the files you have
 created.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % ls
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% ls
 </pre></div>
 </td></tr></table>
 
@@ -840,8 +889,8 @@ assignments and store your files. You can use the <code>pwd</code> command to pr
 the directory in which you are currently working, which is known as the
 current working directory.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">pwd</span>
- /home/netid
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">pwd</span>
+/home/netid
 </pre></div>
 </td></tr></table>
 
@@ -857,7 +906,7 @@ same purpose.</p>
 <p>We can use the <code>mkdir</code> command to make new directories. The following
 command will make a new directory named <code>ece2400</code> within your home
 directory.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % mkdir ece2400
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir ece2400
 </pre></div>
 </td></tr></table>
 
@@ -867,9 +916,9 @@ newly created <code>ece2400</code> directory, before displaying the current work
 directory with the pwd command.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ece2400
- % <span class="nb">pwd</span>
- /home/netid/ece2400
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> ece2400
+% <span class="nb">pwd</span>
+/home/netid/ece2400
 </pre></div>
 </td></tr></table>
 
@@ -877,10 +926,10 @@ directory with the pwd command.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % mkdir sec1
- % <span class="nb">cd</span> sec1
- % <span class="nb">pwd</span>
- /home/netid/ece2400/sec1
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir sec1
+% <span class="nb">cd</span> sec1
+% <span class="nb">pwd</span>
+/home/netid/ece2400/sec1
 </pre></div>
 </td></tr></table>
 
@@ -891,18 +940,18 @@ command to create a new file in this child directory.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> /home/netid/ece2400/sec1
- % <span class="nb">echo</span> <span class="s2">&quot;Computer Systems Programming&quot;</span> &gt; ece2400-sec1.txt
- % mkdir dirA
- % ls
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> /home/netid/ece2400/sec1
+% <span class="nb">echo</span> <span class="s2">&quot;Computer Systems Programming&quot;</span> &gt; ece2400-sec1.txt
+% mkdir dirA
+% ls
 </pre></div>
 </td></tr></table>
 
 <p>You can use the <code>tree</code> command to visualize the directory layout and
 where files are located:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400
- % tree
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> ~/ece2400
+% tree
 </pre></div>
 </td></tr></table>
 
@@ -914,10 +963,10 @@ current working directory.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400/sec1
- % <span class="nb">cd</span> ..
- % <span class="nb">cd</span> ..
- % <span class="nb">pwd</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> ~/ece2400/sec1
+% <span class="nb">cd</span> ..
+% <span class="nb">cd</span> ..
+% <span class="nb">pwd</span>
 </pre></div>
 </td></tr></table>
 
@@ -935,28 +984,28 @@ files we created in the previous section.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400/sec1
- % cp ece2400-sec1.txt ece2400-sec1-a.txt
- % cp ece2400-sec1.txt ece2400-sec1-b.txt
- % ls
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> ~/ece2400/sec1
+% cp ece2400-sec1.txt ece2400-sec1-a.txt
+% cp ece2400-sec1.txt ece2400-sec1-b.txt
+% ls
 </pre></div>
 </td></tr></table>
 
 <p>Instead of copying we can also move a file with the <code>mv</code> command:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400/sec1
- % mv ece2400-sec1.txt ece2400-sec1-c.txt
- % ls
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> ~/ece2400/sec1
+% mv ece2400-sec1.txt ece2400-sec1-c.txt
+% ls
 </pre></div>
 </td></tr></table>
 
 <p>Finally, we can use the <code>rm</code> command to remove files.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> ~/ece2400/sec1
- % ls
- % rm ece2400-sec1-a.txt
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> ~/ece2400/sec1
+% ls
+% rm ece2400-sec1-a.txt
 </pre></div>
 </td></tr></table>
 
@@ -971,14 +1020,14 @@ organization.</p>
 <h3 id="36-text-editors">3.6. Text Editors<a class="headerlink" href="#36-text-editors" title="Permanent link">&para;</a></h3>
 <p>Students are free to use any text editor they want. We recommend using
 either Micro or Geany. You can start Micro like this:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % micro ece2400-sec1-b.txt
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% micro ece2400-sec1-b.txt
 </pre></div>
 </td></tr></table>
 
 <p>Micro is a lightweight text-based text editor. Use <em>Ctrl-G</em> to learn more
 about the keyboard shortcuts you can use to in Micro.</p>
 <p>You can start Geany like this:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % geany ece2400-sec1-b.txt <span class="p">&amp;</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% geany ece2400-sec1-b.txt <span class="p">&amp;</span>
 </pre></div>
 </td></tr></table>
 
@@ -994,7 +1043,7 @@ the command line using <code>cat</code>.</p>
 </div>
 <p>When you are finished go ahead and delete the <code>sec1</code> directory to keep
 things tidy.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % rm -rf ~/ece2400/sec1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% rm -rf ~/ece2400/sec1
 </pre></div>
 </td></tr></table>
 
@@ -1029,7 +1078,7 @@ an <code>ecelinux</code> machine and upload the corresponding SSH public key to
 GitHub. GitHub uses these keys for authentication. The course setup
 script takes care of creating an SSH key pair which you can use. View the
 contents of your public key using the following commands:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % cat ~/.ssh/ece2400-github.pub
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% cat ~/.ssh/ece2400-github.pub
 </pre></div>
 </td></tr></table>
 
@@ -1041,7 +1090,7 @@ contents of your public key using the following commands:</p>
 displayed using cat into the key textbox. Give the key the title
 <code>ece2400-github</code>. Then click <em>Add SSH key</em>. To test things out try the
 following command:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % ssh -T git@github.com
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% ssh -T git@github.com
 </pre></div>
 </td></tr></table>
 
@@ -1074,10 +1123,10 @@ copy of this repo in your own person GitHub workspace:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
- % git clone git@github.com:githubid/ece2400-sec1 sec1
- % <span class="nb">cd</span> sec1
- % cat README.md
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+% git clone git@github.com:githubid/ece2400-sec1 sec1
+% <span class="nb">cd</span> sec1
+% cat README.md
 </pre></div>
 </td></tr></table>
 
@@ -1088,9 +1137,9 @@ editor (e.g., Micro, Geany) to create a file named <code>warm-colors.txt</code> 
 three warm colors:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> red
- orange
- yellow
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>red
+orange
+yellow
 </pre></div>
 </td></tr></table>
 
@@ -1098,17 +1147,17 @@ three warm colors:</p>
 <code>cool-colors.txt</code> with three cool colors.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> blue
- green
- purple
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>blue
+green
+purple
 </pre></div>
 </td></tr></table>
 
 <p>Now let's add these files to our repository. First use the <code>git status</code>
 command to check on the status of the repository.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
- % git status
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+% git status
 </pre></div>
 </td></tr></table>
 
@@ -1119,10 +1168,10 @@ keep track of them:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
- % git add warm-colors.txt
- % git add cool-colors.txt
- % git status
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+% git add warm-colors.txt
+% git add cool-colors.txt
+% git status
 </pre></div>
 </td></tr></table>
 
@@ -1130,8 +1179,8 @@ keep track of them:</p>
 new files are ready to be committed. Let's go ahead and commit these
 changes into your local repository.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
- % git commit -m <span class="s2">&quot;add some colors&quot;</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+% git commit -m <span class="s2">&quot;add some colors&quot;</span>
 </pre></div>
 </td></tr></table>
 
@@ -1147,8 +1196,8 @@ and <code>git commit</code> to add these changes to local repository.</p>
 anything about these local changes. We need to explicitly "push" our new
 commits up to GitHub like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
- % git push
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+% git push
 </pre></div>
 </td></tr></table>
 
@@ -1178,11 +1227,11 @@ of programming languages:</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> C
- C++
- Python
- MATLAB
- Java
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>C
+C++
+Python
+MATLAB
+Java
 </pre></div>
 </td></tr></table>
 
@@ -1191,9 +1240,9 @@ using the GitHub web interface. Now let's "pull" these new changes from
 GitHub to your local repo on <code>ecelinux</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
- % git pull
- % cat languages.txt
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+% git pull
+% cat languages.txt
 </pre></div>
 </td></tr></table>
 
@@ -1226,6 +1275,20 @@ changes</em>. Then pull these changes to the local repository on the
   
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ece2400-T01-intro-c/" title="Topic 1: Introduction to C" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Topic 1: Introduction to C
+              </span>
+            </div>
+          </a>
         
         
           <a href="../ece2400-sec2-c-basics/" title="Section 2: Compiling and Running C Programs" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">

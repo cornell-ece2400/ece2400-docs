@@ -6,17 +6,60 @@
   Date   : September 2019
 */
 
-.md-typeset H1,
-.md-typeset H2,
+.md-typeset H1
+{
+  color : black;
+  font-weight : 500;
+  margin: 0 0 0;  
+}
+
+.md-typeset H2
+{
+  color : black;
+  font-weight : 500;
+  margin: 1em 0 0;  
+}
+
 .md-typeset H3
 {
   color : black;
   font-weight : 500;
+  margin: 0 0 0;  
 }
 
-DIV.admonition.note
+.md-typeset .admonition
 {
   font-size : 100%;
+}
+
+.md-typeset details
+{
+  font-size : 100%;
+}
+
+.md-typeset details.question
+{
+  border-left-color : #448aff;
+}
+
+.md-typeset details.question > summary
+{
+  background-color: rgba(68, 138, 255, 0.1);
+}
+
+.md-typeset details.question > summary::before
+{
+  color: #448aff;
+}
+
+.md-typeset ul li
+{
+  margin-bottom: 0;
+}
+
+.md-typeset ol li
+{
+  margin-bottom: 0;
 }
 
 .md-typeset table:not([class])

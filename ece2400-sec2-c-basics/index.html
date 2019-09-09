@@ -211,6 +211,19 @@
   
     <li class="md-tabs__item">
       
+        <a href="../ece2400-T01-intro-c/" title="Topic Notes" class="md-tabs__link">
+          Topic Notes
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
         <a href="../ece2400-sec1-linux/" title="Section Notes" class="md-tabs__link md-tabs__link--active">
           Section Notes
         </a>
@@ -268,18 +281,54 @@
       
       
 
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Topic Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Topic Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-T01-intro-c/" title="Topic 1: Introduction to C" class="md-nav__link">
+      Topic 1: Introduction to C
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
-    <label class="md-nav__link" for="nav-1">
+    <label class="md-nav__link" for="nav-2">
       Section Notes
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-1">
+      <label class="md-nav__title" for="nav-2">
         Section Notes
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -511,11 +560,11 @@ following commands:</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
- % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
- % git clone git@github.com:cornell-ece2400/ece2400-sec2 sec2
- % <span class="nb">cd</span> sec2
- % cat README.md
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+% git clone git@github.com:cornell-ece2400/ece2400-sec2 sec2
+% <span class="nb">cd</span> sec2
+% cat README.md
 </pre></div>
 </td></tr></table>
 
@@ -532,8 +581,8 @@ enable us to quickly explore small C/C++ code snippets. Start a browser
 and go to <a href="https://Repl.it">https://Repl.it</a>. You can use Repl.it without an account. You
 can always create an account later. Click <em>new repl</em> in the upper
 right-hand corner. In the <em>Search for a language</em> drop-down choose C and
-the click <em>Create repl</em>. You will see a default program. Replace ths
-default program with the folllowing program inspired by today's lecture.</p>
+the click <em>Create repl</em>. You will see a default program. Replace this
+default program with the following program inspired by today's lecture.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -584,7 +633,7 @@ understand computer systems programming with C and C++ is to actually
 write programs, and the easiest way to write C and C++ programs is to
 just use Repl.it!</p>
 <h3 id="22-compiler-explorer">2.2. Compiler Explorer<a class="headerlink" href="#22-compiler-explorer" title="Permanent link">&para;</a></h3>
-<p>Compiler Explore is a free online servce that compiles C programs to
+<p>Compiler Explore is a free online service that compiles C programs to
 machine instructions and then displays these machine instructions for you
 to inspect completely online in your browser. It will enable us to
 quickly explore the connection between C and C++ code and the low-level
@@ -609,7 +658,7 @@ instructions on the right. It color codes C code on the left to match
 which exact machine instructions are produced by that C code on the
 right. You can right click on an instruction and select <em>View opcode doc</em>
 to learn more about what each instruction does. You can also choose from
-many different compilers targetting many different instruction set
+many different compilers targeting many different instruction set
 architectures (ISAs). Here are three different compiler/ISAs you might
 want to experiment with:</p>
 <ul>
@@ -620,13 +669,16 @@ want to experiment with:</p>
 <p>Go ahead and choose x86-64. Notice that even though the C source code
 uses the integer division operator there is no division instruction on
 the right. This is because the compiler is smart enough to figure out
-that dividing by 2 is the same as shifting to the right by one bit. In th
-eopper-right corner you will see <code>-O3</code>. This is a command line option
-that tells the compiler to apply as many optimizations as it can. Delete
-<code>-O3</code> and take a look at the resulting machine instructions. First,
-notice that the compiler has generated many more instructions. Second,
-notice that it now is using a division instruction (<code>idiv</code>). The
-unoptimized code would execute far slower than the optimized code.</p>
+that dividing by 2 is the same as shifting to the right by one bit. In
+the upper-right corner you will either see <code>Compiler options</code> or <code>-O3</code>.
+This is where you can enter command line options that are passed to the
+compiler. The command line option <code>-O3</code> tells the compiler to apply as
+many optimizations as it can. Experiment with either entering <code>-O3</code> or
+deleting <code>-O3</code> to observe the difference in the resulting machine
+instructions. Notice that without <code>-O3</code> the compiler will generate many
+more instructions, and also notice that it now is using a division
+instruction (<code>idiv</code>). The unoptimized code would execute far slower than
+the optimized code.</p>
 <div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
 <p>Copy-and-paste the three-input average program you developed earlier
@@ -638,17 +690,17 @@ optimizations.</p>
 <p>Before we can understand how to write and compile C programs, we need to
 understand the C preprocessor. The preprocessor takes an input C source
 file, preprocesses it, and generates the preprocessed version of the C
-source file. It is important to realize that the C preprocesor is not
+source file. It is important to realize that the C preprocessor is not
 really part of the C programming language. The C preprocessor simply
-manipulates the text in the C source files and knows nothing about the C
-programming language's syntax or semantics. The C preprocessor is
+manipulates the plain text in the C source files and knows nothing about
+the C programming language's syntax or semantics. The C preprocessor is
 powerful but also very easy to abuse. Using the C preprocessor can cause
 subtle bugs and is usually not necessary. Unfortunately, there are a few
 cases where we have no choice but to use the C preprocessor, so we must
 learn at least the basics.</p>
 <p>The best way to understand the C preprocessor is actually to use it to
-preprocess standard text files as opposed to C source files. Assume we
-wish to create a text file which includes both warm and cool colors. We
+preprocess plain text files as opposed to C source files. Assume we wish
+to create a plain text file which includes both warm and cool colors. We
 could simply copy-and-paste our lists from <code>warm-colors.txt</code> and
 <code>cool-colors.txt</code>, but this would be redundant and difficult to maintain
 if we wanted to add a new warm or cool color. We can instead use the C
@@ -656,8 +708,8 @@ preprocessor to <em>include</em> the contents of one text file in another text
 file. Use Micro (or Geany) to create a new file named <code>colors-in.txt</code>
 like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % micro colors-in.txt
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% micro colors-in.txt
 </pre></div>
 </td></tr></table>
 
@@ -677,14 +729,13 @@ preprocessor directives begin with the special <code>#</code> character. The
 include. The file name should be be specified using double quotes (<code>""</code>).</p>
 <p>Now we can use the C preprocessor (<code>cpp</code>) to preprocess the <code>-in.txt</code>
 files into a final text file that contains both the warm and cool colors.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
-% cpp -o colors.txt colors-in.txt
-% cat colors.txt
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>
 </pre></div>
 </td></tr></table>
 
+<p>% cd ${HOME}/ece2400/sec2
+% cpp -o colors.txt colors-in.txt
+% cat colors.txt</p>
 <p>The <code>-o</code> command line option is used to specify the name of the output
 file. The content of the <code>colors.txt</code> should look like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -723,16 +774,16 @@ purple
 </pre></div>
 </td></tr></table>
 
-<p>xThe C preprocessor has included all of the colors in a single output
+<p>The C preprocessor has included all of the colors in a single output
 file, but it has also included some additional lines beginning with the
 <code>#</code> character to specify information about where all of the pieces of
 text originally came from. We can tell <code>cpp</code> to not include this extra
 metadata with the <code>-P</code> command line option.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % cpp -P -o colors.txt colors-in.txt
- % cat colors.txt
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% cpp -P -o colors.txt colors-in.txt
+% cat colors.txt
 </pre></div>
 </td></tr></table>
 
@@ -745,18 +796,49 @@ any program which includes that C source file. We have actually already
 seen this use of the C preprocessor earlier in this section when we
 included the <code>stdio.h</code> header file which includes the declaration of the
 <code>printf</code> function.</p>
-<p>We will also use the C preprocessor to create <em>include guards</em>. An
-include guard is a way to ensure that the contents of a given file is
-only inserted into the output file once, even if we include it multiple
-times. For example, modify <code>warm-colors.txt</code> using Micro (or Geany) as
-follows:</p>
+<p>Let's now modify <code>colors-in.txt</code> to include each file three times:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#ifndef WARM_COLORS_TXT</span>
-<span class="cp">#define WARM_COLORS_TXT</span>
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;warm-colors.txt&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;warm-colors.txt&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;warm-colors.txt&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;cool-colors.txt&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;cool-colors.txt&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;cool-colors.txt&quot;</span><span class="cp"></span>
+</pre></div>
+</td></tr></table>
+
+<p>Rerun the C preprocessor and verify that the warm and cool colors are
+included three times.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% cpp -P -o colors.txt colors-in.txt
+% cat colors.txt
+</pre></div>
+</td></tr></table>
+
+<p>While this is fine for plain text files, we need to be very careful about
+including the same C code multiple times when we are developing our C
+programs. If the compiler sees the same function defined multiple times
+it will cause a syntax error. More modern programming languages have
+built-in features to ensure code is only included a single time
+regardless, but in C we are forced to use the C preprocessor to ensure
+code is only included once. We will use a technique called <em>include
+guards</em>. An include guard will ensure that the contents of a given file
+is only inserted into the output file once, even if we include it
+multiple times. For example, modify <code>warm-colors.txt</code> using Micro (or
+Geany) as follows:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#ifndef SEC2_WARM_COLORS_TXT</span>
+<span class="cp">#define SEC2_WARM_COLORS_TXT</span>
  <span class="n">red</span>
  <span class="n">orange</span>
  <span class="n">yellow</span>
@@ -777,8 +859,8 @@ contents of the file. Modify <code>cool-colors.txt</code> as follows:</p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#ifndef COOL_COLORS_TXT</span>
-<span class="cp">#define COOL_COLORS_TXT</span>
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#ifndef SEC2_COOL_COLORS_TXT</span>
+<span class="cp">#define SEC2_COOL_COLORS_TXT</span>
  <span class="n">blue</span>
  <span class="n">green</span>
  <span class="n">purple</span>
@@ -786,36 +868,27 @@ contents of the file. Modify <code>cool-colors.txt</code> as follows:</p>
 </pre></div>
 </td></tr></table>
 
-<p>And now modify <code>colors-in.txt</code> to include each file three times:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;warm-colors.txt&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;warm-colors.txt&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;warm-colors.txt&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;cool-colors.txt&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;cool-colors.txt&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;cool-colors.txt&quot;</span><span class="cp"></span>
-</pre></div>
-</td></tr></table>
-
-<p>If you run the C preprocessor you will see that the colors are only
+<p>Rerun the C preprocessor and you will see that the colors are only
 included once because of the include guards.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % cpp -P -o colors.txt colors-in.txt
- % cat colors.txt
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% cpp -P -o colors.txt colors-in.txt
+% cat colors.txt
 </pre></div>
 </td></tr></table>
 
+<p>The actual macro name you use for the include guard doesn't matter as
+long as it is unique across all files. We usually use a variation of the
+filename to ensure unique include guard macros.</p>
 <div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
-<p>Remove the include guards and rerun the C preprocessor on
-<code>colors-in.txt</code>. Verify that the resulting output file <code>colors.txt</code>
-has multiple copies of the warm and cool colors.</p>
+<p>Change the name of the macro used in both <code>warm-colors.txt</code> and
+<code>cool-colors.txt</code> to be <code>COLORS_TXT</code>. This means both files will be
+using the same macro name for their include guards. Rerun the C
+preprocessor. Try switching the order you include the files in
+<code>colors.txt</code> (e.g., include the cool colors first, and then include
+the warm colors). Can you explain what is going on?</p>
 </div>
 <h2 id="4-compiling-and-running-a-single-file-c-program">4. Compiling and Running a Single-File C Program<a class="headerlink" href="#4-compiling-and-running-a-single-file-c-program" title="Permanent link">&para;</a></h2>
 <p>Now that we have explored how to use the C preprocessor for file
@@ -865,9 +938,9 @@ course we will be using the GNU C compiler (<code>gcc</code>). Let's go ahead an
 give this a try:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % gcc -Wall -o avg-sfile avg-sfile.c
- % ls
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% gcc -Wall -o avg-sfile avg-sfile.c
+% ls
 </pre></div>
 </td></tr></table>
 
@@ -879,8 +952,8 @@ takes care of running the C preprocessor for us. After running the <code>gcc</co
 command you should see a new <code>avg-sfile</code> file in the directory. We can
 execute this binary by simply calling it as any other Linux command.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % ./avg-sfile
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% ./avg-sfile
 </pre></div>
 </td></tr></table>
 
@@ -890,8 +963,8 @@ executable named <code>avg-sfile</code> which is located in the current working
 directory. Repl.it is basically doing these same steps just in the cloud.</p>
 <p>Now let's examine the machine instructions using the <code>objdump</code> command.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % objdump -dC avg-sfile <span class="p">|</span> less
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% objdump -dC avg-sfile <span class="p">|</span> less
 </pre></div>
 </td></tr></table>
 
@@ -906,9 +979,9 @@ code? You can exit <code>less</code> by pressing the <code>q</code> key. Let's r
 program with optimizations.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % gcc -Wall -O3 -o avg-sfile avg-sfile.c
- % objdump -dC avg-sfile <span class="p">|</span> less
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% gcc -Wall -O3 -o avg-sfile avg-sfile.c
+% objdump -dC avg-sfile <span class="p">|</span> less
 </pre></div>
 </td></tr></table>
 
@@ -1010,8 +1083,8 @@ a header file for <code>avg.c</code> named <code>avg.h</code> with the following
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#ifndef TUT3_C_AVG_H</span>
-<span class="cp">#define TUT3_C_AVG_H</span>
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#ifndef SEC2_AVG_H</span>
+<span class="cp">#define SEC2_AVG_H</span>
 
 <span class="kt">int</span> <span class="nf">avg</span><span class="p">(</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span> <span class="p">);</span>
 
@@ -1024,9 +1097,9 @@ ahead and compile <code>avg.c</code> and <code>avg-mfile.c</code> into their cor
 object files:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % gcc -Wall -c -o avg.o avg.c
- % gcc -Wall -c -o avg-mfile.o avg-mfile.c
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% gcc -Wall -c -o avg.o avg.c
+% gcc -Wall -c -o avg-mfile.o avg-mfile.c
 </pre></div>
 </td></tr></table>
 
@@ -1039,9 +1112,9 @@ to indicate that these files are object files. Let's use <code>objdump</code> to
 look inside each of these object files.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % objdump -dC avg.o
- % objdump -dC avg-mfile.o
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% objdump -dC avg.o
+% objdump -dC avg-mfile.o
 </pre></div>
 </td></tr></table>
 
@@ -1054,9 +1127,9 @@ correspond to the <code>main</code> function.</p>
 executable binary that we can actually run.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % gcc -Wall -o avg-mfile avg.o avg-mfile.o
- % objdump -dC avg-mfile
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% gcc -Wall -o avg-mfile avg.o avg-mfile.o
+% objdump -dC avg-mfile
 </pre></div>
 </td></tr></table>
 
@@ -1065,8 +1138,8 @@ instructions for <em>both</em> the <code>avg</code> and <code>main</code> functi
 of additional system-level code (e.g., for the <code>printf</code> function). Let's
 go ahead and run the executable binary.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % ./avg-mfile
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% ./avg-mfile
 </pre></div>
 </td></tr></table>
 
@@ -1075,9 +1148,9 @@ single step by specifying multiple C source files on a single command
 line.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
- % gcc -Wall -o avg-mfile avg.c avg-mfile.c
- % ./avg-mfile
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
+% gcc -Wall -o avg-mfile avg.c avg-mfile.c
+% ./avg-mfile
 </pre></div>
 </td></tr></table>
 
@@ -1093,7 +1166,7 @@ into its own object file named <code>avg3.o</code>. Link all three files (i.e.,
 indicating that you have two functions with the same name. The
 compiler does not know how to disambiguate these two functions. Name
 the three-input average function <code>avg3</code> and update the source file
-(<code>avg3.c</code>), header file (<code>avg.h</code>), and <code>avg-mfile.c</code> appropriate.
+(<code>avg3.c</code>), header file (<code>avg.h</code>), and <code>avg-mfile.c</code> appropriately.
 Recompile the object files and try linking the program together
 again. Verify that it produces the expected output.</p>
 </div>
