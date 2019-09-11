@@ -153,7 +153,7 @@ The following is a list of invalid identifiers (i.e., incorrect syntax):
 
 The first identifier has invalid C syntax since it starts with a number,
 and the second identifier has invalid C syntax since it includes the `$`
-character. These are called _synatx errors_.
+character. These are called _syntax errors_.
 
 There are many styles of identifiers. For example, _snakecase_ favors
 using lowercase with underscores to separate words (i.e., `my_variable`),
@@ -507,7 +507,7 @@ values in our state diagrams. Instead, you should simply cross out the
 old value and enter the new value. This way we can easily see how the
 state has changed over the execution of the program.
 
-??? question "Activity 5: A Simple C Program"
+??? question "Activity 5: State Diagram for a Simple C Program"
 
     Draw a state diagram corresponding to the execution of this program.
     Remember to check off the execution boxes as you execute each
@@ -516,7 +516,7 @@ state has changed over the execution of the program.
 
     ![](img/T01-simple-c-program-activity.png)
 
-3. Blocks, Scope, and Name Binding
+3. Blocks, Scope, Name Binding
 --------------------------------------------------------------------------
 
 Blocks, scope, and name binding provide syntax and semantics to help
@@ -526,8 +526,8 @@ manage more complex procedural programs.
 
 A _block_ is a compound statement, meaning it is a new kind of statement
 which is made up of a sequence of other statements. Blocks are indicated
-using curly braces. An left curly brace (`{`) is used to open a block,
-and a right curly brace (`}`) is used to close a block. Blocks will be
+using curly braces. An open curly brace (`{`) is used to open a block,
+and a close curly brace (`}`) is used to close a block. Blocks will be
 critical for defining functions, conditional statements, and iteration
 statements. Two examples of blocks are shown below.
 
@@ -596,7 +596,7 @@ and then "shrinks" down. In the C stack, the stack grows down and then
 "shrinks" up. We will start calling the space on the right of our state
 diagrams the "stack".
 
-??? question "Activity 6: Nested Scope"
+??? question "Activity 6: State Diagram for Nested Scope"
 
     Draw a state diagram corresponding to the execution of this program.
     Remember to use an X to indicate when variables go out of scope and
@@ -677,7 +677,7 @@ obvious from reading your program which variable name refers to which
 variable declaration without needing to carefully consider the name
 binding rules.
 
-??? question "Activity 7: Name Binding"
+??? question "Activity 7: State Diagram for Name Binding"
 
     Draw a state diagram corresponding to the execution of this program.
     Remember to use an X to indicate when variables go out of scope and
@@ -712,16 +712,17 @@ the function. The syntax for a function definition is shown below.
       function_body;
     }
 
-The function name is a unique identifier for the function. Function names
-must follow the same restrictions on identifiers as with variable names.
-The function body is the parameteried sequence of statements. The
-parameter list is a list of parameter types and names separated by commas
-(e.g., `ptype0 pname0` on line 1). Finally, the return type is the type
-of the value returned by the function (e.g., `rtype` on line 1). Note
-that we call just line 1 the _function prototype_. A function prototype
-specifies the _interface_ for the function (i.e., name, parameter types,
-and return type) without specifying the actual implementation. An example
-function that returns the square of an integer is shown below.
+The _function name_ is a unique identifier for the function. Function
+names must follow the same restrictions on identifiers as with variable
+names. The _function body_ is the parameteried sequence of statements.
+The _parameter list_ is a list of parameter types and names separated by
+commas (e.g., `ptype0 pname0` on line 1). Finally, the _return type_ is
+the type of the value returned by the function (e.g., `rtype` on line 1).
+Note that we call just line 1 the _function prototype_. A function
+prototype specifies the _interface_ for the function (i.e., name,
+parameter types, and return type) without specifying the actual
+implementation. An example function that returns the square of an integer
+is shown below.
 
     int square( int x )
     {
@@ -870,7 +871,7 @@ state diagram we have labeled the entire stack as `main`. This indicates
 that everything on the stack is essentially nested within the stack frame
 of the top-level `main` function.
 
-??? question "Activity 8: Simple Function Call"
+??? question "Activity 8: State Diagram for a Simple Function Call"
 
     Consider the following simple function to calculate whether or not a
     given parameter is odd. The function will return the value 1 if the
@@ -882,9 +883,20 @@ of the top-level `main` function.
 
     ![](img/T01-function-call-activity-1.png)
 
-Let's explore another example to illustrate name binding.
+Let's explore another example to illustrate call-by-value semantics.
 
  ![](img/T01-function-call-2.png)
+
+Notice that line 3 both reads and writes the variable named `x`. This is
+perfectly fine. Also notice that `x` is a parameter. Since C uses
+call-by-value semantics, this update to `x` _in no way_ affects variables
+allocated on the callee's stack frame (e.g., `a` on the stack frame for
+`main`). Functions are free to modify their parameters since they contain
+a _copy_ of the value passed in as a parameter.
+
+Let's explore another example to illustrate name binding.
+
+ ![](img/T01-function-call-3.png)
 
 Notice that this C program includes two variables named `x` and two
 variables named `y`. Our name binding rules can help us determine which
@@ -905,7 +917,7 @@ variable name.
 
 Let's explore another example to illustrate nested function calls.
 
- ![](img/T01-function-call-3.png)
+ ![](img/T01-function-call-4.png)
 
 In this example, the `square` function calls the `mul` function to do the
 actual multiplication. Notice that the stack frame for the `mul` function
@@ -920,7 +932,7 @@ to mark where `square` and `mul` are called in the source code.
 Let's explore another example to illustrate the need for temporary
 storage on the stack when evaluating parameters.
 
- ![](img/T01-function-call-4.png)
+ ![](img/T01-function-call-5.png)
 
 In this example, we use a non-trivial expression (`2 + 1`) as a parameter
 to the `square` function. In this situation, we need to allocate a
@@ -932,7 +944,7 @@ in the function call semantics.
 In our final example, we will explore calling a function whose parameter
 is the result of a function call.
 
- ![](img/T01-function-call-5.png)
+ ![](img/T01-function-call-6.png)
 
 Notice that these two function calls are _not_ nested. Step 1 of the
 function call semantics tells us we must evaluate all parameters. So we
@@ -945,7 +957,7 @@ clearly indicate how the execution arrow moves through the program. We
 use two dots to the left of line 9 to indicate the two calls to the
 `square` function.
 
-??? question "Activity 9: Complex Function Call"
+??? question "Activity 9: State Diagram for mul/odd Function Calls"
 
     Consider the following program which includes two simple functions:
     one to calculate whether or not a given parameter is odd, and one to
@@ -953,6 +965,16 @@ use two dots to the left of line 9 to indicate the two calls to the
     execution of this program.
 
     ![](img/T01-function-call-activity-2.png)
+
+??? question "Activity 10: State Diagram for Multiple avg Function Calls"
+
+    Consider the following program which calls an `avg` function three
+    different times. Draw a state diagram corresponding to the execution
+    of this program. Recall that we must allocate space on the callers
+    stack for a temporary value when evaluating non-trivial expressions
+    passed as parameters to a function.
+
+    ![](img/T01-function-call-activity-3.png)
 
 ### 4.3. The printf Function
 
@@ -1061,7 +1083,7 @@ repl.it for our `square` program is show below.
 
  - <https://repl.it/@cbatten/ece2400-T01-notes-ex1>
 
-??? question "Activity 10: Function to Increment by One"
+??? question "Activity 11: Write a Function to Increment by One"
 
     Use Repl.it to develop a function that increments a given value by
     one. The function should take one parameter as shown below:
@@ -1077,9 +1099,10 @@ repl.it for our `square` program is show below.
 
 A _conditional statement_ enables programs to make decisions based on the
 values of their variables. Conditional statements enable _non-linear
-forward control flow_. In this section, we will first discuss a new set
-of boolean operators before discussing two kinds of conditional
-statements: if/else and switch/case statements.
+forward control flow_ (i.e., the execution arrow will skip over
+statements). In this section, we will first discuss a new set of Boolean
+operators before discussing two kinds of conditional statements:
+`if/else` and `switch/case` statements.
 
 ### 5.1. Boolean Operators
 
@@ -1087,7 +1110,7 @@ Boolean operators are used in expressions which evaluate to a "Boolean"
 value (i.e., true or false). C does not provide any built-in types for
 Boolean values as in many other programming languages. A "Boolean" value
 is just an integer, where we interpret a value of zero to mean false and
-an non-zero value to mean true. Nine boolean operators are shown below.
+an non-zero value to mean true. Nine Boolean operators are shown below.
 
 | Operator         | Meaning                                                  |
 | ---------------- | -------------------------------------------------------- |
@@ -1120,16 +1143,16 @@ An example C program that uses Boolean operators is shown below.
 
  ![](img/T01-boolean-operators.png)
 
-The boolean expression (`x > 0`) evaluates to either a zero or one based
+The Boolean expression (`x > 0`) evaluates to either a zero or one based
 on whether or not `x` is positive or negative.
 
-??? question "Activity 11: Function to Check Perfect Squares"
+??? question "Activity 12: Write a Function to Check Perfect Squares"
 
-    Use Repl.it to develop a function that takes two parameters and
-    checks to see if one parameter is a perfect square of the other. The
-    order should not matter. Only use arithmetic and Boolean operators.
-    Do not use any conditional statements. The function prototype is
-    shown below.
+    Use Repl.it to develop a function that takes two integer parameters
+    and checks to see if one parameter is a perfect square of the other.
+    The order should not matter. Only use arithmetic and Boolean
+    operators. Do not use any conditional statements. The function
+    prototype is shown below.
 
         int is_perfect_square( int x, int y )
 
@@ -1139,27 +1162,444 @@ on whether or not `x` is positive or negative.
 
 ### 5.2. if/else Conditional Statements
 
-... coming soon ...
+`if/else` conditional statements are used to conditionally execute one of
+several statements based on one or more conditional expressions. The
+syntax for `if/else` conditional statements is shown below.
+
+    :::c
+    if ( conditional_expression )
+      then_statement;
+    else
+      else_statement;
+
+The _conditional expression_ is an expression that returns a Boolean. The
+_then statement_ is executed if the conditional expression is true. The
+_else statement_ is executed if the conditional expression is false.
+
+`if/else` conditional statements can also include additional `if else`
+conditional expressions to create a "chain" of statements where exactly
+one is executed.
+
+    :::c
+    if ( conditional_expression0 )
+      then_statement0;
+    else if ( conditional_expression1 )
+      then_statement1;
+    else
+      else_statement;
+
+Either the first then statement, the second then statement, or the else
+statement will be executed. Since blocks are just (compoound) statements,
+the then and/or else statements can also be a blocks in which case the
+syntax is as follows.
+
+    :::c
+    if ( conditional_expression0 ) {
+      then_statement0;
+      then_statement1;
+    }
+    else if ( conditional_expression1 {
+      then_statement2;
+      then_statement3;
+    }
+    else {
+      else_statement0;
+      else_statement1;
+    }
+
+An example C program that uses `if/else` conditional statements is shown
+below. This program includes an `abs` function to calculate the absolute
+value of the given integer parameter.
+
+ ![](img/T01-ifelse.png)
+
+In this example, the conditional expression (`x < 0`) is on line 4. The
+then statement is a block that starts with the open curly brace on line 4
+and ends with the close curly brace on line 6. The else statement is also
+a block. The execution boxes illustrate the non-linear control flow with
+each call to `abs` skipping some of the statements.
+
+??? question "Activity 13: State Diagram for Function to Check Monoticity"
+
+    Consider the following function that takes three integer parameters
+    and checks to see if these values are monotonically increasing or
+    monotonically decreasing. The function will return the value 1 if the
+    parameters are monotonic and will return the value 0 otherwise. Draw
+    a state diagram corresponding to the execution of this program.
+
+    ![](img/T01-ifelse-activity.png)
+
+??? question "Activity 14: Write Function to Find Median of Three"
+
+    Use Repl.it to develop a function that takes three integer parameters
+    and returns the median. The function prototype is shown below.
+
+        int median( int x, int y, int z )
+
+    Here is an initial Repl.it to get you started. Try to minimize the
+    number of Boolean operators. Can you implement this function with
+    only five Boolean operators?
+
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity3>
 
 ### 5.3. switch/case Conditional Statements
 
-... coming soon ...
+`switch/case` conditional statements are used to conditionally execute
+one or more statements based a selection expression. The syntax for
+`switch/case` conditional statements is shown below.
+
+    :::c
+    switch ( selection_expression ) {
+
+      case case_label0:
+        case_statement0;
+        break;
+
+      case case_label1:
+        case_statement1;
+        break;
+
+      case case_label2:
+        case_statement3;
+        break;
+
+      default:
+        default_statement;
+
+    }
+
+The _selection expression_ is an expression which returns a value which
+is then compared against the _case labels_. If there is a match, then the
+corresponding _case statements_ are executed. A _break_ statement is used
+to jump to the end of the switch block. If no case labels match, then the
+_default statement_ is executed. Note that there can be more than one
+case statement for a given case label without the need for a block. If we
+omit the break statement, then the execution "falls through" to the next
+case statement until we either execute a break statement or reach the end
+of the switch block
+
+An example C program that uses a `switch/case` conditional statement is
+shown below. This program includes a `days_in_month` function to
+determine how many days are in a given month. The month is specified as
+an integer between one and 12.
+
+ ![](img/T01-switchcase.png)
+
+In this example, the selection expression (`month`) is on line 4. There
+are 12 case labels. Each case statement sets the variable `x`
+appropriately, and we include a break statement after each case
+statement. Notice that this example includes basic error checking. If the
+parameter is not between one and 12, then the value of the selection
+express will not match any of the 12 case labels. In this situation, we
+execute the default statement such that the function returns -1 to
+indicate an error. The `main` function checks this return value to
+determin if the program should exit with an exit status of 0 to indicate
+success or with an exit status of 1 to indicate an error.
+
+??? question "Activity 15: State Diagram for Function to Calculate Days in Month"
+
+    Consider the following optimized implementation of the same
+    `days_in_month` function from the previous example. This
+    implementation uses "fall through" semantics. Draw a state diagram
+    corresponding to the execution of this program.
+
+    ![](img/T01-switchcase-activity.png)
+
+??? question "Activity 16: Write Function to Identify Small Primes"
+
+    Use Repl.it to develop a function that takes an integer parameter
+    between 0 and 9 (inclusive) and returns a Boolean output. The
+    function should return true if the input is prime (i.e., 2, 3, 5, 7)
+    and return false if the input is not prime. Use a `switch/case`
+    conditional statement to explicitly check for these prime values. The
+    function prototype is shown below.
+
+        int is_prime( int x )
+
+    Here is an initial Repl.it to get you started.
+
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity4>
 
 6. Iteration Statements
 --------------------------------------------------------------------------
 
-... coming soon ...
+An _iteration statement_ enables programs to repeatedly execute a
+sequence of statements multiple times based on a conditional expression.
+Iteration statements enable _backward flow control_ (i.e., the execution
+arrow will jump backwards). In this section, we will discuss two kinds of
+iteration statements: `while` loops and `for` loops.
 
 ### 6.1. while Loops
 
-... coming soon ...
+`while` loops are used to repeatedly execute a sequence of statements
+based on a data-dependent condition that might change during the
+execution of these statements. The syntax for `while` loops is shown
+below.
+
+    :::c
+    while ( conditional_expression )
+      loop_body;
+
+The _conditional expression_ is an expression that returns a Boolean. The
+_loop body_ is a statement which is executed as long as the conditional
+expression is true. Since blocks are just (compound) statements, the loop
+body can also be a block in which case the syntax is as follows.
+
+    :::c
+    while ( conditional_expression ) {
+      loop_body;
+    }
+
+As an aside, an _infinite loop_ is one in which the conditional
+expression is never fallse. Infinite loops must be avoided because they
+will cause your program to simply hang and never finish. Unfortunately,
+determining whether any given loop is an infinite loop is very difficult
+and indeed impossible in the general case.
+
+An example C program that uses a `while` loop is shown below. This
+program includes a `div` function that implements integer division
+through repeated subtraction.
+
+ ![](img/T01-while.png)
+
+In this example, the conditional expression (`rem >= y`) is on line 5.
+The loop body is a block that starts with the open curly brace on line 5
+and ends with the close curly brace on line 9. This example uses a
+temporary value (`t`) within the loop body. Notice how this variable is
+allocated at the beginning of the loop body and then deallocated at the
+end of the loop body which is why we see three different boxes named `t`
+in the state diagram. The execution boxes to the left of line 5 show that
+the conditional expression is executed four times. The final execution is
+when the conditional expression is the false and we skip over the loop
+body.
+
+??? question "Activity 17: State Diagram for Function to Count Digits with while Loop"
+
+    Consider the following program which includes a function to count the
+    number of decimal digits in a given parameter. This function uses a
+    `while` loop. Draw a state diagram corresponding to the execution of
+    this program.
+
+    ![](img/T01-while-activity.png)
+
+??? question "Activity 18: Write Function to Output Sequence with while Loop"
+
+    Use Repl.it to develop a function that takes an integer parameter
+    (`N`) and outputs a sequence according to the pattern below. The
+    function should always return 0.
+
+    | N | Output          |
+    | - | --------------- |
+    | 0 | `0`             |
+    | 1 | `0 _`           |
+    | 2 | `0 _ 2`         |
+    | 3 | `0 _ 2 _`       |
+    | 4 | `0 _ 2 _ 4`     |
+    | 5 | `0 _ 2 _ 4 _`   |
+    | 6 | `0 _ 2 _ 4 _ 5` |
+
+    Basically the output is a sequence of integers with the odd integers
+    replaced with an underscore (`_`). Use a `while` loop. The function
+    prototype is shown below.
+
+        int print_seq( int x )
+
+    Here is an initial Repl.it to get you started.
+
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity5>
 
 ### 6.2. for Loops
 
-... coming soon ...
+`for` loops are used to repeatedly execute a sequence of statements in a
+similar fashion to `while` loops. The key difference is that `for` loops
+are structured so as to make iterating over a range of values relatively
+straight-forward. The syntax for `for` loops is shown below.
+
+    :::c
+    for ( initialization_stmt; cond_expr; increment_stmt; )
+      loop_body;
+
+The _initialization statement_ is executed once before the loop body
+executes. The _conditional expression_ is an expression which returns a
+Boolean value. The _loop body_ is a statement which is executed as long
+as the conditional expression is true. The _increment statement_ is
+executed at the end of each iteration (i.e., after executing the loop
+body, but before evaluating the conditional expression). As with `while`
+loops, since blocks are just (compound) statements, the loop body can
+also be a block in which case the syntax is as follows.
+
+    :::c
+    for ( initialization_stmt; cond_expr; increment_stmt; ) {
+      loop_body;
+    }
+
+An example C program that uses a `for` loop is shown below. This program
+includes a `mul` function that implements integer multiplication through
+repeated addition.
+
+ ![](img/T01-for.png)
+
+In this example, the initialization statement (`int i=0`), the
+conditional expression (`i<y`), and the increment statement (`i=i+1`) are
+all on line 4. The loop body is a single statement on line 5. The
+execution boxes to the left of line 5 show that parts of this line are
+executed four times. Let's step through the execution of this line in
+more detail. The very first time we consider line 4, we execute the
+initialization statement. The initialization statement is executed
+exactly once. Any variables declared in the initialization statement are
+only in scope during the execution of the loop, and they are deallocated
+when the loop is finished. So in this example, the varaible `i` is only
+in scope (i.e., accessible) during the loop execution and it is
+deallocated when we reach line 6. The conditional expression is evaluated
+at the _beginning_ of each loop iteration, and the increment statement is
+executed at the _end_ of each loop iteration. So the very first time we
+consider line 4, we execute the initialization statement and then we
+evaluate the conditional expression, which in this case is true meaning
+we execute the loop body at least once. After executing the loop body we
+execute the increment statement, which in this case increments the
+variable `i`. We continue executing the loop body two more times. The
+fourth time we consider line 4, the conditional expression will be false
+and we skip over the loop body. So in summary, the initialization
+statement is executed once, the conditional expression is evaluated four
+times, and the increment statement is executed three times.
+
+??? question "Activity 18: State Diagram for Function to Count Digits with for Loop"
+
+    Consider the following program which includes a function to count the
+    number of decimal digits in a given parameter. This function uses a
+    `for` loop. Draw a state diagram corresponding to the execution of
+    this program.
+
+    ![](img/T01-for-activity.png)
+
+??? question "Activity 19: Write Function to Output Sequence with for Loop"
+
+    Use Repl.it to develop a function that takes an integer parameter
+    (`N`) and outputs a sequence according to the pattern below. The
+    function should always return 0.
+
+    | N | Output          |
+    | - | --------------- |
+    | 0 | `0`             |
+    | 1 | `0 _`           |
+    | 2 | `0 _ 2`         |
+    | 3 | `0 _ 2 _`       |
+    | 4 | `0 _ 2 _ 4`     |
+    | 5 | `0 _ 2 _ 4 _`   |
+    | 6 | `0 _ 2 _ 4 _ 5` |
+
+    Basically the output is a sequence of integers with the odd integers
+    replaced with an underscore (`_`). Use a `for` loop. The function
+    prototype is shown below.
+
+        int print_seq( int x )
+
+    Here is an initial Repl.it to get you started.
+
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity5>
 
 7. Syntatic Sugar
 --------------------------------------------------------------------------
 
-... coming soon ...
+Syntatic sugar adds new syntax but not new semantics. We can explain what
+a given piece of syntatic sugar means by simple showing how to transform
+the sugar into equivalent but previously designed syntax. Syntatic sugar
+simplifies certain programming patterns, but again does not introduce any
+fundamentally new behavior.
+
+`for` loops are actually just syntatic sugar for a specific common use
+case of `while` loops. The following two loops are equivalent.
+
+    for ( int i = 0; i < y; i = i+1 ) {
+      z = z + x;
+    }
+
+    {
+      int i = 0;         // initialization statement
+      while ( i < y ) {  // conditional expression
+        z = z + x;
+        i = i + 1;       // increment statement
+      }
+    }
+
+This equivalence should clarify some of our earlier discussion. The
+initialization statement on line 6 is executed exactly once before
+starting the execution of the loop. The conditional expression is
+evaluated before executing the loop body, and the increment statement is
+executed at the end of each iteration (before we evaluate the conditional
+expression for the next iteration).
+
+C provides several assignment operators that are just syntatic sugar for
+common programming patterns.
+
+| Sugar    | Equivalent Syntax |
+| -------- | ----------------- |
+| `x += y` | `x = x + y`       |
+| `x -= y` | `x = x - y`       |
+| `x *= y` | `x = x * y`       |
+| `x /= y` | `x = x / y`       |
+
+C also provides postfix and prefix operators that are useful for
+incrementing and decrementing variables.
+
+| Sugar    | Equivalent Syntax | Value   |
+| -------- | ----------------- | ------- |
+| `x++`    | `x = x + 1`       | `x`     |
+| `++x`    | `x = x + 1`       | `x + 1` |
+| `x--`    | `x = x - 1`       | `x`     |
+| `--x`    | `x = x - 1`       | `x - 1` |
+
+The difference between the postfix versions (`x++`) and the prefix
+versions (`++x`) has to do with how these expressions are evaluated. The
+_value_ of `x++` is `x`, but the _value_ of `++x` is `x + 1`. For
+example, consider the following simple program which uses a postfix
+operator.
+
+    int i = 1;
+    int j = i++;
+
+After executing these two statements, the value of `i` will be 2 and the
+value of `j` will be 1. Now consider the following simple program which
+uses a prefix operator.
+
+    int i = 1;
+    int j = ++i;
+
+After executing these two statements, the value of `i` will be 2 and the
+value of `j` will also be 2.
+
+C provides a compact way to write `if/else` statements using the ternary
+operator. The syntax for the ternary operator is as follows.
+
+    :::c
+    ( conditional_expression ) ? then_expression : else_expression
+
+Thus the following two functions are equivalent.
+
+    int min( int x, int y )
+    {
+      if ( x < y )
+        return x;
+      return y;
+    }
+
+    int min( int x, int y )
+    {
+      return ( x < y ) ? x : y;
+    }
+
+We have now introduce several new operators, so we need to update our
+operator precedence table.
+
+| Category       | Operator                        | Associativity |
+| -------------- | ------------------------------- | ------------- |
+| Postfix        | `a++` `a--`                     | left to right |
+| Unary          | `!` `++a` `--a`                 | right to left |
+| Multiplicative | `*` `/` `%`                     | left to right |
+| Additive       | `+` `-`                         | left to right |
+| Relational     | `<` `<=` `>` `>=`               | left to right |
+| Equality       | `==` `!=`                       | left to right |
+| Logical AND    | `&&`                            | left to right |
+| Logical OR     | `||`                            | left to right |
+| Assignment     | `=` `+=` `-=` `*=` `/=` `a?b:c` | right to left |
 
