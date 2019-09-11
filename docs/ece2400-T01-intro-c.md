@@ -61,7 +61,7 @@ semantics tells us that a letter is a "written, typed, or printed
 communication, especially one sent in an envelope by mail or messenger",
 and the semantics also help us understand that putting a letter in an
 envelope makes sense. The statement "Put the elephant in the envelope."
-would be syntatically correct but would not make much semantic sense.
+would be syntactically correct but would not make much semantic sense.
 Finally, the _state_ involves the memory of prior statements (i.e., the
 state of the world) as we read or "execute" these statements. To execute
 a statement, we use the syntax and semantics to understand how that
@@ -106,7 +106,7 @@ program. To execute this program, we simply use the following steps:
 While we have explored statements, syntax, semantics, and state in the
 context of an English language program, our understanding applies equally
 well to computer languages. In the rest of this topic, we will learn the
-basics about statements, syntax, semanatics, and state in the C
+basics about statements, syntax, semantics, and state in the C
 programming language.
 
 2. Variables, Literals, Operators, Expressions
@@ -118,7 +118,7 @@ operators, and expressions.
 
  - **Variable**: a box (in the computer's memory) which stores a value
  - **Literal**: value written exactly as it is meant to be interpreted
- - **Operator**: symbol with speical semantics to "operate" on variables
+ - **Operator**: symbol with special semantics to "operate" on variables
      and literals
  - **Expression**: combination of variables, literals, and operators
      which evaluates to a new value
@@ -171,7 +171,7 @@ improve the readability of your programs, which in turn makes your
 programs easier to debug, maintain, and extend. It is also important to
 note that in practical situations the programmer actually does not get to
 choose his or her own coding style (or coding conventions). A company or
-open-soruce project will usually have its own coding conventions that it
+open-source project will usually have its own coding conventions that it
 expects its developers to follow. Similarly, in this course we have our
 own coding conventions that we expect students to follow. The coding
 conventions are located here:
@@ -207,9 +207,9 @@ statements:
 
 Each statement creates a new box to hold a value of type `int`. As an
 aside, `int` is a keyword meaning that it cannot be used as an
-indentifier for a variable. Note that C syntax requires all C statements
+identifier for a variable. Note that C syntax requires all C statements
 to end in a semicolon. Forgetting to include the semicolon is a syntax
-error (meanning the C compiler cannot understand the syntax).
+error (meaning the C compiler cannot understand the syntax).
 
 ??? question "Activity 1: Valid vs. Invalid Identifiers"
 
@@ -300,7 +300,7 @@ statements, especially since in C++ each of these three kinds of
 statements can result in quite different semantics.
 
 There are many other operators besides the assignment operator. For
-example, there are arithmetic opeators for addition (`+`), subtraction
+example, there are arithmetic operators for addition (`+`), subtraction
 (`-`), multiplication (`*`), division (`/`), and modulus (`%`).
 
 All of these operators can operate on integer values. We will discuss in
@@ -336,7 +336,7 @@ efficient to simply remove the fractional part vs other rounding schemes.
 --------------------------------------------------------------------------
 
 An expression is a combination of variables, literals, and operators
-which _evaluates_ to a new value. A variable's indentifier is itself an
+which _evaluates_ to a new value. A variable's identifier is itself an
 expression that evaluates to the value stored in that variable. An
 example of an expression is shown below.
 
@@ -383,7 +383,7 @@ addition operator:
 
 Note that all operators are included in the precedence table, even the
 assignment operator. Since the assignment operator is the last row it has
-the lowest precendence. This means we evaluate the LHS and RHS of the
+the lowest precedence. This means we evaluate the LHS and RHS of the
 assignment operator first before doing the actual assignment. An example
 is shown below.
 
@@ -395,14 +395,14 @@ variable `x` to be 2. Note that every expression evaluates to a value,
 and since `x = 5 - 3` is an expression then it also evaluates to a value!
 The C programming language specifies that the value of applying the
 assignment operator is the value of the LHS. This enables complicated yet
-syntatically correct expressions such as:
+syntactically correct expressions such as:
 
     y = x = 5 - 3
 
-As before, the addition operator has the highest precendence. The
-precendence table specifies that the corresponding associativity is right
+As before, the addition operator has the highest precedence. The
+precedence table specifies that the corresponding associativity is right
 to left. This is what the expression would look like if we inserted
-according to the precendence table.
+according to the precedence table.
 
     y = (x = (5 - 3))
 
@@ -412,7 +412,7 @@ evaluates to the value 2 (with a side-effect of updating the variable
 and `y` to 2.
 
 One key take-away from this discussion is that while an expression might
-be syntatically correct, it doesn't mean that it is readable. We should
+be syntactically correct, it doesn't mean that it is readable. We should
 always prefer explicitly using parenthesis to indicate the desired order
 of operations.
 
@@ -456,14 +456,14 @@ and finally uses another assignment statement to set the value of
 variable `z` to the value of the expression `x - y` (line 6).
 
 Let's look at another simple C program that illustrates an issue with
-unitialized variables.
+uninitialized variables.
 
   ![](img/T01-simple-c-program-2.png)
 
 Lines 1 and 2 are variable declaration statements that create boxes in
 our state diagram, but we do not assign a value to these boxes. These
 variables are called _uninitialized_. An uninitialized variable is not
-itself a problem. There is nothing syntatically or semantically wrong
+itself a problem. There is nothing syntactically or semantically wrong
 with lines 1 and 2. However, _using_ an uninitialized variable does have
 undefined semantics. What does it mean for something to have undefined
 semantics? If something has undefined semantics it could: cause a compile
@@ -499,7 +499,7 @@ into the variable `y`. It is critical to remember, that assignment
 _copies_ the actual value. It does not copy any kind of high-level
 reference as in some dynamic programming languages (e.g., Python). Line 5
 uses an assignment statement to update the value in variable `x`. Note
-that line 5 does _not_ create a new variable namex `x` (it is an
+that line 5 does _not_ create a new variable named `x` (it is an
 assignment statement, not an initialization statement), and line 5 does
 _not_ modify the value in variable `y` in any way (since variable `y`
 made a copy of the value 5). Also notice that we should never erase
@@ -617,7 +617,7 @@ our state diagrams (i.e., we should not need to use the runtime
 information in the stack).
 
 C does not allow two variables to have the same name in the same block.
-The following code is syntatically incorrect and will cause a compile
+The following code is syntactically incorrect and will cause a compile
 time error:
 
     int x = 3;
@@ -714,7 +714,7 @@ the function. The syntax for a function definition is shown below.
 
 The _function name_ is a unique identifier for the function. Function
 names must follow the same restrictions on identifiers as with variable
-names. The _function body_ is the parameteried sequence of statements.
+names. The _function body_ is the parameterized sequence of statements.
 The _parameter list_ is a list of parameter types and names separated by
 commas (e.g., `ptype0 pname0` on line 1). Finally, the _return type_ is
 the type of the value returned by the function (e.g., `rtype` on line 1).
@@ -761,8 +761,8 @@ fundamental part of procedural programming.
 ### 4.2. Function Call
 
 A _function call_ is a new kind of expression with new syntax and
-semantics that is used to excecute the parameterized sequence of
-statements in a function definition. The syntax for a funciton call is
+semantics that is used to execute the parameterized sequence of
+statements in a function definition. The syntax for a function call is
 shown below.
 
     :::c
@@ -773,7 +773,7 @@ each parameter in the parameter list surrounded by parenthesis. If the
 parameters are themselves expressions, then we must evaluate these
 expressions _first_ before calling the function. A function call is
 itself an expression which evaluates to the value returned by the
-function. Function parameters and "local" variables declared wtihin a
+function. Function parameters and "local" variables declared within a
 function body are effectively in a new block which is called the
 function's stack frame. Note that the value of each parameter is _copied_
 into these local variables. This is known as _call-by-value_ semantics.
@@ -839,7 +839,7 @@ to return the execution arrow once the function call is complete.
 **Step 6:** We move the execution arrow up to the function name. We
 indicate this on our state diagrams by entering a dot into the execution
 box next to the line where the function is called (i.e., line 10).
-_Everytime we move our execution arrow backwards, we will shift marking
+_Every time we move our execution arrow backwards, we will shift marking
 execution boxes one column to the left._ Notice how we do mark the box on
 lines 1 and 2. This indicates the process of setting up the stack frame
 and opening the local scope of the function body.
@@ -857,7 +857,7 @@ called in the caller. How do we know where the function was called? Step
 5 recorded the location of the function call in the stack frame. Notice
 how line 5 is _not_ executed. The return statement immediately moves the
 execution arrow without executing any additional statements in the
-function body. _We will use a line everytime we skip statements when
+function body. _We will use a line every time we skip statements when
 moving our execution arrow forward._
 
 **Step 10:** Finally, we deallocate the callee's stack frame by marking
@@ -936,7 +936,7 @@ storage on the stack when evaluating parameters.
 
 In this example, we use a non-trivial expression (`2 + 1`) as a parameter
 to the `square` function. In this situation, we need to allocate a
-temporary variable on the stack to hold the result of evaluting this
+temporary variable on the stack to hold the result of evaluating this
 expression. We will usually name these variables `TMP` on the stack. Once
 we have evaluated all parameters in step 1, then we can move on to step 2
 in the function call semantics.
@@ -979,7 +979,7 @@ use two dots to the left of line 9 to indicate the two calls to the
 ### 4.3. The printf Function
 
 The `printf` function is provided by the C standard library and can be
-used to print values to the screen. The pseudocode for the `printf`
+used to print values to the screen. The pseudo-code for the `printf`
 function definition is shown below.
 
     :::c
@@ -1017,7 +1017,7 @@ The format string includes various _format specifiers_ as place holders
 for where to substitute the values. In this example we are using the `%d`
 format specifier to print an integer. Values are substituted based on
 their order. So the first value is substituted for the first `%d`, the
-scond value is substituted for the second `$d`, and so on. `\n` is a
+second value is substituted for the second `$d`, and so on. `\n` is a
 special escape sequence that outputs a newline (i.e., line break). We
 will learn more about strings in Topic 5.
 
@@ -1189,7 +1189,7 @@ one is executed.
       else_statement;
 
 Either the first then statement, the second then statement, or the else
-statement will be executed. Since blocks are just (compoound) statements,
+statement will be executed. Since blocks are just (compound) statements,
 the then and/or else statements can also be a blocks in which case the
 syntax is as follows.
 
@@ -1293,7 +1293,7 @@ parameter is not between one and 12, then the value of the selection
 express will not match any of the 12 case labels. In this situation, we
 execute the default statement such that the function returns -1 to
 indicate an error. The `main` function checks this return value to
-determin if the program should exit with an exit status of 0 to indicate
+determine if the program should exit with an exit status of 0 to indicate
 success or with an exit status of 1 to indicate an error.
 
 ??? question "Activity 15: State Diagram for Function to Calculate Days in Month"
@@ -1351,7 +1351,7 @@ body can also be a block in which case the syntax is as follows.
     }
 
 As an aside, an _infinite loop_ is one in which the conditional
-expression is never fallse. Infinite loops must be avoided because they
+expression is never false. Infinite loops must be avoided because they
 will cause your program to simply hang and never finish. Unfortunately,
 determining whether any given loop is an infinite loop is very difficult
 and indeed impossible in the general case.
@@ -1448,7 +1448,7 @@ more detail. The very first time we consider line 4, we execute the
 initialization statement. The initialization statement is executed
 exactly once. Any variables declared in the initialization statement are
 only in scope during the execution of the loop, and they are deallocated
-when the loop is finished. So in this example, the varaible `i` is only
+when the loop is finished. So in this example, the variable `i` is only
 in scope (i.e., accessible) during the loop execution and it is
 deallocated when we reach line 6. The conditional expression is evaluated
 at the _beginning_ of each loop iteration, and the increment statement is
@@ -1498,16 +1498,16 @@ times, and the increment statement is executed three times.
 
      - <https://repl.it/@cbatten/ece2400-T01-notes-activity5>
 
-7. Syntatic Sugar
+7. Syntactic Sugar
 --------------------------------------------------------------------------
 
-Syntatic sugar adds new syntax but not new semantics. We can explain what
-a given piece of syntatic sugar means by simple showing how to transform
-the sugar into equivalent but previously designed syntax. Syntatic sugar
+Syntactic sugar adds new syntax but not new semantics. We can explain what
+a given piece of syntactic sugar means by simple showing how to transform
+the sugar into equivalent but previously designed syntax. Syntactic sugar
 simplifies certain programming patterns, but again does not introduce any
 fundamentally new behavior.
 
-`for` loops are actually just syntatic sugar for a specific common use
+`for` loops are actually just syntactic sugar for a specific common use
 case of `while` loops. The following two loops are equivalent.
 
     for ( int i = 0; i < y; i = i+1 ) {
@@ -1529,7 +1529,7 @@ evaluated before executing the loop body, and the increment statement is
 executed at the end of each iteration (before we evaluate the conditional
 expression for the next iteration).
 
-C provides several assignment operators that are just syntatic sugar for
+C provides several assignment operators that are just syntactic sugar for
 common programming patterns.
 
 | Sugar    | Equivalent Syntax |
