@@ -380,8 +380,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-blocks-scope-and-name-binding" title="3. Blocks, Scope, and Name Binding" class="md-nav__link">
-    3. Blocks, Scope, and Name Binding
+  <a href="#3-blocks-scope-name-binding" title="3. Blocks, Scope, Name Binding" class="md-nav__link">
+    3. Blocks, Scope, Name Binding
   </a>
   
     <nav class="md-nav">
@@ -649,8 +649,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-blocks-scope-and-name-binding" title="3. Blocks, Scope, and Name Binding" class="md-nav__link">
-    3. Blocks, Scope, and Name Binding
+  <a href="#3-blocks-scope-name-binding" title="3. Blocks, Scope, Name Binding" class="md-nav__link">
+    3. Blocks, Scope, Name Binding
   </a>
   
     <nav class="md-nav">
@@ -951,7 +951,7 @@ variable$1
 
 <p>The first identifier has invalid C syntax since it starts with a number,
 and the second identifier has invalid C syntax since it includes the <code>$</code>
-character. These are called <em>synatx errors</em>.</p>
+character. These are called <em>syntax errors</em>.</p>
 <p>There are many styles of identifiers. For example, <em>snakecase</em> favors
 using lowercase with underscores to separate words (i.e., <code>my_variable</code>),
 while <em>camelcase</em> favors using lowercase with uppercase to separate words
@@ -1339,17 +1339,17 @@ made a copy of the value 5). Also notice that we should never erase
 values in our state diagrams. Instead, you should simply cross out the
 old value and enter the new value. This way we can easily see how the
 state has changed over the execution of the program.</p>
-<details class="question"><summary>Activity 5: A Simple C Program</summary><p>Draw a state diagram corresponding to the execution of this program.
+<details class="question"><summary>Activity 5: State Diagram for a Simple C Program</summary><p>Draw a state diagram corresponding to the execution of this program.
 Remember to check off the execution boxes as you execute each
 statement. When executing line 4, recall the operator precedence
-table discussed in Section 2.3.</p><p><img alt="" src="../img/T01-simple-c-program-activity.png" /></p></details><h2 id="3-blocks-scope-and-name-binding">3. Blocks, Scope, and Name Binding<a class="headerlink" href="#3-blocks-scope-and-name-binding" title="Permanent link">&para;</a></h2>
+table discussed in Section 2.3.</p><p><img alt="" src="../img/T01-simple-c-program-activity.png" /></p></details><h2 id="3-blocks-scope-name-binding">3. Blocks, Scope, Name Binding<a class="headerlink" href="#3-blocks-scope-name-binding" title="Permanent link">&para;</a></h2>
 <p>Blocks, scope, and name binding provide syntax and semantics to help
 manage more complex procedural programs.</p>
 <h3 id="31-blocks">3.1 Blocks<a class="headerlink" href="#31-blocks" title="Permanent link">&para;</a></h3>
 <p>A <em>block</em> is a compound statement, meaning it is a new kind of statement
 which is made up of a sequence of other statements. Blocks are indicated
-using curly braces. An left curly brace (<code>{</code>) is used to open a block,
-and a right curly brace (<code>}</code>) is used to close a block. Blocks will be
+using curly braces. An open curly brace (<code>{</code>) is used to open a block,
+and a close curly brace (<code>}</code>) is used to close a block. Blocks will be
 critical for defining functions, conditional statements, and iteration
 statements. Two examples of blocks are shown below.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -1425,7 +1425,7 @@ then we draw cards from the top. In a stack of cards the stack grows up
 and then "shrinks" down. In the C stack, the stack grows down and then
 "shrinks" up. We will start calling the space on the right of our state
 diagrams the "stack".</p>
-<details class="question"><summary>Activity 6: Nested Scope</summary><p>Draw a state diagram corresponding to the execution of this program.
+<details class="question"><summary>Activity 6: State Diagram for Nested Scope</summary><p>Draw a state diagram corresponding to the execution of this program.
 Remember to use an X to indicate when variables go out of scope and
 are thus deallocated.</p><p><img alt="" src="../img/T01-nested-scope-activity.png" /></p></details><h3 id="33-name-binding">3.3 Name Binding<a class="headerlink" href="#33-name-binding" title="Permanent link">&para;</a></h3>
 <p>So far, all of our code examples have only had one variable with any
@@ -1501,7 +1501,7 @@ your programs to avoid subtle name binding issues. Ideally, it should be
 obvious from reading your program which variable name refers to which
 variable declaration without needing to carefully consider the name
 binding rules.</p>
-<details class="question"><summary>Activity 7: Name Binding</summary><p>Draw a state diagram corresponding to the execution of this program.
+<details class="question"><summary>Activity 7: State Diagram for Name Binding</summary><p>Draw a state diagram corresponding to the execution of this program.
 Remember to use an X to indicate when variables go out of scope and
 are thus deallocated. Use the name binding rules to determine which
 variable named <code>x</code> is being referenced on line 6, and which variable
@@ -1529,16 +1529,17 @@ the function. The syntax for a function definition is shown below.</p>
 </pre></div>
 </td></tr></table>
 
-<p>The function name is a unique identifier for the function. Function names
-must follow the same restrictions on identifiers as with variable names.
-The function body is the parameteried sequence of statements. The
-parameter list is a list of parameter types and names separated by commas
-(e.g., <code>ptype0 pname0</code> on line 1). Finally, the return type is the type
-of the value returned by the function (e.g., <code>rtype</code> on line 1). Note
-that we call just line 1 the <em>function prototype</em>. A function prototype
-specifies the <em>interface</em> for the function (i.e., name, parameter types,
-and return type) without specifying the actual implementation. An example
-function that returns the square of an integer is shown below.</p>
+<p>The <em>function name</em> is a unique identifier for the function. Function
+names must follow the same restrictions on identifiers as with variable
+names. The <em>function body</em> is the parameteried sequence of statements.
+The <em>parameter list</em> is a list of parameter types and names separated by
+commas (e.g., <code>ptype0 pname0</code> on line 1). Finally, the <em>return type</em> is
+the type of the value returned by the function (e.g., <code>rtype</code> on line 1).
+Note that we call just line 1 the <em>function prototype</em>. A function
+prototype specifies the <em>interface</em> for the function (i.e., name,
+parameter types, and return type) without specifying the actual
+implementation. An example function that returns the square of an integer
+is shown below.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -1611,7 +1612,7 @@ a function are shown below.</p>
      storage in caller's stack frame if necessary</li>
 <li>Allocate storage on caller's stack frame for the return value if necessary</li>
 <li>Allocate the callee's stack frame with space allocated for parameters</li>
-<li>Initialize parameters with evaluated parameter values</li>
+<li>Copy evaluated parameters from step 1 into callee's stack frame</li>
 <li>Record location of function call</li>
 <li>Move execution arrow to first statement in callee</li>
 <li>Evaluate statements inside the callee</li>
@@ -1680,14 +1681,22 @@ value for the actual function call. Notice how at the very top of the
 state diagram we have labeled the entire stack as <code>main</code>. This indicates
 that everything on the stack is essentially nested within the stack frame
 of the top-level <code>main</code> function.</p>
-<details class="question"><summary>Activity 8: Simple Function Call</summary><p>Consider the following simple function to calculate whether or not a
+<details class="question"><summary>Activity 8: State Diagram for a Simple Function Call</summary><p>Consider the following simple function to calculate whether or not a
 given parameter is odd. The function will return the value 1 if the
 parameter is odd and the value 0 if the parameter is even. Draw a
 state diagram corresponding to the execution of this program.
 Remember to use a dot to indicate a function call, to shift to the
 left one column when the execution arrow moves backwards, and to use
-a line to indicate skipping statements.</p><p><img alt="" src="../img/T01-function-call-activity-1.png" /></p></details><p>Let's explore another example to illustrate name binding.</p>
-<p><img alt="" src="../img/T01-function-call-2.png" /></p>
+a line to indicate skipping statements.</p><p><img alt="" src="../img/T01-function-call-activity-1.png" /></p></details><p>Let's explore another example to illustrate call-by-value semantics.</p>
+<p><img alt="" src="img/T01-function-call-2.png" /></p>
+<p>Notice that line 3 both reads and writes the variable named <code>x</code>. This is
+perfectly fine. Also notice that <code>x</code> is a parameter. Since C uses
+call-by-value semantics, this update to <code>x</code> <em>in no way</em> affects variables
+allocated on the callee's stack frame (e.g., <code>a</code> on the stack frame for
+<code>main</code>). Functions are free to modify their parameters since they contain
+a <em>copy</em> of the value passed in as a parameter.</p>
+<p>Let's explore another example to illustrate name binding.</p>
+<p><img alt="" src="../img/T01-function-call-3.png" /></p>
 <p>Notice that this C program includes two variables named <code>x</code> and two
 variables named <code>y</code>. Our name binding rules can help us determine which
 variable declaration corresponds to which variable name. Consider the
@@ -1705,7 +1714,7 @@ names, but regardless we can always apply our name binding rules to
 unambiguously determine which variable declaration corresponds to which
 variable name.</p>
 <p>Let's explore another example to illustrate nested function calls.</p>
-<p><img alt="" src="../img/T01-function-call-3.png" /></p>
+<p><img alt="" src="../img/T01-function-call-4.png" /></p>
 <p>In this example, the <code>square</code> function calls the <code>mul</code> function to do the
 actual multiplication. Notice that the stack frame for the <code>mul</code> function
 is <em>nested</em> within the stack frame for the <code>square</code> function in the state
@@ -1717,7 +1726,7 @@ statements when moving our execution arrow forward. We use unique numbers
 to mark where <code>square</code> and <code>mul</code> are called in the source code.</p>
 <p>Let's explore another example to illustrate the need for temporary
 storage on the stack when evaluating parameters.</p>
-<p><img alt="" src="../img/T01-function-call-4.png" /></p>
+<p><img alt="" src="../img/T01-function-call-5.png" /></p>
 <p>In this example, we use a non-trivial expression (<code>2 + 1</code>) as a parameter
 to the <code>square</code> function. In this situation, we need to allocate a
 temporary variable on the stack to hold the result of evaluting this
@@ -1726,7 +1735,7 @@ we have evaluated all parameters in step 1, then we can move on to step 2
 in the function call semantics.</p>
 <p>In our final example, we will explore calling a function whose parameter
 is the result of a function call.</p>
-<p><img alt="" src="../img/T01-function-call-5.png" /></p>
+<p><img alt="" src="../img/T01-function-call-6.png" /></p>
 <p>Notice that these two function calls are <em>not</em> nested. Step 1 of the
 function call semantics tells us we must evaluate all parameters. So we
 first complete all ten steps for the first function call before we start
@@ -1737,10 +1746,14 @@ the parameter in step 4 of the second function call. The execution boxes
 clearly indicate how the execution arrow moves through the program. We
 use two dots to the left of line 9 to indicate the two calls to the
 <code>square</code> function.</p>
-<details class="question"><summary>Activity 9: Complex Function Call</summary><p>Consider the following program which includes two simple functions:
+<details class="question"><summary>Activity 9: State Diagram for mul/odd Function Calls</summary><p>Consider the following program which includes two simple functions:
 one to calculate whether or not a given parameter is odd, and one to
 multiply to integers. Draw a state diagram corresponding to the
-execution of this program.</p><p><img alt="" src="../img/T01-function-call-activity-2.png" /></p></details><h3 id="43-the-printf-function">4.3. The printf Function<a class="headerlink" href="#43-the-printf-function" title="Permanent link">&para;</a></h3>
+execution of this program.</p><p><img alt="" src="../img/T01-function-call-activity-2.png" /></p></details><details class="question"><summary>Activity 10: State Diagram for Multiple avg Function Calls</summary><p>Consider the following program which calls an <code>avg</code> function three
+different times. Draw a state diagram corresponding to the execution
+of this program. Recall that we must allocate space on the callers
+stack for a temporary value when evaluating non-trivial expressions
+passed as parameters to a function.</p><p><img alt="" src="../img/T01-function-call-activity-3.png" /></p></details><h3 id="43-the-printf-function">4.3. The printf Function<a class="headerlink" href="#43-the-printf-function" title="Permanent link">&para;</a></h3>
 <p>The <code>printf</code> function is provided by the C standard library and can be
 used to print values to the screen. The pseudocode for the <code>printf</code>
 function definition is shown below.</p>
@@ -1879,22 +1892,23 @@ repl.it for our <code>square</code> program is show below.</p>
 <ul>
 <li><a href="https://repl.it/@cbatten/ece2400-T01-notes-ex1">https://repl.it/@cbatten/ece2400-T01-notes-ex1</a></li>
 </ul>
-<details class="question"><summary>Activity 10: Function to Increment by One</summary><p>Use Repl.it to develop a function that increments a given value by
+<details class="question"><summary>Activity 11: Write a Function to Increment by One</summary><p>Use Repl.it to develop a function that increments a given value by
 one. The function should take one parameter as shown below:</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int increment( int x )
 </pre></div>
 </td></tr></table>
 <p>Here is an initial Repl.it to get you started.</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T01-notes-activity1">https://repl.it/@cbatten/ece2400-T01-notes-activity1</a></li></ul></details><h2 id="5-conditional-statements">5. Conditional Statements<a class="headerlink" href="#5-conditional-statements" title="Permanent link">&para;</a></h2>
 <p>A <em>conditional statement</em> enables programs to make decisions based on the
 values of their variables. Conditional statements enable <em>non-linear
-forward control flow</em>. In this section, we will first discuss a new set
-of boolean operators before discussing two kinds of conditional
-statements: if/else and switch/case statements.</p>
+forward control flow</em> (i.e., the execution arrow will skip over
+statements). In this section, we will first discuss a new set of Boolean
+operators before discussing two kinds of conditional statements:
+<code>if/else</code> and <code>switch/case</code> statements.</p>
 <h3 id="51-boolean-operators">5.1. Boolean Operators<a class="headerlink" href="#51-boolean-operators" title="Permanent link">&para;</a></h3>
 <p>Boolean operators are used in expressions which evaluate to a "Boolean"
 value (i.e., true or false). C does not provide any built-in types for
 Boolean values as in many other programming languages. A "Boolean" value
 is just an integer, where we interpret a value of zero to mean false and
-an non-zero value to mean true. Nine boolean operators are shown below.</p>
+an non-zero value to mean true. Nine Boolean operators are shown below.</p>
 <table>
 <thead>
 <tr>
@@ -1997,27 +2011,507 @@ operators to the operator precedence table.</p>
 </table>
 <p>An example C program that uses Boolean operators is shown below.</p>
 <p><img alt="" src="../img/T01-boolean-operators.png" /></p>
-<p>The boolean expression (<code>x &gt; 0</code>) evaluates to either a zero or one based
+<p>The Boolean expression (<code>x &gt; 0</code>) evaluates to either a zero or one based
 on whether or not <code>x</code> is positive or negative.</p>
-<details class="question"><summary>Activity 11: Function to Check Perfect Squares</summary><p>Use Repl.it to develop a function that takes two parameters and
-checks to see if one parameter is a perfect square of the other. The
-order should not matter. Only use arithmetic and Boolean operators.
-Do not use any conditional statements. The function prototype is
-shown below.</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int is_perfect_square( int x, int y )
+<details class="question"><summary>Activity 12: Write a Function to Check Perfect Squares</summary><p>Use Repl.it to develop a function that takes two integer parameters
+and checks to see if one parameter is a perfect square of the other.
+The order should not matter. Only use arithmetic and Boolean
+operators. Do not use any conditional statements. The function
+prototype is shown below.</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int is_perfect_square( int x, int y )
 </pre></div>
 </td></tr></table>
 <p>Here is an initial Repl.it to get you started.</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T01-notes-activity2">https://repl.it/@cbatten/ece2400-T01-notes-activity2</a></li></ul></details><h3 id="52-ifelse-conditional-statements">5.2. if/else Conditional Statements<a class="headerlink" href="#52-ifelse-conditional-statements" title="Permanent link">&para;</a></h3>
-<p>... coming soon ...</p>
-<h3 id="53-switchcase-conditional-statements">5.3. switch/case Conditional Statements<a class="headerlink" href="#53-switchcase-conditional-statements" title="Permanent link">&para;</a></h3>
-<p>... coming soon ...</p>
-<h2 id="6-iteration-statements">6. Iteration Statements<a class="headerlink" href="#6-iteration-statements" title="Permanent link">&para;</a></h2>
-<p>... coming soon ...</p>
+<p><code>if/else</code> conditional statements are used to conditionally execute one of
+several statements based on one or more conditional expressions. The
+syntax for <code>if/else</code> conditional statements is shown below.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">conditional_expression</span> <span class="p">)</span>
+  <span class="n">then_statement</span><span class="p">;</span>
+<span class="k">else</span>
+  <span class="n">else_statement</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>The <em>conditional expression</em> is an expression that returns a Boolean. The
+<em>then statement</em> is executed if the conditional expression is true. The
+<em>else statement</em> is executed if the conditional expression is false.</p>
+<p><code>if/else</code> conditional statements can also include additional <code>if else</code>
+conditional expressions to create a "chain" of statements where exactly
+one is executed.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">conditional_expression0</span> <span class="p">)</span>
+  <span class="n">then_statement0</span><span class="p">;</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="p">(</span> <span class="n">conditional_expression1</span> <span class="p">)</span>
+  <span class="n">then_statement1</span><span class="p">;</span>
+<span class="k">else</span>
+  <span class="n">else_statement</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Either the first then statement, the second then statement, or the else
+statement will be executed. Since blocks are just (compoound) statements,
+the then and/or else statements can also be a blocks in which case the
+syntax is as follows.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">conditional_expression0</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">then_statement0</span><span class="p">;</span>
+  <span class="n">then_statement1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">conditional_expression1</span> <span class="p">{</span>
+  <span class="n">then_statement2</span><span class="p">;</span>
+  <span class="n">then_statement3</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="n">else_statement0</span><span class="p">;</span>
+  <span class="n">else_statement1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>An example C program that uses <code>if/else</code> conditional statements is shown
+below. This program includes an <code>abs</code> function to calculate the absolute
+value of the given integer parameter.</p>
+<p><img alt="" src="img/T01-ifelse.png" /></p>
+<p>In this example, the conditional expression (<code>x &lt; 0</code>) is on line 4. The
+then statement is a block that starts with the open curly brace on line 4
+and ends with the close curly brace on line 6. The else statement is also
+a block. The execution boxes illustrate the non-linear control flow with
+each call to <code>abs</code> skipping some of the statements.</p>
+<details class="question"><summary>Activity 13: State Diagram for Function to Check Monoticity</summary><p>Consider the following function that takes three integer parameters
+and checks to see if these values are monotonically increasing or
+monotonically decreasing. The function will return the value 1 if the
+parameters are monotonic and will return the value 0 otherwise. Draw
+a state diagram corresponding to the execution of this program.</p><p><img alt="" src="../img/T01-ifelse-activity.png" /></p></details><details class="question"><summary>Activity 14: Write Function to Find Median of Three</summary><p>Use Repl.it to develop a function that takes three integer parameters
+and returns the median. The function prototype is shown below.</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int median( int x, int y, int z )
+</pre></div>
+</td></tr></table>
+<p>Here is an initial Repl.it to get you started. Try to minimize the
+number of Boolean operators. Can you implement this function with
+only five Boolean operators?</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T01-notes-activity3">https://repl.it/@cbatten/ece2400-T01-notes-activity3</a></li></ul></details><h3 id="53-switchcase-conditional-statements">5.3. switch/case Conditional Statements<a class="headerlink" href="#53-switchcase-conditional-statements" title="Permanent link">&para;</a></h3>
+<p><code>switch/case</code> conditional statements are used to conditionally execute
+one or more statements based a selection expression. The syntax for
+<code>switch/case</code> conditional statements is shown below.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">switch</span> <span class="p">(</span> <span class="n">selection_expression</span> <span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">case</span> <span class="nl">case_label0</span><span class="p">:</span>
+    <span class="n">case_statement0</span><span class="p">;</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">case</span> <span class="nl">case_label1</span><span class="p">:</span>
+    <span class="n">case_statement1</span><span class="p">;</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">case</span> <span class="nl">case_label2</span><span class="p">:</span>
+    <span class="n">case_statement3</span><span class="p">;</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">default</span><span class="o">:</span>
+    <span class="n">default_statement</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>The <em>selection expression</em> is an expression which returns a value which
+is then compared against the <em>case labels</em>. If there is a match, then the
+corresponding <em>case statements</em> are executed. A <em>break</em> statement is used
+to jump to the end of the switch block. If no case labels match, then the
+<em>default statement</em> is executed. Note that there can be more than one
+case statement for a given case label without the need for a block. If we
+omit the break statement, then the execution "falls through" to the next
+case statement until we either execute a break statement or reach the end
+of the switch block</p>
+<p>An example C program that uses a <code>switch/case</code> conditional statement is
+shown below. This program includes a <code>days_in_month</code> function to
+determine how many days are in a given month. The month is specified as
+an integer between one and 12.</p>
+<p><img alt="" src="img/T01-switchcase.png" /></p>
+<p>In this example, the selection expression (<code>month</code>) is on line 4. There
+are 12 case labels. Each case statement sets the variable <code>x</code>
+appropriately, and we include a break statement after each case
+statement. Notice that this example includes basic error checking. If the
+parameter is not between one and 12, then the value of the selection
+express will not match any of the 12 case labels. In this situation, we
+execute the default statement such that the function returns -1 to
+indicate an error. The <code>main</code> function checks this return value to
+determin if the program should exit with an exit status of 0 to indicate
+success or with an exit status of 1 to indicate an error.</p>
+<details class="question"><summary>Activity 15: State Diagram for Function to Calculate Days in Month</summary><p>Consider the following optimized implementation of the same
+<code>days_in_month</code> function from the previous example. This
+implementation uses "fall through" semantics. Draw a state diagram
+corresponding to the execution of this program.</p><p><img alt="" src="../img/T01-switchcase-activity.png" /></p></details><details class="question"><summary>Activity 16: Write Function to Identify Small Primes</summary><p>Use Repl.it to develop a function that takes an integer parameter
+between 0 and 9 (inclusive) and returns a Boolean output. The
+function should return true if the input is prime (i.e., 2, 3, 5, 7)
+and return false if the input is not prime. Use a <code>switch/case</code>
+conditional statement to explicitly check for these prime values. The
+function prototype is shown below.</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int is_prime( int x )
+</pre></div>
+</td></tr></table>
+<p>Here is an initial Repl.it to get you started.</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T01-notes-activity4">https://repl.it/@cbatten/ece2400-T01-notes-activity4</a></li></ul></details><h2 id="6-iteration-statements">6. Iteration Statements<a class="headerlink" href="#6-iteration-statements" title="Permanent link">&para;</a></h2>
+<p>An <em>iteration statement</em> enables programs to repeatedly execute a
+sequence of statements multiple times based on a conditional expression.
+Iteration statements enable <em>backward flow control</em> (i.e., the execution
+arrow will jump backwards). In this section, we will discuss two kinds of
+iteration statements: <code>while</code> loops and <code>for</code> loops.</p>
 <h3 id="61-while-loops">6.1. while Loops<a class="headerlink" href="#61-while-loops" title="Permanent link">&para;</a></h3>
-<p>... coming soon ...</p>
-<h3 id="62-for-loops">6.2. for Loops<a class="headerlink" href="#62-for-loops" title="Permanent link">&para;</a></h3>
-<p>... coming soon ...</p>
-<h2 id="7-syntatic-sugar">7. Syntatic Sugar<a class="headerlink" href="#7-syntatic-sugar" title="Permanent link">&para;</a></h2>
-<p>... coming soon ...</p>
+<p><code>while</code> loops are used to repeatedly execute a sequence of statements
+based on a data-dependent condition that might change during the
+execution of these statements. The syntax for <code>while</code> loops is shown
+below.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">while</span> <span class="p">(</span> <span class="n">conditional_expression</span> <span class="p">)</span>
+  <span class="n">loop_body</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>The <em>conditional expression</em> is an expression that returns a Boolean. The
+<em>loop body</em> is a statement which is executed as long as the conditional
+expression is true. Since blocks are just (compound) statements, the loop
+body can also be a block in which case the syntax is as follows.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">while</span> <span class="p">(</span> <span class="n">conditional_expression</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">loop_body</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>As an aside, an <em>infinite loop</em> is one in which the conditional
+expression is never fallse. Infinite loops must be avoided because they
+will cause your program to simply hang and never finish. Unfortunately,
+determining whether any given loop is an infinite loop is very difficult
+and indeed impossible in the general case.</p>
+<p>An example C program that uses a <code>while</code> loop is shown below. This
+program includes a <code>div</code> function that implements integer division
+through repeated subtraction.</p>
+<p><img alt="" src="img/T01-while.png" /></p>
+<p>In this example, the conditional expression (<code>rem &gt;= y</code>) is on line 5.
+The loop body is a block that starts with the open curly brace on line 5
+and ends with the close curly brace on line 9. This example uses a
+temporary value (<code>t</code>) within the loop body. Notice how this variable is
+allocated at the beginning of the loop body and then deallocated at the
+end of the loop body which is why we see three different boxes named <code>t</code>
+in the state diagram. The execution boxes to the left of line 5 show that
+the conditional expression is executed four times. The final execution is
+when the conditional expression is the false and we skip over the loop
+body.</p>
+<details class="question"><summary>Activity 17: State Diagram for Function to Count Digits with while Loop</summary><p>Consider the following program which includes a function to count the
+number of decimal digits in a given parameter. This function uses a
+<code>while</code> loop. Draw a state diagram corresponding to the execution of
+this program.</p><p><img alt="" src="../img/T01-while-activity.png" /></p></details><details class="question"><summary>Activity 18: Write Function to Output Sequence with while Loop</summary><p>Use Repl.it to develop a function that takes an integer parameter
+(<code>N</code>) and outputs a sequence according to the pattern below. The
+function should always return 0.</p><table><thead><tr><th>N</th><th>Output</th></tr></thead><tbody><tr><td>0</td><td><code>0</code></td></tr><tr><td>1</td><td><code>0 _</code></td></tr><tr><td>2</td><td><code>0 _ 2</code></td></tr><tr><td>3</td><td><code>0 _ 2 _</code></td></tr><tr><td>4</td><td><code>0 _ 2 _ 4</code></td></tr><tr><td>5</td><td><code>0 _ 2 _ 4 _</code></td></tr><tr><td>6</td><td><code>0 _ 2 _ 4 _ 5</code></td></tr></tbody></table><p>Basically the output is a sequence of integers with the odd integers
+replaced with an underscore (<code>_</code>). Use a <code>while</code> loop. The function
+prototype is shown below.</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int print_seq( int x )
+</pre></div>
+</td></tr></table>
+<p>Here is an initial Repl.it to get you started.</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T01-notes-activity5">https://repl.it/@cbatten/ece2400-T01-notes-activity5</a></li></ul></details><h3 id="62-for-loops">6.2. for Loops<a class="headerlink" href="#62-for-loops" title="Permanent link">&para;</a></h3>
+<p><code>for</code> loops are used to repeatedly execute a sequence of statements in a
+similar fashion to <code>while</code> loops. The key difference is that <code>for</code> loops
+are structured so as to make iterating over a range of values relatively
+straight-forward. The syntax for <code>for</code> loops is shown below.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> <span class="p">(</span> <span class="n">initialization_stmt</span><span class="p">;</span> <span class="n">cond_expr</span><span class="p">;</span> <span class="n">increment_stmt</span><span class="p">;</span> <span class="p">)</span>
+  <span class="n">loop_body</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>The <em>initialization statement</em> is executed once before the loop body
+executes. The <em>conditional expression</em> is an expression which returns a
+Boolean value. The <em>loop body</em> is a statement which is executed as long
+as the conditional expression is true. The <em>increment statement</em> is
+executed at the end of each iteration (i.e., after executing the loop
+body, but before evaluating the conditional expression). As with <code>while</code>
+loops, since blocks are just (compound) statements, the loop body can
+also be a block in which case the syntax is as follows.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> <span class="p">(</span> <span class="n">initialization_stmt</span><span class="p">;</span> <span class="n">cond_expr</span><span class="p">;</span> <span class="n">increment_stmt</span><span class="p">;</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">loop_body</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>An example C program that uses a <code>for</code> loop is shown below. This program
+includes a <code>mul</code> function that implements integer multiplication through
+repeated addition.</p>
+<p><img alt="" src="img/T01-for.png" /></p>
+<p>In this example, the initialization statement (<code>int i=0</code>), the
+conditional expression (<code>i&lt;y</code>), and the increment statement (<code>i=i+1</code>) are
+all on line 4. The loop body is a single statement on line 5. The
+execution boxes to the left of line 5 show that parts of this line are
+executed four times. Let's step through the execution of this line in
+more detail. The very first time we consider line 4, we execute the
+initialization statement. The initialization statement is executed
+exactly once. Any variables declared in the initialization statement are
+only in scope during the execution of the loop, and they are deallocated
+when the loop is finished. So in this example, the varaible <code>i</code> is only
+in scope (i.e., accessible) during the loop execution and it is
+deallocated when we reach line 6. The conditional expression is evaluated
+at the <em>beginning</em> of each loop iteration, and the increment statement is
+executed at the <em>end</em> of each loop iteration. So the very first time we
+consider line 4, we execute the initialization statement and then we
+evaluate the conditional expression, which in this case is true meaning
+we execute the loop body at least once. After executing the loop body we
+execute the increment statement, which in this case increments the
+variable <code>i</code>. We continue executing the loop body two more times. The
+fourth time we consider line 4, the conditional expression will be false
+and we skip over the loop body. So in summary, the initialization
+statement is executed once, the conditional expression is evaluated four
+times, and the increment statement is executed three times.</p>
+<details class="question"><summary>Activity 18: State Diagram for Function to Count Digits with for Loop</summary><p>Consider the following program which includes a function to count the
+number of decimal digits in a given parameter. This function uses a
+<code>for</code> loop. Draw a state diagram corresponding to the execution of
+this program.</p><p><img alt="" src="../img/T01-for-activity.png" /></p></details><details class="question"><summary>Activity 19: Write Function to Output Sequence with for Loop</summary><p>Use Repl.it to develop a function that takes an integer parameter
+(<code>N</code>) and outputs a sequence according to the pattern below. The
+function should always return 0.</p><table><thead><tr><th>N</th><th>Output</th></tr></thead><tbody><tr><td>0</td><td><code>0</code></td></tr><tr><td>1</td><td><code>0 _</code></td></tr><tr><td>2</td><td><code>0 _ 2</code></td></tr><tr><td>3</td><td><code>0 _ 2 _</code></td></tr><tr><td>4</td><td><code>0 _ 2 _ 4</code></td></tr><tr><td>5</td><td><code>0 _ 2 _ 4 _</code></td></tr><tr><td>6</td><td><code>0 _ 2 _ 4 _ 5</code></td></tr></tbody></table><p>Basically the output is a sequence of integers with the odd integers
+replaced with an underscore (<code>_</code>). Use a <code>for</code> loop. The function
+prototype is shown below.</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int print_seq( int x )
+</pre></div>
+</td></tr></table>
+<p>Here is an initial Repl.it to get you started.</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T01-notes-activity5">https://repl.it/@cbatten/ece2400-T01-notes-activity5</a></li></ul></details><h2 id="7-syntatic-sugar">7. Syntatic Sugar<a class="headerlink" href="#7-syntatic-sugar" title="Permanent link">&para;</a></h2>
+<p>Syntatic sugar adds new syntax but not new semantics. We can explain what
+a given piece of syntatic sugar means by simple showing how to transform
+the sugar into equivalent but previously designed syntax. Syntatic sugar
+simplifies certain programming patterns, but again does not introduce any
+fundamentally new behavior.</p>
+<p><code>for</code> loops are actually just syntatic sugar for a specific common use
+case of <code>while</code> loops. The following two loops are equivalent.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>for ( int i = 0; i &lt; y; i = i+1 ) {
+  z = z + x;
+}
+
+{
+  int i = 0;         // initialization statement
+  while ( i &lt; y ) {  // conditional expression
+    z = z + x;
+    i = i + 1;       // increment statement
+  }
+}
+</pre></div>
+</td></tr></table>
+
+<p>This equivalence should clarify some of our earlier discussion. The
+initialization statement on line 6 is executed exactly once before
+starting the execution of the loop. The conditional expression is
+evaluated before executing the loop body, and the increment statement is
+executed at the end of each iteration (before we evaluate the conditional
+expression for the next iteration).</p>
+<p>C provides several assignment operators that are just syntatic sugar for
+common programming patterns.</p>
+<table>
+<thead>
+<tr>
+<th>Sugar</th>
+<th>Equivalent Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x += y</code></td>
+<td><code>x = x + y</code></td>
+</tr>
+<tr>
+<td><code>x -= y</code></td>
+<td><code>x = x - y</code></td>
+</tr>
+<tr>
+<td><code>x *= y</code></td>
+<td><code>x = x * y</code></td>
+</tr>
+<tr>
+<td><code>x /= y</code></td>
+<td><code>x = x / y</code></td>
+</tr>
+</tbody>
+</table>
+<p>C also provides postfix and prefix operators that are useful for
+incrementing and decrementing variables.</p>
+<table>
+<thead>
+<tr>
+<th>Sugar</th>
+<th>Equivalent Syntax</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x++</code></td>
+<td><code>x = x + 1</code></td>
+<td><code>x</code></td>
+</tr>
+<tr>
+<td><code>++x</code></td>
+<td><code>x = x + 1</code></td>
+<td><code>x + 1</code></td>
+</tr>
+<tr>
+<td><code>x--</code></td>
+<td><code>x = x - 1</code></td>
+<td><code>x</code></td>
+</tr>
+<tr>
+<td><code>--x</code></td>
+<td><code>x = x - 1</code></td>
+<td><code>x - 1</code></td>
+</tr>
+</tbody>
+</table>
+<p>The difference between the postfix versions (<code>x++</code>) and the prefix
+versions (<code>++x</code>) has to do with how these expressions are evaluated. The
+<em>value</em> of <code>x++</code> is <code>x</code>, but the <em>value</em> of <code>++x</code> is <code>x + 1</code>. For
+example, consider the following simple program which uses a postfix
+operator.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int i = 1;
+int j = i++;
+</pre></div>
+</td></tr></table>
+
+<p>After executing these two statements, the value of <code>i</code> will be 2 and the
+value of <code>j</code> will be 1. Now consider the following simple program which
+uses a prefix operator.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int i = 1;
+int j = ++i;
+</pre></div>
+</td></tr></table>
+
+<p>After executing these two statements, the value of <code>i</code> will be 2 and the
+value of <code>j</code> will also be 2.</p>
+<p>C provides a compact way to write <code>if/else</code> statements using the ternary
+operator. The syntax for the ternary operator is as follows.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">(</span> <span class="n">conditional_expression</span> <span class="p">)</span> <span class="o">?</span> <span class="nl">then_expression</span> <span class="p">:</span> <span class="n">else_expression</span>
+</pre></div>
+</td></tr></table>
+
+<p>Thus the following two functions are equivalent.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int min( int x, int y )
+{
+  if ( x &lt; y )
+    return x;
+  return y;
+}
+
+int min( int x, int y )
+{
+  return ( x &lt; y ) ? x : y;
+}
+</pre></div>
+</td></tr></table>
+
+<p>We have now introduce several new operators, so we need to update our
+operator precedence table.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Operator</th>
+<th>Associativity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Postfix</td>
+<td><code>a++</code> <code>a--</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Unary</td>
+<td><code>!</code> <code>++a</code> <code>--a</code></td>
+<td>right to left</td>
+</tr>
+<tr>
+<td>Multiplicative</td>
+<td><code>*</code> <code>/</code> <code>%</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Additive</td>
+<td><code>+</code> <code>-</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Relational</td>
+<td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Equality</td>
+<td><code>==</code> <code>!=</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Logical AND</td>
+<td><code>&amp;&amp;</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Logical OR</td>
+<td><code>||</code></td>
+<td>left to right</td>
+</tr>
+<tr>
+<td>Assignment</td>
+<td><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>a?b:c</code></td>
+<td>right to left</td>
+</tr>
+</tbody>
+</table>
                 
                   
                 
