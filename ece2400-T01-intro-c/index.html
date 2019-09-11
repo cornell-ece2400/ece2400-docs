@@ -509,8 +509,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-syntatic-sugar" title="7. Syntatic Sugar" class="md-nav__link">
-    7. Syntatic Sugar
+  <a href="#7-syntactic-sugar" title="7. Syntactic Sugar" class="md-nav__link">
+    7. Syntactic Sugar
   </a>
   
 </li>
@@ -778,8 +778,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-syntatic-sugar" title="7. Syntatic Sugar" class="md-nav__link">
-    7. Syntatic Sugar
+  <a href="#7-syntactic-sugar" title="7. Syntactic Sugar" class="md-nav__link">
+    7. Syntactic Sugar
   </a>
   
 </li>
@@ -857,7 +857,7 @@ semantics tells us that a letter is a "written, typed, or printed
 communication, especially one sent in an envelope by mail or messenger",
 and the semantics also help us understand that putting a letter in an
 envelope makes sense. The statement "Put the elephant in the envelope."
-would be syntatically correct but would not make much semantic sense.
+would be syntactically correct but would not make much semantic sense.
 Finally, the <em>state</em> involves the memory of prior statements (i.e., the
 state of the world) as we read or "execute" these statements. To execute
 a statement, we use the syntax and semantics to understand how that
@@ -899,7 +899,7 @@ program. To execute this program, we simply use the following steps:</p>
 <p>While we have explored statements, syntax, semantics, and state in the
 context of an English language program, our understanding applies equally
 well to computer languages. In the rest of this topic, we will learn the
-basics about statements, syntax, semanatics, and state in the C
+basics about statements, syntax, semantics, and state in the C
 programming language.</p>
 <h2 id="2-variables-literals-operators-expressions">2. Variables, Literals, Operators, Expressions<a class="headerlink" href="#2-variables-literals-operators-expressions" title="Permanent link">&para;</a></h2>
 <p>We begin by exploring the statements, syntax, semantics, and state
@@ -908,7 +908,7 @@ operators, and expressions.</p>
 <ul>
 <li><strong>Variable</strong>: a box (in the computer's memory) which stores a value</li>
 <li><strong>Literal</strong>: value written exactly as it is meant to be interpreted</li>
-<li><strong>Operator</strong>: symbol with speical semantics to "operate" on variables
+<li><strong>Operator</strong>: symbol with special semantics to "operate" on variables
      and literals</li>
 <li><strong>Expression</strong>: combination of variables, literals, and operators
      which evaluates to a new value</li>
@@ -968,7 +968,7 @@ improve the readability of your programs, which in turn makes your
 programs easier to debug, maintain, and extend. It is also important to
 note that in practical situations the programmer actually does not get to
 choose his or her own coding style (or coding conventions). A company or
-open-soruce project will usually have its own coding conventions that it
+open-source project will usually have its own coding conventions that it
 expects its developers to follow. Similarly, in this course we have our
 own coding conventions that we expect students to follow. The coding
 conventions are located here:</p>
@@ -1010,9 +1010,9 @@ statements:</p>
 
 <p>Each statement creates a new box to hold a value of type <code>int</code>. As an
 aside, <code>int</code> is a keyword meaning that it cannot be used as an
-indentifier for a variable. Note that C syntax requires all C statements
+identifier for a variable. Note that C syntax requires all C statements
 to end in a semicolon. Forgetting to include the semicolon is a syntax
-error (meanning the C compiler cannot understand the syntax).</p>
+error (meaning the C compiler cannot understand the syntax).</p>
 <details class="question"><summary>Activity 1: Valid vs. Invalid Identifiers</summary><p>Which of these identifiers are valid and which are invalid?</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1109,7 +1109,7 @@ statements. It is important to distinguish between these three kinds of
 statements, especially since in C++ each of these three kinds of
 statements can result in quite different semantics.</p>
 <p>There are many other operators besides the assignment operator. For
-example, there are arithmetic opeators for addition (<code>+</code>), subtraction
+example, there are arithmetic operators for addition (<code>+</code>), subtraction
 (<code>-</code>), multiplication (<code>*</code>), division (<code>/</code>), and modulus (<code>%</code>).</p>
 <p>All of these operators can operate on integer values. We will discuss in
 Topic 3 subtle issues related to the fact that the computer can only
@@ -1149,7 +1149,7 @@ modulus operators.</p><table class="codehilitetable"><tr><td class="linenos"><di
 </td></tr></table>
 </details><h2 id="24-expressions">2.4. Expressions<a class="headerlink" href="#24-expressions" title="Permanent link">&para;</a></h2>
 <p>An expression is a combination of variables, literals, and operators
-which <em>evaluates</em> to a new value. A variable's indentifier is itself an
+which <em>evaluates</em> to a new value. A variable's identifier is itself an
 expression that evaluates to the value stored in that variable. An
 example of an expression is shown below.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>5 - 3
@@ -1223,7 +1223,7 @@ addition operator:</p>
 
 <p>Note that all operators are included in the precedence table, even the
 assignment operator. Since the assignment operator is the last row it has
-the lowest precendence. This means we evaluate the LHS and RHS of the
+the lowest precedence. This means we evaluate the LHS and RHS of the
 assignment operator first before doing the actual assignment. An example
 is shown below.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>x = 5 - 3
@@ -1236,15 +1236,15 @@ variable <code>x</code> to be 2. Note that every expression evaluates to a value
 and since <code>x = 5 - 3</code> is an expression then it also evaluates to a value!
 The C programming language specifies that the value of applying the
 assignment operator is the value of the LHS. This enables complicated yet
-syntatically correct expressions such as:</p>
+syntactically correct expressions such as:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>y = x = 5 - 3
 </pre></div>
 </td></tr></table>
 
-<p>As before, the addition operator has the highest precendence. The
-precendence table specifies that the corresponding associativity is right
+<p>As before, the addition operator has the highest precedence. The
+precedence table specifies that the corresponding associativity is right
 to left. This is what the expression would look like if we inserted
-according to the precendence table.</p>
+according to the precedence table.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>y = (x = (5 - 3))
 </pre></div>
 </td></tr></table>
@@ -1254,7 +1254,7 @@ evaluates to the value 2 (with a side-effect of updating the variable
 <code>x</code>). In other words, this expression sets the value of both variable <code>x</code>
 and <code>y</code> to 2.</p>
 <p>One key take-away from this discussion is that while an expression might
-be syntatically correct, it doesn't mean that it is readable. We should
+be syntactically correct, it doesn't mean that it is readable. We should
 always prefer explicitly using parenthesis to indicate the desired order
 of operations.</p>
 <details class="question"><summary>Activity 4: Operator Precedence</summary><p>Calculate the result of evaluating the following expressions.</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -1294,12 +1294,12 @@ variable declaration statement to create a variable named <code>z</code> (line 5
 and finally uses another assignment statement to set the value of
 variable <code>z</code> to the value of the expression <code>x - y</code> (line 6).</p>
 <p>Let's look at another simple C program that illustrates an issue with
-unitialized variables.</p>
+uninitialized variables.</p>
 <p><img alt="" src="../img/T01-simple-c-program-2.png" /></p>
 <p>Lines 1 and 2 are variable declaration statements that create boxes in
 our state diagram, but we do not assign a value to these boxes. These
 variables are called <em>uninitialized</em>. An uninitialized variable is not
-itself a problem. There is nothing syntatically or semantically wrong
+itself a problem. There is nothing syntactically or semantically wrong
 with lines 1 and 2. However, <em>using</em> an uninitialized variable does have
 undefined semantics. What does it mean for something to have undefined
 semantics? If something has undefined semantics it could: cause a compile
@@ -1332,7 +1332,7 @@ into the variable <code>y</code>. It is critical to remember, that assignment
 <em>copies</em> the actual value. It does not copy any kind of high-level
 reference as in some dynamic programming languages (e.g., Python). Line 5
 uses an assignment statement to update the value in variable <code>x</code>. Note
-that line 5 does <em>not</em> create a new variable namex <code>x</code> (it is an
+that line 5 does <em>not</em> create a new variable named <code>x</code> (it is an
 assignment statement, not an initialization statement), and line 5 does
 <em>not</em> modify the value in variable <code>y</code> in any way (since variable <code>y</code>
 made a copy of the value 5). Also notice that we should never erase
@@ -1438,7 +1438,7 @@ declaration a specific variable name refers to based just on the code in
 our state diagrams (i.e., we should not need to use the runtime
 information in the stack).</p>
 <p>C does not allow two variables to have the same name in the same block.
-The following code is syntatically incorrect and will cause a compile
+The following code is syntactically incorrect and will cause a compile
 time error:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int x = 3;
@@ -1531,7 +1531,7 @@ the function. The syntax for a function definition is shown below.</p>
 
 <p>The <em>function name</em> is a unique identifier for the function. Function
 names must follow the same restrictions on identifiers as with variable
-names. The <em>function body</em> is the parameteried sequence of statements.
+names. The <em>function body</em> is the parameterized sequence of statements.
 The <em>parameter list</em> is a list of parameter types and names separated by
 commas (e.g., <code>ptype0 pname0</code> on line 1). Finally, the <em>return type</em> is
 the type of the value returned by the function (e.g., <code>rtype</code> on line 1).
@@ -1586,8 +1586,8 @@ The art of determining how to refactor code into functions is a
 fundamental part of procedural programming.</p>
 <h3 id="42-function-call">4.2. Function Call<a class="headerlink" href="#42-function-call" title="Permanent link">&para;</a></h3>
 <p>A <em>function call</em> is a new kind of expression with new syntax and
-semantics that is used to excecute the parameterized sequence of
-statements in a function definition. The syntax for a funciton call is
+semantics that is used to execute the parameterized sequence of
+statements in a function definition. The syntax for a function call is
 shown below.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">function_name</span><span class="p">(</span> <span class="n">pvalue0</span><span class="p">,</span> <span class="n">pvalue1</span><span class="p">,</span> <span class="p">...</span> <span class="p">)</span>
 </pre></div>
@@ -1598,7 +1598,7 @@ each parameter in the parameter list surrounded by parenthesis. If the
 parameters are themselves expressions, then we must evaluate these
 expressions <em>first</em> before calling the function. A function call is
 itself an expression which evaluates to the value returned by the
-function. Function parameters and "local" variables declared wtihin a
+function. Function parameters and "local" variables declared within a
 function body are effectively in a new block which is called the
 function's stack frame. Note that the value of each parameter is <em>copied</em>
 into these local variables. This is known as <em>call-by-value</em> semantics.
@@ -1655,7 +1655,7 @@ to return the execution arrow once the function call is complete.</p>
 <p><strong>Step 6:</strong> We move the execution arrow up to the function name. We
 indicate this on our state diagrams by entering a dot into the execution
 box next to the line where the function is called (i.e., line 10).
-<em>Everytime we move our execution arrow backwards, we will shift marking
+<em>Every time we move our execution arrow backwards, we will shift marking
 execution boxes one column to the left.</em> Notice how we do mark the box on
 lines 1 and 2. This indicates the process of setting up the stack frame
 and opening the local scope of the function body.</p>
@@ -1670,7 +1670,7 @@ called in the caller. How do we know where the function was called? Step
 5 recorded the location of the function call in the stack frame. Notice
 how line 5 is <em>not</em> executed. The return statement immediately moves the
 execution arrow without executing any additional statements in the
-function body. <em>We will use a line everytime we skip statements when
+function body. <em>We will use a line every time we skip statements when
 moving our execution arrow forward.</em></p>
 <p><strong>Step 10:</strong> Finally, we deallocate the callee's stack frame by marking
 an X next to all variables allocated on the callee's stack frame and by
@@ -1729,7 +1729,7 @@ storage on the stack when evaluating parameters.</p>
 <p><img alt="" src="../img/T01-function-call-5.png" /></p>
 <p>In this example, we use a non-trivial expression (<code>2 + 1</code>) as a parameter
 to the <code>square</code> function. In this situation, we need to allocate a
-temporary variable on the stack to hold the result of evaluting this
+temporary variable on the stack to hold the result of evaluating this
 expression. We will usually name these variables <code>TMP</code> on the stack. Once
 we have evaluated all parameters in step 1, then we can move on to step 2
 in the function call semantics.</p>
@@ -1755,7 +1755,7 @@ of this program. Recall that we must allocate space on the callers
 stack for a temporary value when evaluating non-trivial expressions
 passed as parameters to a function.</p><p><img alt="" src="../img/T01-function-call-activity-3.png" /></p></details><h3 id="43-the-printf-function">4.3. The printf Function<a class="headerlink" href="#43-the-printf-function" title="Permanent link">&para;</a></h3>
 <p>The <code>printf</code> function is provided by the C standard library and can be
-used to print values to the screen. The pseudocode for the <code>printf</code>
+used to print values to the screen. The pseudo-code for the <code>printf</code>
 function definition is shown below.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1814,7 +1814,7 @@ The format string includes various <em>format specifiers</em> as place holders
 for where to substitute the values. In this example we are using the <code>%d</code>
 format specifier to print an integer. Values are substituted based on
 their order. So the first value is substituted for the first <code>%d</code>, the
-scond value is substituted for the second <code>$d</code>, and so on. <code>\n</code> is a
+second value is substituted for the second <code>$d</code>, and so on. <code>\n</code> is a
 special escape sequence that outputs a newline (i.e., line break). We
 will learn more about strings in Topic 5.</p>
 <p>We will be using two online tools to enable us to quickly experiment with
@@ -2055,7 +2055,7 @@ one is executed.</p>
 </td></tr></table>
 
 <p>Either the first then statement, the second then statement, or the else
-statement will be executed. Since blocks are just (compoound) statements,
+statement will be executed. Since blocks are just (compound) statements,
 the then and/or else statements can also be a blocks in which case the
 syntax is as follows.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -2167,7 +2167,7 @@ parameter is not between one and 12, then the value of the selection
 express will not match any of the 12 case labels. In this situation, we
 execute the default statement such that the function returns -1 to
 indicate an error. The <code>main</code> function checks this return value to
-determin if the program should exit with an exit status of 0 to indicate
+determine if the program should exit with an exit status of 0 to indicate
 success or with an exit status of 1 to indicate an error.</p>
 <details class="question"><summary>Activity 15: State Diagram for Function to Calculate Days in Month</summary><p>Consider the following optimized implementation of the same
 <code>days_in_month</code> function from the previous example. This
@@ -2210,7 +2210,7 @@ body can also be a block in which case the syntax is as follows.</p>
 </td></tr></table>
 
 <p>As an aside, an <em>infinite loop</em> is one in which the conditional
-expression is never fallse. Infinite loops must be avoided because they
+expression is never false. Infinite loops must be avoided because they
 will cause your program to simply hang and never finish. Unfortunately,
 determining whether any given loop is an infinite loop is very difficult
 and indeed impossible in the general case.</p>
@@ -2278,7 +2278,7 @@ more detail. The very first time we consider line 4, we execute the
 initialization statement. The initialization statement is executed
 exactly once. Any variables declared in the initialization statement are
 only in scope during the execution of the loop, and they are deallocated
-when the loop is finished. So in this example, the varaible <code>i</code> is only
+when the loop is finished. So in this example, the variable <code>i</code> is only
 in scope (i.e., accessible) during the loop execution and it is
 deallocated when we reach line 6. The conditional expression is evaluated
 at the <em>beginning</em> of each loop iteration, and the increment statement is
@@ -2302,13 +2302,13 @@ replaced with an underscore (<code>_</code>). Use a <code>for</code> loop. The f
 prototype is shown below.</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int print_seq( int x )
 </pre></div>
 </td></tr></table>
-<p>Here is an initial Repl.it to get you started.</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T01-notes-activity5">https://repl.it/@cbatten/ece2400-T01-notes-activity5</a></li></ul></details><h2 id="7-syntatic-sugar">7. Syntatic Sugar<a class="headerlink" href="#7-syntatic-sugar" title="Permanent link">&para;</a></h2>
-<p>Syntatic sugar adds new syntax but not new semantics. We can explain what
-a given piece of syntatic sugar means by simple showing how to transform
-the sugar into equivalent but previously designed syntax. Syntatic sugar
+<p>Here is an initial Repl.it to get you started.</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T01-notes-activity5">https://repl.it/@cbatten/ece2400-T01-notes-activity5</a></li></ul></details><h2 id="7-syntactic-sugar">7. Syntactic Sugar<a class="headerlink" href="#7-syntactic-sugar" title="Permanent link">&para;</a></h2>
+<p>Syntactic sugar adds new syntax but not new semantics. We can explain what
+a given piece of syntactic sugar means by simple showing how to transform
+the sugar into equivalent but previously designed syntax. Syntactic sugar
 simplifies certain programming patterns, but again does not introduce any
 fundamentally new behavior.</p>
-<p><code>for</code> loops are actually just syntatic sugar for a specific common use
+<p><code>for</code> loops are actually just syntactic sugar for a specific common use
 case of <code>while</code> loops. The following two loops are equivalent.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -2340,7 +2340,7 @@ starting the execution of the loop. The conditional expression is
 evaluated before executing the loop body, and the increment statement is
 executed at the end of each iteration (before we evaluate the conditional
 expression for the next iteration).</p>
-<p>C provides several assignment operators that are just syntatic sugar for
+<p>C provides several assignment operators that are just syntactic sugar for
 common programming patterns.</p>
 <table>
 <thead>
