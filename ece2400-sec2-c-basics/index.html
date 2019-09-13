@@ -560,7 +560,9 @@ following commands:</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
+% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
 % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
 % git clone git@github.com:cornell-ece2400/ece2400-sec2 sec2
 % <span class="nb">cd</span> sec2
@@ -959,8 +961,18 @@ execute this binary by simply calling it as any other Linux command.</p>
 
 <p>Recall that a single dot (<code>.</code>) always refers to the current working
 directory. Essentially we are telling Linux that we want to run the
-executable named <code>avg-sfile</code> which is located in the current working
-directory. Repl.it is basically doing these same steps just in the cloud.</p>
+executable binary named <code>avg-sfile</code> which is located in the current
+working directory. Repl.it is basically doing these same steps just in
+the cloud.</p>
+<p>It can be tedious to to have to carefully enter the correct commands on
+the command line every time we want to compile a C source file into an
+executable binary. In the next section, we will explore using a <em>build
+framework</em> to automate the process of building our C programs. The
+process of executing the <code>avg-sfile</code> executable and verifying its output
+is called <em>ad-hoc testing</em>. It is ad-hoc because there is no systematic
+and automatic way to run and verify tests. In the next section, we will
+explore using a <em>test framework</em> to automate the process of testing our C
+programs.</p>
 <p>Now let's examine the machine instructions using the <code>objdump</code> command.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
@@ -1154,6 +1166,28 @@ line.</p>
 </pre></div>
 </td></tr></table>
 
+<p>This of course begs the question. If we can compile a project with
+multiple files simply by specifying all of the files on the command line,
+then why did we learn about how to: (1) compile each file individually
+into an object file; and (2) link these object files together? For small
+projects with just 2-3 files there is no need to use object files.
+However, in a project with thousands of files, specifying all files on a
+single command line will cause each recompilation to take a very long
+fixed amount of time (e.g., many minutes). Even if we make a very small
+change to a single source file we will have recompile <em>every</em> source
+file!</p>
+<p>Using object files enables modular compilation. In <em>modular compilation</em>,
+we only need to recompile those source files what have changed. We can
+simply reuse the previously compiled object files for those source files
+that have not changed. Modulary compilation can drastically reduce
+recompile times so that it is proportional to just how many changes you
+have made to the source files (e.g. less than a second). One challenge
+with modular compilation is it drastically increases the build
+complexity. There are many more commands to enter on the command line,
+and we need to carefully rack which commands need to be redone whenever
+we change a C source file. In the next section, we will explore using a
+<em>build framework</em> to automate the process of modular compilation for
+complex C programs.</p>
 <div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
 <p>Create a new source file named <code>avg3.c</code> that contains the three-input

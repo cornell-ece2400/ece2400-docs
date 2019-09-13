@@ -380,36 +380,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-basic-makefile-for-compiling-c-programs" title="1. Basic Makefile for Compiling C Programs" class="md-nav__link">
-    1. Basic Makefile for Compiling C Programs
+  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
+    1. The ecelinux Machines
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-using-cmake-to-generate-makefiles-for-compiling-c-programs" title="2. Using CMake to Generate Makefiles for Compiling C Programs" class="md-nav__link">
-    2. Using CMake to Generate Makefiles for Compiling C Programs
+  <a href="#2-basic-makefile-for-compiling-c-programs" title="2. Basic Makefile for Compiling C Programs" class="md-nav__link">
+    2. Basic Makefile for Compiling C Programs
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-using-ctest-for-systematic-unit-testing" title="3. Using CTest for Systematic Unit Testing" class="md-nav__link">
-    3. Using CTest for Systematic Unit Testing
+  <a href="#3-using-cmake-to-generate-makefiles-for-compiling-c-programs" title="3. Using CMake to Generate Makefiles for Compiling C Programs" class="md-nav__link">
+    3. Using CMake to Generate Makefiles for Compiling C Programs
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-using-a-build-directory" title="4. Using a Build Directory" class="md-nav__link">
-    4. Using a Build Directory
+  <a href="#4-using-ctest-for-systematic-unit-testing" title="4. Using CTest for Systematic Unit Testing" class="md-nav__link">
+    4. Using CTest for Systematic Unit Testing
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-try-steps-for-programming-assignments" title="5. Try Steps for Programming Assignments" class="md-nav__link">
-    5. Try Steps for Programming Assignments
+  <a href="#5-using-a-build-directory" title="5. Using a Build Directory" class="md-nav__link">
+    5. Using a Build Directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-experimenting-with-build-and-test-framework-for-pa1" title="6. Experimenting with Build and Test Framework for PA1" class="md-nav__link">
+    6. Experimenting with Build and Test Framework for PA1
   </a>
   
 </li>
@@ -448,23 +455,27 @@ result to the terminal. In this discussion section, we will explore using
 a <em>test framework</em> to automate this process. Using a build and test
 framework is critical to productive system-level programming in C and
 C++.</p>
-<p>Follow the same process as in the previous discussion section. You need
-to login to a workstation with your NetID and password. Start a terminal
-and then don't forget to source the setup script!</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
-</pre></div>
-</td></tr></table>
-
-<p>Now clone the github repo for this discussion section.</p>
+<h2 id="1-the-ecelinux-machines">1. The ecelinux Machines<a class="headerlink" href="#1-the-ecelinux-machines" title="Permanent link">&para;</a></h2>
+<p>Follow the same process as in the last section.</p>
+<ul>
+<li>login to a workstation with your NetID and password</li>
+<li>use MobaXterm to log into the <code>ecelinux</code> servers</li>
+<li>make sure you source the setup script</li>
+<li>verify ECE2400 is in your prompt</li>
+</ul>
+<p>Now clone the GitHub repo we will be using in this section using the
+following commands:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
+% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
 % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% git clone git@github.com:cornell-ece2400/ece2400-sec3-c-build-test sec3
-% <span class="nb">cd</span> sec3/src
-% ls
+% git clone git@github.com:cornell-ece2400/ece2400-sec3 sec3
+% <span class="nb">cd</span> sec3
+% cat README.md
 </pre></div>
 </td></tr></table>
 
@@ -474,10 +485,10 @@ and then don't forget to source the setup script!</p>
 <li><code>avg.h</code>: header file for the <code>avg</code> function</li>
 <li><code>avg.c</code>: source file for the <code>avg</code> function</li>
 <li><code>avg-mfile.c</code> : <code>main</code> for multi-file <code>avg</code> program</li>
-<li><code>avg-mfile-basic-tests.h</code> : most basic smoke test</li>
+<li><code>avg-mfile-basic-test.c</code> : most basic smoke test</li>
 <li><code>utst.h</code> : simple C preprocessor macros for unit testing</li>
 </ul>
-<h2 id="1-basic-makefile-for-compiling-c-programs">1. Basic Makefile for Compiling C Programs<a class="headerlink" href="#1-basic-makefile-for-compiling-c-programs" title="Permanent link">&para;</a></h2>
+<h2 id="2-basic-makefile-for-compiling-c-programs">2. Basic Makefile for Compiling C Programs<a class="headerlink" href="#2-basic-makefile-for-compiling-c-programs" title="Permanent link">&para;</a></h2>
 <p>Let's remind ourselves how to explicitly compile and run a single-file C
 program on the command line:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -596,7 +607,7 @@ like this:</p>
 </pre></div>
 </td></tr></table>
 
-<div class="admonition question">
+<div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
 <p>Add two rules to your <code>Makefile</code> to compile <code>avg.o</code> and
 <code>avg-mfile.o</code>. Add a rule that links these two object files together
@@ -607,7 +618,7 @@ and rerunning <code>make</code>. Does your program recompile correctly? Try
 changing <code>avg.h</code> and rerunning <code>make</code>. Does your program recompile
 correctly?</p>
 </div>
-<h2 id="2-using-cmake-to-generate-makefiles-for-compiling-c-programs">2. Using CMake to Generate Makefiles for Compiling C Programs<a class="headerlink" href="#2-using-cmake-to-generate-makefiles-for-compiling-c-programs" title="Permanent link">&para;</a></h2>
+<h2 id="3-using-cmake-to-generate-makefiles-for-compiling-c-programs">3. Using CMake to Generate Makefiles for Compiling C Programs<a class="headerlink" href="#3-using-cmake-to-generate-makefiles-for-compiling-c-programs" title="Permanent link">&para;</a></h2>
 <p>While using <code>make</code> can help automate the build process, the corresponding
 <code>Makefiles</code> can quickly grow to be incredibly complicated. Creating and
 maintaining these <code>Makefiles</code> can involve significant effort. It can be
@@ -683,7 +694,7 @@ to build <code>avg-sfile</code>.</p>
 
 <p>Writing a <code>CMakeLists.txt</code> is simpler than writing a <code>Makefile</code>,
 especially when we start working with many files.</p>
-<div class="admonition question">
+<div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
 <p>Add another line to your <code>CMakeLists.txt</code> file to specify that we
 want to generate a <code>Makefile</code> that can be used to compile <code>avg-mfile</code>
@@ -693,7 +704,7 @@ Try changing <code>avg.c</code> and rerunning <code>make</code>. Does your progr
 recompile correctly? Try changing <code>avg.h</code> and rerunning <code>make</code>. Does
 your program recompile correctly?</p>
 </div>
-<h2 id="3-using-ctest-for-systematic-unit-testing">3. Using CTest for Systematic Unit Testing<a class="headerlink" href="#3-using-ctest-for-systematic-unit-testing" title="Permanent link">&para;</a></h2>
+<h2 id="4-using-ctest-for-systematic-unit-testing">4. Using CTest for Systematic Unit Testing<a class="headerlink" href="#4-using-ctest-for-systematic-unit-testing" title="Permanent link">&para;</a></h2>
 <p>So far we have been using "ad-hoc testing". For example, the <code>main</code>
 function in <code>avg-sfile.c</code> will execute the <code>avg</code> function with one set of
 inputs and then print the result to the terminal. If it is not what we
@@ -717,45 +728,35 @@ test framework. CTest elegantly integrates with CMake to create a unified
 built and test framework. Each unit test will be a stand-alone test
 program where the test code is contained within the <code>main</code> function. The
 following is an example of a unit test program for our <code>avg</code> function:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;avg.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;utst.h&quot;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="n">UTST_BEGIN</span><span class="p">();</span>
-
   <span class="n">UTST_ASSERT_INT_EQ</span><span class="p">(</span> <span class="n">avg</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span> <span class="p">),</span> <span class="mi">15</span> <span class="p">);</span>
-
-  <span class="n">UTST_END</span><span class="p">();</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
 
 <p>We provide a simple library of test macros in <code>utst.h</code> which can be used
-to write various testing assertions. You should always insert
-<code>UTST_BEGIN()</code> at the beginning of <code>main</code> and <code>UTST_END()</code> at the end of
-main immediately before the final <code>return</code> statement. The
-<code>UTST_ASSERT_INT_EQ</code> macro asserts that the two given integer parameters
-are equal. If they are indeed equal, then the macro prints out the
-values, and we move on to the next test assertion. If they are not equal,
-the the macro prints out an error message and returns from <code>main</code> with
-the value 1. Recall that when <code>main</code> returns 0 it means success, and when
-<code>main</code> returns 1 it means failure. The return value enables our test
-program to inform CTest of whether or not our test passed of failed.</p>
+to write various testing assertions. The <code>UTST_ASSERT_INT_EQ</code> macro
+asserts that the two given integer parameters are equal. If they are
+indeed equal, then the macro prints out the values, and we move on to the
+next test assertion. If they are not equal, the the macro prints out an
+error message and exits the program with the value 1. Recall that when
+the program returns 0 it means success, and when the program returns 1 it
+means failure. The return value enables our test program to inform CTest
+of whether or not our test passed of failed.</p>
 <p>We have provided the above test program in the repository for this
 discussion section. To use CTest, we need to tell it about this new test
 program. We can do this by simply adding a new line to our
@@ -775,15 +776,15 @@ program. We can do this by simply adding a new line to our
 <span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-sfile</span> <span class="s">avg-sfile.c</span> <span class="p">)</span>
 <span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-mfile</span> <span class="s">avg-mfile.c</span> <span class="s">avg.c</span> <span class="p">)</span>
 
-<span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-mfile-basic-tests</span> <span class="s">avg-mfile-basic-tests.c</span> <span class="s">avg.c</span> <span class="p">)</span>
-<span class="nb">add_test</span><span class="p">(</span> <span class="s">avg-mfile-basic-tests</span> <span class="s">avg-mfile-basic-tests</span> <span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-mfile-basic-test</span> <span class="s">avg-mfile-basic-test.c</span> <span class="s">avg.c</span> <span class="p">)</span>
+<span class="nb">add_test</span><span class="p">(</span> <span class="s">avg-mfile-basic-test</span> <span class="s">avg-mfile-basic-test</span> <span class="p">)</span>
 </pre></div>
 </td></tr></table>
 
 <p>Line 3 tells CMake to turn on support for testing with CTest. Line 6
 specifies how to build <code>avg-mfile</code>. Line 8 specifies how to build the
-<code>avg-mfile-basic-tests</code> test program. Line 9 tells CMake that
-<code>avg-mfile-basic-tests</code> is a test that should be managed by CTest. Modify
+<code>avg-mfile-basic-test</code> test program. Line 9 tells CMake that
+<code>avg-mfile-basic-test</code> is a test that should be managed by CTest. Modify
 your <code>CMakeLists.txt</code> file to look like what is given above, rerun cmake,
 build the test, and run it.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -791,8 +792,8 @@ build the test, and run it.</p>
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec3/src
 % cmake .
-% make avg-mfile-basic-tests
-% ./avg-mfile-basic-tests
+% make avg-mfile-basic-test
+% ./avg-mfile-basic-test
 </pre></div>
 </td></tr></table>
 
@@ -807,7 +808,7 @@ provides a summary.</p>
 
 <p>It is always a good idea to occasionally force a test to fail to ensure
 your test framework is behaving correctly. Change the test assertion in
-<code>avg-mfile-basic-tests.c</code> to look like this:</p>
+<code>avg-mfile-basic-test.c</code> to look like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">UTST_ASSERT_INT_EQ</span><span class="p">(</span> <span class="n">avg</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span> <span class="p">),</span> <span class="mi">16</span> <span class="p">);</span>
 </pre></div>
 </td></tr></table>
@@ -817,15 +818,15 @@ your test framework is behaving correctly. Change the test assertion in
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec3/src
-% make avg-mfile-basic-tests
+% make avg-mfile-basic-test
 % make <span class="nb">test</span>
-% ./avg-mfile-basic-tests
+% ./avg-mfile-basic-test
 </pre></div>
 </td></tr></table>
 
 <p>You should see the test failing in the test summary, and then see
 additional information about the failing test assertion when you
-explicitly run the test program. <code>avg-mfile-basic-tests</code> is a kind of
+explicitly run the test program. <code>avg-mfile-basic-test</code> is a kind of
 "smoke" test which is used to test the absolute most basic functionality
 of an implementation. We will also be doing extensive <em>directed testing</em>
 and <em>random testing</em>. In directed testing, you explicitly use test
@@ -833,9 +834,9 @@ assertions to test as many corner cases as possible. In random testing,
 you use random input values and compare the output to some golden
 "reference" implementation to hopefully catch bugs missed in your
 directed testing.</p>
-<div class="admonition question">
+<div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
-<p>Create another unit test program named <code>avg-mfile-directed-tests.c</code>
+<p>Create another unit test program named <code>avg-mfile-directed-test.c</code>
 for directed testing. Use the macros in <code>utst.h</code> to begin/end your
 test program and for test assertions. Try to test several different
 corner cases. Modify your <code>CMakeLists.txt</code> file to include this new
@@ -843,7 +844,7 @@ unit test program. Use CMake to regenerate the corresponding
 <code>Makefile</code>, use <code>make</code> to build your test program, and then run it.
 Ensure that <code>make test</code> runs both the basic and directed tests.</p>
 </div>
-<h2 id="4-using-a-build-directory">4. Using a Build Directory<a class="headerlink" href="#4-using-a-build-directory" title="Permanent link">&para;</a></h2>
+<h2 id="5-using-a-build-directory">5. Using a Build Directory<a class="headerlink" href="#5-using-a-build-directory" title="Permanent link">&para;</a></h2>
 <p>Take a look at the source directory. It likely contains a mess of
 generated directories, object files, executables, etc. It is usually very
 bad practice to build C programs directly in the <em>source</em> directory. It
@@ -896,78 +897,107 @@ start again like this:</p>
 
 <p>You should <strong>never</strong> check in your <code>build</code> directory or any generated
 content into Git. Only source files are checked into Git!</p>
-<div class="admonition question">
+<div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
 <p>Add a new test assertion to your directed tests. Rebuild and rerun
 the test program in the separate build directory.</p>
 </div>
-<h2 id="5-try-steps-for-programming-assignments">5. Try Steps for Programming Assignments<a class="headerlink" href="#5-try-steps-for-programming-assignments" title="Permanent link">&para;</a></h2>
+<h2 id="6-experimenting-with-build-and-test-framework-for-pa1">6. Experimenting with Build and Test Framework for PA1<a class="headerlink" href="#6-experimenting-with-build-and-test-framework-for-pa1" title="Permanent link">&para;</a></h2>
+<p>Let's experiment with the build and test frameworks as applied to the
+first programming assignment. You can use the following
+steps to clone your PA1 repo.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+% <span class="nb">cd</span> ece2400
+% git clone git@github.com:cornell-ece2400/netid
+% <span class="nb">cd</span> netid
+% tree
+</pre></div>
+</td></tr></table>
+
+<p>Where <code>netid</code> is your NetID. Before we use CMake and CTest, let's use
+ad-hoc testing for the implementations you will be submitting for the
+milestone. Recall that ad-hoc testing involves compiling a program
+manually from command line, and using that program to print out the
+result of your function. Then you can verify that the results are as
+expected.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/src
+% gcc -Wall -Wextra -pedantic -o pow-iter-adhoc pow-iter.c pow-iter-adhoc.c
+% ./pow-iter-adhoc
+% gcc -Wall -Wextra -pedantic -o sqrt-iter-adhoc sqrt-iter.c sqrt-iter-adhoc.c
+% ./sqrt-iter-adhoc
+</pre></div>
+</td></tr></table>
+
+<p>Let's start by doing ad-hoc testing for PA1. Ad-hoc testing is a great
+way to get started, but as we learned in this section, we want to use an
+automated build and test framework to more productively develop complex
+projects.</p>
 <p>For each programming assignment, we will provide you a skeleton for your
 project including a complete <code>CMakeLists.txt</code>. In the common case, you
 should not need to modify the <code>CMakeLists.txt</code> unless you want to
 incorporate additional source and/or test files. The programming
 assignments are setup to use a separate build directory. The programming
 assignments also group all of the tests into their own separate
-directory. You can use the following steps to clone and build the first
-programming assignment.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% <span class="nb">cd</span> ece2400
-% git clone git@github.com:cornell-ece2400/netid
-% <span class="nb">cd</span> ece2400-pa-release/pa1-math
-% tree
+directory. You can use the following steps to use the build framework
+with the first programming assignment.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math
 % mkdir build
 % <span class="nb">cd</span> build
 % cmake ..
-% make
-% make <span class="nb">test</span>
-</pre></div>
-</td></tr></table>
-
-<p>Where <code>netid</code> is your NetID. We provide you convenient <code>check</code> targets
-which should be the primary way you build and run your tests. These
-targets take care of making sure your test programs are always up-to-date
-before running them. The following will run all of the tests for the
-first programming assignment:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/build
 % make check
 </pre></div>
 </td></tr></table>
 
-<p>If there is a test failure, we can "zoom in" and run just the tests for
-the corresponding implementation like this:</p>
+<p>If there is a test failure, we can "zoom in" to build a single test
+program and run it in isolation like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/build
-% make check-pow-iter
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/build
+% make pow-iter-basic-test
+% ./pow-iter-basic-test
 </pre></div>
 </td></tr></table>
 
-<p>Then we can "zoom in" further, and run a single test program so we can
-see exactly which test assertion is failing. We should always start by
-debugging the simplest test program first (i.e., basic tests) before
-moving on to directed or random tests.</p>
+<p>You can build and run the test program on a single line like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/build
-% make check-pow-iter-basic-tests
+% make pow-iter-basic-test <span class="o">&amp;&amp;</span> ./pow-iter-basic-test
+</pre></div>
+</td></tr></table>
+
+<p>The <code>&amp;&amp;</code> bash operator enables running multiple commands on the same
+command line.</p>
+<p>Then we can "zoom in" further, and run a single test case within a single
+test program so we see exactly which test assertion is failing. The
+following will build the directed test program, run all of the test
+cases, explicitly run just test case 1, and then explicitly run just test
+case 2.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/build
+% make pow-iter-directed-test
+% ./pow-iter-directed-test
+% ./pow-iter-directed-test <span class="m">1</span>
+% ./pow-iter-directed-test <span class="m">2</span>
 </pre></div>
 </td></tr></table>
 
 <p>Once we fix the bug, then we can "zoom out" and move on to the next
-failing test program, or to the next implementation.</p>
-<div class="admonition question">
-<p class="admonition-title">To-Do On Your Own</p>
-<p>Force one of your directed test assertions to fail. Use the <code>check</code>
-targets to "zoom in", fix the bug, and then "zoom out".</p>
-</div>
+failing test case, or to the next failing test program.</p>
                 
                   
                 
