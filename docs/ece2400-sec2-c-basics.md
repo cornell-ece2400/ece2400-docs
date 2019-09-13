@@ -19,6 +19,7 @@ Now clone the GitHub repo we will be using in this section using the
 following commands:
 
     :::bash
+    % source setup-ece2400.sh
     % mkdir -p ${HOME}/ece2400
     % cd ${HOME}/ece2400
     % git clone git@github.com:cornell-ece2400/ece2400-sec2 sec2
@@ -348,8 +349,19 @@ execute this binary by simply calling it as any other Linux command.
 
 Recall that a single dot (`.`) always refers to the current working
 directory. Essentially we are telling Linux that we want to run the
-executable named `avg-sfile` which is located in the current working
-directory. Repl.it is basically doing these same steps just in the cloud.
+executable binary named `avg-sfile` which is located in the current
+working directory. Repl.it is basically doing these same steps just in
+the cloud.
+
+It can be tedious to to have to carefully enter the correct commands on
+the command line every time we want to compile a C source file into an
+executable binary. In the next section, we will explore using a _build
+framework_ to automate the process of building our C programs. The
+process of executing the `avg-sfile` executable and verifying its output
+is called _ad-hoc testing_. It is ad-hoc because there is no systematic
+and automatic way to run and verify tests. In the next section, we will
+explore using a _test framework_ to automate the process of testing our C
+programs.
 
 Now let's examine the machine instructions using the `objdump` command.
 
@@ -514,6 +526,30 @@ line.
     % cd ${HOME}/ece2400/sec2
     % gcc -Wall -o avg-mfile avg.c avg-mfile.c
     % ./avg-mfile
+
+This of course begs the question. If we can compile a project with
+multiple files simply by specifying all of the files on the command line,
+then why did we learn about how to: (1) compile each file individually
+into an object file; and (2) link these object files together? For small
+projects with just 2-3 files there is no need to use object files.
+However, in a project with thousands of files, specifying all files on a
+single command line will cause each recompilation to take a very long
+fixed amount of time (e.g., many minutes). Even if we make a very small
+change to a single source file we will have recompile _every_ source
+file!
+
+Using object files enables modular compilation. In _modular compilation_,
+we only need to recompile those source files what have changed. We can
+simply reuse the previously compiled object files for those source files
+that have not changed. Modulary compilation can drastically reduce
+recompile times so that it is proportional to just how many changes you
+have made to the source files (e.g. less than a second). One challenge
+with modular compilation is it drastically increases the build
+complexity. There are many more commands to enter on the command line,
+and we need to carefully rack which commands need to be redone whenever
+we change a C source file. In the next section, we will explore using a
+_build framework_ to automate the process of modular compilation for
+complex C programs.
 
 !!! note "To-Do On Your Own"
 

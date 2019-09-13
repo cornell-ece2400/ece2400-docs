@@ -17,21 +17,26 @@ a _test framework_ to automate this process. Using a build and test
 framework is critical to productive system-level programming in C and
 C++.
 
-Follow the same process as in the previous discussion section. You need
-to login to a workstation with your NetID and password. Start a terminal
-and then don't forget to source the setup script!
+1. The ecelinux Machines
+--------------------------------------------------------------------------
+
+Follow the same process as in the last section.
+
+ - login to a workstation with your NetID and password
+ - use MobaXterm to log into the `ecelinux` servers
+ - make sure you source the setup script
+ - verify ECE2400 is in your prompt
+
+Now clone the GitHub repo we will be using in this section using the
+following commands:
 
     :::bash
     % source setup-ece2400.sh
-
-Now clone the github repo for this discussion section.
-
-    :::bash
     % mkdir -p ${HOME}/ece2400
     % cd ${HOME}/ece2400
-    % git clone git@github.com:cornell-ece2400/ece2400-sec3-c-build-test sec3
-    % cd sec3/src
-    % ls
+    % git clone git@github.com:cornell-ece2400/ece2400-sec3 sec3
+    % cd sec3
+    % cat README.md
 
 The given `src` directory includes the following files:
 
@@ -39,10 +44,10 @@ The given `src` directory includes the following files:
  - `avg.h`: header file for the `avg` function
  - `avg.c`: source file for the `avg` function
  - `avg-mfile.c` : `main` for multi-file `avg` program
- - `avg-mfile-basic-tests.h` : most basic smoke test
+ - `avg-mfile-basic-test.c` : most basic smoke test
  - `utst.h` : simple C preprocessor macros for unit testing
 
-1. Basic Makefile for Compiling C Programs
+2. Basic Makefile for Compiling C Programs
 --------------------------------------------------------------------------
 
 Let's remind ourselves how to explicitly compile and run a single-file C
@@ -147,7 +152,7 @@ like this:
     % make clean
     % ls
 
-!!! question "To-Do On Your Own"
+!!! note "To-Do On Your Own"
 
     Add two rules to your `Makefile` to compile `avg.o` and
     `avg-mfile.o`. Add a rule that links these two object files together
@@ -158,7 +163,7 @@ like this:
     changing `avg.h` and rerunning `make`. Does your program recompile
     correctly?
 
-2. Using CMake to Generate Makefiles for Compiling C Programs
+3. Using CMake to Generate Makefiles for Compiling C Programs
 --------------------------------------------------------------------------
 
 While using `make` can help automate the build process, the corresponding
@@ -229,7 +234,7 @@ CMake will automatically create some useful targets like `clean`.
 Writing a `CMakeLists.txt` is simpler than writing a `Makefile`,
 especially when we start working with many files.
 
-!!! question "To-Do On Your Own"
+!!! note "To-Do On Your Own"
 
     Add another line to your `CMakeLists.txt` file to specify that we
     want to generate a `Makefile` that can be used to compile `avg-mfile`
@@ -239,7 +244,7 @@ especially when we start working with many files.
     recompile correctly? Try changing `avg.h` and rerunning `make`. Does
     your program recompile correctly?
 
-3. Using CTest for Systematic Unit Testing
+4. Using CTest for Systematic Unit Testing
 --------------------------------------------------------------------------
 
 So far we have been using "ad-hoc testing". For example, the `main`
@@ -274,25 +279,19 @@ following is an example of a unit test program for our `avg` function:
 
     int main()
     {
-      UTST_BEGIN();
-
       UTST_ASSERT_INT_EQ( avg( 10, 20 ), 15 );
-
-      UTST_END();
       return 0;
     }
 
 We provide a simple library of test macros in `utst.h` which can be used
-to write various testing assertions. You should always insert
-`UTST_BEGIN()` at the beginning of `main` and `UTST_END()` at the end of
-main immediately before the final `return` statement. The
-`UTST_ASSERT_INT_EQ` macro asserts that the two given integer parameters
-are equal. If they are indeed equal, then the macro prints out the
-values, and we move on to the next test assertion. If they are not equal,
-the the macro prints out an error message and returns from `main` with
-the value 1. Recall that when `main` returns 0 it means success, and when
-`main` returns 1 it means failure. The return value enables our test
-program to inform CTest of whether or not our test passed of failed.
+to write various testing assertions. The `UTST_ASSERT_INT_EQ` macro
+asserts that the two given integer parameters are equal. If they are
+indeed equal, then the macro prints out the values, and we move on to the
+next test assertion. If they are not equal, the the macro prints out an
+error message and exits the program with the value 1. Recall that when
+the program returns 0 it means success, and when the program returns 1 it
+means failure. The return value enables our test program to inform CTest
+of whether or not our test passed of failed.
 
 We have provided the above test program in the repository for this
 discussion section. To use CTest, we need to tell it about this new test
@@ -307,21 +306,21 @@ program. We can do this by simply adding a new line to our
     add_executable( avg-sfile avg-sfile.c )
     add_executable( avg-mfile avg-mfile.c avg.c )
 
-    add_executable( avg-mfile-basic-tests avg-mfile-basic-tests.c avg.c )
-    add_test( avg-mfile-basic-tests avg-mfile-basic-tests )
+    add_executable( avg-mfile-basic-test avg-mfile-basic-test.c avg.c )
+    add_test( avg-mfile-basic-test avg-mfile-basic-test )
 
 Line 3 tells CMake to turn on support for testing with CTest. Line 6
 specifies how to build `avg-mfile`. Line 8 specifies how to build the
-`avg-mfile-basic-tests` test program. Line 9 tells CMake that
-`avg-mfile-basic-tests` is a test that should be managed by CTest. Modify
+`avg-mfile-basic-test` test program. Line 9 tells CMake that
+`avg-mfile-basic-test` is a test that should be managed by CTest. Modify
 your `CMakeLists.txt` file to look like what is given above, rerun cmake,
 build the test, and run it.
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
     % cmake .
-    % make avg-mfile-basic-tests
-    % ./avg-mfile-basic-tests
+    % make avg-mfile-basic-test
+    % ./avg-mfile-basic-test
 
 You should see some output which indicates the passing test assertion.
 CMake provides a `test` target which can run all of the tests and
@@ -333,7 +332,7 @@ provides a summary.
 
 It is always a good idea to occasionally force a test to fail to ensure
 your test framework is behaving correctly. Change the test assertion in
-`avg-mfile-basic-tests.c` to look like this:
+`avg-mfile-basic-test.c` to look like this:
 
     :::c
     UTST_ASSERT_INT_EQ( avg( 10, 20 ), 16 );
@@ -342,13 +341,13 @@ Then rebuild and rerun the test like this:
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
-    % make avg-mfile-basic-tests
+    % make avg-mfile-basic-test
     % make test
-    % ./avg-mfile-basic-tests
+    % ./avg-mfile-basic-test
 
 You should see the test failing in the test summary, and then see
 additional information about the failing test assertion when you
-explicitly run the test program. `avg-mfile-basic-tests` is a kind of
+explicitly run the test program. `avg-mfile-basic-test` is a kind of
 "smoke" test which is used to test the absolute most basic functionality
 of an implementation. We will also be doing extensive _directed testing_
 and _random testing_. In directed testing, you explicitly use test
@@ -357,9 +356,9 @@ you use random input values and compare the output to some golden
 "reference" implementation to hopefully catch bugs missed in your
 directed testing.
 
-!!! question "To-Do On Your Own"
+!!! note "To-Do On Your Own"
 
-    Create another unit test program named `avg-mfile-directed-tests.c`
+    Create another unit test program named `avg-mfile-directed-test.c`
     for directed testing. Use the macros in `utst.h` to begin/end your
     test program and for test assertions. Try to test several different
     corner cases. Modify your `CMakeLists.txt` file to include this new
@@ -367,7 +366,7 @@ directed testing.
     `Makefile`, use `make` to build your test program, and then run it.
     Ensure that `make test` runs both the basic and directed tests.
 
-4. Using a Build Directory
+5. Using a Build Directory
 --------------------------------------------------------------------------
 
 Take a look at the source directory. It likely contains a mess of
@@ -410,13 +409,43 @@ start again like this:
 You should **never** check in your `build` directory or any generated
 content into Git. Only source files are checked into Git!
 
-!!! question "To-Do On Your Own"
+!!! note "To-Do On Your Own"
 
     Add a new test assertion to your directed tests. Rebuild and rerun
     the test program in the separate build directory.
 
-5. Try Steps for Programming Assignments
+6. Experimenting with Build and Test Framework for PA1
 --------------------------------------------------------------------------
+
+Let's experiment with the build and test frameworks as applied to the
+first programming assignment. You can use the following
+steps to clone your PA1 repo.
+
+    :::bash
+    % mkdir -p ${HOME}/ece2400
+    % cd ece2400
+    % git clone git@github.com:cornell-ece2400/netid
+    % cd netid
+    % tree
+
+Where `netid` is your NetID. Before we use CMake and CTest, let's use
+ad-hoc testing for the implementations you will be submitting for the
+milestone. Recall that ad-hoc testing involves compiling a program
+manually from command line, and using that program to print out the
+result of your function. Then you can verify that the results are as
+expected.
+
+    :::bash
+    % cd ${HOME}/ece2400/netid/pa1-math/src
+    % gcc -Wall -Wextra -pedantic -o pow-iter-adhoc pow-iter.c pow-iter-adhoc.c
+    % ./pow-iter-adhoc
+    % gcc -Wall -Wextra -pedantic -o sqrt-iter-adhoc sqrt-iter.c sqrt-iter-adhoc.c
+    % ./sqrt-iter-adhoc
+
+Let's start by doing ad-hoc testing for PA1. Ad-hoc testing is a great
+way to get started, but as we learned in this section, we want to use an
+automated build and test framework to more productively develop complex
+projects.
 
 For each programming assignment, we will provide you a skeleton for your
 project including a complete `CMakeLists.txt`. In the common case, you
@@ -424,52 +453,46 @@ should not need to modify the `CMakeLists.txt` unless you want to
 incorporate additional source and/or test files. The programming
 assignments are setup to use a separate build directory. The programming
 assignments also group all of the tests into their own separate
-directory. You can use the following steps to clone and build the first
-programming assignment.
+directory. You can use the following steps to use the build framework
+with the first programming assignment.
 
     :::bash
-    % mkdir -p ${HOME}/ece2400
-    % cd ece2400
-    % git clone git@github.com:cornell-ece2400/netid
-    % cd ece2400-pa-release/pa1-math
-    % tree
+    % mkdir -p ${HOME}/ece2400/netid/pa1-math
     % mkdir build
     % cd build
     % cmake ..
-    % make
-    % make test
-
-Where `netid` is your NetID. We provide you convenient `check` targets
-which should be the primary way you build and run your tests. These
-targets take care of making sure your test programs are always up-to-date
-before running them. The following will run all of the tests for the
-first programming assignment:
-
-    :::bash
-    % cd ${HOME}/ece2400/netid/pa1-math/build
     % make check
 
-If there is a test failure, we can "zoom in" and run just the tests for
-the corresponding implementation like this:
+If there is a test failure, we can "zoom in" to build a single test
+program and run it in isolation like this:
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math/build
-    % make check-pow-iter
+    % make pow-iter-basic-test
+    % ./pow-iter-basic-test
 
-Then we can "zoom in" further, and run a single test program so we can
-see exactly which test assertion is failing. We should always start by
-debugging the simplest test program first (i.e., basic tests) before
-moving on to directed or random tests.
+You can build and run the test program on a single line like this:
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math/build
-    % make check-pow-iter-basic-tests
+    % make pow-iter-basic-test && ./pow-iter-basic-test
+
+The `&&` bash operator enables running multiple commands on the same
+command line.
+
+Then we can "zoom in" further, and run a single test case within a single
+test program so we see exactly which test assertion is failing. The
+following will build the directed test program, run all of the test
+cases, explicitly run just test case 1, and then explicitly run just test
+case 2.
+
+    :::bash
+    % cd ${HOME}/ece2400/netid/pa1-math/build
+    % make pow-iter-directed-test
+    % ./pow-iter-directed-test
+    % ./pow-iter-directed-test 1
+    % ./pow-iter-directed-test 2
 
 Once we fix the bug, then we can "zoom out" and move on to the next
-failing test program, or to the next implementation.
-
-!!! question "To-Do On Your Own"
-
-    Force one of your directed test assertions to fail. Use the `check`
-    targets to "zoom in", fix the bug, and then "zoom out".
+failing test case, or to the next failing test program.
 
