@@ -567,3 +567,35 @@ complex C programs.
     Recompile the object files and try linking the program together
     again. Verify that it produces the expected output.
 
+6. Experimenting with Compiling and Running C Programs for PA1
+--------------------------------------------------------------------------
+
+Let's experiment with compiling an ad-hoc test for the first programming
+assignment using what we have learned in this discussion section. You can
+use the following steps to clone your PA1 repo.
+
+    :::bash
+    % mkdir -p ${HOME}/ece2400
+    % cd ece2400
+    % git clone git@github.com:cornell-ece2400/netid
+    % cd netid
+    % tree
+
+Where `netid` is your NetID. Recall that ad-hoc testing involves
+compiling a program manually from command line, and using that program to
+print out the result of your function. Then you can verify that the
+results are as expected. We have included an ad-hoc test for each
+implementation in your repo that you can use for early experimentation.
+
+    :::bash
+    % cd ${HOME}/ece2400/netid/pa1-math/src
+    % gcc -Wall -Wextra -pedantic -o pow-iter-adhoc pow-iter.c pow-iter-adhoc.c
+    % ./pow-iter-adhoc
+    % gcc -Wall -Wextra -pedantic -o sqrt-iter-adhoc sqrt-iter.c sqrt-iter-adhoc.c
+    % ./sqrt-iter-adhoc
+
+These ad-hoc tests will not print out the correct value because you
+haven't completed the programming assignment yet, but this at least
+illustrates how we can used what we have learned in this discussion
+section to compile an ad-hoc test from the command line.
+

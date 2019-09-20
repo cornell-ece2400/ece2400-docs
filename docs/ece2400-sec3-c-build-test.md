@@ -36,7 +36,7 @@ following commands:
     % cd ${HOME}/ece2400
     % git clone git@github.com:cornell-ece2400/ece2400-sec3 sec3
     % cd sec3
-    % cat README.md
+    % tree
 
 The given `src` directory includes the following files:
 
@@ -47,7 +47,7 @@ The given `src` directory includes the following files:
  - `avg-mfile-basic-test.c` : most basic smoke test
  - `utst.h` : simple C preprocessor macros for unit testing
 
-2. Basic Makefile for Compiling C Programs
+2. Using Makefiles to Compile C Programs
 --------------------------------------------------------------------------
 
 Let's remind ourselves how to explicitly compile and run a single-file C
@@ -414,12 +414,12 @@ content into Git. Only source files are checked into Git!
     Add a new test assertion to your directed tests. Rebuild and rerun
     the test program in the separate build directory.
 
-6. Experimenting with Build and Test Framework for PA1
+6. Experimenting with Build and Test Frameworks for PA1
 --------------------------------------------------------------------------
 
-Let's experiment with the build and test frameworks as applied to the
-first programming assignment. You can use the following
-steps to clone your PA1 repo.
+Let's experiment with the build and test frameworks for the first
+programming assignment using what we have learned in this discussion
+section. You can use the following steps to clone your PA1 repo.
 
     :::bash
     % mkdir -p ${HOME}/ece2400
@@ -427,25 +427,6 @@ steps to clone your PA1 repo.
     % git clone git@github.com:cornell-ece2400/netid
     % cd netid
     % tree
-
-Where `netid` is your NetID. Before we use CMake and CTest, let's use
-ad-hoc testing for the implementations you will be submitting for the
-milestone. Recall that ad-hoc testing involves compiling a program
-manually from command line, and using that program to print out the
-result of your function. Then you can verify that the results are as
-expected.
-
-    :::bash
-    % cd ${HOME}/ece2400/netid/pa1-math/src
-    % gcc -Wall -Wextra -pedantic -o pow-iter-adhoc pow-iter.c pow-iter-adhoc.c
-    % ./pow-iter-adhoc
-    % gcc -Wall -Wextra -pedantic -o sqrt-iter-adhoc sqrt-iter.c sqrt-iter-adhoc.c
-    % ./sqrt-iter-adhoc
-
-Let's start by doing ad-hoc testing for PA1. Ad-hoc testing is a great
-way to get started, but as we learned in this section, we want to use an
-automated build and test framework to more productively develop complex
-projects.
 
 For each programming assignment, we will provide you a skeleton for your
 project including a complete `CMakeLists.txt`. In the common case, you
@@ -462,9 +443,12 @@ with the first programming assignment.
     % cd build
     % cmake ..
     % make check
+    % make check-milestone
 
-If there is a test failure, we can "zoom in" to build a single test
-program and run it in isolation like this:
+`check` will run all of the tests for the entire PA, while
+`check-milestone` will only run the tests for the milestone. If there is
+a test failure, we can "zoom in" to build a single test program and run
+it in isolation like this:
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math/build
@@ -478,21 +462,108 @@ You can build and run the test program on a single line like this:
     % make pow-iter-basic-test && ./pow-iter-basic-test
 
 The `&&` bash operator enables running multiple commands on the same
-command line.
+command line. Let's take a closer look at how we will structure our test
+programs. Here is the content of `pow-iter-directed-test`.
 
-Then we can "zoom in" further, and run a single test case within a single
-test program so we see exactly which test assertion is failing. The
-following will build the directed test program, run all of the test
-cases, explicitly run just test case 1, and then explicitly run just test
-case 2.
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include "utst.h"
+    #include "pow-iter.h"
+
+    void test_case_1_small_large()
+    {
+      printf("\n%s\n", __func__  );
+      UTST_ASSERT_FLOAT_EQ( pow_iter(   1, 100 ),                      1.0000, 0.0001 );
+      UTST_ASSERT_FLOAT_EQ( pow_iter( 1.1, 300 ) / 2617010996188.4634, 1.0,    0.0001 );
+    }
+
+    void test_case_2_zero_small()
+    {
+      printf("\n%s\n", __func__  );
+      UTST_ASSERT_FLOAT_EQ( pow_iter( 0, 1 ), 0.0000, 0.0001 );
+      UTST_ASSERT_FLOAT_EQ( pow_iter( 0, 2 ), 0.0000, 0.0001 );
+    }
+
+    int main( int argc, char* argv[] )
+    {
+      int n = ( argc == 1 ) ? 0 : atoi( argv[1] );
+
+      if ( ( n == 0 ) || ( n == 1 ) ) test_case_1_small_large();
+      if ( ( n == 0 ) || ( n == 2 ) ) test_case_2_zero_small();
+
+      printf( "\n" );
+      return 0;
+    }
+
+Our test programs will consist of a number of _test cases_. Each test
+case is a separate function which should focus on testing a specific
+subset of inputs. In this example, test case 1 tests small numbers raised
+to a large exponent, while test case 2 tests a base of zero raised to a
+small exponent. Each test case should start with a statement similar to
+lines 8 and 14. `__func__` is a built-in variable which contains the
+function name, so these lines basically print out the name of the
+function. Each test case should then use a series of `UTST_ASSERT` macros
+to check that the implementation produces the expected results. For
+example, on line 9 we check that 1 raised to 100 is equal to 1.0. On line
+10 we check 1.1 raised to 300. Here we need to be careful because
+floating point arithmetic can sometimes not be as precise as we expect.
+So in this example we calculate the result of our implementation, divide
+this result by the correct answer, and then make sure this ratio, is
+close to 1. The main function's job is to simply call each test case
+function. Note that we get a single command line argument which specifies
+which test case we want to run. If we do not specify a command line
+argument then we run all of the test cases.
+
+Let's run all of the direct test cases.
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math/build
     % make pow-iter-directed-test
     % ./pow-iter-directed-test
+
+Then we can "zoom in" further, and run a single test case within a single
+test program so we see exactly which test assertion is failing. The
+following will build the directed test program, explicitly run just test
+case 1, and then explicitly run just test case 2.
+
+    :::bash
+    % cd ${HOME}/ece2400/netid/pa1-math/build
+    % make pow-iter-directed-test
     % ./pow-iter-directed-test 1
     % ./pow-iter-directed-test 2
 
 Once we fix the bug, then we can "zoom out" and move on to the next
-failing test case, or to the next failing test program.
+failing test case, or to the next failing test program. Now let's try
+adding a new test case that checks that a small number raised to zero is
+1.
+
+    ...
+    void test_case_3_small_zero()
+    {
+      printf("\n%s\n", __func__  );
+      UTST_ASSERT_FLOAT_EQ( pow_iter( 10, 0 ), 1.0000, 0.0001 );
+    }
+
+    int main( int argc, char* argv[] )
+    {
+      int n = ( argc == 1 ) ? 0 : atoi( argv[1] );
+
+      if ( ( n == 0 ) || ( n == 1 ) ) test_case_1_small_large();
+      if ( ( n == 0 ) || ( n == 2 ) ) test_case_2_zero_small();
+      if ( ( n == 0 ) || ( n == 3 ) ) test_case_3_small_zero();
+
+      printf( "\n" );
+      return 0;
+    }
+
+We have added a new test case function with an appropriate test case
+number and name, and we have also added a new line to the `main` function
+to call this new test case function. Let's go ahead and run all of the
+test cases and then run just this new test case.
+
+    :::bash
+    % cd ${HOME}/ece2400/netid/pa1-math/build
+    % make pow-iter-directed-test
+    % ./pow-iter-directed-test
+    % ./pow-iter-directed-test 3
 
