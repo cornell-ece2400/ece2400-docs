@@ -38,7 +38,7 @@
     
     
       
-        <title>Ece2400 sec4 c debug coverage - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
+        <title>Section 4: C Testing and Debugging - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
       
     
     
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#section-4-c-debug-and-code-coverage" tabindex="1" class="md-skip">
+      <a href="../#section-4-c-testing-and-debugging" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -128,7 +128,7 @@
                 ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
               </span>
               <span class="md-header-nav__topic">
-                Ece2400 sec4 c debug coverage
+                Section 4: C Testing and Debugging
               </span>
             
           
@@ -200,7 +200,9 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -222,7 +224,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../ece2400-sec1-linux/" title="Section Notes" class="md-tabs__link">
+        <a href="../ece2400-sec1-linux/" title="Section Notes" class="md-tabs__link md-tabs__link--active">
           Section Notes
         </a>
       
@@ -315,10 +317,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Section Notes
@@ -366,6 +370,84 @@
   </li>
 
         
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Section 4: C Testing and Debugging
+      </label>
+    
+    <a href="./" title="Section 4: C Testing and Debugging" class="md-nav__link md-nav__link--active">
+      Section 4: C Testing and Debugging
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
+    1. The ecelinux Machines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-gdb-for-debugging" title="2. Using GDB for Debugging" class="md-nav__link">
+    2. Using GDB for Debugging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-using-gcov-for-code-coverage" title="3. Using GCOV for Code Coverage" class="md-nav__link">
+    3. Using GCOV for Code Coverage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-using-travisci-and-codecovio-for-continuous-integration" title="4. Using TravisCI and Codecov.io for Continuous Integration" class="md-nav__link">
+    4. Using TravisCI and Codecov.io for Continuous Integration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-try-steps-for-programming-assignments" title="5. Try Steps for Programming Assignments" class="md-nav__link">
+    5. Try Steps for Programming Assignments
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -392,29 +474,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-using-gdb-for-debugging" title="1. Using GDB for Debugging" class="md-nav__link">
-    1. Using GDB for Debugging
+  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
+    1. The ecelinux Machines
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-using-gcov-for-code-coverage" title="2. Using GCOV for Code Coverage" class="md-nav__link">
-    2. Using GCOV for Code Coverage
+  <a href="#2-using-gdb-for-debugging" title="2. Using GDB for Debugging" class="md-nav__link">
+    2. Using GDB for Debugging
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-using-travisci-and-codecovio-for-continuous-integration" title="3. Using TravisCI and Codecov.io for Continuous Integration" class="md-nav__link">
-    3. Using TravisCI and Codecov.io for Continuous Integration
+  <a href="#3-using-gcov-for-code-coverage" title="3. Using GCOV for Code Coverage" class="md-nav__link">
+    3. Using GCOV for Code Coverage
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-try-steps-for-programming-assignments" title="4. Try Steps for Programming Assignments" class="md-nav__link">
-    4. Try Steps for Programming Assignments
+  <a href="#4-using-travisci-and-codecovio-for-continuous-integration" title="4. Using TravisCI and Codecov.io for Continuous Integration" class="md-nav__link">
+    4. Using TravisCI and Codecov.io for Continuous Integration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-try-steps-for-programming-assignments" title="5. Try Steps for Programming Assignments" class="md-nav__link">
+    5. Try Steps for Programming Assignments
   </a>
   
 </li>
@@ -435,42 +524,45 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec4-c-debug-coverage.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec4-c-test-debug.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="section-4-c-debug-and-code-coverage">Section 4: C Debug and Code Coverage<a class="headerlink" href="#section-4-c-debug-and-code-coverage" title="Permanent link">&para;</a></h1>
+                <h1 id="section-4-c-testing-and-debugging">Section 4: C Testing and Debugging<a class="headerlink" href="#section-4-c-testing-and-debugging" title="Permanent link">&para;</a></h1>
 <p>In the previous discussion section, you learned how to use C build and
 test frameworks to help automate the process of compiling and verifying
 your programs In this discussion, we will continue to learn about new
-tools that can help us better debug and verify our programs.</p>
-<p>Follow the same process as in the previous discussion section. You need
-to login to a workstation with your NetID and password. Start a terminal
-and then don't forget to source the setup script!</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
-</pre></div>
-</td></tr></table>
-
-<p>Now fork the github repo for this discussion section so you have your own
-personal copy. Go to the example repo here:</p>
+tools that can help us better test and debug our programs.</p>
+<h2 id="1-the-ecelinux-machines">1. The ecelinux Machines<a class="headerlink" href="#1-the-ecelinux-machines" title="Permanent link">&para;</a></h2>
+<p>Follow the same process as in the last section.</p>
 <ul>
-<li>https://github.com/cornell-ece2400/ece2400-sec4-c-debug-coverage</li>
+<li>login to a workstation with your NetID and password</li>
+<li>use MobaXterm to log into the <code>ecelinux</code> servers</li>
+<li>make sure you source the setup script</li>
+<li>verify ECE2400 is in your prompt</li>
+</ul>
+<p>For this discussion section you will need to make a copy of the repo we
+will be using so you can push to it. Go to the section's repo here:</p>
+<ul>
+<li>https://github.com/cornell-ece2400/ece2400-sec4</li>
 </ul>
 <p>Click on the "Fork" button. Wait a few seconds and then visit the new
 copy of this repo in your own person GitHub workspace:</p>
 <ul>
-<li><code>https://github.com/githubid/ece2400-sec2</code></li>
+<li><code>https://github.com/githubid/ece2400-sec4</code></li>
 </ul>
 <p>Where <code>githubid</code> is your GitHubID. Now clone the github repo for this
-discussion section.</p>
+discussion section using the following commands:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
+% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
 % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% git clone git@github.com:githubid/ece2400-sec4-c-debug-coverage sec4
+% git clone git@github.com:githubid/ece2400-sec4 sec4
 % <span class="nb">cd</span> sec4
-% ls
+% tree
 </pre></div>
 </td></tr></table>
 
@@ -478,11 +570,11 @@ discussion section.</p>
 includes the following files:</p>
 <ul>
 <li><code>avg-test.c</code>: source and test for <code>avg</code> function</li>
-<li><code>gcd-test.c</code>: source and test for <code>gcd</code> function</li>
+<li><code>sort-test.c</code>: source and test for <code>sort</code> function</li>
 <li><code>utst.h</code> : simple C preprocessor macros for unit testing</li>
 <li><code>.travis.yml</code> : TravisCI configuration script</li>
 </ul>
-<h2 id="1-using-gdb-for-debugging">1. Using GDB for Debugging<a class="headerlink" href="#1-using-gdb-for-debugging" title="Permanent link">&para;</a></h2>
+<h2 id="2-using-gdb-for-debugging">2. Using GDB for Debugging<a class="headerlink" href="#2-using-gdb-for-debugging" title="Permanent link">&para;</a></h2>
 <p>There are two kinds of C/C++ programmers in the world: printf debuggers
 and GDB debuggers. Prof. Batten used to be a printf debuggers but
 teaching this course has converted him to be a GDB advocate. He will
@@ -519,7 +611,7 @@ it executes.</p>
 
 <p>You should be able to see that the value for the <code>sum</code> variable is
 incorrect, but the value for the <code>x</code> and <code>y</code> variables are correct. This
-means we can narrow our focus to line~4 in the above code snippet.
+means we can narrow our focus to line 4 in the above code snippet.
 Hopefully, you should be able to spot the bug. Fix the bug, recompile,
 and rerun the program.</p>
 <p>Let's now try tracing the execution of this program using GDB. Then you
@@ -559,7 +651,7 @@ breakpoint at the beginning of the <code>main</code> function.</p>
 </pre></div>
 </td></tr></table>
 
-<p>You can see a little <code>B</code> marker in the margin next to the first statement
+<p>You can see a little <code>b+</code> marker in the margin next to the first statement
 in the <code>main</code> function indicating the location of the breakpoint. We can
 now use <code>run</code> to start the program running. The execution should stop at
 the beginning of the function <code>main</code>. You should see the first line of
@@ -599,12 +691,16 @@ can use <code>quit</code> to exit.</p>
 </pre></div>
 </td></tr></table>
 
-<div class="admonition question">
+<p>Now fix the bug and rerun the test.</p>
+<div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
-<p>Try compiling <code>gcd-test.c</code> and executing the resulting binary. The
-test should fail. Use GDB debugging to find the bug and fix it.</p>
+<p>Try compiling <code>sort-test.c</code> and executing the resulting binary. The
+test should fail. Use GDB debugging to find the bug and fix it. Think
+critically about whether or not the sort function should swap the
+given inputs, and then use GDB to trace and see if it is or is not
+swapping as expected.</p>
 </div>
-<h2 id="2-using-gcov-for-code-coverage">2. Using GCOV for Code Coverage<a class="headerlink" href="#2-using-gcov-for-code-coverage" title="Permanent link">&para;</a></h2>
+<h2 id="3-using-gcov-for-code-coverage">3. Using GCOV for Code Coverage<a class="headerlink" href="#3-using-gcov-for-code-coverage" title="Permanent link">&para;</a></h2>
 <p>One you have developed your implementation and the corresponding basic,
 directed, and random tests, you can then move on to understanding the
 <em>quality</em> of your current set of tests. One way to do this is to use code
@@ -646,14 +742,15 @@ server) to use a terminal based browser like <code>elinks</code>:</p>
 coverage. Note that 100% code coverage is not the same as 100% path
 coverage; ask the instructors for more on this. Also note that 100% code
 coverage does not mean your program is guaranteed to be correct!</p>
-<div class="admonition question">
+<div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
-<p>Try compiling <code>gcd-test.c</code> and executing the resulting binary with
-support for code coverage. Use the code coverage reports to verify
-that the test has less than 100% code coverage. Add more tests to
-improve the code coverage to 100%.</p>
+<p>Try compiling <code>sort-test.c</code> and executing the resulting binary with
+support for code coverage (after you fix the bug from the previous
+section!). Use the code coverage reports to verify that the test has
+less than 100% code coverage. Add more tests to improve the code
+coverage to 100%.</p>
 </div>
-<h2 id="3-using-travisci-and-codecovio-for-continuous-integration">3. Using TravisCI and Codecov.io for Continuous Integration<a class="headerlink" href="#3-using-travisci-and-codecovio-for-continuous-integration" title="Permanent link">&para;</a></h2>
+<h2 id="4-using-travisci-and-codecovio-for-continuous-integration">4. Using TravisCI and Codecov.io for Continuous Integration<a class="headerlink" href="#4-using-travisci-and-codecovio-for-continuous-integration" title="Permanent link">&para;</a></h2>
 <p>Continuous integration is the process of <em>continually</em> integrating,
 testing, and evaluating your code. We will be using two tools to
 facilitate continuous integration. The first is TravisCI, an online
@@ -668,13 +765,13 @@ GitHub. Log into TravisCI using your GitHub ID and password:</p>
 <p>Once you have signed in, you should go to your TravisCI profile and find
 the list of your public GitHub repositories. You may need to click Sync
 to ensure that TravisCI has the most recent view of your public
-repositories on GitHub. Turn on TravisCI with the little "switch" next to
-the repository we have been using in this tutorial
-(<code>githubid/ece2400-sec4-c-debug-coverage</code>). After enabling TravisCI for
-the <code>githubid/ece2400-sec4-c-debug-coverage</code> repository, you should be
-able to go to the TravisCI page for this repository:</p>
+repositories on GitHub. You might need to refresh the page a few times.
+Turn on TravisCI with the little "switch" next to the repository we have
+been using in this tutorial (<code>githubid/ece2400-sec4</code>). After enabling
+TravisCI for the <code>githubid/ece2400-sec4</code> repository, you should be able
+to go to the TravisCI page for this repository:</p>
 <ul>
-<li>https://travis-ci.org/githubid/ece2400-sec4-c-debug-coverage</li>
+<li>https://travis-ci.org/githubid/ece2400-sec4</li>
 </ul>
 <p>TravisCI will report that there are no builds for this repository yet.
 TravisCI looks for a special file named <code>.travis.yml</code> in the top of your
@@ -687,20 +784,23 @@ already created one of those files for you, and you can see it here:</p>
 </td></tr></table>
 
 <p>Go ahead and commit all of the work you have done in this tutorial, then
-push your local commits to the remote repository on GitHub. If you
-revisit the TravisCI page for this repository, you should see TravisCI
-starting to build and run all of your tests.</p>
+push your local commits to the remote repository on GitHub. Revisit the
+TravisCI page for this repository, you should see TravisCI starting to
+build and run all of your tests.</p>
+<ul>
+<li>https://travis-ci.org/githubid/ece2400-sec4</li>
+</ul>
 <p>Just like we can use TravisCI to automatically run tests, we can use
 Codecov.io to automatically prepare code coverage reports on every
 commit. You can see your code coverage reports here:</p>
 <ul>
-<li>https://codecov.io/gh/githubid/ece2400-sec4-c-debug-coverage</li>
+<li>https://codecov.io/gh/githubid/ece2400-sec4</li>
 </ul>
-<h2 id="4-try-steps-for-programming-assignments">4. Try Steps for Programming Assignments<a class="headerlink" href="#4-try-steps-for-programming-assignments" title="Permanent link">&para;</a></h2>
+<h2 id="5-try-steps-for-programming-assignments">5. Try Steps for Programming Assignments<a class="headerlink" href="#5-try-steps-for-programming-assignments" title="Permanent link">&para;</a></h2>
 <p>Spend some time looking at the <code>.travis.yml</code> file for PA1. Look at the
 TravisCI results for the PA1 milestone and also look at the Codecov.io
-results. You can find these results but clicking on the appropriate
-badges in your PA1 README.</p>
+results. You can find these results by clicking on the appropriate badges
+in your PA1 README.</p>
                 
                   
                 
@@ -717,6 +817,27 @@ badges in your PA1 README.</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ece2400-sec3-c-build-test/" title="Section 3: C Build and Test Frameworks" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Section 3: C Build and Test Frameworks
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

@@ -433,6 +433,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#6-experimenting-with-compiling-and-running-c-programs-for-pa1" title="6. Experimenting with Compiling and Running C Programs for PA1" class="md-nav__link">
+    6. Experimenting with Compiling and Running C Programs for PA1
+  </a>
+  
+</li>
+      
       
       
       
@@ -452,6 +459,18 @@
   <li class="md-nav__item">
     <a href="../ece2400-sec3-c-build-test/" title="Section 3: C Build and Test Frameworks" class="md-nav__link">
       Section 3: C Build and Test Frameworks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec4-c-test-debug/" title="Section 4: C Testing and Debugging" class="md-nav__link">
+      Section 4: C Testing and Debugging
     </a>
   </li>
 
@@ -532,6 +551,13 @@
         <li class="md-nav__item">
   <a href="#5-compiling-and-running-a-multi-file-c-program" title="5. Compiling and Running a Multi-File C Program" class="md-nav__link">
     5. Compiling and Running a Multi-File C Program
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-experimenting-with-compiling-and-running-c-programs-for-pa1" title="6. Experimenting with Compiling and Running C Programs for PA1" class="md-nav__link">
+    6. Experimenting with Compiling and Running C Programs for PA1
   </a>
   
 </li>
@@ -1216,6 +1242,43 @@ the three-input average function <code>avg3</code> and update the source file
 Recompile the object files and try linking the program together
 again. Verify that it produces the expected output.</p>
 </div>
+<h2 id="6-experimenting-with-compiling-and-running-c-programs-for-pa1">6. Experimenting with Compiling and Running C Programs for PA1<a class="headerlink" href="#6-experimenting-with-compiling-and-running-c-programs-for-pa1" title="Permanent link">&para;</a></h2>
+<p>Let's experiment with compiling an ad-hoc test for the first programming
+assignment using what we have learned in this discussion section. You can
+use the following steps to clone your PA1 repo.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+% <span class="nb">cd</span> ece2400
+% git clone git@github.com:cornell-ece2400/netid
+% <span class="nb">cd</span> netid
+% tree
+</pre></div>
+</td></tr></table>
+
+<p>Where <code>netid</code> is your NetID. Recall that ad-hoc testing involves
+compiling a program manually from command line, and using that program to
+print out the result of your function. Then you can verify that the
+results are as expected. We have included an ad-hoc test for each
+implementation in your repo that you can use for early experimentation.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/src
+% gcc -Wall -Wextra -pedantic -o pow-iter-adhoc pow-iter.c pow-iter-adhoc.c
+% ./pow-iter-adhoc
+% gcc -Wall -Wextra -pedantic -o sqrt-iter-adhoc sqrt-iter.c sqrt-iter-adhoc.c
+% ./sqrt-iter-adhoc
+</pre></div>
+</td></tr></table>
+
+<p>These ad-hoc tests will not print out the correct value because you
+haven't completed the programming assignment yet, but this at least
+illustrates how we can used what we have learned in this discussion
+section to compile an ad-hoc test from the command line.</p>
                 
                   
                 
