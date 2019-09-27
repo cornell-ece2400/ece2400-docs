@@ -1,0 +1,968 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="Christopher Batten">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>Topic 2: C Recursion - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#topic-2-c-recursion" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="ECE 2400 / ENGRD 2140 Computer Systems Programming Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
+              </span>
+              <span class="md-header-nav__topic">
+                Topic 2: C Recursion
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/cornell-ece2400/ece2400-docs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      cornell-ece2400/ece2400-docs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../ece2400-T01-intro-c/" title="Topic Notes" class="md-tabs__link md-tabs__link--active">
+          Topic Notes
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../ece2400-sec1-linux/" title="Section Notes" class="md-tabs__link">
+          Section Notes
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="ECE 2400 / ENGRD 2140 Computer Systems Programming Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/cornell-ece2400/ece2400-docs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      cornell-ece2400/ece2400-docs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Topic Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Topic Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-T01-intro-c/" title="Topic 1: Introduction to C" class="md-nav__link">
+      Topic 1: Introduction to C
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Topic 2: C Recursion
+      </label>
+    
+    <a href="./" title="Topic 2: C Recursion" class="md-nav__link md-nav__link--active">
+      Topic 2: C Recursion
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-single-recursion" title="1. Single Recursion" class="md-nav__link">
+    1. Single Recursion
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#factorial" title="Factorial" class="md-nav__link">
+    Factorial
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursive-helper-functions" title="Recursive Helper Functions" class="md-nav__link">
+    Recursive Helper Functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-multiple-recursion" title="2. Multiple Recursion" class="md-nav__link">
+    2. Multiple Recursion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-writing-a-recursive-function" title="3. Writing a Recursive Function" class="md-nav__link">
+    3. Writing a Recursive Function
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Section Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Section Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec1-linux/" title="Section 1: Linux Development Environment" class="md-nav__link">
+      Section 1: Linux Development Environment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec2-c-basics/" title="Section 2: Compiling and Running C Programs" class="md-nav__link">
+      Section 2: Compiling and Running C Programs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec3-c-build-test/" title="Section 3: C Build and Test Frameworks" class="md-nav__link">
+      Section 3: C Build and Test Frameworks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec4-c-test-debug/" title="Section 4: C Testing and Debugging" class="md-nav__link">
+      Section 4: C Testing and Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec5-c-profiling/" title="Section 5: C Profiling for Performance and Memory Usage" class="md-nav__link">
+      Section 5: C Profiling for Performance and Memory Usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-single-recursion" title="1. Single Recursion" class="md-nav__link">
+    1. Single Recursion
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#factorial" title="Factorial" class="md-nav__link">
+    Factorial
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursive-helper-functions" title="Recursive Helper Functions" class="md-nav__link">
+    Recursive Helper Functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-multiple-recursion" title="2. Multiple Recursion" class="md-nav__link">
+    2. Multiple Recursion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-writing-a-recursive-function" title="3. Writing a Recursive Function" class="md-nav__link">
+    3. Writing a Recursive Function
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-T02-c-recursion.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="topic-2-c-recursion">Topic 2: C Recursion<a class="headerlink" href="#topic-2-c-recursion" title="Permanent link">&para;</a></h1>
+<p>This topic will discussion recursion, a powerful programming pattern that
+can greatly simplify implementing some common programming problems.
+Equally important, recursion will give us an opportunity to apply what we
+have learned with respect to functions, conditional statements, and
+iteration statements in a new context.</p>
+<p>Put simply, <em>recursion</em> is the process of defining a function in terms of
+itself. As an analogy, assume we wish to lookup the word "programming" in
+the dictionary:</p>
+<ul>
+<li><a href="https://www.dictionary.com/browse/programming">https://www.dictionary.com/browse/programming</a></li>
+</ul>
+<p>which provides this definition: "the act or process of planning or
+writing a program". That is not too helpful, since if we don't know the
+meaning of "programming" we likely do not know the meaning of "program".
+So let's look the word "programming" up as well:</p>
+<ul>
+<li><a href="https://www.dictionary.com/browse/program">https://www.dictionary.com/browse/program</a></li>
+</ul>
+<p>which provides eight definitions, one of which is "a precise sequence of
+instructions enabling a computer to perform a task; a piece of software."
+We might also want to learn the meaning of the word "computer" so we
+could look up this word as well:</p>
+<ul>
+<li><a href="https://www.dictionary.com/browse/computer">https://www.dictionary.com/browse/computer</a></li>
+</ul>
+<p>And so on. Let's take step back and write some pseudo-code for an
+algorithm that captures the process we used to define program:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>lookup( term )
+  foreach word in definition
+    if not understand word
+      lookup( word )
+</pre></div>
+</td></tr></table>
+
+<p>This is a <em>recursive</em> algorithm since it is defined in terms of itself.
+In defining <code>lookup</code> we might need to call <code>lookup</code> again one or more
+times. Eventually, the algorithm terminates when we understand all of the
+words in a given definition. In the rest of this topic, we will explore
+how to implement C recursion.</p>
+<h2 id="1-single-recursion">1. Single Recursion<a class="headerlink" href="#1-single-recursion" title="Permanent link">&para;</a></h2>
+<p>To illustrate single recursion, we will use two different examples. One
+to calculate the factorial of a number, and the other to reverse the
+digits in a decimal number.</p>
+<h3 id="factorial">Factorial<a class="headerlink" href="#factorial" title="Permanent link">&para;</a></h3>
+<p>Let's use an algorithm to compute the factorial of a number to illustrate
+<em>single recursion</em>. Recall from mathematics, that the factorial of a
+number (<span><span class="MathJax_Preview">n!</span><script type="math/tex">n!</script></span>) is:</p>
+<div>
+<div class="MathJax_Preview">
+n!=\begin{cases}
+  \; 1               &amp; \text{if $n = 0$} \\
+  \; n \times (n-1)! &amp; \text{if $n &gt; 0$}
+\end{cases}
+</div>
+<script type="math/tex; mode=display">
+n!=\begin{cases}
+  \; 1               & \text{if $n = 0$} \\
+  \; n \times (n-1)! & \text{if $n > 0$}
+\end{cases}
+</script>
+</div>
+<p>This is a recursive definition since defining <span><span class="MathJax_Preview">n!</span><script type="math/tex">n!</script></span> depends on the
+definition of <span><span class="MathJax_Preview">(n-1)!</span><script type="math/tex">(n-1)!</script></span>. Here is an example of the factorial of the
+numbers 0 through 5.</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+  0! &amp;= 1                                           \\
+  1! &amp;= 1                                           \\
+  2! &amp;= 1 \times 2 = 2                              \\
+  3! &amp;= 1 \times 2 \times 3 = 6                     \\
+  4! &amp;= 1 \times 2 \times 3 \times 4 = 24           \\
+  5! &amp;= 1 \times 2 \times 3 \times 4 \times 5 = 120
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+  0! &= 1                                           \\
+  1! &= 1                                           \\
+  2! &= 1 \times 2 = 2                              \\
+  3! &= 1 \times 2 \times 3 = 6                     \\
+  4! &= 1 \times 2 \times 3 \times 4 = 24           \\
+  5! &= 1 \times 2 \times 3 \times 4 \times 5 = 120
+\end{align}
+</script>
+</div>
+<p>A function to calculate the factorial of a given number using a <code>for</code>
+loop is shown below.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int factorial( int n )
+{
+  int result = 1;
+  for ( int i = 1; i &lt;= n; i++ )
+    result = result * i;
+  return result;
+}
+</pre></div>
+</td></tr></table>
+
+<p>This is a perfectly valid iterative algorithm, but notice that it really
+has very little in common wiht the original mathematical formulation. The
+original mathematical formulation does not have any notion of a <code>result</code>
+variale or a loop. The mathematical formalation is inherently recursive,
+and so this begs the question: Can we implement factorial more directly
+using recursion? A function which uses a recursive algorithm is shown
+below.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int factorial( int n )
+{
+  if ( n == 0 )
+    return 1;
+  if ( n &gt; 1 )
+    return n * factorial( n - 1 );
+}
+</pre></div>
+</td></tr></table>
+
+<p>The conditional statement on lines 5 and 6 is called the <em>recursive
+case</em>. The recursive case is where we make the recursive function call
+usually with some kind of more limited version of the current function's
+input parameters. In this case, we decrement the input parameter by one
+before passing it into the recursive function call. In our original
+analogy, this is where we lookup a new word which we do not understand in
+the current definition. This is function is using <em>single recursion</em>
+since it each function will at most call itself once. The conditional
+statement on lines 3 and 4 is called the <em>base case</em>. The base case is
+where we stop the recursion and start "unwinding" the recursive function
+calls. In our original analogty, this is where we understand all of the
+words in a definition).</p>
+<p>So far, recursion can still seem a little like magic. How is really
+possible for a function to be defined in terms of itself? We can use the
+exact same "by-hand" execution approach we learned in the previous topic
+to really make this concrete. A state diagram for calculating <span><span class="MathJax_Preview">3!</span><script type="math/tex">3!</script></span> is
+shown below.</p>
+<p>FIG</p>
+<p>Notice that the recursive function callee stack frames are <em>nested</em>
+within the caller stack frames. We sometimes make the vertical lines for
+these nested stack frames "merge" together once we get to more than two
+levels of nesting. Also notice how we must allocate some temporary
+storage on the caller's stack frame for the return value of the recursive
+function call. This is because we need some place to put the return value
+before deallocating the callee's stack frame. Finally, notice how we
+carefully use small numbers in a circle to record the location of each
+function call.</p>
+<p>Let's spend some time thinking more critically about this recursive
+function. What happens if <code>n</code> is negative? The function would reach the
+end of the function body without executing a return statement. This
+causes undefined behavior. The function might return 0 or might return a
+random value or might crash the program. The compiler may or may not give
+a warning. Let's modify our function to return 1 if <code>n</code> is negative, and
+to ensure it is obvious to both the compiler and the reader that this
+function always reaches a <code>return</code> statement regardless of the input
+value.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int factorial( int n )
+{
+  if ( n &lt;= 0 )
+    return 1;
+
+  return n * factorial( n - 1 );
+}
+</pre></div>
+</td></tr></table>
+
+<p>DISCUSS ITERATIVE VS RECURSIVE</p>
+<h3 id="recursive-helper-functions">Recursive Helper Functions<a class="headerlink" href="#recursive-helper-functions" title="Permanent link">&para;</a></h3>
+<p>Assume we are given a decimal number, and we wish to produce a new
+decimal number with the decimal digits in reverse order. While it is
+certainly possible to solve this problem using an interative algorithm, a
+recursive algorithm can also offer an elegant solution.</p>
+<p>Let's reason through a recursive algorithm. Each recursive function call
+will take a input with some number of decimal digits.</p>
+<p>process one digit of the input starting from the least significant
+to the most significant digit. The base case is when we have finished
+processing all of the digits in the input. Then the crititical step is to
+answer the two recursive questions:</p>
+<ol>
+<li>
+<p>What is the base case?</p>
+<ul>
+<li>When we have finished processing all of the digits in the input.
+    In other words when the input is zero.</li>
+</ul>
+</li>
+<li>
+<p>How can we decompose a larger problem into one or more smaller problems?</p>
+<ul>
+<li>If we have a number with <span><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span> digits, then we can remove the least
+    significant digit and reverse the remaining <span><span class="MathJax_Preview">d-1</span><script type="math/tex">d-1</script></span> digits. The
+    larger problem is to reverse a number with <span><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span> digits, and the
+    smaller problem is to reverse a number with <span><span class="MathJax_Preview">d-1</span><script type="math/tex">d-1</script></span> digits.</li>
+</ul>
+</li>
+<li>
+<p>How can we solve the larger problem by combining the smaller problems?</p>
+<ul>
+<li>Once we have reversed the remaining <span><span class="MathJax_Preview">d-1</span><script type="math/tex">d-1</script></span> digits, we can create a
+    <span><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span> digit number by taking the previously removed least
+    significant digit and making it the new most significant digit
+    along with the reversed <span><span class="MathJax_Preview">d-1</span><script type="math/tex">d-1</script></span> digits.</li>
+</ul>
+</li>
+</ol>
+<p>Let's sketch an initial attempt at an implementation of this algorithm.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int reverse_digits( int input )
+{
+  if ( input &lt; 10 )
+    return input;
+
+  int x = input % 10;
+  int y = input / 10;
+  int result = reverse_digits( y );
+  // how do we combine the result and x?
+  ...
+}
+</pre></div>
+</td></tr></table>
+
+<p>MAYBE we should go back to the fixed four digit version?</p>
+<p>Unfortunately, it is not clear how to actually implement using the
+smaller problem to solve the larger problem. We would need to know what
+to multiply <code>x</code> by to ensure we can move it to the most significant
+digit.</p>
+<p>A recursive
+function implementing this algorithm is shown below.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int reverse_digits_h( int place, int x )
+{
+  if ( place == 10 )
+    return x;
+
+  int y = x % 10;
+  int z = reverse_digits_h( place/10, x/10 );
+  return y*place + z;
+}
+
+int reverse_digits( int x )
+{
+  return reverse_digits_h( 1000, x );
+}
+</pre></div>
+</td></tr></table>
+
+<p>This recursive function uses a <em>helper</em> function. This is often necessary
+when we need to pass along additional state that is not part of the
+original recursive function. Here we use <code>place</code> to keep track of what
+place value we are currently processing. We start by setting <code>place</code> to
+be 1000 since the very first recursive function call will be putting a
+new digit into the thousands place. Each recursive function call will
+move the place value over one digit (i.e., divide by 10) and also move
+<code>x</code> over by one digit (i.e., divid by 10). Line 6 calculates the least
+significant digit, line 7 uses a recursive function call to reverse the
+remaining digits (i.e., solves a smaller subproblem), and line 8 puts the
+least significant digit back in the most signficant digit location.</p>
+<p>DISCUSS ITERATIVE VS RECURSIVE</p>
+<details class="question"><summary>Activity 1: State Diagram for Count Digits</summary><p>Draw a state diagram corresponding to the execution of this program.
+Remember to show the function calle stack frames as being nested.</p></details><details class="question"><summary>Activity 2: Write a Recursive Function to Find a Digit</summary><p>Use Repl.it to develop a function with the following declaration:</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int find_digit( int x, int digit )
+</pre></div>
+</td></tr></table>
+<p>This function should treat <code>x</code> as a decimal number. It should compare
+each decimal digit in <code>x</code> to the given <code>digit</code> and return 1 if the
+given <code>digit</code> is found within <code>x</code>. It should return 0 otherwise.
+Ignore leading zeros. For example, if <code>x</code> is 1234 then it should
+return 1 if the given <code>digit</code> is <code>1</code>, <code>2</code>, <code>3</code>, or <code>4</code> and should
+return 0 if the given <code>digit</code> is <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code>, or <code>0</code>. You
+must use a recursive algorithm. Think critically about what is the
+base case and what is the recursive case. Here is an initial Repl.it
+to get you started.</p><ul><li><a href="https://repl.it/@cbatten/ece2400-T02-notes-activity2">https://repl.it/@cbatten/ece2400-T02-notes-activity2</a></li></ul></details><details class="question"><summary>Activity 3: Write an Iterative Function to Find a Digit</summary><p>Use Repl.it to develop a function with the same declaration as in the
+previous activity, except use an iterative instead of a recursive
+algorithm. Here is an initial Repl.it to get you started. <em>Hint: You
+will need to use a while loop since the number of digits in <code>x</code> is
+initially unknown.</em></p><ul><li><a href="https://repl.it/@cbatten/ece2400-T02-notes-activity2">https://repl.it/@cbatten/ece2400-T02-notes-activity2</a></li></ul></details><h2 id="2-multiple-recursion">2. Multiple Recursion<a class="headerlink" href="#2-multiple-recursion" title="Permanent link">&para;</a></h2>
+<h2 id="3-writing-a-recursive-function">3. Writing a Recursive Function<a class="headerlink" href="#3-writing-a-recursive-function" title="Permanent link">&para;</a></h2>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ece2400-T01-intro-c/" title="Topic 1: Introduction to C" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Topic 1: Introduction to C
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../ece2400-sec1-linux/" title="Section 1: Linux Development Environment" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Section 1: Linux Development Environment
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 Christopher Batten
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.3",url:{base:".."}})</script>
+      
+        <script src="../js/extras.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

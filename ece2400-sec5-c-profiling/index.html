@@ -38,7 +38,7 @@
     
     
       
-        <title>Ece2400 sec5 c profiling - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
+        <title>Section 5: C Profiling for Performance and Memory Usage - ECE 2400 / ENGRD 2140 Computer Systems Programming Docs</title>
       
     
     
@@ -128,7 +128,7 @@
                 ECE 2400 / ENGRD 2140 Computer Systems Programming Docs
               </span>
               <span class="md-header-nav__topic">
-                Ece2400 sec5 c profiling
+                Section 5: C Profiling for Performance and Memory Usage
               </span>
             
           
@@ -200,7 +200,9 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -222,7 +224,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../ece2400-sec1-linux/" title="Section Notes" class="md-tabs__link">
+        <a href="../ece2400-sec1-linux/" title="Section Notes" class="md-tabs__link md-tabs__link--active">
           Section Notes
         </a>
       
@@ -306,6 +308,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-T02-c-recursion/" title="Topic 2: C Recursion" class="md-nav__link">
+      Topic 2: C Recursion
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -315,10 +329,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Section Notes
@@ -378,6 +394,84 @@
   </li>
 
         
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Section 5: C Profiling for Performance and Memory Usage
+      </label>
+    
+    <a href="./" title="Section 5: C Profiling for Performance and Memory Usage" class="md-nav__link md-nav__link--active">
+      Section 5: C Profiling for Performance and Memory Usage
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
+    1. The ecelinux Machines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-warmup-implement-array-average-functions" title="2. Warmup: Implement Array Average Functions" class="md-nav__link">
+    2. Warmup: Implement Array Average Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-measuring-execution-time" title="3. Measuring Execution Time" class="md-nav__link">
+    3. Measuring Execution Time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-profiling-execution-time" title="4. Profiling Execution Time" class="md-nav__link">
+    4. Profiling Execution Time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-profiling-memory-usage" title="4. Profiling Memory Usage" class="md-nav__link">
+    4. Profiling Memory Usage
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -404,22 +498,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-warmup-implement-array-average-functions" title="1. Warmup: Implement Array Average Functions" class="md-nav__link">
-    1. Warmup: Implement Array Average Functions
+  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
+    1. The ecelinux Machines
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-measuring-execution-time" title="2. Measuring Execution Time" class="md-nav__link">
-    2. Measuring Execution Time
+  <a href="#2-warmup-implement-array-average-functions" title="2. Warmup: Implement Array Average Functions" class="md-nav__link">
+    2. Warmup: Implement Array Average Functions
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-profiling-execution-time" title="3. Profiling Execution Time" class="md-nav__link">
-    3. Profiling Execution Time
+  <a href="#3-measuring-execution-time" title="3. Measuring Execution Time" class="md-nav__link">
+    3. Measuring Execution Time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-profiling-execution-time" title="4. Profiling Execution Time" class="md-nav__link">
+    4. Profiling Execution Time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-profiling-memory-usage" title="4. Profiling Memory Usage" class="md-nav__link">
+    4. Profiling Memory Usage
   </a>
   
 </li>
@@ -444,31 +552,39 @@
                 
                 
                 <h1 id="section-5-c-profiling">Section 5: C Profiling<a class="headerlink" href="#section-5-c-profiling" title="Permanent link">&para;</a></h1>
-<p>In this discussion, we will explore how to measure the performance of
-a C evaluation program.</p>
-<p>Follow the same process as in the previous discussion section. You need
-to login to a workstation with your NetID and password. Start a terminal
-and then don't forget to source the setup script!</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
-</pre></div>
-</td></tr></table>
-
-<p>Now clone the github repo for this discussion section. No need to fork
-the repo, just clone it.</p>
+<p>In this discussion, we will explore how to measure the performance of a C
+evaluation program and deal with dynamic memory issues.</p>
+<h2 id="1-the-ecelinux-machines">1. The ecelinux Machines<a class="headerlink" href="#1-the-ecelinux-machines" title="Permanent link">&para;</a></h2>
+<p>Follow the same process as in the last section.</p>
+<ul>
+<li>login to a workstation with your NetID and password</li>
+<li>use MobaXterm to log into the <code>ecelinux</code> servers</li>
+<li>make sure you source the setup script</li>
+<li>verify ECE2400 is in your prompt</li>
+</ul>
+<p>Now clone the GitHub repo we will be using in this section using the
+following commands:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
+% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
 % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% git clone git@github.com:cornell-ece2400/ece2400-sec5-c-profiling sec5
+% git clone git@github.com:cornell-ece2400/ece2400-sec5 sec5
 % <span class="nb">cd</span> sec5
-% ls
+% tree
 </pre></div>
 </td></tr></table>
 
-<h2 id="1-warmup-implement-array-average-functions">1. Warmup: Implement Array Average Functions<a class="headerlink" href="#1-warmup-implement-array-average-functions" title="Permanent link">&para;</a></h2>
-<p>Take a look at the <code>array-eval.c</code> source file. You will see four
+<p>The given <code>src</code> directory includes the following files:</p>
+<ul>
+<li><code>stack-array-eval.c</code>: source and main for using an array of elements on stack</li>
+<li><code>heap-array-eval.c</code>: source and main for using an array of elements on heap</li>
+</ul>
+<h2 id="2-warmup-implement-array-average-functions">2. Warmup: Implement Array Average Functions<a class="headerlink" href="#2-warmup-implement-array-average-functions" title="Permanent link">&para;</a></h2>
+<p>Take a look at the <code>stack-array-eval.c</code> source file. You will see four
 functions:</p>
 <ul>
 <li><code>init_array</code> : initialize an array of integers with random values</li>
@@ -490,7 +606,7 @@ the given array. Compile and execute your program a couple of times,
 changing the seed passed into <code>srand</code> each time. Verify that the value
 returned by <code>avg_array</code> always equals the value returned by <code>avg_parray</code>
 and that the average is always around 500.</p>
-<h2 id="2-measuring-execution-time">2. Measuring Execution Time<a class="headerlink" href="#2-measuring-execution-time" title="Permanent link">&para;</a></h2>
+<h2 id="3-measuring-execution-time">3. Measuring Execution Time<a class="headerlink" href="#3-measuring-execution-time" title="Permanent link">&para;</a></h2>
 <p>Now assume we want to quantitatively measure how long it takes to
 initialize both arrays and then calculate the averages. To do this, we
 can use the time functions provided by the C standard library in the
@@ -558,8 +674,18 @@ this to quantitatively measure how long it takes to run an experiment.</p>
 </pre></div>
 </td></tr></table>
 
-<p>Modify the evaluation program to measure how long one experiment takes.
-You will notice that the execution time is very short ... so short that
+<p>Modify the <code>stack-array-eval.c</code> program to measure how long one
+experiment takes, compile the program with optimizations, and then run
+the experiment.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
+% gcc -Wall -O3 -o stack-array-eval stack-array-eval.c
+% ./stack-array-eval
+</pre></div>
+</td></tr></table>
+
+<p>You will notice that the execution time is very short ... so short that
 it is too fast for the resolution of the timer. We need to run a subtrial
 in a loop many times to make sure we have a long enough experiment that
 we can get a reasonable accurate time measurement. Put the subtrial in a
@@ -699,52 +825,141 @@ evaluation program to look like this:</p>
 
 <p>Now use your evaluation program to quantitatively measure the execution
 time of this experiment.</p>
-<h2 id="3-profiling-execution-time">3. Profiling Execution Time<a class="headerlink" href="#3-profiling-execution-time" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Experiment with turning optimizations on with the <code>-O3</code> command line
+option. Compare the performance of this experiment with and without
+optimizations.</p>
+</div>
+<h2 id="4-profiling-execution-time">4. Profiling Execution Time<a class="headerlink" href="#4-profiling-execution-time" title="Permanent link">&para;</a></h2>
 <p>The previous section enables us to measure the overall execution time,
 but we might also be interested to know which functions are taking the
 most time. This can help us focus on the important hotspots for
 optimization. We can use <em>profiling</em> to do this kind of performance
-analysis. We will look at two profiling tools: <code>gprof</code> and <code>perf</code>.</p>
-<p>Let's start by recompiling our program with support for profiling:</p>
+analysis. We will be using the <code>perf</code> tool to do this kind of profiling.
+It is important to turn debugging on when doing profiling so we can track
+the function call stacks. Combining the debugging (<code>-g</code>) with
+optimizations (<code>-O3</code>) will not slow down your program, but may
+occassionally produce some confusing situations when debugging or
+profiling since some of the original program might have been optimized
+away.</p>
+<p>Let's start by recompiling our program with support for debugging:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
-% gcc -Wall -pg -o array-eval array-eval.c
+% gcc -Wall -g -o stack-array-eval stack-array-eval.c
 </pre></div>
 </td></tr></table>
 
-<p>Notice the <code>-pg</code> command line option. This tells GCC to enable support
-for profiling. Now we run the program and use the <code>gprof</code> tool to analyze
-the execution time:</p>
+<p>We can now use <code>perf</code> to profile our program:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
+% perf record --call-graph dwarf ./stack-array-eval
+</pre></div>
+</td></tr></table>
+
+<p><code>perf</code> works by interrupts your program several times throughout the
+execution to take a "sample". During each sample, <code>perf</code> will stop your
+program and examine the stack to see the list of function stack frames
+that are currently allocated on the stack. <code>perf</code> will keep counters of
+every call stack it sees. After <code>perf</code> is done it will output the total
+number samples. If this number is too small then the profiling
+information may not be very accurate. We can display this information
+like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
+% perf script report stackcollapse
+stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main <span class="m">78</span>
+stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array <span class="m">8731</span>
+stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand <span class="m">1416</span>
+stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand<span class="p">;</span>__random <span class="m">4239</span>
+stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand<span class="p">;</span>__random<span class="p">;</span>__random_r <span class="m">6959</span>
+stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand@plt <span class="m">4</span>
+stack-array-eval<span class="p">;</span>main <span class="m">6</span>
+stack-array-eval<span class="p">;</span>main<span class="p">;</span>avg_array <span class="m">6025</span>
+stack-array-eval<span class="p">;</span>main<span class="p">;</span>avg_parray <span class="m">5230</span>
+stack-array-eval<span class="p">;</span>main<span class="p">;</span>init_parray <span class="m">6693</span>
+</pre></div>
+</td></tr></table>
+
+<p>There is one line for every unique call stack which was sampled. The line
+shows the name of the call stack and how many of the samples were taken
+with that call stack. In the above example, 8731 samples where taken with
+the call stack: <code>main</code> calling <code>init_array</code>. <code>perf</code> can also provide a
+more interactive view to explore this profile information.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
+% perf report
+</pre></div>
+</td></tr></table>
+
+<p>The report shows a line for various functions that consumed a significant
+amount of the execution time. The <em>Childen</em> column is the total time
+consumed in that function <em>including</em> any time spent in that function's
+children. The <em>Self</em> column is the time spent just in that function
+<em>excluding</em> any time spent in that function's children. The percentages
+are all a percentage of the total execution time. You can use the arrow
+keys to slect a function and you can press enter to show what functions
+called this function and to see more about the children of this function.</p>
+<p>You can also generate a flame graph, which is a very useful way to
+interactively visualize this profiling information:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
-% ./array-eval
-% gprof ./array-eval
+% perf script report stackcollapse <span class="p">|</span> flamegraph.pl &gt; graph.svg
+% firefox graph.svg
 </pre></div>
 </td></tr></table>
 
-<p>The output will have two parts: a flat profile and a call graph profile.
-The flat profile specifies how many times each function was called and
-how much time was spent in each function. The call graph profile
-additionally indicates what exact sequence of function calls led let to a
-specific function call, and how much time was spent in that specific
-function call. Why do you think more time is spent in <code>init_array</code>?</p>
-<p>Let's now use a different tool called <code>perf</code>:</p>
+<p>In a flame graph the x-axis shows the stack profile population, sorted
+alphabetically and the y-axis shows the stack depth counting form zero at
+the bottom. Each rectangle represents a stack frame. The wider a frame is
+is, the more often it was present in the stacks. The top edge shows what
+function was executing when the sample was taken, and beneath it is its
+ancestry. The colors are usually not significant, picked randomly to
+differentiate frames. See this great article for more on flame graphs:</p>
+<ul>
+<li>https://queue.acm.org/detail.cfm?id=2927301</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Experiment with turning optimizations on with the <code>-O3</code> command line
+option. Compare the profiling data for this experiment with and
+without optimizations.</p>
+</div>
+<h2 id="4-profiling-memory-usage">4. Profiling Memory Usage<a class="headerlink" href="#4-profiling-memory-usage" title="Permanent link">&para;</a></h2>
+<p>The previous sections focused on performance, but we also care about
+memory usage. Valgrind is a tool specifically designed for memory
+debugging, memory leak detection, and memory profiling. Take a look at
+the <code>heap-array-eval.c</code> file. Compile and run this file to test its
+performance. Unfortunately, this program has a memory leak since the
+arrays are allocated on the heap by never deallocated. We can use
+valgrind to detect this leak:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
-% perf record ./array-eval
-% perf report --stdio
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
+% gcc -Wall -o heap-array-eval heal-array-eval.c
+% ./heap-array-eval
+% valgrind --leak-check<span class="o">=</span>yes ./heap-array-eval
 </pre></div>
 </td></tr></table>
 
-<p>The output will show a flat profile, but it also includes how much time
-was spent in various functions contained in the standard C library. Does
-this information help explain why more time is spent in <code>init_array</code>?</p>
-<p>We can use these profiling tools to help identify hotspots in our code
-for optimization. Hotspots might be due to a small function which is
-called many, many times, or a function which is only called a few times
-but takes a very long time to execute.</p>
+<p>Unfortuntaely, Valgrind can slow your program down by a factor of 10x. So
+to speed things up, change the <code>nsubtrials</code> to be 1. Valgrind will report
+the memory leak and even identify the line in the code which allocated
+the variables which were then never deallocated. Add an approriate call
+to <code>free</code> to fix the memory leak, and then rerun Valgrind to verify that
+the problem has been fixed.</p>
                 
                   
                 
@@ -761,6 +976,27 @@ but takes a very long time to execute.</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ece2400-sec4-c-test-debug/" title="Section 4: C Testing and Debugging" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Section 4: C Testing and Debugging
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -790,6 +1026,8 @@ but takes a very long time to execute.</p>
       <script>app.initialize({version:"1.0.3",url:{base:".."}})</script>
       
         <script src="../js/extras.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
     
     
