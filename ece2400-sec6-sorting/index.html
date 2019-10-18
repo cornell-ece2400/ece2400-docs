@@ -605,10 +605,36 @@ following commands:</p>
 </td></tr></table>
 
 <p>The repository includes the following files:</p>
-<ul>
-<li><code>stack-array-eval.c</code>: source and main for using an array of elements on stack</li>
-<li><code>heap-array-eval.c</code>: source and main for using an array of elements on heap</li>
-</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>.
+├── CMakeLists.txt
+├── src
+│   ├── ece2400-stdlib.c
+│   ├── ece2400-stdlib.h
+│   ├── insertion-sort.h
+│   ├── insertion-sort.c
+│   └── insertion-sort-adhoc.c
+├── test
+│   ├── utst.h
+│   └── insertion-sort-directed-test.c
+└── eval
+    ├── insertion-sort-eval.c
+    └── sort.dat
+</pre></div>
+</td></tr></table>
+
 <h2 id="2-implementing-sorted-insert-helper-function">2. Implementing Sorted Insert Helper Function<a class="headerlink" href="#2-implementing-sorted-insert-helper-function" title="Permanent link">&para;</a></h2>
 <p>Take a look at the <code>insertion-sort.c</code> source file to find the
 <code>sorted_insert</code> function is a helper function. It takes as input an
