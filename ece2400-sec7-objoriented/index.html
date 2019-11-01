@@ -780,6 +780,11 @@ operator is to first implement two private helper member functions:</p>
 <li>copy constructor calls <code>copy</code></li>
 <li>assignment operator calls <code>clear</code> then <code>copy</code></li>
 </ul>
+<p>Implementing copy can be a little tricky. The easiest (but not the most
+efficient) algorithm is to just iterate through the given list and call
+<code>push_front</code> for each item. Unfortunately, this will result in the new
+copy being in the reverse order ... but then you can call the <code>reverse</code>
+method to make sure the items are in the right order.</p>
 <p>When you are finished use the corresponding directed test cases to verify
 your implementation is working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
