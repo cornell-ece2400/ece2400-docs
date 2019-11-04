@@ -465,13 +465,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-implementing-iterators" title="3. Implementing Iterators" class="md-nav__link">
-    3. Implementing Iterators
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#3-testing-push-front" title="3. Testing Push Front" class="md-nav__link">
     3. Testing Push Front
   </a>
@@ -545,13 +538,6 @@
         <li class="md-nav__item">
   <a href="#2-implementing-the-constructor-destructor-push-front-print" title="2. Implementing the Constructor, Destructor, Push Front, Print" class="md-nav__link">
     2. Implementing the Constructor, Destructor, Push Front, Print
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-implementing-iterators" title="3. Implementing Iterators" class="md-nav__link">
-    3. Implementing Iterators
   </a>
   
 </li>
@@ -669,17 +655,15 @@ public member functions we will be implementing in this lab.</p>
 <li><code>SListInt( const SListInt&amp; lst )</code>: copy constructor</li>
 <li><code>SListInt&amp; operator=( const SListInt&amp; lst )</code>: assignment operator</li>
 <li><code>void push_front( int v )</code>: push item on front of list</li>
+<li><code>int at( size_t idx )</code>: return item at given index</li>
 <li><code>void reverse()</code>: reverse all items in list</li>
 <li><code>void print() const</code>: print the list</li>
-<li><code>const Itr begin() const</code>: return an iterator to beginning of list</li>
-<li><code>const Itr end() const</code>: return an iterator to end of list</li>
 </ul>
 <p>We also include two private helper member functions:</p>
 <ul>
 <li><code>void copy( const SListInt&amp; lst )</code>: copy <code>lst</code> into this list</li>
 <li><code>void clear()</code>: clear this list</li>
 </ul>
-<p>And a variety of free operator overloading functions for iterators.</p>
 <h2 id="2-implementing-the-constructor-destructor-push-front-print">2. Implementing the Constructor, Destructor, Push Front, Print<a class="headerlink" href="#2-implementing-the-constructor-destructor-push-front-print" title="Permanent link">&para;</a></h2>
 <p>Let's start by implementing these functions:</p>
 <ul>
@@ -693,29 +677,6 @@ public member functions we will be implementing in this lab.</p>
 <code>clear</code>. Feel free to review the lectures notes for help on how to
 implement these functions. When you are finished use adhoc testing to
 quickly see if your data structure is basically working:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/src
-% g++ -Wall -o slist-int-adhoc slist-int-adhoc.cc SListInt.cc
-% ./slist-int-adhoc
-</pre></div>
-</td></tr></table>
-
-<h2 id="3-implementing-iterators">3. Implementing Iterators<a class="headerlink" href="#3-implementing-iterators" title="Permanent link">&para;</a></h2>
-<p>Iterators are an elegant abstraction that can enable users of your data
-structure to efficiently <em>iterate</em> through a data structure without
-exposing the internal implementation details. Take a close look the
-implementation of iterators both in the header and source file. Modify
-the adhoc test to print out the list using iterators like this:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>for ( auto itr = lst.begin(); itr != lst.end(); itr++ )
-  printf( &quot;%d &quot;, *itr );
-printf( &quot;\n&quot; );
-</pre></div>
-</td></tr></table>
-
-<p>Run your adhoc testing to experiment with iterators.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/src
