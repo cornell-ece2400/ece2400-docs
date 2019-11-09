@@ -674,8 +674,8 @@ following commands:</p>
 │   ├── slist-iobj-directed-test.cc
 │   └── CMakeLists.txt
 └── eval
-    ├── slist-int-reverse-eval.cc
-    └── slist-iobj-reverse-eval.cc
+    ├── slist-int-eval.cc
+    └── slist-iobj-eval.cc
 </pre></div>
 </td></tr></table>
 
@@ -722,8 +722,9 @@ testing to quickly see if your data structure is basically working:</p>
 <p>Obviously, we want to do more than just ad-hoc testing. We have provided
 you a directed test case to test the basic functionality we have
 implemented so far. Take a look at this directed test case in
-<code>slist-iobj-directed-test.c</code>. You can build and run this test case like
-this:</p>
+<code>slist-iobj-directed-test.c</code>. You will need to implement the <code>at</code> member
+function to pass the very first directed test. Go ahead and implement
+<code>at</code> then build and run this test case like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -803,7 +804,7 @@ your implementation is working:</p>
 <h2 id="6-evaluating-reverse">6. Evaluating Reverse<a class="headerlink" href="#6-evaluating-reverse" title="Permanent link">&para;</a></h2>
 <p>We have provided you an evaluation program to quantitatively evaluate the
 execution time of the linked list data structure and reverse algorithm.
-Take a look at this evaluation program in <code>list-iobj-reverse-eval.c</code>. You
+Take a look at this evaluation program in <code>list-iobj-eval.c</code>. You
 can build and run this evaluation program like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -813,35 +814,33 @@ can build and run this evaluation program like this:</p>
 % mkdir build-eval
 % <span class="nb">cd</span> build-eval
 % cmake -DCMAKE_BUILD_TYPE<span class="o">=</span><span class="nb">eval</span> ..
-% make slist-iobj-reverse-eval
+% make slist-iobj-eval
 </pre></div>
 </td></tr></table>
 
 <p>You will see that the evaluation program takes one command line argument
 specifying the size of the input array. Let's do an experiment to see how
-the execution time of the reverse algorithm grows as a function of the
-input array size.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build-eval
-% ./slist-iobj-reverse-eval  <span class="m">5000</span>
-% ./slist-iobj-reverse-eval <span class="m">10000</span>
-% ./slist-iobj-reverse-eval <span class="m">15000</span>
-% ./slist-iobj-reverse-eval <span class="m">20000</span>
-% ./slist-iobj-reverse-eval <span class="m">25000</span>
-% ./slist-iobj-reverse-eval <span class="m">30000</span>
-% ./slist-iobj-reverse-eval <span class="m">35000</span>
-% ./slist-iobj-reverse-eval <span class="m">40000</span>
-% ./slist-iobj-reverse-eval <span class="m">45000</span>
-% ./slist-iobj-reverse-eval <span class="m">50000</span>
+the execution time of linked list data structure and reverse algorithm
+grows as a function of the input array size.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build-eval
+% ./slist-iobj-eval <span class="m">10000</span>
+% ./slist-iobj-eval <span class="m">20000</span>
+% ./slist-iobj-eval <span class="m">30000</span>
+% ./slist-iobj-eval <span class="m">40000</span>
+% ./slist-iobj-eval <span class="m">50000</span>
+</pre></div>
+</td></tr></table>
+
+<p>You can use <code>seq</code> and <code>xargs</code> to run a command multiple times with
+different parameters in a single step like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build-eval
+% seq <span class="m">10000</span> <span class="m">10000</span> <span class="m">50000</span> <span class="p">|</span> xargs -l ./slist-iobj-eval
 </pre></div>
 </td></tr></table>
 
@@ -851,29 +850,27 @@ two columns. The first column should be the size and the second column
 should be the execution time.</p>
 <p>Let's also reproduce the data from last week when we worked on a
 (non-polymorphic) object-oriented singly linked list.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build-eval
-% make slist-int-reverse-eval
-% ./slist-int-reverse-eval  <span class="m">5000</span>
-% ./slist-int-reverse-eval <span class="m">10000</span>
-% ./slist-int-reverse-eval <span class="m">15000</span>
-% ./slist-int-reverse-eval <span class="m">20000</span>
-% ./slist-int-reverse-eval <span class="m">25000</span>
-% ./slist-int-reverse-eval <span class="m">30000</span>
-% ./slist-int-reverse-eval <span class="m">35000</span>
-% ./slist-int-reverse-eval <span class="m">40000</span>
-% ./slist-int-reverse-eval <span class="m">45000</span>
-% ./slist-int-reverse-eval <span class="m">50000</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build-eval
+% make slist-int-eval
+% ./slist-int-eval <span class="m">10000</span>
+% ./slist-int-eval <span class="m">20000</span>
+% ./slist-int-eval <span class="m">30000</span>
+% ./slist-int-eval <span class="m">40000</span>
+% ./slist-int-eval <span class="m">50000</span>
+</pre></div>
+</td></tr></table>
+
+<p>Again, you can use <code>seq</code> and <code>xargs</code> to run a command multiple times with
+different parameters in a single step like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build-eval
+% seq <span class="m">10000</span> <span class="m">10000</span> <span class="m">50000</span> <span class="p">|</span> xargs -l ./slist-int-eval
 </pre></div>
 </td></tr></table>
 

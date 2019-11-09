@@ -758,29 +758,25 @@ the input array, and the second is the size of the input array. Let's do
 an experiment to see how the execution time of your insertion sort
 implementation grows as a function of the input array size for an input
 array with random input values.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6/build-eval
-% ./insertion-sort-eval urandom0 <span class="m">100</span>
-% ./insertion-sort-eval urandom0 <span class="m">1000</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6/build-eval
 % ./insertion-sort-eval urandom0 <span class="m">2000</span>
-% ./insertion-sort-eval urandom0 <span class="m">3000</span>
 % ./insertion-sort-eval urandom0 <span class="m">4000</span>
-% ./insertion-sort-eval urandom0 <span class="m">5000</span>
 % ./insertion-sort-eval urandom0 <span class="m">6000</span>
-% ./insertion-sort-eval urandom0 <span class="m">7000</span>
 % ./insertion-sort-eval urandom0 <span class="m">8000</span>
-% ./insertion-sort-eval urandom0 <span class="m">9000</span>
 % ./insertion-sort-eval urandom0 <span class="m">10000</span>
+</pre></div>
+</td></tr></table>
+
+<p>You can use <code>seq</code> and <code>xargs</code> to run a command multiple times with
+different parameters in a single step like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6/build-eval
+% seq <span class="m">2000</span> <span class="m">2000</span> <span class="m">10000</span> <span class="p">|</span> xargs -l ./insertion-sort-eval urandom0
 </pre></div>
 </td></tr></table>
 
