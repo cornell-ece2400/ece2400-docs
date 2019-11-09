@@ -33,6 +33,7 @@ theme:
 # Extensions
 
 markdown_extensions:
+  - pymdownx.arithmatex
   - pymdownx.details
   - toc:
       permalink: true
@@ -47,6 +48,7 @@ extra_css:
 
 extra_javascript:
   - 'js/extras.js'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 
 # Pages
 
@@ -59,16 +61,17 @@ nav:
 
    - Topic Notes:
       - 'Topic 1: Introduction to C': ece2400-T01-intro-c.md
-
-#     - 'Topic 2: C Recursion': ece2400-T01-recursion-notes.md
+      - 'Topic 2: C Recursion': ece2400-T02-c-recursion.md
 
    - Section Notes:
       - 'Section 1: Linux Development Environment': ece2400-sec1-linux.md
       - 'Section 2: Compiling and Running C Programs': ece2400-sec2-c-basics.md
       - 'Section 3: C Build and Test Frameworks': ece2400-sec3-c-build-test.md
       - 'Section 4: C Testing and Debugging': ece2400-sec4-c-test-debug.md
-
-#     - 'Section 5: C Profiling for Performance and Memory Usage': ece2400-sec5-c-profiling.md
+      - 'Section 5: C Profiling for Performance and Memory Usage': ece2400-sec5-c-profiling.md
+      - 'Section 6: Sorting Lab': ece2400-sec6-sorting.md
+      - 'Section 7: Object-Oriented Programming Lab': ece2400-sec7-objoriented.md
+      - 'Section 8: Dynamic Polymorphism Lab': ece2400-sec8-dpoly.md
 
 # Next year make linux/git a single tutorial!
 

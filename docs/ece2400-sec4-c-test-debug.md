@@ -20,7 +20,7 @@ Follow the same process as in the last section.
 For this discussion section you will need to make a copy of the repo we
 will be using so you can push to it. Go to the section's repo here:
 
- - https://github.com/cornell-ece2400/ece2400-sec4
+ - <https://github.com/cornell-ece2400/ece2400-sec4>
 
 Click on the "Fork" button. Wait a few seconds and then visit the new
 copy of this repo in your own person GitHub workspace:
@@ -221,7 +221,7 @@ second is Codecov.io, an online service for visualizing code coverage.
 To start, you need to enable TravisCI for the remote repository on
 GitHub. Log into TravisCI using your GitHub ID and password:
 
- - https://travis-ci.org/profile
+ - <https://travis-ci.org/profile>
 
 Once you have signed in, you should go to your TravisCI profile and find
 the list of your public GitHub repositories. You may need to click Sync
@@ -232,7 +232,7 @@ been using in this tutorial (`githubid/ece2400-sec4`). After enabling
 TravisCI for the `githubid/ece2400-sec4` repository, you should be able
 to go to the TravisCI page for this repository:
 
- - https://travis-ci.org/githubid/ece2400-sec4
+ - `https://travis-ci.org/githubid/ece2400-sec4`
 
 TravisCI will report that there are no builds for this repository yet.
 TravisCI looks for a special file named `.travis.yml` in the top of your
@@ -248,13 +248,13 @@ push your local commits to the remote repository on GitHub. Revisit the
 TravisCI page for this repository, you should see TravisCI starting to
 build and run all of your tests.
 
- - https://travis-ci.org/githubid/ece2400-sec4
+ - `https://travis-ci.org/githubid/ece2400-sec4`
 
 Just like we can use TravisCI to automatically run tests, we can use
 Codecov.io to automatically prepare code coverage reports on every
 commit. You can see your code coverage reports here:
 
- - https://codecov.io/gh/githubid/ece2400-sec4
+ - `https://codecov.io/gh/githubid/ece2400-sec4`
 
 5. Try Steps for Programming Assignments
 --------------------------------------------------------------------------

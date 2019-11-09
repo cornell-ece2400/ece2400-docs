@@ -2,30 +2,39 @@
 Section 5: C Profiling
 ==========================================================================
 
-In this discussion, we will explore how to measure the performance of
-a C evaluation program.
+In this discussion, we will explore how to measure the performance of a C
+evaluation program and deal with dynamic memory issues.
 
-Follow the same process as in the previous discussion section. You need
-to login to a workstation with your NetID and password. Start a terminal
-and then don't forget to source the setup script!
+1. The ecelinux Machines
+--------------------------------------------------------------------------
+
+Follow the same process as in the last section.
+
+ - login to a workstation with your NetID and password
+ - use MobaXterm to log into the `ecelinux` servers
+ - make sure you source the setup script
+ - verify ECE2400 is in your prompt
+
+Now clone the GitHub repo we will be using in this section using the
+following commands:
 
     :::bash
     % source setup-ece2400.sh
-
-Now clone the github repo for this discussion section. No need to fork
-the repo, just clone it.
-
-    :::bash
     % mkdir -p ${HOME}/ece2400
     % cd ${HOME}/ece2400
-    % git clone git@github.com:cornell-ece2400/ece2400-sec5-c-profiling sec5
+    % git clone git@github.com:cornell-ece2400/ece2400-sec5 sec5
     % cd sec5
-    % ls
+    % tree
 
-1. Warmup: Implement Array Average Functions
+The repository includes the following files:
+
+ - `stack-array-eval.c`: source and main for using an array of elements on stack
+ - `heap-array-eval.c`: source and main for using an array of elements on heap
+
+2. Warmup: Implement Array Average Functions
 --------------------------------------------------------------------------
 
-Take a look at the `array-eval.c` source file. You will see four
+Take a look at the `stack-array-eval.c` source file. You will see four
 functions:
 
  - `init_array` : initialize an array of integers with random values
@@ -49,7 +58,7 @@ changing the seed passed into `srand` each time. Verify that the value
 returned by `avg_array` always equals the value returned by `avg_parray`
 and that the average is always around 500.
 
-2. Measuring Execution Time
+3. Measuring Execution Time
 --------------------------------------------------------------------------
 
 Now assume we want to quantitatively measure how long it takes to
@@ -97,7 +106,15 @@ this to quantitatively measure how long it takes to run an experiment.
 
     printf( "Elapsed time for trial is %f\n", elapsed );
 
-Modify the evaluation program to measure how long one experiment takes.
+Modify the `stack-array-eval.c` program to measure how long one
+experiment takes, compile the program with optimizations, and then run
+the experiment.
+
+    :::bash
+    % cd ${HOME}/ece2400/sec5
+    % gcc -Wall -o stack-array-eval stack-array-eval.c
+    % ./stack-array-eval
+
 You will notice that the execution time is very short ... so short that
 it is too fast for the resolution of the timer. We need to run a subtrial
 in a loop many times to make sure we have a long enough experiment that
@@ -180,50 +197,126 @@ evaluation program to look like this:
 Now use your evaluation program to quantitatively measure the execution
 time of this experiment.
 
-3. Profiling Execution Time
+!!! note "To-Do On Your Own"
+
+    Experiment with turning optimizations on with the `-O3` command line
+    option. Compare the performance of this experiment with and without
+    optimizations.
+
+4. Profiling Execution Time
 --------------------------------------------------------------------------
 
 The previous section enables us to measure the overall execution time,
 but we might also be interested to know which functions are taking the
 most time. This can help us focus on the important hotspots for
 optimization. We can use _profiling_ to do this kind of performance
-analysis. We will look at two profiling tools: `gprof` and `perf`.
+analysis. We will be using the `perf` tool to do this kind of profiling.
+It is important to turn debugging on when doing profiling so we can track
+the function call stacks. Combining the debugging (`-g`) with
+optimizations (`-O3`) will not slow down your program, but may
+occassionally produce some confusing situations when debugging or
+profiling since some of the original program might have been optimized
+away.
 
-Let's start by recompiling our program with support for profiling:
-
-    :::bash
-    % cd ${HOME}/ece2400/sec5
-    % gcc -Wall -pg -o array-eval array-eval.c
-
-Notice the `-pg` command line option. This tells GCC to enable support
-for profiling. Now we run the program and use the `gprof` tool to analyze
-the execution time:
+Let's start by recompiling our program with support for debugging:
 
     :::bash
     % cd ${HOME}/ece2400/sec5
-    % ./array-eval
-    % gprof ./array-eval
+    % gcc -Wall -g -o stack-array-eval stack-array-eval.c
 
-The output will have two parts: a flat profile and a call graph profile.
-The flat profile specifies how many times each function was called and
-how much time was spent in each function. The call graph profile
-additionally indicates what exact sequence of function calls led let to a
-specific function call, and how much time was spent in that specific
-function call. Why do you think more time is spent in `init_array`?
-
-Let's now use a different tool called `perf`:
+We can now use `perf` to profile our program:
 
     :::bash
     % cd ${HOME}/ece2400/sec5
-    % perf record ./array-eval
-    % perf report --stdio
+    % perf record --call-graph dwarf ./stack-array-eval
 
-The output will show a flat profile, but it also includes how much time
-was spent in various functions contained in the standard C library. Does
-this information help explain why more time is spent in `init_array`?
+`perf` works by interrupts your program several times throughout the
+execution to take a "sample". During each sample, `perf` will stop your
+program and examine the stack to see the list of function stack frames
+that are currently allocated on the stack. `perf` will keep counters of
+every call stack it sees. After `perf` is done it will output the total
+number samples. If this number is too small then the profiling
+information may not be very accurate. We can display this information
+like this:
 
-We can use these profiling tools to help identify hotspots in our code
-for optimization. Hotspots might be due to a small function which is
-called many, many times, or a function which is only called a few times
-but takes a very long time to execute.
+    :::bash
+    % cd ${HOME}/ece2400/sec5
+    % perf script report stackcollapse
+    stack-array-eval;_start;__libc_start_main;main 78
+    stack-array-eval;_start;__libc_start_main;main;init_array 8731
+    stack-array-eval;_start;__libc_start_main;main;init_array;rand 1416
+    stack-array-eval;_start;__libc_start_main;main;init_array;rand;__random 4239
+    stack-array-eval;_start;__libc_start_main;main;init_array;rand;__random;__random_r 6959
+    stack-array-eval;_start;__libc_start_main;main;init_array;rand@plt 4
+    stack-array-eval;main 6
+    stack-array-eval;main;avg_array 6025
+    stack-array-eval;main;avg_parray 5230
+    stack-array-eval;main;init_parray 6693
+
+There is one line for every unique call stack which was sampled. The line
+shows the name of the call stack and how many of the samples were taken
+with that call stack. In the above example, 8731 samples where taken with
+the call stack: `main` calling `init_array`. `perf` can also provide a
+more interactive view to explore this profile information.
+
+    :::bash
+    % cd ${HOME}/ece2400/sec5
+    % perf report
+
+The report shows a line for various functions that consumed a significant
+amount of the execution time. The _Childen_ column is the total time
+consumed in that function _including_ any time spent in that function's
+children. The _Self_ column is the time spent just in that function
+_excluding_ any time spent in that function's children. The percentages
+are all a percentage of the total execution time. You can use the arrow
+keys to slect a function and you can press enter to show what functions
+called this function and to see more about the children of this function.
+
+You can also generate a flame graph, which is a very useful way to
+interactively visualize this profiling information:
+
+    :::bash
+    % cd ${HOME}/ece2400/sec5
+    % perf script report stackcollapse | flamegraph.pl > graph.svg
+    % firefox graph.svg
+
+In a flame graph the x-axis shows the stack profile population, sorted
+alphabetically and the y-axis shows the stack depth counting form zero at
+the bottom. Each rectangle represents a stack frame. The wider a frame is
+is, the more often it was present in the stacks. The top edge shows what
+function was executing when the sample was taken, and beneath it is its
+ancestry. The colors are usually not significant, picked randomly to
+differentiate frames. See this great article for more on flame graphs:
+
+ - <https://queue.acm.org/detail.cfm?id=2927301>
+
+!!! note "To-Do On Your Own"
+
+    Experiment with turning optimizations on with the `-O3` command line
+    option. Compare the profiling data for this experiment with and
+    without optimizations.
+
+5. Profiling Memory Usage
+--------------------------------------------------------------------------
+
+The previous sections focused on performance, but we also care about
+memory usage. Valgrind is a tool specifically designed for memory
+debugging, memory leak detection, and memory profiling. Take a look at
+the `heap-array-eval.c` file. Compile and run this file to test its
+performance. Unfortunately, this program has a memory leak since the
+arrays are allocated on the heap by never deallocated. We can use
+valgrind to detect this leak:
+
+    :::bash
+    % cd ${HOME}/ece2400/sec5
+    % gcc -Wall -o heap-array-eval heap-array-eval.c
+    % ./heap-array-eval
+    % valgrind --leak-check=yes ./heap-array-eval
+
+Unfortuntaely, Valgrind can slow your program down by a factor of 10x. So
+to speed things up, change the `nsubtrials` to be 1. Valgrind will report
+the memory leak and even identify the line in the code which allocated
+the variables which were then never deallocated. Add an approriate call
+to `free` to fix the memory leak, and then rerun Valgrind to verify that
+the problem has been fixed.
 

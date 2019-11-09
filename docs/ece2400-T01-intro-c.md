@@ -1092,7 +1092,7 @@ repl.it for our `square` program is show below.
 
     Here is an initial Repl.it to get you started.
 
-     - <https://repl.it/@cbatten/ece2400-T01-notes-activity1>
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity11>
 
 5. Conditional Statements
 --------------------------------------------------------------------------
@@ -1158,7 +1158,7 @@ on whether or not `x` is positive or negative.
 
     Here is an initial Repl.it to get you started.
 
-     - <https://repl.it/@cbatten/ece2400-T01-notes-activity2>
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity12>
 
 ### 5.2. if/else Conditional Statements
 
@@ -1240,7 +1240,7 @@ each call to `abs` skipping some of the statements.
     number of Boolean operators. Can you implement this function with
     only five Boolean operators?
 
-     - <https://repl.it/@cbatten/ece2400-T01-notes-activity3>
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity14>
 
 ### 5.3. switch/case Conditional Statements
 
@@ -1318,7 +1318,7 @@ success or with an exit status of 1 to indicate an error.
 
     Here is an initial Repl.it to get you started.
 
-     - <https://repl.it/@cbatten/ece2400-T01-notes-activity4>
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity16>
 
 6. Iteration Statements
 --------------------------------------------------------------------------
@@ -1406,7 +1406,7 @@ body.
 
     Here is an initial Repl.it to get you started.
 
-     - <https://repl.it/@cbatten/ece2400-T01-notes-activity5>
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity18>
 
 ### 6.2. for Loops
 
@@ -1496,7 +1496,7 @@ times, and the increment statement is executed three times.
 
     Here is an initial Repl.it to get you started.
 
-     - <https://repl.it/@cbatten/ece2400-T01-notes-activity5>
+     - <https://repl.it/@cbatten/ece2400-T01-notes-activity18>
 
 7. Syntactic Sugar
 --------------------------------------------------------------------------
