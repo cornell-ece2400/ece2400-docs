@@ -691,11 +691,6 @@ public member functions we will be implementing in this lab.</p>
 <li><code>void reverse()</code>: reverse all items in list</li>
 <li><code>void print() const</code>: print the list</li>
 </ul>
-<p>We also include two private helper member functions:</p>
-<ul>
-<li><code>void copy( const SListIObj&amp; lst )</code>: copy <code>lst</code> into this list</li>
-<li><code>void clear()</code>: clear this list</li>
-</ul>
 <h2 id="2-implementing-the-constructor-destructor-push-front-print">2. Implementing the Constructor, Destructor, Push Front, Print<a class="headerlink" href="#2-implementing-the-constructor-destructor-push-front-print" title="Permanent link">&para;</a></h2>
 <p>Let's start by implementing these functions:</p>
 <ul>
@@ -703,13 +698,11 @@ public member functions we will be implementing in this lab.</p>
 <li><code>~SListIObj()</code>: destructor</li>
 <li><code>void push_front( int v )</code>: push item on front of list</li>
 <li><code>void print() const</code>: print the list</li>
-<li><code>void clear()</code>: clear this list</li>
 </ul>
-<p>The destructor simply calls <code>clear</code> so all you need to do is implement
-<code>clear</code>. Feel free to review the lectures notes for help on how to
-implement these functions. Make sure you delete not just the node but
-also the dynamically allocated <code>IObject</code>! When you are finished use adhoc
-testing to quickly see if your data structure is basically working:</p>
+<p>Feel free to review the lectures notes for help on how to implement these
+functions. Make sure you delete not just the node but also the
+dynamically allocated <code>IObject</code>! When you are finished use adhoc testing
+to quickly see if your data structure is basically working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/src
@@ -762,24 +755,15 @@ case to verify your implementation is working:</p>
 
 <h2 id="5-implementing-the-copy-constructor-and-assignment-operator">5. Implementing the Copy Constructor and Assignment Operator<a class="headerlink" href="#5-implementing-the-copy-constructor-and-assignment-operator" title="Permanent link">&para;</a></h2>
 <p>Because we need to implement a destructor, the rule of three tells us we
-also need to implement a copy constructor and assignment operator. One
-easy way to implement the destructor, copy constructor, assignment
-operator is to first implement two private helper member functions:</p>
-<ul>
-<li><code>void copy( const SListIObj&amp; lst )</code>: copy <code>lst</code> into this list</li>
-<li><code>void clear()</code>: clear this list</li>
-</ul>
-<p>Then we can just call <code>copy</code> and <code>clear</code> appropriately like this:</p>
-<ul>
-<li>destructor calls <code>clear</code></li>
-<li>copy constructor calls <code>copy</code></li>
-<li>assignment operator calls <code>clear</code> then <code>copy</code></li>
-</ul>
-<p>Implementing copy can be a little tricky. The easiest (but not the most
-efficient) algorithm is to just iterate through the given list and call
-<code>push_front</code> for each item. Unfortunately, this will result in the new
-copy being in the reverse order ... but then you can call the <code>reverse</code>
-method to make sure the items are in the right order.</p>
+also need to implement a copy constructor and assignment operator. These
+are simliar. The key difference is that the assignment operator must
+first clean up the current object before doing the copy, while the copy
+constructor can assume the current object is uninitialized. Implementing
+copy can be a little tricky. The easiest (but not the most efficient)
+algorithm is to just iterate through the given list and call <code>push_front</code>
+for each item. Unfortunately, this will result in the new copy being in
+the reverse order ... but then you can call the <code>reverse</code> method to make
+sure the items are in the right order.</p>
 <p>When you are finished use the corresponding directed test cases to verify
 your implementation is working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
