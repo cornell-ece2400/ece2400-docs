@@ -57,11 +57,6 @@ public member functions we will be implementing in this lab.
   - `void reverse()`: reverse all items in list
   - `void print() const`: print the list
 
-We also include two private helper member functions:
-
-  - `void copy( const SListInt& lst )`: copy `lst` into this list
-  - `void clear()`: clear this list
-
 2. Implementing the Constructor, Destructor, Push Front, Print
 --------------------------------------------------------------------------
 
@@ -71,12 +66,10 @@ Let's start by implementing these functions:
   - `~SListInt()`: destructor
   - `void push_front( int v )`: push item on front of list
   - `void print() const`: print the list
-  - `void clear()`: clear this list
 
-The destructor simply calls `clear` so all you need to do is implement
-`clear`. Feel free to review the lectures notes for help on how to
-implement these functions. When you are finished use adhoc testing to
-quickly see if your data structure is basically working:
+Feel free to review the lectures notes for help on how to implement these
+functions. When you are finished use adhoc testing to quickly see if your
+data structure is basically working:
 
     :::bash
     % cd ${HOME}/sec7/src
@@ -126,24 +119,16 @@ case to verify your implementation is working:
 --------------------------------------------------------------------------
 
 Because we need to implement a destructor, the rule of three tells us we
-also need to implement a copy constructor and assignment operator. One
-easy way to implement the destructor, copy constructor, assignment
-operator is to first implement two private helper member functions:
-
- - `void copy( const SListInt& lst )`: copy `lst` into this list
- - `void clear()`: clear this list
-
-Then we can just call `copy` and `clear` appropriately like this:
-
- - destructor calls `clear`
- - copy constructor calls `copy`
- - assignment operator calls `clear` then `copy`
-
-Implementing copy can be a little tricky. The easiest (but not the most
-efficient) algorithm is to just iterate through the given list and call
-`push_front` for each item. Unfortunately, this will result in the new
-copy being in the reverse order ... but then you can call the `reverse`
-method to make sure the items are in the right order.
+also need to implement a copy constructor and assignment operator. These
+are simliar. The key difference is that the assignment operator must
+first clean up the current object before doing the copy, while the copy
+constructor can assume the current object is uninitialized. Implementing
+copy can be a little tricky. The easiest (but not the most efficient)
+algorithm is to just iterate through the given list and call `push_front`
+for each item. Unfortunately, this will result in the new copy being in
+the reverse order ... but then you can call the `reverse` method to make
+sure the items are in the right order. Make sure you handle self
+assignment correctly!
 
 When you are finished use the corresponding directed test cases to verify
 your implementation is working:

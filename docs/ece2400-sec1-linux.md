@@ -3,67 +3,76 @@ Section 1: Linux Development Environment
 ==========================================================================
 
 This section serves as gentle introduction to the basics of using the
-Linux development environment on the `ecelinux` machines including how to
-log into the machines, how to work at the Linux command line, and how to
+Linux development environment on the `ecelinux` servers including how to
+log into the servers, how to work at the Linux command line, and how to
 use Git version control.
 
-1. The ecelinux Machines
+1. The ecelinux Servers
 --------------------------------------------------------------------------
 
-We will be using the `ecelinux` workstations and servers for all of the
-programming assignments. The `ecelinux` machines all run the Red Hat
-Enterprise Linux 7 operating system, and they all use an identical setup.
-Linux is the operating system of choice for both cloud and IoT systems,
-so becoming familiar with Linux will pay dividends beyond just this
-course.
+We will be using the `ecelinux` servers for all of the programming
+assignments. The `ecelinux` servers all run the Red Hat Enterprise Linux
+7 operating system, and they all use an identical setup. Linux is the
+operating system of choice for both cloud and IoT systems, so becoming
+familiar with Linux will pay dividends beyond just this course.
 
-### 1.1. Options For Using ecelinux Machines
+### 1.1. For In-Person Students
 
- - directly use workstations in 314 Phillips Linux Lab
- - log in remotely from workstations in 318 Phillips Windows Lab
- - log in remotely from your own laptop
- - in this discussion section, we will be logging in remotely from the
-    workstations in the 318 Phillips Windows Lab
+If you are participating in the discussion section in-person in 225 Upson
+Hall, then all you need to do is find a free workstation and use the
+following steps:
 
-### 1.2. Using MobaXterm to Log Into the ecelinux Servers
+ - log in to the workstation using your NetID and standard NetID password
+ - double click the X2Go client on the desktop
+ - setup a new X2go session by configuring the _Session_ and _Media_ tabs
+    - session name: _ecelinux_
+    - host: _ecelinux.ece.cornell.edu_
+    - login: _cb535_
+    - session type: _XFCE_
+    - uncheck _enable sound support_
+    - uncheck _client side printing support_
+ - click _OK_
+ - enter your standard NetID password
+ - if asked to trust a certificate for the servers, click _yes_
+ - if asked about a Windows firewall setup, click _cancel_
 
-The first step is to log into the Windows workstation using your NetID
-and your standard NetID password.
+  ![](img/x2go-cfg1.png)
 
-The second step is to start MobaXterm. From the _Start_ menu, choose
-_MobaXterm Educational Edition > MobaXterm Educational Edition_. Then
-double click on _ecelinux.ece.cornell.edu_ under _Saved sessions_ in
-MobaXterm. Log in using your NetID and password. Click _Yes_ when asked
-if you want to save your password. This will make it easier to open
-multiple terminals if you need to. All of your credentials will be
-deleted when you restart the workstation so there is no security concern.
+  ![](img/x2go-cfg2.png)
 
-If you cannot log in into `ecelinux`, then it may be because you are
-either not enrolled in the course or you added the course this morning.
-We will be updating the access list often.
+### 1.2. For Remote Access Students
 
-### 1.3. Using Multiple Terminals in MobaXterm
+If you are participating in the discussion section remotely, then
+hopefully you have already gone through the steps in Tutorial 1 of the
+course:
 
-It is often very useful to have multiple terminals open at the same time.
-From the menu, choose _Sessions > ecelinux.ece.cornell.edu_ to create a new
-tab with a second terminal. Enter your NetID and you should be logged
-into the `ecelinux` servers. Now you can move back and forth between the
-two terminals.
+ - https://www.csl.cornell.edu/courses/ece2400/handouts/ece2400-tut1-x2go.pdf
 
-You can also detach a tab so you can have two terminals side-by-side.
-From the menu, choose _Terminal > Detach_. Then drag the new window all
-the way to the left so it fills up the left-hand side of your screen.
-Drag the original MobaXterm all the way to the left so it fills up the
-right-hand size of your screen. Now you have two terminals side-by-side,
-enabling you to be doing multiple things on the server at the same time.
+You need to setup the Cornell VPN and install X2go on your local
+laptop/workstation. If you haven't done this yet, you need to go ahead
+and do this now.
 
-2. ecelinux Account Setup
---------------------------------------------------------------------------
+### 1.3. Linux Virtual Desktop
 
-The very first thing you need to do after logging into a `ecelinux`
-machine is source the course setup script. This will ensure your
-environment is setup with everything you need for working on the
-programming assignments. Enter the following command on the command line:
+Once you have started X2go and logged into the `ecelinux` servers, then
+you should see the Linux virtual desktop. Note that the Linux virtual
+desktop is running on the `ecelinux` server, so anything you do in the
+Linux virtual deskop is actually happening on the server and not on your
+local laptop/workstation.
+
+The next step is to open a new terminal by choosing _Applications >
+Terminal Emulator_ from the _Applications_ menu in the upper-left corner
+of the Linux virtual desktop. The following screenshot shows a terminal
+opened on the Linux virtual desktop.
+
+  ![](img/terminal-ece2400.png)
+
+### 1.4. Souce the Course Setup Script
+
+The very first thing you need to do after opening a terminal is source
+the course setup script. This will ensure your environment is setup with
+everything you need for working on the programming assignments. Enter the
+following command on the command line:
 
     :::bash
     % source setup-ece2400.sh
@@ -84,10 +93,11 @@ auto setup:
     :::bash
     % source setup-ece2400.sh --enable-auto-setup
 
-Now quit MobaXterm, restart MobaXterm, and log back into the `ecelinux`
-server. You should see `ECE 2400` in the prompt meaning your environment
-is automatically setup for the course. If at anytime you need to disable
-auto setup you can use the following command:
+Now close the terminal using the X icon in the upper right-hand corner of
+the terminal window. Reopen a new terminal window. You should see `ECE
+2400` in the prompt meaning your environment is automatically setup for
+the course. If at anytime you need to disable auto setup you can use the
+following command:
 
     :::bash
     % source setup-ece2400.sh --disable-auto-setup
@@ -95,16 +105,16 @@ auto setup you can use the following command:
 Now that we have source the course setup script we can start to explore
 the Linux command line.
 
-3. Linux Command Line
+2. Linux Command Line
 --------------------------------------------------------------------------
 
-We will using the `ecelinux` workstations and servers which run the Red
-Hat Enterprise Linux 7 operating system for all of the programming
-assignments. The heart of the Linux operating system is the Linux command
-line. This is a text-based console where you can enter commands to
-interact with the operating system.
+We will using the `ecelinux` servers which run the Red Hat Enterprise
+Linux 7 operating system for all of the programming assignments. The
+heart of the Linux operating system is the Linux command line. This is a
+text-based console where you can enter commands to interact with the
+operating system.
 
-### 3.1 Hello World
+### 2.1 Hello World
 
 We begin with the ubiquitous "Hello, World" example. To display the
 message "Hello, World" we will use the `echo` command. The `echo` command
@@ -123,7 +133,7 @@ character.
     Experiment with using the `echo` command to display different
     messages.
 
-### 3.2. Manual Pages
+### 2.2. Manual Pages
 
 You can learn more about any Linux command by using the `man` command.
 Try using this to learn more about the `echo` command.
@@ -135,7 +145,7 @@ You can use the up/down keys to scroll the manual one line at a time, the
 space bar to scroll down one page at a time, and the `q` key to quit
 viewing the manual.
 
-### 3.3. Create, View, and List Files
+### 2.3. Create, View, and List Files
 
 We can use the echo command and a feature called _command output
 redirection_ to create simple text files. Command output redirection is
@@ -181,7 +191,7 @@ about each file.
     third layer in the computing systems stack (i.e., programming
     language). Use `cat` and `less` to verify the file contents.
 
-### 3.4. Create, Change, and List Directories
+### 2.4. Create, Change, and List Directories
 
 Obviously, having all files in a single location would be hard to manage
 effectively. We can use directories (also called folders) to logically
@@ -269,7 +279,7 @@ current working directory.
     `ece2400/sec1` subdirectory. Try using the `tree` command to display
     your newly created directory hierarchy.
 
-### 3.5. Copy, Move, and Remove Files and Directories
+### 2.5. Copy, Move, and Remove Files and Directories
 
 We can use the `cp` command to copy files. The first argument is the name
 of the file you want to copy, and the second argument is the new name to
@@ -304,7 +314,7 @@ Finally, we can use the `rm` command to remove files.
     `ls` and `tree` commands to display your file and directory
     organization.
 
-### 3.6. Text Editors
+### 2.6. Text Editors
 
 Students are free to use any text editor they want. We recommend using
 either Micro or Geany. You can start Micro like this:
@@ -335,9 +345,9 @@ When you are finished go ahead and delete the `sec1` directory to keep
 things tidy.
 
     :::bash
-    % rm -rf ~/ece2400/sec1
+    % rm -r ~/ece2400/sec1
 
-4. GitHub Account Setup
+3. GitHub Account Setup
 --------------------------------------------------------------------------
 
 We will be using GitHub for centralized repository hosting. You can check
@@ -393,7 +403,7 @@ new key. Just enter `yes`. The GitHub server should output some text
 including your GitHub ID. Verify that the GitHub ID is correct, and then
 you should be all set.
 
-5. Git Version Control System
+4. Git Version Control System
 --------------------------------------------------------------------------
 
 In this course, we will be using Git as our revision control and source
@@ -402,7 +412,7 @@ development methodology so you (and your group) can rapidly collaborate
 and iterate on the design, verification, and evaluation of the
 assignments.
 
-### 5.1. Fork and Clone a Repo from GitHub
+### 4.1. Fork and Clone a Repo from GitHub
 
 Fork'ing a repo means making a copy of that repo for your own local use.
 We won't actually be forking repos for the programming assignments, but
@@ -427,7 +437,7 @@ Where `githubid` is your GitHubID. Now let's clone your new repo to the
 
 Where `githubid` is your GitHubID.
 
-### 5.2. Adding and Committing Files to Local Repository
+### 4.2. Adding and Committing Files to Local Repository
 
 Now let's add some new files to the repository. Use your favorite text
 editor (e.g., Micro, Geany) to create a file named `warm-colors.txt` with
@@ -477,7 +487,7 @@ changes into your local repository.
     from the command line using `cat`. Then use `git status`, `git add`,
     and `git commit` to add these changes to local repository.
 
-### 5.3. Pushing Files to GitHub
+### 4.3. Pushing Files to GitHub
 
 Note that nothing has happened on GitHub yet. GitHub does _not_ know
 anything about these local changes. We need to explicitly "push" our new
@@ -501,7 +511,7 @@ that there are two new files.
     and then use `git push` to push these changes up to GitHub. View the
     changes using the GitHub web interface.
 
-### 5.4. Pulling Files from GitHub
+### 4.4. Pulling Files from GitHub
 
 Let's try making a change to this repository through the GitHub
 web interface.

@@ -1,10 +1,10 @@
 
-Section 8: Dynamic Polymorphism Lab
+Section 9: Static Polymorphism Lab
 ==========================================================================
 
-In this discussion, we will implement, test, and evaluate a simple
-dynamic polymorphic list data structure using C++ and then compare it to
-a monomorphic list.
+In this discussion, we will implement, test, and evaluate a simple static
+polymorphic list data structure using C++ and then compare it to a
+dynamic polymorphic list and a monomorphic list.
 
 1. The ecelinux Machines
 --------------------------------------------------------------------------
@@ -23,8 +23,8 @@ following commands:
     % source setup-ece2400.sh
     % mkdir -p ${HOME}/ece2400
     % cd ${HOME}/ece2400
-    % git clone git@github.com:cornell-ece2400/ece2400-sec8 sec8
-    % cd sec8
+    % git clone git@github.com:cornell-ece2400/ece2400-sec9 sec9
+    % cd sec9
     % tree
 
 The repository includes the following files:
@@ -39,32 +39,36 @@ The repository includes the following files:
 │   ├── types-dpoly.cc
 │   ├── SListInt.h
 │   ├── SListInt.cc
-│   ├── SListInt.inl
-│   ├── SListIObj.cc
-│   ├── SListIObj.h
-│   ├── SListIObj.inl
+│   ├── SListDpoly.cc
+│   ├── SListDpoly.h
+│   ├── SListSpoly.cc
+│   ├── SListSpoly.inl
 │   ├── slist-int-adhoc.cc
-│   └── slist-iobj-adhoc.cc
+│   ├── slist-dpoly-adhoc.cc
+│   └── slist-spoly-adhoc.cc
 ├── test
 │   ├── utst.h
-│   ├── types-dpoly-directed-test.cc
 │   ├── slist-int-directed-test.cc
-│   ├── slist-iobj-directed-test.cc
+│   ├── types-dpoly-directed-test.cc
+│   ├── slist-dpoly-directed-test.cc
+│   ├── slist-spoly-directed-test.cc
 │   └── CMakeLists.txt
 └── eval
     ├── slist-int-eval.cc
-    └── slist-iobj-eval.cc
+    ├── slist-dpoly-eval.cc
+    └── slist-spoly-eval.cc
 ```
 
-Take a look at the `SListIObj.h` header file to understand all of the
+Take a look at the `SListSpoly.h` header file to understand all of the
 public member functions we will be implementing in this lab.
 
-  - `SListIObj()`: default constructor
-  - `~SListIObj()`: destructor
-  - `SListIObj( const SListIObj& lst )`: copy constructor
-  - `SListIObj& operator=( const SListIObj& lst )`: assignment operator
-  - `void push_front( int v )`: push item on front of list
-  - `int at( size_t idx )`: return item at given index
+  - `SListSpoly()`: default constructor
+  - `~SListSpoly()`: destructor
+  - `SListSpoly( const SListSpoly& lst )`: copy constructor
+  - `SListSpoly& operator=( const SListSpoly& lst )`: assignment operator
+  - `void push_front( const T& v )`: push item on front of list
+  - `const T& at( size_t idx )`: return item at given index
+  - `T& at( size_t idx )`: return item at given index
   - `void reverse()`: reverse all items in list
   - `void print() const`: print the list
 
@@ -73,20 +77,20 @@ public member functions we will be implementing in this lab.
 
 Let's start by implementing these functions:
 
-  - `SListIObj()`: default constructor
-  - `~SListIObj()`: destructor
-  - `void push_front( int v )`: push item on front of list
+  - `SListSpoly()`: default constructor
+  - `~SListSpoly()`: destructor
+  - `void push_front( const T& v )`: push item on front of list
   - `void print() const`: print the list
 
 Feel free to review the lectures notes for help on how to implement these
-functions. Make sure you delete not just the node but also the
-dynamically allocated `IObject`! When you are finished use adhoc testing
-to quickly see if your data structure is basically working:
+functions. You might also want to look at how the monomorphic list was
+implemented. When you are finished use adhoc testing to quickly see if
+your data structure is basically working:
 
     :::bash
-    % cd ${HOME}/sec8/src
-    % g++ -Wall -o slist-iobj-adhoc slist-iobj-adhoc.cc SListIObj.cc types-dpoly.cc
-    % ./slist-iobj-adhoc
+    % cd ${HOME}/sec9/src
+    % g++ -Wall -o slist-spoly-adhoc slist-spoly-adhoc.cc
+    % ./slist-spoly-adhoc
 
 3. Testing Push Front
 --------------------------------------------------------------------------
@@ -94,38 +98,40 @@ to quickly see if your data structure is basically working:
 Obviously, we want to do more than just ad-hoc testing. We have provided
 you a directed test case to test the basic functionality we have
 implemented so far. Take a look at this directed test case in
-`slist-iobj-directed-test.c`. You will need to implement the `at` member
-function to pass the very first directed test. Go ahead and implement
-`at` then build and run this test case like this:
+`slist-spoly-directed-test.c`. You will need to implement two different
+`at` member function to pass the very first directed test. One `at`
+member function is used for reading items from the list, while the other
+is used for modifying items in the list. Go ahead and implement both `at`
+member functions and then build and run this test case like this:
 
     :::bash
-    % cd ${HOME}/sec8
+    % cd ${HOME}/sec9
     % mkdir build
     % cd build
     % cmake ..
-    % make slist-iobj-directed-test
-    % ./slist-iobj-directed-test 1
+    % make slist-spoly-directed-test
+    % ./slist-spoly-directed-test 1
 
 4. Implementing Reverse
 --------------------------------------------------------------------------
 
-Take a look at the `SListIObj.cc` source file to find the `reverse` member
-function. This function should reverse all of the items in the list. We
-recommend you use the following three steps:
+Take a look at the `SListSpoly.cc` source file to find the `reverse`
+member function. This function should reverse all of the items in the
+list. We recommend you use the following three steps:
 
  1. Iterate through the list to count the number of items
- 2. Allocate a new array of `IObject` pointers on the heap with size items
- 3. Iterate through the list and copy each `IObject` pointer to the array
- 4. Iterate through the list and copy each `IObject` pointer from the array in reverse order
+ 2. Allocate a new array of integers on the heap with size items
+ 3. Iterate through the list and copy each item to the array
+ 4. Iterate through the list and copy each item from the array in reverse order
 
 You are welcome to use a different approach, but the above is probably
 the simplest. When you are finished use the corresponding directed test
 case to verify your implementation is working:
 
     :::bash
-    % cd ${HOME}/sec8/build
-    % make slist-iobj-directed-test
-    % ./slist-iobj-directed-test 2
+    % cd ${HOME}/sec9/build
+    % make slist-spoly-directed-test
+    % ./slist-spoly-directed-test 2
 
 5. Implementing the Copy Constructor and Assignment Operator
 --------------------------------------------------------------------------
@@ -146,32 +152,34 @@ When you are finished use the corresponding directed test cases to verify
 your implementation is working:
 
     :::bash
-    % cd ${HOME}/sec8/build
-    % make slist-iobj-directed-test
-    % ./slist-iobj-directed-test 3
-    % ./slist-iobj-directed-test 4
+    % cd ${HOME}/sec9/build
+    % make slist-spoly-directed-test
+    % ./slist-spoly-directed-test 3
+    % ./slist-spoly-directed-test 4
+    % ./slist-spoly-directed-test 5
 
 Run all of the test cases to make sure everything is now working:
 
     :::bash
-    % cd ${HOME}/sec8/build
-    % make slist-iobj-directed-test
-    % ./slist-iobj-directed-test
+    % cd ${HOME}/sec9/build
+    % make slist-spoly-directed-test
+    % ./slist-spoly-directed-test
 
-6. Evaluating Reverse
+6. Evaluating Push Front and Reverse
 --------------------------------------------------------------------------
 
 We have provided you an evaluation program to quantitatively evaluate the
-execution time of the linked list data structure and reverse algorithm.
-Take a look at this evaluation program in `list-iobj-eval.c`. You
-can build and run this evaluation program like this:
+execution time of the linked list data structure, push front, and the
+reverse algorithm. Take a look at this evaluation program in
+`list-spoly-eval.c`. You can build and run this evaluation program like
+this:
 
     :::bash
-    % cd ${HOME}/sec8
+    % cd ${HOME}/sec9
     % mkdir build-eval
     % cd build-eval
     % cmake -DCMAKE_BUILD_TYPE=eval ..
-    % make slist-iobj-eval
+    % make slist-spoly-eval
 
 You will see that the evaluation program takes one command line argument
 specifying the size of the input array. Let's do an experiment to see how
@@ -179,39 +187,42 @@ the execution time of linked list data structure and reverse algorithm
 grows as a function of the input array size.
 
     :::bash
-    % cd ${HOME}/sec8/build-eval
-    % ./slist-iobj-eval 10000
-    % ./slist-iobj-eval 20000
-    % ./slist-iobj-eval 30000
-    % ./slist-iobj-eval 40000
-    % ./slist-iobj-eval 50000
+    % cd ${HOME}/sec9/build-eval
+    % ./slist-spoly-eval 10000
+    % ./slist-spoly-eval 20000
+    % ./slist-spoly-eval 30000
+    % ./slist-spoly-eval 40000
+    % ./slist-spoly-eval 50000
 
 You can use `seq` and `xargs` to run a command multiple times with
 different parameters in a single step like this:
 
     :::bash
-    % cd ${HOME}/sec8/build-eval
-    % seq 10000 10000 50000 | xargs -l ./slist-iobj-eval
+    % cd ${HOME}/sec9/build-eval
+    % seq 10000 10000 50000 | xargs -l ./slist-spoly-eval
 
 Copy down the average execution time for each experiment. Create a plain
-text file named `data-dpoly.txt` with one row per experiment and a single
+text file named `data-spoly.txt` with one row per experiment and a single
 column which should be the execution time.
 
-Let's also reproduce the data from last week when we worked on a
-(non-polymorphic) object-oriented singly linked list.
+Let's also reproduce the data from the previous sections when we worked
+on a monomorphic and dynamic polymorphic singly linked lists.
 
     :::bash
-    % cd ${HOME}/sec8/build-eval
+    % cd ${HOME}/sec9/build-eval
+    % make eval
     % seq 10000 10000 50000 | xargs -l ./slist-int-eval
+    % seq 10000 10000 50000 | xargs -l ./slist-dpoly-eval
 
 Copy down the average execution time for each experiment. Create a plain
-text file named `data-int.txt` with one row per experiment and a single
-column which should be the execution time. Then you can easily plot this
-data like this:
+text file named `data-int.txt` and `data-dpoly.txt` with one row per
+experiment and a single column which should be the execution time. Then
+you can easily plot this data like this:
 
     :::bash
-    % eplot -m data-dpoly.txt data-int.txt
+    % eplot -m data-int.txt data-dpoly.txt data-spoly.txt
 
 Do these quantitative results match your qualitative expectations given
-what you know about the asymptotic time complexity of reverse?
+what you know about the asymptotic time complexity of push front and
+reverse?
 
