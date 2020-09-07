@@ -784,6 +784,16 @@ scroll down one page at a time, and the <code>q</code> key to quit viewing the f
 </pre></div>
 </td></tr></table>
 
+<p>The <code>&gt;</code> command output redirection operator will always create a brand
+new file (even if the target output file already exists). You can use the
+<code>&gt;&gt;</code> operator to append lines to the end of a file. Let's add another
+line to our text file using the <code>&gt;&gt;</code> operator.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">echo</span> <span class="s2">&quot;Using C/C++&quot;</span> &gt;&gt; ece2400-sec1.txt
+% cat ece2400-sec1.txt
+</pre></div>
+</td></tr></table>
+
 <p>You can use the <code>ls</code> command to list the filenames of the files you have
 created.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% ls
@@ -1109,12 +1119,56 @@ changes into your local repository.</p>
 </pre></div>
 </td></tr></table>
 
+<p>Let's now use <code>echo</code> and the <code>&gt;&gt;</code> command output redirection operator to
+add <code>cyan</code> to the end of our <code>cool-colors.txt</code> file. We can then view our
+changes from the command line using <code>cat</code>, and use <code>git status</code> and then
+<code>git commit</code> to try and commit our changes.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+% <span class="nb">echo</span> <span class="s2">&quot;cyan&quot;</span> &gt;&gt; cool-colors.txt
+% cat cool-colors.txt
+% git status
+% git commit -m <span class="s2">&quot;add cyan&quot;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Git will report that there are no changes added to the commit. So even
+though Git is tracking <code>cool-colors.txt</code> and knows it has changed, we
+still must explicitly add the files we want to commit. You definitely
+want to avoid using something like <code>git add .</code> to add all files, since
+this will inevitably end up adding files that you don't really want to
+commit. There is a short cut which uses the <code>-u</code> command line option with
+the <code>git add</code> command. This command line option tells Git to add any file
+which has changed and was previously added to the repository.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+% git status
+% git add -u
+% git status
+% git commit -m <span class="s2">&quot;add cyan&quot;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Now the changes are committed. You can use <code>git log</code> to see a log of the
+commits in your local repository.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec1
+% git log
+</pre></div>
+</td></tr></table>
+
 <div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
-<p>Try adding <code>cyan</code> to the <code>cool-colors.txt</code> file you created earlier
-using either Micro or Geany. Save the file and then view your changes
-from the command line using <code>cat</code>. Then use <code>git status</code>, <code>git add</code>,
-and <code>git commit</code> to add these changes to local repository.</p>
+<p>Try adding <code>maroon</code> to the <code>warm-colors.txt</code> file you created earlier
+using either Micro or Geany. View your changes from the command line
+using <code>cat</code>. Then use <code>git status</code>, <code>git add</code>, and <code>git commit</code> to
+add these changes to local repository.</p>
 </div>
 <h3 id="43-pushing-files-to-github">4.3. Pushing Files to GitHub<a class="headerlink" href="#43-pushing-files-to-github" title="Permanent link">&para;</a></h3>
 <p>Note that nothing has happened on GitHub yet. GitHub does <em>not</em> know
@@ -1171,8 +1225,10 @@ GitHub to your local repo on <code>ecelinux</code>:</p>
 </pre></div>
 </td></tr></table>
 
-<p>This will be the basic GitHub workflow were students pull and push code
-between GitHub and the <code>ecelinux</code> machines.</p>
+<p>This will be the basic GitHub workflow were students first use <code>clone</code> to
+get a copy of their repository, use <code>add -u</code> and <code>commit</code> to add and
+commit their code to the local repository, and then use <code>pull</code> and <code>push</code>
+to synchronize their repository with the repository on GitHub.</p>
 <div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
 <p>Try editing a file using the GitHub web interface. Click on the
