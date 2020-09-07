@@ -7,7 +7,7 @@ Linux development environment on the `ecelinux` servers including how to
 log into the servers, how to work at the Linux command line, and how to
 use Git version control.
 
-1. The ecelinux Servers
+1. Logging Into ecelinux
 --------------------------------------------------------------------------
 
 We will be using the `ecelinux` servers for all of the programming
@@ -171,6 +171,15 @@ scroll down one page at a time, and the `q` key to quit viewing the file.
 
     :::bash
     % less ece2400-sec1.txt
+
+The `>` command output redirection operator will always create a brand
+new file (even if the target output file already exists). You can use the
+`>>` operator to append lines to the end of a file. Let's add another
+line to our text file using the `>>` operator.
+
+    :::bash
+    % echo "Using C/C++" >> ece2400-sec1.txt
+    % cat ece2400-sec1.txt
 
 You can use the `ls` command to list the filenames of the files you have
 created.
@@ -480,12 +489,47 @@ changes into your local repository.
     % cd ${HOME}/ece2400/sec1
     % git commit -m "add some colors"
 
+Let's now use `echo` and the `>>` command output redirection operator to
+add `cyan` to the end of our `cool-colors.txt` file. We can then view our
+changes from the command line using `cat`, and use `git status` and then
+`git commit` to try and commit our changes.
+
+    :::bash
+    % cd ${HOME}/ece2400/sec1
+    % echo "cyan" >> cool-colors.txt
+    % cat cool-colors.txt
+    % git status
+    % git commit -m "add cyan"
+
+Git will report that there are no changes added to the commit. So even
+though Git is tracking `cool-colors.txt` and knows it has changed, we
+still must explicitly add the files we want to commit. You definitely
+want to avoid using something like `git add .` to add all files, since
+this will inevitably end up adding files that you don't really want to
+commit. There is a short cut which uses the `-u` command line option with
+the `git add` command. This command line option tells Git to add any file
+which has changed and was previously added to the repository.
+
+    :::bash
+    % cd ${HOME}/ece2400/sec1
+    % git status
+    % git add -u
+    % git status
+    % git commit -m "add cyan"
+
+Now the changes are committed. You can use `git log` to see a log of the
+commits in your local repository.
+
+    :::bash
+    % cd ${HOME}/ece2400/sec1
+    % git log
+
 !!! note "To-Do On Your Own"
 
-    Try adding `cyan` to the `cool-colors.txt` file you created earlier
-    using either Micro or Geany. Save the file and then view your changes
-    from the command line using `cat`. Then use `git status`, `git add`,
-    and `git commit` to add these changes to local repository.
+    Try adding `maroon` to the `warm-colors.txt` file you created earlier
+    using either Micro or Geany. View your changes from the command line
+    using `cat`. Then use `git status`, `git add`, and `git commit` to
+    add these changes to local repository.
 
 ### 4.3. Pushing Files to GitHub
 
@@ -536,8 +580,10 @@ GitHub to your local repo on `ecelinux`:
     % git pull
     % cat languages.txt
 
-This will be the basic GitHub workflow were students pull and push code
-between GitHub and the `ecelinux` machines.
+This will be the basic GitHub workflow were students first use `clone` to
+get a copy of their repository, use `add -u` and `commit` to add and
+commit their code to the local repository, and then use `pull` and `push`
+to synchronize their repository with the repository on GitHub.
 
 !!! note "To-Do On Your Own"
 
@@ -546,4 +592,17 @@ between GitHub and the `ecelinux` machines.
     corner to edit this text file. Add another warm color. Click _Commit
     changes_. Then pull these changes to the local repository on the
     `ecelinux` server and verify that your new warm color is included.
+
+5. Logging Out of ecelinux
+--------------------------------------------------------------------------
+
+When you are finished working on the `ecelinux` servers you need to
+explicitly log out. Choose _Applications > Log Out_ from the
+_Applications_ menu in the upper-left corner of the Linux virtual
+desktop. Make sure _Save session for future logins_ is not checked. Then
+click on _Log out_ to cleanly log out from the `ecelinux` servers.
+Obviously, you should save all of you work frequently and before you log
+out of the `ecelinux` servers.
+
+  ![](img/x2go-desktop-logout.png)
 
