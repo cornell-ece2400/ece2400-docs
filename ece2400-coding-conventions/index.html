@@ -673,13 +673,18 @@ expression together without any horizontal whitespace.</p>
 </pre></div>
 </td></tr></table>
 
-<p>Use explicit parenthesis to make operator precendence explicit:</p>
+<p>Try to use explicit parenthesis to make operator precendence explicit:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>             <span class="c1">// incorrect</span>
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>             <span class="c1">// incorrect</span>
 <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">);</span> <span class="c1">// correct</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);</span>         <span class="c1">// correct</span>
 </pre></div>
 </td></tr></table>
 
+<p>Sometimes there can just be too many paranthesis and just too much
+horizontal white space. So the third one might actually be more readable.
+Students will have to use their judgement.</p>
 <p>In some cases, we should <em>not</em> include whitespace around an operator
 because the operator is not delimiting two distinct conceptual "tokens".
 Here are some examples:</p>
@@ -751,9 +756,32 @@ multiple statements. Here is an example:</p>
 </td></tr></table>
 
 <p>Notice the use of spaces inside the parentheses since the <code>()</code> tokens
-should be conceptually separated from the conditional expression. If you
-use curly braces for one part of an if/then/else statement you must use
-them for all parts of the statement. Avoid single line if statements:</p>
+should be conceptually separated from the conditional expression. We
+personally really like this style, but can also be okay to skip this
+horizontal whitespace like ths:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">conditional_expression0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">statement0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">conditional_expression1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">statement1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="n">statement2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>However, it is critical to be consistent! If you use curly braces for one
+part of an if/then/else statement you must use them for all parts of the
+statement. Avoid single line if statements:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">conditional_expression0</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// incorrect</span>
@@ -773,8 +801,19 @@ them for all parts of the statement. Avoid single line if statements:</p>
 </td></tr></table>
 
 <p>Notice the extra horizontal whitespace used to separate the parentheses
-from the initialization statement and the increment statement. The open
-curly brace should be on the same line as the <code>for</code> statement.</p>
+from the initialization statement and the increment statement. We
+personally really like this style, but can also be okay to skip this
+horizontal whitespace like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">loop_body</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>However, it is critical to be consistent! We really want the open curly
+brace should be on the same line as the <code>for</code> statement.</p>
 <h3 id="28-function-definitions">2.8. Function Definitions<a class="headerlink" href="#28-function-definitions" title="Permanent link">&para;</a></h3>
 <p>Function definitions should look like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -787,8 +826,21 @@ curly brace should be on the same line as the <code>for</code> statement.</p>
 </pre></div>
 </td></tr></table>
 
-<p>Insert space inside the parenthesis. Notice that for functions the open
-curly brace goes on its own line. Do not insert a space between the
+<p>We encourage inserting space inside the parenthesis. We personally really
+like this style, but can also be okay to skip this horizontal whitespace
+like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">foo_bar</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">function_body</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>However, it is critical to be consistent! Notice that for functions the
+open curly brace goes on its own line. Do not insert a space between the
 function name and the open parenthesis. So this is incorrect:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -809,8 +861,14 @@ example:</p>
 </pre></div>
 </td></tr></table>
 
-<p>If there is a single parameter, sometimes it may be more appropriate to
-eliminate the whitespace inside the parenthesis.</p>
+<p>If there is a single argument, sometimes it may be more appropriate to
+eliminate the whitespace inside the parenthesis. Or if it is more
+readable it might be fine to do this if the arguments are very simple.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Again, the focus is on readability.</p>
 <h2 id="3-naming">3. Naming<a class="headerlink" href="#3-naming" title="Permanent link">&para;</a></h2>
 <h3 id="31-type-names">3.1. Type Names<a class="headerlink" href="#31-type-names" title="Permanent link">&para;</a></h3>
 <p>For C programs, the names of user-defined types should usually be all
@@ -930,7 +988,7 @@ that were provided by the instructors.</p>
 <h3 id="51-local-variables">5.1. Local Variables<a class="headerlink" href="#51-local-variables" title="Permanent link">&para;</a></h3>
 <p>Place a function's variables in the narrowest scope possible. C99 no
 longer requires all variables to be declared at the beginning of a
-function, so declare functions close to where they are initialized.</p>
+function, so declare variables close to where they are initialized.</p>
 <h3 id="52-static-and-global-variables">5.2. Static and Global Variables<a class="headerlink" href="#52-static-and-global-variables" title="Permanent link">&para;</a></h3>
 <p>Do not use non-const static or global variables unless there is a very
 good reason to do so. Const global variables are allowed and should
