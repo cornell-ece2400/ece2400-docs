@@ -38,7 +38,7 @@
     
     
       
-        <title>Section 2: Compiling and Running C Programs - ECE 2400 Section Handouts</title>
+        <title>Ece2400 sec2 c basics old - ECE 2400 Section Handouts</title>
       
     
     
@@ -128,7 +128,7 @@
                 ECE 2400 Section Handouts
               </span>
               <span class="md-header-nav__topic">
-                Section 2: Compiling and Running C Programs
+                Ece2400 sec2 c basics old
               </span>
             
           
@@ -269,84 +269,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Section 2: Compiling and Running C Programs
-      </label>
-    
-    <a href="./" title="Section 2: Compiling and Running C Programs" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../ece2400-sec2-c-basics/" title="Section 2: Compiling and Running C Programs" class="md-nav__link">
       Section 2: Compiling and Running C Programs
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-logging-into-ecelinux" title="1. Logging Into ecelinux" class="md-nav__link">
-    1. Logging Into ecelinux
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-using-online-tools-to-explore-c-programs" title="2. Using Online Tools to Explore C Programs" class="md-nav__link">
-    2. Using Online Tools to Explore C Programs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-c-preprocessor" title="3. C Preprocessor" class="md-nav__link">
-    3. C Preprocessor
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-compiling-and-running-a-single-file-c-program" title="4. Compiling and Running a Single-File C Program" class="md-nav__link">
-    4. Compiling and Running a Single-File C Program
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-compiling-and-running-a-multi-file-c-program" title="5. Compiling and Running a Multi-File C Program" class="md-nav__link">
-    5. Compiling and Running a Multi-File C Program
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-experimenting-with-compiling-and-running-c-programs-for-pa1" title="6. Experimenting with Compiling and Running C Programs for PA1" class="md-nav__link">
-    6. Experimenting with Compiling and Running C Programs for PA1
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -381,6 +308,26 @@
   <a href="#2-using-online-tools-to-explore-c-programs" title="2. Using Online Tools to Explore C Programs" class="md-nav__link">
     2. Using Online Tools to Explore C Programs
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-replit" title="2.1. Repl.it" class="md-nav__link">
+    2.1. Repl.it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-compiler-explorer" title="2.2. Compiler Explorer" class="md-nav__link">
+    2.2. Compiler Explorer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -428,7 +375,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec2-c-basics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec2-c-basics-old.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="section-2-compiling-and-running-c-programs">Section 2: Compiling and Running C Programs<a class="headerlink" href="#section-2-compiling-and-running-c-programs" title="Permanent link">&para;</a></h1>
@@ -478,19 +425,20 @@ following commands:</p>
 </td></tr></table>
 
 <h2 id="2-using-online-tools-to-explore-c-programs">2. Using Online Tools to Explore C Programs<a class="headerlink" href="#2-using-online-tools-to-explore-c-programs" title="Permanent link">&para;</a></h2>
-<p>In this section, we will explore Repl.it which enables us to write,
-compile, and run C programs in the cloud. We won't have time to explore
-Compiler Explorer which enables us to compile C programs and view the
-corresponding machine instructions in the cloud, but we do encourage
-students to experiment with Compiler Explorer at <a href="https://godbolt.org">https://godbolt.org</a>.</p>
-<p>As mentioned, Repl.it is a free online service which supports writing,
-compiling, and executing C/C++ programs completely online in your
-browser. It will enable us to quickly explore small C/C++ code snippets.
-Start a browser and go to <a href="https://Repl.it">https://Repl.it</a>. You can use Repl.it without
-an account. You can always create an account later. Click the <em>plus</em> icon
-in the upper right-hand corner. In the <em>Language</em> drop-down choose C and
-the click <em>Create repl</em>. You will see a default program. Replace this
-default program with the following program inspired by lecture.</p>
+<p>In this section, we will explore to online tools that can be useful when
+exploring C programs. The first is Repl.it which enables us to write,
+compile, and run C programs in the cloud, and the second is Compiler
+Explore which enables us to compile C programs and view the corresponding
+machine instructions in the cloud.</p>
+<h3 id="21-replit">2.1. Repl.it<a class="headerlink" href="#21-replit" title="Permanent link">&para;</a></h3>
+<p>Repl.it is a free online service which supports writing, compiling, and
+executing C/C++ programs completely online in your browser. It will
+enable us to quickly explore small C/C++ code snippets. Start a browser
+and go to <a href="https://Repl.it">https://Repl.it</a>. You can use Repl.it without an account. You
+can always create an account later. Click the <em>plus</em> icon in the upper
+right-hand corner. In the <em>Language</em> drop-down choose C and the click
+<em>Create repl</em>. You will see a default program. Replace this default
+program with the following program inspired by lecture.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -527,11 +475,6 @@ default program with the following program inspired by lecture.</p>
 
 <p>Click <em>run</em>. This will compile and execute your C program in the cloud
 and then display the output on the right.</p>
-<p>We will be using Repl.it throughout the course. We strongly encourage
-students to experiment with Repl.it frequently. The best way to truly
-understand computer systems programming with C and C++ is to actually
-write programs, and the easiest way to write C and C++ programs is to
-just use Repl.it!</p>
 <div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
 <p>Change the value of <code>b</code> to 15. Recompile and execute your C program.
@@ -539,6 +482,64 @@ Is the result what you expect? Modify the <code>avg</code> function to find the
 average of three values instead of just two. Modify the <code>main</code>
 function to properly call your updated function and verify it
 calculates the average correctly.</p>
+</div>
+<p>We will be using Repl.it throughout the course. We strongly encourage
+students to experiment with Repl.it frequently. The best way to truly
+understand computer systems programming with C and C++ is to actually
+write programs, and the easiest way to write C and C++ programs is to
+just use Repl.it!</p>
+<h3 id="22-compiler-explorer">2.2. Compiler Explorer<a class="headerlink" href="#22-compiler-explorer" title="Permanent link">&para;</a></h3>
+<p>Compiler Explore is a free online service that compiles C programs to
+machine instructions and then displays these machine instructions for you
+to inspect completely online in your browser. It will enable us to
+quickly explore the connection between C and C++ code and the low-level
+machine instructions actually executed by the computer system. Start a
+browser and go to <a href="https://godbolt.org">https://godbolt.org</a>. You will see a default code
+snippet. Replace this code with the following code inspired by lecture.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int avg( int x, int y )
+{
+  int sum = x + y;
+  return sum / 2;
+}
+</pre></div>
+</td></tr></table>
+
+<p>Compiler Explore will automatically display the corresponding machine
+instructions on the right. It color codes C code on the left to match
+which exact machine instructions are produced by that C code on the
+right. You can right click on an instruction and select <em>View opcode doc</em>
+to learn more about what each instruction does. You can also choose from
+many different compilers targeting many different instruction set
+architectures (ISAs). Here are three different compiler/ISAs you might
+want to experiment with:</p>
+<ul>
+<li>x86-64 clang 10.0.0 : This is similar to the compiler on ecelinux</li>
+<li>MIPS gcc 5.4 (el) : This is similar to what is used in ECE 2300</li>
+<li>RISCV-V rv32gc clang : This is similar to what is used in ECE 4750</li>
+</ul>
+<p>Go ahead and choose x86-64. Notice that even though the C source code
+uses the integer division operator there is no division instruction on
+the right. This is because the compiler is smart enough to figure out
+that dividing by 2 is the same as shifting to the right by one bit. In
+the upper-right corner you will either see <code>Compiler options</code> or <code>-O3</code>.
+This is where you can enter command line options that are passed to the
+compiler. The command line option <code>-O3</code> tells the compiler to apply as
+many optimizations as it can. Experiment with either entering <code>-O3</code> or
+deleting <code>-O3</code> to observe the difference in the resulting machine
+instructions. Notice that without <code>-O3</code> the compiler will generate many
+more instructions, and also notice that it now is using a division
+instruction (<code>idiv</code>) on x86. The unoptimized code would execute far
+slower than the optimized code.</p>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Copy-and-paste the three-input average program you developed earlier
+into Compiler Explore. Inspect the corresponding machine instructions
+for all three compiler/ISA options mentioned above with and without
+optimizations.</p>
 </div>
 <h2 id="3-c-preprocessor">3. C Preprocessor<a class="headerlink" href="#3-c-preprocessor" title="Permanent link">&para;</a></h2>
 <p>Before we can understand how to write and compile C programs, we need to
@@ -734,14 +735,23 @@ included once because of the include guards.</p>
 <p>The actual macro name you use for the include guard doesn't matter as
 long as it is unique across all files. We usually use a variation of the
 filename to ensure unique include guard macros.</p>
+<div class="admonition note">
+<p class="admonition-title">To-Do On Your Own</p>
+<p>Change the name of the macro used in both <code>warm-colors.txt</code> and
+<code>cool-colors.txt</code> to be <code>COLORS_TXT</code>. This means both files will be
+using the same macro name for their include guards. Rerun the C
+preprocessor. Try switching the order you include the files in
+<code>colors.txt</code> (e.g., include the cool colors first, and then include
+the warm colors). Can you explain what is going on?</p>
+</div>
 <h2 id="4-compiling-and-running-a-single-file-c-program">4. Compiling and Running a Single-File C Program<a class="headerlink" href="#4-compiling-and-running-a-single-file-c-program" title="Permanent link">&para;</a></h2>
 <p>Now that we have explored how to use the C preprocessor for file
 inclusion and include guards, we will can turn out attention to writing C
 programs. We will begin by writing a single-file C program to calculate
 the average of two integers. Our goal is to reproduce what we did with
-Repl.it, but by using various command line tools on the <code>ecelinux</code>
-machines. Edit the <code>avg-sfile.c</code> code to include an appropriate
-implementation of the <code>avg</code> function.</p>
+Repl.it and Compiler Explorer, but by using various command line tools on
+the <code>ecelinux</code> machines. Edit the <code>avg-sfile.c</code> code to include an
+appropriate implementation of the <code>avg</code> function.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -826,10 +836,11 @@ programs.</p>
 machine instructions in a human readable format. We are piping it through
 <code>less</code> so we can scroll through the output. Try and find how many machine
 instructions are used to implement the <code>avg</code> function. Compiler Explore
-is basically doing these same steps just in the cloud. Does it seem like
-the compiler generated optimized code or unoptimized code? You can exit
-<code>less</code> by pressing the <code>q</code> key. Let's recompile our program with
-optimizations.</p>
+is basically doing these same steps just in the cloud. Recall what you
+learned from experimenting with Compiler Explore earlier in this section.
+Does it seem like the compiler generated optimized code or unoptimized
+code? You can exit <code>less</code> by pressing the <code>q</code> key. Let's recompile our
+program with optimizations.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec2
@@ -1068,8 +1079,12 @@ results are as expected. We have included an ad-hoc test for each
 implementation in your repo that you can use for early experimentation.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/src
-% gcc -Wall -o sqrt-iter-adhoc ece2400-stdlib.c sqrt-iter.c sqrt-iter-adhoc.c
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid/pa1-math/src
+% gcc -Wall -Wextra -pedantic -o pow-iter-adhoc pow-iter.c pow-iter-adhoc.c
+% ./pow-iter-adhoc
+% gcc -Wall -Wextra -pedantic -o sqrt-iter-adhoc sqrt-iter.c sqrt-iter-adhoc.c
 % ./sqrt-iter-adhoc
 </pre></div>
 </td></tr></table>
@@ -1094,27 +1109,6 @@ section to compile an ad-hoc test from the command line.</p>
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../ece2400-sec1-linux/" title="Section 1: Linux Development Environment" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Section 1: Linux Development Environment
-              </span>
-            </div>
-          </a>
-        
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
