@@ -1029,22 +1029,6 @@ and we need to carefully rack which commands need to be redone whenever
 we change a C source file. In the next section, we will explore using a
 <em>build framework</em> to automate the process of modular compilation for
 complex C programs.</p>
-<div class="admonition note">
-<p class="admonition-title">To-Do On Your Own</p>
-<p>Create a new source file named <code>avg3.c</code> that contains the three-input
-average program you developed earlier. Create a header file named
-<code>avg3.h</code> which contains just the function prototype for the
-three-input average program. Modify <code>avg-mfile.c</code> to call both the
-two-input and the three-input <code>avg</code> functions. Try compiling <code>avg3.c</code>
-into its own object file named <code>avg3.o</code>. Link all three files (i.e.,
-<code>avg.o</code>, <code>avg3.o</code>, <code>avg-mfile.o</code>). You will see a linker error
-indicating that you have two functions with the same name. The
-compiler does not know how to disambiguate these two functions. Name
-the three-input average function <code>avg3</code> and update the source file
-(<code>avg3.c</code>), header file (<code>avg.h</code>), and <code>avg-mfile.c</code> appropriately.
-Recompile the object files and try linking the program together
-again. Verify that it produces the expected output.</p>
-</div>
 <h2 id="6-experimenting-with-compiling-and-running-c-programs-for-pa1">6. Experimenting with Compiling and Running C Programs for PA1<a class="headerlink" href="#6-experimenting-with-compiling-and-running-c-programs-for-pa1" title="Permanent link">&para;</a></h2>
 <p>Let's experiment with compiling an ad-hoc test for the first programming
 assignment using what we have learned in this discussion section. You can
