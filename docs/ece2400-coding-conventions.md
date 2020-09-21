@@ -139,11 +139,16 @@ There should be white space around binary operators. Here is an example:
     int a = b*c;   // incorrect
     int a = b * c; // correct
 
-Use explicit parenthesis to make operator precendence explicit:
+Try to use explicit parenthesis to make operator precendence explicit:
 
     :::c
     int a = a < 0 && b != 0;             // incorrect
     int a = ( ( a < 0 ) && ( b != 0 ) ); // correct
+    int a = (a < 0) && (b != 0);         // correct
+
+Sometimes there can just be too many paranthesis and just too much
+horizontal white space. So the third one might actually be more readable.
+Students will have to use their judgement.
 
 In some cases, we should _not_ include whitespace around an operator
 because the operator is not delimiting two distinct conceptual "tokens".
@@ -199,9 +204,24 @@ multiple statements. Here is an example:
     }
 
 Notice the use of spaces inside the parentheses since the `()` tokens
-should be conceptually separated from the conditional expression. If you
-use curly braces for one part of an if/then/else statement you must use
-them for all parts of the statement. Avoid single line if statements:
+should be conceptually separated from the conditional expression. We
+personally really like this style, but can also be okay to skip this
+horizontal whitespace like ths:
+
+    :::c
+    if (conditional_expression0) {
+      statement0;
+    }
+    else if (conditional_expression1) {
+      statement1;
+    }
+    else {
+      statement2;
+    }
+
+However, it is critical to be consistent! If you use curly braces for one
+part of an if/then/else statement you must use them for all parts of the
+statement. Avoid single line if statements:
 
     :::c
     if ( conditional_expression0 ) return 1; // incorrect
@@ -218,8 +238,17 @@ them for all parts of the statement. Avoid single line if statements:
     }
 
 Notice the extra horizontal whitespace used to separate the parentheses
-from the initialization statement and the increment statement. The open
-curly brace should be on the same line as the `for` statement.
+from the initialization statement and the increment statement. We
+personally really like this style, but can also be okay to skip this
+horizontal whitespace like this:
+
+    :::c
+    for (int i = 0; i < size; i++) {
+      loop_body;
+    }
+
+However, it is critical to be consistent! We really want the open curly
+brace should be on the same line as the `for` statement.
 
 ### 2.8. Function Definitions
 
@@ -231,8 +260,18 @@ Function definitions should look like this:
       function_body;
     }
 
-Insert space inside the parenthesis. Notice that for functions the open
-curly brace goes on its own line. Do not insert a space between the
+We encourage inserting space inside the parenthesis. We personally really
+like this style, but can also be okay to skip this horizontal whitespace
+like this:
+
+    :::c
+    int foo_bar(int a, int b)
+    {
+      function_body;
+    }
+
+However, it is critical to be consistent! Notice that for functions the
+open curly brace goes on its own line. Do not insert a space between the
 function name and the open parenthesis. So this is incorrect:
 
     :::c
@@ -250,8 +289,14 @@ example:
     :::c
     int result = gcd( 10, 15 );
 
-If there is a single parameter, sometimes it may be more appropriate to
-eliminate the whitespace inside the parenthesis.
+If there is a single argument, sometimes it may be more appropriate to
+eliminate the whitespace inside the parenthesis. Or if it is more
+readable it might be fine to do this if the arguments are very simple.
+
+    :::c
+    int result = gcd(10,15);
+
+Again, the focus is on readability.
 
 3. Naming
 --------------------------------------------------------------------------
@@ -382,7 +427,7 @@ This section discusses use of local and global variables.
 
 Place a function's variables in the narrowest scope possible. C99 no
 longer requires all variables to be declared at the beginning of a
-function, so declare functions close to where they are initialized.
+function, so declare variables close to where they are initialized.
 
 ### 5.2. Static and Global Variables
 

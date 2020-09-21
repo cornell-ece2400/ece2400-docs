@@ -5,13 +5,30 @@ Section 2: Compiling and Running C Programs
 This section serves as gentle introduction to the basics of compiling and
 running C programs on the `ecelinux` machines.
 
-1. The ecelinux Machines
+1. Logging Into ecelinux
 --------------------------------------------------------------------------
 
-Follow the same process as in the last section.
+Follow the same process as in the last section. If you are participating
+in the discussion section in-person in 225 Upson Hall, then all you need
+to do is find a free workstation and log into the workstation using your
+NetID and standard NetID password. Remote access students might also need
+to start the Cornell VPN. Then connect to `ecelinux` using X2go:
 
- - login to a workstation with your NetID and password
- - use MobaXterm to log into the `ecelinux` servers
+ - start X2go (in Upson 225 just double click the X2Go client on the desktop)
+ - double click on the `ecelinux` session or ...
+ - setup a new X2go session by configuring the _Session_ and _Media_ tabs
+    - session name: _ecelinux_
+    - host: _ecelinux.ece.cornell.edu_
+    - login: _cb535_
+    - session type: _XFCE_
+    - uncheck _enable sound support_
+    - uncheck _client side printing support_
+ - click _OK_
+ - enter your standard NetID password
+ - if asked to trust a certificate for the servers, click _yes_
+ - if asked about a Windows firewall setup, click _cancel_
+ - open a terminal using _Applications > Terminal Emulator_
+    from the _Applications_ menu
  - make sure you source the setup script
  - verify ECE2400 is in your prompt
 
@@ -29,22 +46,20 @@ following commands:
 2. Using Online Tools to Explore C Programs
 --------------------------------------------------------------------------
 
-In this section, we will explore to online tools that can be useful when
-exploring C programs. The first is Repl.it which enables us to write,
-compile, and run C programs in the cloud, and the second is Compiler
-Explore which enables us to compile C programs and view the corresponding
-machine instructions in the cloud.
+In this section, we will explore Repl.it which enables us to write,
+compile, and run C programs in the cloud. We won't have time to explore
+Compiler Explorer which enables us to compile C programs and view the
+corresponding machine instructions in the cloud, but we do encourage
+students to experiment with Compiler Explorer at <https://godbolt.org>.
 
-### 2.1. Repl.it
-
-Repl.it is a free online service which supports writing, compiling, and
-executing C/C++ programs completely online in your browser. It will
-enable us to quickly explore small C/C++ code snippets. Start a browser
-and go to <https://Repl.it>. You can use Repl.it without an account. You
-can always create an account later. Click _new repl_ in the upper
-right-hand corner. In the _Search for a language_ drop-down choose C and
+As mentioned, Repl.it is a free online service which supports writing,
+compiling, and executing C/C++ programs completely online in your
+browser. It will enable us to quickly explore small C/C++ code snippets.
+Start a browser and go to <https://Repl.it>. You can use Repl.it without
+an account. You can always create an account later. Click the _plus_ icon
+in the upper right-hand corner. In the _Language_ drop-down choose C and
 the click _Create repl_. You will see a default program. Replace this
-default program with the following program inspired by today's lecture.
+default program with the following program inspired by lecture.
 
     #include <stdio.h>
 
@@ -66,6 +81,12 @@ default program with the following program inspired by today's lecture.
 Click _run_. This will compile and execute your C program in the cloud
 and then display the output on the right.
 
+We will be using Repl.it throughout the course. We strongly encourage
+students to experiment with Repl.it frequently. The best way to truly
+understand computer systems programming with C and C++ is to actually
+write programs, and the easiest way to write C and C++ programs is to
+just use Repl.it!
+
 !!! note "To-Do On Your Own"
 
     Change the value of `b` to 15. Recompile and execute your C program.
@@ -73,63 +94,6 @@ and then display the output on the right.
     average of three values instead of just two. Modify the `main`
     function to properly call your updated function and verify it
     calculates the average correctly.
-
-We will be using Repl.it throughout the course. We strongly encourage
-students to experiment with Repl.it frequently. The best way to truly
-understand computer systems programming with C and C++ is to actually
-write programs, and the easiest way to write C and C++ programs is to
-just use Repl.it!
-
-### 2.2. Compiler Explorer
-
-Compiler Explore is a free online service that compiles C programs to
-machine instructions and then displays these machine instructions for you
-to inspect completely online in your browser. It will enable us to
-quickly explore the connection between C and C++ code and the low-level
-machine instructions actually executed by the computer system. Start a
-browser and go to <https://godbolt.org>. You will see a default code
-snippet. Replace this code with the following code inspired by today's
-lecture.
-
-    int avg( int x, int y )
-    {
-      int sum = x + y;
-      return sum / 2;
-    }
-
-Compiler Explore will automatically display the corresponding machine
-instructions on the right. It color codes C code on the left to match
-which exact machine instructions are produced by that C code on the
-right. You can right click on an instruction and select _View opcode doc_
-to learn more about what each instruction does. You can also choose from
-many different compilers targeting many different instruction set
-architectures (ISAs). Here are three different compiler/ISAs you might
-want to experiment with:
-
- - x86-64 clang 8.0.0 : This is similar to the compiler on ecelinux
- - MIPS gcc 5.4 (el) : This is similar to what is used in ECE 2400
- - RISCV-V rv32gc clang : This is similar to what is used in ECE 2400
-
-Go ahead and choose x86-64. Notice that even though the C source code
-uses the integer division operator there is no division instruction on
-the right. This is because the compiler is smart enough to figure out
-that dividing by 2 is the same as shifting to the right by one bit. In
-the upper-right corner you will either see `Compiler options` or `-O3`.
-This is where you can enter command line options that are passed to the
-compiler. The command line option `-O3` tells the compiler to apply as
-many optimizations as it can. Experiment with either entering `-O3` or
-deleting `-O3` to observe the difference in the resulting machine
-instructions. Notice that without `-O3` the compiler will generate many
-more instructions, and also notice that it now is using a division
-instruction (`idiv`). The unoptimized code would execute far slower than
-the optimized code.
-
-!!! note "To-Do On Your Own"
-
-    Copy-and-paste the three-input average program you developed earlier
-    into Compiler Explore. Inspect the corresponding machine instructions
-    for all three compiler/ISA options mentioned above with and without
-    optimizations.
 
 3. C Preprocessor
 --------------------------------------------------------------------------
@@ -153,7 +117,7 @@ could simply copy-and-paste our lists from `warm-colors.txt` and
 `cool-colors.txt`, but this would be redundant and difficult to maintain
 if we wanted to add a new warm or cool color. We can instead use the C
 preprocessor to _include_ the contents of one text file in another text
-file. Use Micro (or Geany) to create a new file named `colors-in.txt`
+file. Use Geany (or Micro) to create a new file named `colors-in.txt`
 like this:
 
     :::bash
@@ -165,9 +129,6 @@ Put the following content into this file:
     #include "warm-colors.txt"
     #include "cool-colors.txt"
 
-Recall that you can save a file from Micro using Ctrl-S and you can quit
-using Ctrl-Q.
-
 The C preprocessor copies the input source file to the output source
 file, while also looking for _C preprocessor directives_. All C
 preprocessor directives begin with the special `#` character. The
@@ -178,9 +139,9 @@ Now we can use the C preprocessor (`cpp`) to preprocess the `-in.txt`
 files into a final text file that contains both the warm and cool colors.
 
     :::bash
-% cd ${HOME}/ece2400/sec2
-% cpp -o colors.txt colors-in.txt
-% cat colors.txt
+    % cd ${HOME}/ece2400/sec2
+    % cpp -o colors.txt colors-in.txt
+    % cat colors.txt
 
 The `-o` command line option is used to specify the name of the output
 file. The content of the `colors.txt` should look like this:
@@ -250,8 +211,8 @@ regardless, but in C we are forced to use the C preprocessor to ensure
 code is only included once. We will use a technique called _include
 guards_. An include guard will ensure that the contents of a given file
 is only inserted into the output file once, even if we include it
-multiple times. For example, modify `warm-colors.txt` using Micro (or
-Geany) as follows:
+multiple times. For example, modify `warm-colors.txt` using Geany (or
+Micro) as follows:
 
     #ifndef SEC2_WARM_COLORS_TXT
     #define SEC2_WARM_COLORS_TXT
@@ -288,15 +249,6 @@ The actual macro name you use for the include guard doesn't matter as
 long as it is unique across all files. We usually use a variation of the
 filename to ensure unique include guard macros.
 
-!!! note "To-Do On Your Own"
-
-    Change the name of the macro used in both `warm-colors.txt` and
-    `cool-colors.txt` to be `COLORS_TXT`. This means both files will be
-    using the same macro name for their include guards. Rerun the C
-    preprocessor. Try switching the order you include the files in
-    `colors.txt` (e.g., include the cool colors first, and then include
-    the warm colors). Can you explain what is going on?
-
 4. Compiling and Running a Single-File C Program
 --------------------------------------------------------------------------
 
@@ -304,9 +256,9 @@ Now that we have explored how to use the C preprocessor for file
 inclusion and include guards, we will can turn out attention to writing C
 programs. We will begin by writing a single-file C program to calculate
 the average of two integers. Our goal is to reproduce what we did with
-Repl.it and Compiler Explorer, but by using various command line tools on
-the `ecelinux` machines. Edit the `avg-sfile.c` code to include an
-appropriate implementation of the `avg` function.
+Repl.it, but by using various command line tools on the `ecelinux`
+machines. Edit the `avg-sfile.c` code to include an appropriate
+implementation of the `avg` function.
 
     #include <stdio.h>
 
@@ -373,11 +325,10 @@ The `objdump` command takes an executable binary and shows you the
 machine instructions in a human readable format. We are piping it through
 `less` so we can scroll through the output. Try and find how many machine
 instructions are used to implement the `avg` function. Compiler Explore
-is basically doing these same steps just in the cloud. Recall what you
-learned from experimenting with Compiler Explore earlier in this section.
-Does it seem like the compiler generated optimized code or unoptimized
-code? You can exit `less` by pressing the `q` key. Let's recompile our
-program with optimizations.
+is basically doing these same steps just in the cloud. Does it seem like
+the compiler generated optimized code or unoptimized code? You can exit
+`less` by pressing the `q` key. Let's recompile our program with
+optimizations.
 
     :::bash
     % cd ${HOME}/ece2400/sec2
@@ -551,22 +502,6 @@ we change a C source file. In the next section, we will explore using a
 _build framework_ to automate the process of modular compilation for
 complex C programs.
 
-!!! note "To-Do On Your Own"
-
-    Create a new source file named `avg3.c` that contains the three-input
-    average program you developed earlier. Create a header file named
-    `avg3.h` which contains just the function prototype for the
-    three-input average program. Modify `avg-mfile.c` to call both the
-    two-input and the three-input `avg` functions. Try compiling `avg3.c`
-    into its own object file named `avg3.o`. Link all three files (i.e.,
-    `avg.o`, `avg3.o`, `avg-mfile.o`). You will see a linker error
-    indicating that you have two functions with the same name. The
-    compiler does not know how to disambiguate these two functions. Name
-    the three-input average function `avg3` and update the source file
-    (`avg3.c`), header file (`avg.h`), and `avg-mfile.c` appropriately.
-    Recompile the object files and try linking the program together
-    again. Verify that it produces the expected output.
-
 6. Experimenting with Compiling and Running C Programs for PA1
 --------------------------------------------------------------------------
 
@@ -576,7 +511,7 @@ use the following steps to clone your PA1 repo.
 
     :::bash
     % mkdir -p ${HOME}/ece2400
-    % cd ece2400
+    % cd ${HOME}/ece2400
     % git clone git@github.com:cornell-ece2400/netid
     % cd netid
     % tree
@@ -589,9 +524,7 @@ implementation in your repo that you can use for early experimentation.
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math/src
-    % gcc -Wall -Wextra -pedantic -o pow-iter-adhoc pow-iter.c pow-iter-adhoc.c
-    % ./pow-iter-adhoc
-    % gcc -Wall -Wextra -pedantic -o sqrt-iter-adhoc sqrt-iter.c sqrt-iter-adhoc.c
+    % gcc -Wall -o sqrt-iter-adhoc ece2400-stdlib.c sqrt-iter.c sqrt-iter-adhoc.c
     % ./sqrt-iter-adhoc
 
 These ad-hoc tests will not print out the correct value because you

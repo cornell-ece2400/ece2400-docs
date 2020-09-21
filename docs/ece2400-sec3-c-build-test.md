@@ -17,13 +17,30 @@ a _test framework_ to automate this process. Using a build and test
 framework is critical to productive system-level programming in C and
 C++.
 
-1. The ecelinux Machines
+1. Logging Into ecelinux
 --------------------------------------------------------------------------
 
-Follow the same process as in the last section.
+Follow the same process as in the last section. If you are participating
+in the discussion section in-person in 225 Upson Hall, then all you need
+to do is find a free workstation and log into the workstation using your
+NetID and standard NetID password. Remote access students might also need
+to start the Cornell VPN. Then connect to `ecelinux` using X2go:
 
- - login to a workstation with your NetID and password
- - use MobaXterm to log into the `ecelinux` servers
+ - start X2go (in Upson 225 just double click the X2Go client on the desktop)
+ - double click on the `ecelinux` session or ...
+ - setup a new X2go session by configuring the _Session_ and _Media_ tabs
+    - session name: _ecelinux_
+    - host: _ecelinux.ece.cornell.edu_
+    - login: _cb535_
+    - session type: _XFCE_
+    - uncheck _enable sound support_
+    - uncheck _client side printing support_
+ - click _OK_
+ - enter your standard NetID password
+ - if asked to trust a certificate for the servers, click _yes_
+ - if asked about a Windows firewall setup, click _cancel_
+ - open a terminal using _Applications > Terminal Emulator_
+    from the _Applications_ menu
  - make sure you source the setup script
  - verify ECE2400 is in your prompt
 
@@ -34,9 +51,9 @@ following commands:
     % source setup-ece2400.sh
     % mkdir -p ${HOME}/ece2400
     % cd ${HOME}/ece2400
-    % git clone git@github.com:cornell-ece2400/ece2400-sec3 sec3
+    % git clone git@github.com:cornell-ece2400/ece2400-sec2 sec3
     % cd sec3
-    % tree
+    % cat README.md
 
 The given `src` directory includes the following files:
 
@@ -172,7 +189,7 @@ maintaining these `Makefiles` can involve significant effort. It can be
 particularly challenging to ensure all of the dependencies between the
 various source and header files are always correctly captured in the
 `Makefile`. It can also be complicated to add support for code coverage,
-memory checking, and debug vs.~evaluation builds.
+memory checking, and debug vs. evaluation builds.
 
 New tools have been developed to help _automate_ the process of managing
 `Makefiles` (which in turn _automate_ the build process). Automation is
@@ -269,29 +286,48 @@ unit testing including standardized naming conventions, test output, and
 test drivers. In this course, we will be using CTest as a key step in our
 test framework. CTest elegantly integrates with CMake to create a unified
 built and test framework. Each unit test will be a stand-alone test
-program where the test code is contained within the `main` function. The
-following is an example of a unit test program for our `avg` function:
+program. The following is an example of a unit test program for our `avg`
+function:
 
     :::c
-    #include <stdio.h>
     #include "avg.h"
-    #include "utst.h"
+    #include "ece2400-stdlib.h"
+    #include <stdio.h>
 
-    int main()
+    void test_case_1_basic()
     {
-      UTST_ASSERT_INT_EQ( avg( 10, 20 ), 15 );
-      return 0;
+      printf("\n%s\n", __func__  );
+      ECE2400_CHECK_INT_EQ( avg( 10, 20 ), 15 );
     }
 
-We provide a simple library of test macros in `utst.h` which can be used
-to write various testing assertions. The `UTST_ASSERT_INT_EQ` macro
-asserts that the two given integer parameters are equal. If they are
-indeed equal, then the macro prints out the values, and we move on to the
-next test assertion. If they are not equal, the the macro prints out an
-error message and exits the program with the value 1. Recall that when
-the program returns 0 it means success, and when the program returns 1 it
-means failure. The return value enables our test program to inform CTest
-of whether or not our test passed of failed.
+    int main( int argc, char* argv[] )
+    {
+      __n = ( argc == 1 ) ? 0 : atoi( argv[1] );
+
+      if ( (__n <= 0) || (__n == 1) )
+        test_case_1_basic();
+
+      printf( "\n" );
+      return __failed;
+    }
+
+Our test programs will consist of a number of _test cases_. Each test
+case is a separate function which should focus on testing a specific
+subset of inputs. In this example, test case 1 tests very basic
+functionality. Each test case should start with a statement similar to
+line 7. `__func__` is a built-in variable which contains the function
+name, so these lines basically print out the name of the function. Each
+test case should then use a series of `ECE2400_CHECK` macros to check
+that the implementation produces the expected results. For example, on
+line 8 we check that the average of 10 and 20 is 15. If the check passes,
+then the macro prints out the values, and we move on to the next test
+check. If the check fails, then the macro prints out an error message,
+sets the global `__failed` variable, and returns ending that test case.
+The return value enables our test program to inform CTest of whether or
+not all of our test cases passed of failed. The main function's job is to
+simply call each test case function. Note that we get a single command
+line argument which specifies which test case we want to run. If we do
+not specify a command line argument then we run all of the test cases.
 
 We have provided the above test program in the repository for this
 discussion section. To use CTest, we need to tell it about this new test
@@ -306,21 +342,21 @@ program. We can do this by simply adding a new line to our
     add_executable( avg-sfile avg-sfile.c )
     add_executable( avg-mfile avg-mfile.c avg.c )
 
-    add_executable( avg-mfile-basic-test avg-mfile-basic-test.c avg.c )
-    add_test( avg-mfile-basic-test avg-mfile-basic-test )
+    add_executable( avg-mfile-directed-test avg-mfile-directed-test.c avg.c )
+    add_test( avg-mfile-directed-test avg-mfile-directed-test )
 
 Line 3 tells CMake to turn on support for testing with CTest. Line 6
 specifies how to build `avg-mfile`. Line 8 specifies how to build the
-`avg-mfile-basic-test` test program. Line 9 tells CMake that
-`avg-mfile-basic-test` is a test that should be managed by CTest. Modify
+`avg-mfile-directed-test` test program. Line 9 tells CMake that
+`avg-mfile-directed-test` is a test that should be managed by CTest. Modify
 your `CMakeLists.txt` file to look like what is given above, rerun cmake,
 build the test, and run it.
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
     % cmake .
-    % make avg-mfile-basic-test
-    % ./avg-mfile-basic-test
+    % make avg-mfile-directed-test
+    % ./avg-mfile-directed-test
 
 You should see some output which indicates the passing test assertion.
 CMake provides a `test` target which can run all of the tests and
@@ -332,23 +368,23 @@ provides a summary.
 
 It is always a good idea to occasionally force a test to fail to ensure
 your test framework is behaving correctly. Change the test assertion in
-`avg-mfile-basic-test.c` to look like this:
+`avg-mfile-directed-test.c` to look like this:
 
     :::c
-    UTST_ASSERT_INT_EQ( avg( 10, 20 ), 16 );
+    ECE2400_CHECK_INT_EQ( avg( 10, 20 ), 16 );
 
 Then rebuild and rerun the test like this:
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
-    % make avg-mfile-basic-test
+    % make avg-mfile-directed-test
     % make test
-    % ./avg-mfile-basic-test
+    % ./avg-mfile-directed-test
 
 You should see the test failing in the test summary, and then see
 additional information about the failing test assertion when you
-explicitly run the test program. `avg-mfile-basic-test` is a kind of
-"smoke" test which is used to test the absolute most basic functionality
+explicitly run the test program. `avg-mfile-directed-test` is a kind of
+"smoke" test which is used to test the absolute most directed functionality
 of an implementation. We will also be doing extensive _directed testing_
 and _random testing_. In directed testing, you explicitly use test
 assertions to test as many corner cases as possible. In random testing,
@@ -358,13 +394,11 @@ directed testing.
 
 !!! note "To-Do On Your Own"
 
-    Create another unit test program named `avg-mfile-directed-test.c`
-    for directed testing. Use the macros in `utst.h` to begin/end your
-    test program and for test assertions. Try to test several different
-    corner cases. Modify your `CMakeLists.txt` file to include this new
-    unit test program. Use CMake to regenerate the corresponding
-    `Makefile`, use `make` to build your test program, and then run it.
-    Ensure that `make test` runs both the basic and directed tests.
+    Add a second test case named `test_case_2_truncate` which explicitly
+    tests situations where the average has to be truncated (e.g., the
+    average of 10 and 15 is 12.5 which will be truncated to 12). Update
+    the `main` function to call this new test case. Use CMake and CTest
+    to rerun the tests.
 
 5. Using a Build Directory
 --------------------------------------------------------------------------
@@ -409,11 +443,6 @@ start again like this:
 You should **never** check in your `build` directory or any generated
 content into Git. Only source files are checked into Git!
 
-!!! note "To-Do On Your Own"
-
-    Add a new test assertion to your directed tests. Rebuild and rerun
-    the test program in the separate build directory.
-
 6. Experimenting with Build and Test Frameworks for PA1
 --------------------------------------------------------------------------
 
@@ -423,7 +452,7 @@ section. You can use the following steps to clone your PA1 repo.
 
     :::bash
     % mkdir -p ${HOME}/ece2400
-    % cd ece2400
+    % cd ${HOME}/ece2400
     % git clone git@github.com:cornell-ece2400/netid
     % cd netid
     % tree
@@ -438,7 +467,7 @@ directory. You can use the following steps to use the build framework
 with the first programming assignment.
 
     :::bash
-    % mkdir -p ${HOME}/ece2400/netid/pa1-math
+    % cd ${HOME}/ece2400/netid/pa1-math
     % mkdir build
     % cd build
     % cmake ..
@@ -452,118 +481,30 @@ it in isolation like this:
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math/build
-    % make pow-iter-basic-test
-    % ./pow-iter-basic-test
+    % make sqrt-iter-directed-test
+    % ./sqrt-iter-directed-test
 
 You can build and run the test program on a single line like this:
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math/build
-    % make pow-iter-basic-test && ./pow-iter-basic-test
+    % make sqrt-iter-directed-test && ./sqrt-iter-directed-test
 
 The `&&` bash operator enables running multiple commands on the same
-command line. Let's take a closer look at how we will structure our test
-programs. Here is the content of `pow-iter-directed-test`.
-
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include "utst.h"
-    #include "pow-iter.h"
-
-    void test_case_1_small_large()
-    {
-      printf("\n%s\n", __func__  );
-      UTST_ASSERT_FLOAT_EQ( pow_iter(   1, 100 ),                      1.0000, 0.0001 );
-      UTST_ASSERT_FLOAT_EQ( pow_iter( 1.1, 300 ) / 2617010996188.4634, 1.0,    0.0001 );
-    }
-
-    void test_case_2_zero_small()
-    {
-      printf("\n%s\n", __func__  );
-      UTST_ASSERT_FLOAT_EQ( pow_iter( 0, 1 ), 0.0000, 0.0001 );
-      UTST_ASSERT_FLOAT_EQ( pow_iter( 0, 2 ), 0.0000, 0.0001 );
-    }
-
-    int main( int argc, char* argv[] )
-    {
-      int n = ( argc == 1 ) ? 0 : atoi( argv[1] );
-
-      if ( ( n == 0 ) || ( n == 1 ) ) test_case_1_small_large();
-      if ( ( n == 0 ) || ( n == 2 ) ) test_case_2_zero_small();
-
-      printf( "\n" );
-      return 0;
-    }
-
-Our test programs will consist of a number of _test cases_. Each test
-case is a separate function which should focus on testing a specific
-subset of inputs. In this example, test case 1 tests small numbers raised
-to a large exponent, while test case 2 tests a base of zero raised to a
-small exponent. Each test case should start with a statement similar to
-lines 8 and 14. `__func__` is a built-in variable which contains the
-function name, so these lines basically print out the name of the
-function. Each test case should then use a series of `UTST_ASSERT` macros
-to check that the implementation produces the expected results. For
-example, on line 9 we check that 1 raised to 100 is equal to 1.0. On line
-10 we check 1.1 raised to 300. Here we need to be careful because
-floating point arithmetic can sometimes not be as precise as we expect.
-So in this example we calculate the result of our implementation, divide
-this result by the correct answer, and then make sure this ratio, is
-close to 1. The main function's job is to simply call each test case
-function. Note that we get a single command line argument which specifies
-which test case we want to run. If we do not specify a command line
-argument then we run all of the test cases.
-
-Let's run all of the direct test cases.
+command line. Without a command line argument, the test program will run
+all of the test cases. You can also use the command line argument `-1` to
+print out a dot for every passing test check. Then we can "zoom in"
+further, and run a single test case within a single test program so we
+see exactly which test check is failing. The following will build the
+directed test program, explicitly run just test case 1, and then
+explicitly run just test case 2.
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math/build
-    % make pow-iter-directed-test
-    % ./pow-iter-directed-test
-
-Then we can "zoom in" further, and run a single test case within a single
-test program so we see exactly which test assertion is failing. The
-following will build the directed test program, explicitly run just test
-case 1, and then explicitly run just test case 2.
-
-    :::bash
-    % cd ${HOME}/ece2400/netid/pa1-math/build
-    % make pow-iter-directed-test
-    % ./pow-iter-directed-test 1
-    % ./pow-iter-directed-test 2
+    % make sqrt-iter-directed-test
+    % ./sqrt-iter-directed-test 1
+    % ./sqrt-iter-directed-test 2
 
 Once we fix the bug, then we can "zoom out" and move on to the next
-failing test case, or to the next failing test program. Now let's try
-adding a new test case that checks that a small number raised to zero is
-1.
-
-    ...
-    void test_case_3_small_zero()
-    {
-      printf("\n%s\n", __func__  );
-      UTST_ASSERT_FLOAT_EQ( pow_iter( 10, 0 ), 1.0000, 0.0001 );
-    }
-
-    int main( int argc, char* argv[] )
-    {
-      int n = ( argc == 1 ) ? 0 : atoi( argv[1] );
-
-      if ( ( n == 0 ) || ( n == 1 ) ) test_case_1_small_large();
-      if ( ( n == 0 ) || ( n == 2 ) ) test_case_2_zero_small();
-      if ( ( n == 0 ) || ( n == 3 ) ) test_case_3_small_zero();
-
-      printf( "\n" );
-      return 0;
-    }
-
-We have added a new test case function with an appropriate test case
-number and name, and we have also added a new line to the `main` function
-to call this new test case function. Let's go ahead and run all of the
-test cases and then run just this new test case.
-
-    :::bash
-    % cd ${HOME}/ece2400/netid/pa1-math/build
-    % make pow-iter-directed-test
-    % ./pow-iter-directed-test
-    % ./pow-iter-directed-test 3
+failing test case, or to the next failing test program.
 

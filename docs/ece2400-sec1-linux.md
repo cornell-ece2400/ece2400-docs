@@ -46,24 +46,24 @@ If you are participating in the discussion section remotely, then
 hopefully you have already gone through the steps in Tutorial 1 of the
 course:
 
- - https://www.csl.cornell.edu/courses/ece2400/handouts/ece2400-tut1-x2go.pdf
+ - <https://www.csl.cornell.edu/courses/ece2400/handouts/ece2400-tut1-x2go.pdf>
 
 You need to setup the Cornell VPN and install X2go on your local
 laptop/workstation. If you haven't done this yet, you need to go ahead
 and do this now.
 
-### 1.3. Linux Virtual Desktop
+### 1.3. Linux Remote Desktop
 
 Once you have started X2go and logged into the `ecelinux` servers, then
-you should see the Linux virtual desktop. Note that the Linux virtual
+you should see the Linux remote desktop. Note that the Linux remote
 desktop is running on the `ecelinux` server, so anything you do in the
-Linux virtual deskop is actually happening on the server and not on your
+Linux remote deskop is actually happening on the server and not on your
 local laptop/workstation.
 
 The next step is to open a new terminal by choosing _Applications >
 Terminal Emulator_ from the _Applications_ menu in the upper-left corner
-of the Linux virtual desktop. The following screenshot shows a terminal
-opened on the Linux virtual desktop.
+of the Linux remote desktop. The following screenshot shows a terminal
+opened on the Linux remote desktop.
 
   ![](img/terminal-ece2400.png)
 
@@ -544,7 +544,7 @@ commits up to GitHub like this:
 Now go to the repository page using the GitHub web interface and verify
 that there are two new files.
 
- - <https://github.com/githubid/ece2400-sec1>
+ - `https://github.com/githubid/ece2400-sec1`
 
 !!! note "To-Do On Your Own"
 
@@ -560,7 +560,7 @@ that there are two new files.
 Let's try making a change to this repository through the GitHub
 web interface.
 
- - <https://github.com/githubid/ece2400-sec1>
+ - `https://github.com/githubid/ece2400-sec1`
 
 Click on _Create new file_. Name the file `languages.txt` and add a list
 of programming languages:
@@ -598,7 +598,7 @@ to synchronize their repository with the repository on GitHub.
 
 When you are finished working on the `ecelinux` servers you need to
 explicitly log out. Choose _Applications > Log Out_ from the
-_Applications_ menu in the upper-left corner of the Linux virtual
+_Applications_ menu in the upper-left corner of the Linux remote
 desktop. Make sure _Save session for future logins_ is not checked. Then
 click on _Log out_ to cleanly log out from the `ecelinux` servers.
 Obviously, you should save all of you work frequently and before you log
