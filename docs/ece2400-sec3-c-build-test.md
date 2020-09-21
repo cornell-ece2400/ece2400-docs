@@ -63,7 +63,7 @@ The given `src` directory includes the following files:
  - `avg.h`: header file for the `avg` function
  - `avg.c`: source file for the `avg` function
  - `avg-mfile.c` : `main` for multi-file `avg` program
- - `avg-mfile-basic-test.c` : most basic smoke test
+ - `avg-mfile-directed-test.c` : directed test cases
 
 2. Using Makefiles to Compile C Programs
 --------------------------------------------------------------------------
@@ -361,14 +361,12 @@ build the test, and run it.
     % ./avg-mfile-directed-test 1
 
 The command `./avg-mfile-directed-test` runs all test cases defined in
-`avg-mfile-directed-test` and does not print anything when the test
-case passes. If you want to see more information about the passing
-assertions, you can zoom in to a specific test case (e.g., test case 1)
-using `./avg-mfile-directed-test 1`. `avg-mfile-directed-test` is a kind
-of "smoke" test which is used to test the absolute most directed
-functionality of an implementation. We will also be doing extensive
-_directed testing_ and _random testing_. In directed testing, you explicitly
-use test assertions to test as many corner cases as possible. In random
+`avg-mfile-directed-test` and does not print anything when the test case
+passes. If you want to see more information about the passing assertions,
+you can zoom in to a specific test case (e.g., test case 1) using
+`./avg-mfile-directed-test 1`. We will also be doing extensive _directed
+testing_ and _random testing_. In directed testing, you explicitly use
+test assertions to test as many corner cases as possible. In random
 testing, you use random input values and compare the output to some
 golden "reference" implementation to hopefully catch bugs missed in your
 directed testing.
@@ -406,14 +404,15 @@ You should see the test failing in the test summary, and then see
 additional information about the failing test assertion when you
 explicitly run the test program.
 
-The ECE 2400 course standard library provides `ECE2400_DEBUG`, a macro that
-allows you to print out extra information for debugging purposes. One
-advantage of using the debug macro over `printf` is that this macro incurs
-zero run time overhead in the evaluation build. Indeed, this macro is simply
-replaced with a semi-colon when the build type is specified as `eval`. That
-means the same implementation of your `sqrt` or `pow` function can be reused
-for evaluation purposes without removing all debugging `printf`s first. To
-use the debug macro, change file `avg.c` to look like this:
+The ECE 2400 course standard library provides `ECE2400_DEBUG`, a macro
+that allows you to print out extra information for debugging purposes.
+One advantage of using the debug macro over `printf` is that this macro
+incurs zero run time overhead in the evaluation build. Indeed, this macro
+is simply replaced with a semi-colon when the build type is specified as
+`eval`. That means the same implementation of your `sqrt` or `pow`
+function can be reused for evaluation purposes without removing all
+debugging `printf`s first. To use the debug macro, change file `avg.c` to
+look like this:
 
     :::c
     #include "avg.h"
@@ -439,9 +438,10 @@ Next, change `CMakeLists.txt` to look like this:
     add_executable( avg-mfile-directed-test avg-mfile-directed-test.c avg.c ece2400-stdlib.c )
     add_test( avg-mfile-directed-test avg-mfile-directed-test )
 
-Since we are using utilities from the course standard library, we need
-to compile targets who depend on `avg.c` together with the implementation
-of the course library (line 6 and 8). Then rebuild and rerun the test like this:
+Since we are using utilities from the course standard library, we need to
+compile targets who depend on `avg.c` together with the implementation of
+the course library (line 6 and 8). Then rebuild and rerun the test like
+this:
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
@@ -451,18 +451,18 @@ of the course library (line 6 and 8). Then rebuild and rerun the test like this:
 
 Note how the debug info is suppressed when you are not zooming into a
 specific test case. You should see a line starting with `[ -info- ]` in
-the output, which corresponds to the debug macro we added in `avg.c`. This
-info line tells us the sum of `x` and `y` is 20 instead of 30, and we
-should realize that we made a mistake while calculating the sum.
+the output, which corresponds to the debug macro we added in `avg.c`.
+This info line tells us the sum of `x` and `y` is 20 instead of 30, and
+we should realize that we made a mistake while calculating the sum.
 
 !!! note "To-Do On Your Own"
 
     In this to-do activity you will work on `avg-mfile-directed-test` to
-    add one more test case. Add a second test case named `test_case_2_truncate`
-    which explicitly tests situations where the average has to be truncated
-    (e.g., the average of 10 and 15 is 12.5 which will be truncated to 12).
-    Update the `main` function to call this new test case. Use CMake and
-    CTest to rerun the tests.
+    add one more test case. Add a second test case named
+    `test_case_2_truncate` which explicitly tests situations where the
+    average has to be truncated (e.g., the average of 10 and 15 is 12.5
+    which will be truncated to 12). Update the `main` function to call
+    this new test case. Use CMake and CTest to rerun the tests.
 
 5. Using a Build Directory
 --------------------------------------------------------------------------
