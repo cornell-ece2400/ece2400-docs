@@ -80,7 +80,7 @@ Let's now remove the binary so we are back to a clean directory:
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
-    % rm -rf avg-sfile
+    % rm -r avg-sfile
 
 We will start by using a new tool called `make` which was specifically
 designed to help automate the process of building C programs. The key to
