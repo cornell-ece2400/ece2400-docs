@@ -170,17 +170,6 @@ like this:
     % make clean
     % ls
 
-!!! note "To-Do On Your Own"
-
-    Add two rules to your `Makefile` to compile `avg.o` and
-    `avg-mfile.o`. Add a rule that links these two object files together
-    and produces `avg-mfile`. Update the rule for the `clean` target
-    appropriately. Carefully consider what command and prerequisites to
-    use for each target. Test out your `Makefile`. Try changing `avg.c`
-    and rerunning `make`. Does your program recompile correctly? Try
-    changing `avg.h` and rerunning `make`. Does your program recompile
-    correctly?
-
 3. Using CMake to Generate Makefiles for Compiling C Programs
 --------------------------------------------------------------------------
 
@@ -231,12 +220,12 @@ command to generate a `Makefile` we can use to compile `avg-sfile`:
     % ls
     % less Makefile
 
-The `cmake` command will by default use the `CMakeLists.txt` in the
-directory given as a command line argument. CMake takes care of figuring
-out what C compilers are available and then generating the `Makefile`
-appropriately. You can see that CMake has automatically generated a
-pretty sophisticated `Makefile`. Let's go ahead and use this `Makefile`
-to build `avg-sfile`.
+NOTE: THERE IS A DOT AFTER `cmake`! The `cmake` command will by default
+use the `CMakeLists.txt` in the directory given as a command line
+argument. CMake takes care of figuring out what C compilers are available
+and then generating the `Makefile` appropriately. You can see that CMake
+has automatically generated a pretty sophisticated `Makefile`. Let's go
+ahead and use this `Makefile` to build `avg-sfile`.
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
@@ -251,16 +240,6 @@ CMake will automatically create some useful targets like `clean`.
 
 Writing a `CMakeLists.txt` is simpler than writing a `Makefile`,
 especially when we start working with many files.
-
-!!! note "To-Do On Your Own"
-
-    Add another line to your `CMakeLists.txt` file to specify that we
-    want to generate a `Makefile` that can be used to compile `avg-mfile`
-    from `avg-mfile.c` and `avg.c`. Use CMake to generate the
-    corresponding `Makefile` and then use `make` to compile `avg-mfile`.
-    Try changing `avg.c` and rerunning `make`. Does your program
-    recompile correctly? Try changing `avg.h` and rerunning `make`. Does
-    your program recompile correctly?
 
 4. Using CTest for Systematic Unit Testing
 --------------------------------------------------------------------------
@@ -341,7 +320,7 @@ program. We can do this by simply adding a new line to our
     enable_testing()
 
     add_executable( avg-sfile avg-sfile.c )
-    add_executable( avg-mfile avg-mfile.c avg.c )
+    add_executable( avg-mfile avg-mfile.c avg.c ece2400-stdlib.c )
 
     add_executable( avg-mfile-directed-test avg-mfile-directed-test.c avg.c ece2400-stdlib.c )
     add_test( avg-mfile-directed-test avg-mfile-directed-test )
@@ -427,23 +406,7 @@ look like this:
       return sum / 2;
     }
 
-Next, change `CMakeLists.txt` to look like this:
-
-    :::cmake
-    cmake_minimum_required(VERSION 2.8)
-    enable_language(C)
-    enable_testing()
-
-    add_executable( avg-sfile avg-sfile.c )
-    add_executable( avg-mfile avg-mfile.c avg.c ece2400-stdlib.c )
-
-    add_executable( avg-mfile-directed-test avg-mfile-directed-test.c avg.c ece2400-stdlib.c )
-    add_test( avg-mfile-directed-test avg-mfile-directed-test )
-
-Since we are using utilities from the course standard library, we need to
-compile targets who depend on `avg.c` together with the implementation of
-the course library (line 6 and 8). Then rebuild and rerun the test like
-this:
+Then rebuild and rerun the test like this:
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
@@ -457,80 +420,31 @@ the output, which corresponds to the debug macro we added in `avg.c`.
 This info line tells us the sum of `x` and `y` is 20 instead of 30, and
 we should realize that we made a mistake while calculating the sum.
 
-!!! note "To-Do On Your Own"
-
-    In this to-do activity you will work on `avg-mfile-directed-test` to
-    add one more test case. Add a second test case named
-    `test_case_2_truncate` which explicitly tests situations where the
-    average has to be truncated (e.g., the average of 10 and 15 is 12.5
-    which will be truncated to 12). Update the `main` function to call
-    this new test case. Use CMake and CTest to rerun the tests.
-
-5. Using a Build Directory
---------------------------------------------------------------------------
-
-Take a look at the source directory. It likely contains a mess of
-generated directories, object files, executables, etc. It is usually very
-bad practice to build C programs directly in the _source_ directory. It
-is much better to build C programs in a completely separate _build_
-directory. Adding support for these build directories in a `Makefile` is
-complex, but CMake makes it easy. Let's start by deleting all generated
-content in your source directory:
-
-    :::bash
-    % cd ${HOME}/ece2400/sec3/src
-    % make clean
-    % trash CMakeCache.txt CMakeFiles *.cmake Testing
-
-Now let's first create a separate build directory, use CMake to create
-a new `Makefile`, and finally build and run all of our tests.
-
-    :::bash
-    % cd ${HOME}/ece2400/sec3
-    % mkdir build
-    % cd build
-    % cmake ../src
-    % make
-    % make test
-
-A separate build directory makes it easy to do a "clean build" where you
-start your build from scratch. Simply remove the build directory and
-start again like this:
-
-    :::bash
-    % cd ${HOME}/ece2400/sec3
-    % trash build
-    % mkdir build
-    % cd build
-    % cmake ../src
-    % make
-    % make test
-
-You should **never** check in your `build` directory or any generated
-content into Git. Only source files are checked into Git!
-
-6. Experimenting with Build and Test Frameworks for PA1
+5. Experimenting with Build and Test Frameworks for PA1
 --------------------------------------------------------------------------
 
 Let's experiment with the build and test frameworks for the first
 programming assignment using what we have learned in this discussion
-section. You can use the following steps to clone your PA1 repo.
+section. You can use the following steps to update your PA1 repo to make
+sure you have received the latest code.
 
     :::bash
     % mkdir -p ${HOME}/ece2400
-    % cd ${HOME}/ece2400
-    % git clone git@github.com:cornell-ece2400/netid
-    % cd netid
+    % cd ${HOME}/ece2400/netid
+    % git pull
     % tree
 
 For each programming assignment, we will provide you a skeleton for your
 project including a complete `CMakeLists.txt`. In the common case, you
 should not need to modify the `CMakeLists.txt` unless you want to
 incorporate additional source and/or test files. The programming
-assignments are setup to use a separate build directory. The programming
-assignments also group all of the tests into their own separate
-directory. You can use the following steps to use the build framework
-with the first programming assignment.
+assignments are setup to use a separate build directory. It is much
+better to build C programs in a completely separate _build_ directory. A
+separate build directory makes it easy to keep your generated content
+separate from your source code, and to do a "clean build" where you start
+your build from scratch. The programming assignments also group all of
+the tests into their own separate directory. You can use the following
+steps to use the build framework with the first programming assignment.
 
     :::bash
     % cd ${HOME}/ece2400/netid/pa1-math
