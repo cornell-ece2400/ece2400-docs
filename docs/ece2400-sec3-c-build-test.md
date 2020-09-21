@@ -452,7 +452,7 @@ this:
     % ./avg-mfile-directed-test 1
 
 Note how the debug info is suppressed when you are not zooming into a
-specific test case. You should see a line starting with `[ -info- ]` in
+specific test case. You should see two lines starting with `[ -info- ]` in
 the output, which corresponds to the debug macro we added in `avg.c`.
 This info line tells us the sum of `x` and `y` is 20 instead of 30, and
 we should realize that we made a mistake while calculating the sum.
