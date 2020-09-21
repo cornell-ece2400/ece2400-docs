@@ -340,15 +340,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-using-a-build-directory" title="5. Using a Build Directory" class="md-nav__link">
-    5. Using a Build Directory
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-experimenting-with-build-and-test-frameworks-for-pa1" title="6. Experimenting with Build and Test Frameworks for PA1" class="md-nav__link">
-    6. Experimenting with Build and Test Frameworks for PA1
+  <a href="#5-experimenting-with-build-and-test-frameworks-for-pa1" title="5. Experimenting with Build and Test Frameworks for PA1" class="md-nav__link">
+    5. Experimenting with Build and Test Frameworks for PA1
   </a>
   
 </li>
@@ -413,15 +406,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-using-a-build-directory" title="5. Using a Build Directory" class="md-nav__link">
-    5. Using a Build Directory
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-experimenting-with-build-and-test-frameworks-for-pa1" title="6. Experimenting with Build and Test Frameworks for PA1" class="md-nav__link">
-    6. Experimenting with Build and Test Frameworks for PA1
+  <a href="#5-experimenting-with-build-and-test-frameworks-for-pa1" title="5. Experimenting with Build and Test Frameworks for PA1" class="md-nav__link">
+    5. Experimenting with Build and Test Frameworks for PA1
   </a>
   
 </li>
@@ -632,17 +618,6 @@ like this:</p>
 </pre></div>
 </td></tr></table>
 
-<div class="admonition note">
-<p class="admonition-title">To-Do On Your Own</p>
-<p>Add two rules to your <code>Makefile</code> to compile <code>avg.o</code> and
-<code>avg-mfile.o</code>. Add a rule that links these two object files together
-and produces <code>avg-mfile</code>. Update the rule for the <code>clean</code> target
-appropriately. Carefully consider what command and prerequisites to
-use for each target. Test out your <code>Makefile</code>. Try changing <code>avg.c</code>
-and rerunning <code>make</code>. Does your program recompile correctly? Try
-changing <code>avg.h</code> and rerunning <code>make</code>. Does your program recompile
-correctly?</p>
-</div>
 <h2 id="3-using-cmake-to-generate-makefiles-for-compiling-c-programs">3. Using CMake to Generate Makefiles for Compiling C Programs<a class="headerlink" href="#3-using-cmake-to-generate-makefiles-for-compiling-c-programs" title="Permanent link">&para;</a></h2>
 <p>While using <code>make</code> can help automate the build process, the corresponding
 <code>Makefiles</code> can quickly grow to be incredibly complicated. Creating and
@@ -696,12 +671,12 @@ command to generate a <code>Makefile</code> we can use to compile <code>avg-sfil
 </pre></div>
 </td></tr></table>
 
-<p>The <code>cmake</code> command will by default use the <code>CMakeLists.txt</code> in the
-directory given as a command line argument. CMake takes care of figuring
-out what C compilers are available and then generating the <code>Makefile</code>
-appropriately. You can see that CMake has automatically generated a
-pretty sophisticated <code>Makefile</code>. Let's go ahead and use this <code>Makefile</code>
-to build <code>avg-sfile</code>.</p>
+<p>NOTE: THERE IS A DOT AFTER <code>cmake</code>! The <code>cmake</code> command will by default
+use the <code>CMakeLists.txt</code> in the directory given as a command line
+argument. CMake takes care of figuring out what C compilers are available
+and then generating the <code>Makefile</code> appropriately. You can see that CMake
+has automatically generated a pretty sophisticated <code>Makefile</code>. Let's go
+ahead and use this <code>Makefile</code> to build <code>avg-sfile</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec3/src
@@ -719,16 +694,6 @@ to build <code>avg-sfile</code>.</p>
 
 <p>Writing a <code>CMakeLists.txt</code> is simpler than writing a <code>Makefile</code>,
 especially when we start working with many files.</p>
-<div class="admonition note">
-<p class="admonition-title">To-Do On Your Own</p>
-<p>Add another line to your <code>CMakeLists.txt</code> file to specify that we
-want to generate a <code>Makefile</code> that can be used to compile <code>avg-mfile</code>
-from <code>avg-mfile.c</code> and <code>avg.c</code>. Use CMake to generate the
-corresponding <code>Makefile</code> and then use <code>make</code> to compile <code>avg-mfile</code>.
-Try changing <code>avg.c</code> and rerunning <code>make</code>. Does your program
-recompile correctly? Try changing <code>avg.h</code> and rerunning <code>make</code>. Does
-your program recompile correctly?</p>
-</div>
 <h2 id="4-using-ctest-for-systematic-unit-testing">4. Using CTest for Systematic Unit Testing<a class="headerlink" href="#4-using-ctest-for-systematic-unit-testing" title="Permanent link">&para;</a></h2>
 <p>So far we have been using "ad-hoc testing". For example, the <code>main</code>
 function in <code>avg-sfile.c</code> will execute the <code>avg</code> function with one set of
@@ -829,7 +794,7 @@ program. We can do this by simply adding a new line to our
 <span class="nb">enable_testing</span><span class="p">()</span>
 
 <span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-sfile</span> <span class="s">avg-sfile.c</span> <span class="p">)</span>
-<span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-mfile</span> <span class="s">avg-mfile.c</span> <span class="s">avg.c</span> <span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-mfile</span> <span class="s">avg-mfile.c</span> <span class="s">avg.c</span> <span class="s">ece2400-stdlib.c</span> <span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-mfile-directed-test</span> <span class="s">avg-mfile-directed-test.c</span> <span class="s">avg.c</span> <span class="s">ece2400-stdlib.c</span> <span class="p">)</span>
 <span class="nb">add_test</span><span class="p">(</span> <span class="s">avg-mfile-directed-test</span> <span class="s">avg-mfile-directed-test</span> <span class="p">)</span>
@@ -938,31 +903,7 @@ look like this:</p>
 </pre></div>
 </td></tr></table>
 
-<p>Next, change <code>CMakeLists.txt</code> to look like this:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.8</span><span class="p">)</span>
-<span class="nb">enable_language</span><span class="p">(</span><span class="s">C</span><span class="p">)</span>
-<span class="nb">enable_testing</span><span class="p">()</span>
-
-<span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-sfile</span> <span class="s">avg-sfile.c</span> <span class="p">)</span>
-<span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-mfile</span> <span class="s">avg-mfile.c</span> <span class="s">avg.c</span> <span class="s">ece2400-stdlib.c</span> <span class="p">)</span>
-
-<span class="nb">add_executable</span><span class="p">(</span> <span class="s">avg-mfile-directed-test</span> <span class="s">avg-mfile-directed-test.c</span> <span class="s">avg.c</span> <span class="s">ece2400-stdlib.c</span> <span class="p">)</span>
-<span class="nb">add_test</span><span class="p">(</span> <span class="s">avg-mfile-directed-test</span> <span class="s">avg-mfile-directed-test</span> <span class="p">)</span>
-</pre></div>
-</td></tr></table>
-
-<p>Since we are using utilities from the course standard library, we need to
-compile targets who depend on <code>avg.c</code> together with the implementation of
-the course library (line 6 and 8). Then rebuild and rerun the test like
-this:</p>
+<p>Then rebuild and rerun the test like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -978,80 +919,17 @@ specific test case. You should see two lines starting with <code>[ -info- ]</cod
 the output, which corresponds to the debug macro we added in <code>avg.c</code>.
 This info line tells us the sum of <code>x</code> and <code>y</code> is 20 instead of 30, and
 we should realize that we made a mistake while calculating the sum.</p>
-<div class="admonition note">
-<p class="admonition-title">To-Do On Your Own</p>
-<p>In this to-do activity you will work on <code>avg-mfile-directed-test</code> to
-add one more test case. Add a second test case named
-<code>test_case_2_truncate</code> which explicitly tests situations where the
-average has to be truncated (e.g., the average of 10 and 15 is 12.5
-which will be truncated to 12). Update the <code>main</code> function to call
-this new test case. Use CMake and CTest to rerun the tests.</p>
-</div>
-<h2 id="5-using-a-build-directory">5. Using a Build Directory<a class="headerlink" href="#5-using-a-build-directory" title="Permanent link">&para;</a></h2>
-<p>Take a look at the source directory. It likely contains a mess of
-generated directories, object files, executables, etc. It is usually very
-bad practice to build C programs directly in the <em>source</em> directory. It
-is much better to build C programs in a completely separate <em>build</em>
-directory. Adding support for these build directories in a <code>Makefile</code> is
-complex, but CMake makes it easy. Let's start by deleting all generated
-content in your source directory:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec3/src
-% make clean
-% trash CMakeCache.txt CMakeFiles *.cmake Testing
-</pre></div>
-</td></tr></table>
-
-<p>Now let's first create a separate build directory, use CMake to create
-a new <code>Makefile</code>, and finally build and run all of our tests.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec3
-% mkdir build
-% <span class="nb">cd</span> build
-% cmake ../src
-% make
-% make <span class="nb">test</span>
-</pre></div>
-</td></tr></table>
-
-<p>A separate build directory makes it easy to do a "clean build" where you
-start your build from scratch. Simply remove the build directory and
-start again like this:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec3
-% trash build
-% mkdir build
-% <span class="nb">cd</span> build
-% cmake ../src
-% make
-% make <span class="nb">test</span>
-</pre></div>
-</td></tr></table>
-
-<p>You should <strong>never</strong> check in your <code>build</code> directory or any generated
-content into Git. Only source files are checked into Git!</p>
-<h2 id="6-experimenting-with-build-and-test-frameworks-for-pa1">6. Experimenting with Build and Test Frameworks for PA1<a class="headerlink" href="#6-experimenting-with-build-and-test-frameworks-for-pa1" title="Permanent link">&para;</a></h2>
+<h2 id="5-experimenting-with-build-and-test-frameworks-for-pa1">5. Experimenting with Build and Test Frameworks for PA1<a class="headerlink" href="#5-experimenting-with-build-and-test-frameworks-for-pa1" title="Permanent link">&para;</a></h2>
 <p>Let's experiment with the build and test frameworks for the first
 programming assignment using what we have learned in this discussion
-section. You can use the following steps to clone your PA1 repo.</p>
+section. You can use the following steps to update your PA1 repo to make
+sure you have received the latest code.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% git clone git@github.com:cornell-ece2400/netid
-% <span class="nb">cd</span> netid
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
+% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/netid
+% git pull
 % tree
 </pre></div>
 </td></tr></table>
@@ -1060,10 +938,13 @@ section. You can use the following steps to clone your PA1 repo.</p>
 project including a complete <code>CMakeLists.txt</code>. In the common case, you
 should not need to modify the <code>CMakeLists.txt</code> unless you want to
 incorporate additional source and/or test files. The programming
-assignments are setup to use a separate build directory. The programming
-assignments also group all of the tests into their own separate
-directory. You can use the following steps to use the build framework
-with the first programming assignment.</p>
+assignments are setup to use a separate build directory. It is much
+better to build C programs in a completely separate <em>build</em> directory. A
+separate build directory makes it easy to keep your generated content
+separate from your source code, and to do a "clean build" where you start
+your build from scratch. The programming assignments also group all of
+the tests into their own separate directory. You can use the following
+steps to use the build framework with the first programming assignment.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
