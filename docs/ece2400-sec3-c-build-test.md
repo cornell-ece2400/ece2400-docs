@@ -53,7 +53,7 @@ following commands:
     % cd ${HOME}/ece2400
     % git clone git@github.com:cornell-ece2400/ece2400-sec3 sec3
     % cd sec3
-    % cat README.md
+    % tree
 
 The given `src` directory includes the following files:
 
