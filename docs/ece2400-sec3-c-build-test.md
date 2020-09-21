@@ -343,15 +343,16 @@ program. We can do this by simply adding a new line to our
     add_executable( avg-sfile avg-sfile.c )
     add_executable( avg-mfile avg-mfile.c avg.c )
 
-    add_executable( avg-mfile-directed-test avg-mfile-directed-test.c avg.c )
+    add_executable( avg-mfile-directed-test avg-mfile-directed-test.c avg.c ece2400-stdlib.c )
     add_test( avg-mfile-directed-test avg-mfile-directed-test )
 
 Line 3 tells CMake to turn on support for testing with CTest. Line 6
 specifies how to build `avg-mfile`. Line 8 specifies how to build the
-`avg-mfile-directed-test` test program. Line 9 tells CMake that
-`avg-mfile-directed-test` is a test that should be managed by CTest. Modify
-your `CMakeLists.txt` file to look like what is given above, rerun cmake,
-build the test, and run it.
+`avg-mfile-directed-test` test program. Note we need to link in the
+implementation of the course library because `avg-mfile-directed-test.c`
+uses it. Line 9 tells CMake that `avg-mfile-directed-test` is a test that
+should be managed by CTest. Modify your `CMakeLists.txt` file to look
+like what is given above, rerun cmake, build the test, and run it.
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
@@ -420,6 +421,7 @@ look like this:
 
     int avg( int x, int y )
     {
+      ECE2400_DEBUG("avg( %d, %d )", x, y);
       int sum = x + x;
       ECE2400_DEBUG("sum is %d", sum);
       return sum / 2;
