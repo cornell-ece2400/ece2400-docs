@@ -51,18 +51,19 @@ following commands:
     % source setup-ece2400.sh
     % mkdir -p ${HOME}/ece2400
     % cd ${HOME}/ece2400
-    % git clone git@github.com:cornell-ece2400/ece2400-sec2 sec3
+    % git clone git@github.com:cornell-ece2400/ece2400-sec3 sec3
     % cd sec3
     % cat README.md
 
 The given `src` directory includes the following files:
 
+ - `ece2400-stdlib.h` : ECE 2400 course standard library header
+ - `ece2400-stdlib.c` : ECE 2400 course standard library implementation
  - `avg-sfile.c`: source and main for single-file `avg` program
  - `avg.h`: header file for the `avg` function
  - `avg.c`: source file for the `avg` function
  - `avg-mfile.c` : `main` for multi-file `avg` program
  - `avg-mfile-basic-test.c` : most basic smoke test
- - `utst.h` : simple C preprocessor macros for unit testing
 
 2. Using Makefiles to Compile C Programs
 --------------------------------------------------------------------------
@@ -357,8 +358,21 @@ build the test, and run it.
     % cmake .
     % make avg-mfile-directed-test
     % ./avg-mfile-directed-test
+    % ./avg-mfile-directed-test 1
 
-You should see some output which indicates the passing test assertion.
+The command `./avg-mfile-directed-test` runs all test cases defined in
+`avg-mfile-directed-test` and does not print anything when the test
+case passes. If you want to see more information about the passing
+assertions, you can zoom in to a specific test case (e.g., test case 1)
+using `./avg-mfile-directed-test 1`. `avg-mfile-directed-test` is a kind
+of "smoke" test which is used to test the absolute most directed
+functionality of an implementation. We will also be doing extensive
+_directed testing_ and _random testing_. In directed testing, you explicitly
+use test assertions to test as many corner cases as possible. In random
+testing, you use random input values and compare the output to some
+golden "reference" implementation to hopefully catch bugs missed in your
+directed testing.
+
 CMake provides a `test` target which can run all of the tests and
 provides a summary.
 
@@ -367,13 +381,20 @@ provides a summary.
     % make test
 
 It is always a good idea to occasionally force a test to fail to ensure
-your test framework is behaving correctly. Change the test assertion in
-`avg-mfile-directed-test.c` to look like this:
+your test framework is behaving correctly. Use your favoriate text
+editor and change file `avg.c` to look like this:
 
     :::c
-    ECE2400_CHECK_INT_EQ( avg( 10, 20 ), 16 );
+    #include "avg.h"
 
-Then rebuild and rerun the test like this:
+    int avg( int x, int y )
+    {
+      int sum = x + x;
+      return sum / 2;
+    }
+
+Note how `sum` is calculated as the sum of `x` and `x` instead of `x` and
+`y`. Then rebuild and rerun the test like this:
 
     :::bash
     % cd ${HOME}/ece2400/sec3/src
@@ -383,22 +404,65 @@ Then rebuild and rerun the test like this:
 
 You should see the test failing in the test summary, and then see
 additional information about the failing test assertion when you
-explicitly run the test program. `avg-mfile-directed-test` is a kind of
-"smoke" test which is used to test the absolute most directed functionality
-of an implementation. We will also be doing extensive _directed testing_
-and _random testing_. In directed testing, you explicitly use test
-assertions to test as many corner cases as possible. In random testing,
-you use random input values and compare the output to some golden
-"reference" implementation to hopefully catch bugs missed in your
-directed testing.
+explicitly run the test program.
+
+The ECE 2400 course standard library provides `ECE2400_DEBUG`, a macro that
+allows you to print out extra information for debugging purposes. One
+advantage of using the debug macro over `printf` is that this macro incurs
+zero run time overhead in the evaluation build. Indeed, this macro is simply
+replaced with a semi-colon when the build type is specified as `eval`. That
+means the same implementation of your `sqrt` or `pow` function can be reused
+for evaluation purposes without removing all debugging `printf`s first. To
+use the debug macro, change file `avg.c` to look like this:
+
+    :::c
+    #include "avg.h"
+    #include "ece2400-stdlib.h"
+
+    int avg( int x, int y )
+    {
+      int sum = x + x;
+      ECE2400_DEBUG("sum is %d", sum);
+      return sum / 2;
+    }
+
+Next, change `CMakeLists.txt` to look like this:
+
+    :::cmake
+    cmake_minimum_required(VERSION 2.8)
+    enable_language(C)
+    enable_testing()
+
+    add_executable( avg-sfile avg-sfile.c )
+    add_executable( avg-mfile avg-mfile.c avg.c ece2400-stdlib.c )
+
+    add_executable( avg-mfile-directed-test avg-mfile-directed-test.c avg.c ece2400-stdlib.c )
+    add_test( avg-mfile-directed-test avg-mfile-directed-test )
+
+Since we are using utilities from the course standard library, we need
+to compile targets who depend on `avg.c` together with the implementation
+of the course library (line 6 and 8). Then rebuild and rerun the test like this:
+
+    :::bash
+    % cd ${HOME}/ece2400/sec3/src
+    % make avg-mfile-directed-test
+    % ./avg-mfile-directed-test
+    % ./avg-mfile-directed-test 1
+
+Note how the debug info is suppressed when you are not zooming into a
+specific test case. You should see a line starting with `[ -info- ]` in
+the output, which corresponds to the debug macro we added in `avg.c`. This
+info line tells us the sum of `x` and `y` is 20 instead of 30, and we
+should realize that we made a mistake while calculating the sum.
 
 !!! note "To-Do On Your Own"
 
-    Add a second test case named `test_case_2_truncate` which explicitly
-    tests situations where the average has to be truncated (e.g., the
-    average of 10 and 15 is 12.5 which will be truncated to 12). Update
-    the `main` function to call this new test case. Use CMake and CTest
-    to rerun the tests.
+    In this to-do activity you will work on `avg-mfile-directed-test` to
+    add one more test case. Add a second test case named `test_case_2_truncate`
+    which explicitly tests situations where the average has to be truncated
+    (e.g., the average of 10 and 15 is 12.5 which will be truncated to 12).
+    Update the `main` function to call this new test case. Use CMake and
+    CTest to rerun the tests.
 
 5. Using a Build Directory
 --------------------------------------------------------------------------
@@ -414,7 +478,7 @@ content in your source directory:
     :::bash
     % cd ${HOME}/ece2400/sec3/src
     % make clean
-    % trash CMakeCache.txt CMakeFiles *.cmake
+    % trash CMakeCache.txt CMakeFiles *.cmake Testing
 
 Now let's first create a separate build directory, use CMake to create
 a new `Makefile`, and finally build and run all of our tests.
