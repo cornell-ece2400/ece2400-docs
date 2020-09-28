@@ -55,8 +55,8 @@ using in this section using the following commands:
     % cd sec4
     % tree
 
-Where again, the `githubid` is your GitHubID. The given `src` directory
-includes the following files:
+Where again, the `githubid` is your GitHubID. The directory includes the
+following files:
 
  - `ece2400-stdlib.h` : ECE 2400 course standard library header
  - `ece2400-stdlib.c` : ECE 2400 course standard library implementation
