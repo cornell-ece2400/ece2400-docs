@@ -7,13 +7,30 @@ test frameworks to help automate the process of compiling and verifying
 your programs In this discussion, we will continue to learn about new
 tools that can help us better test and debug our programs.
 
-1. The ecelinux Machines
+1. Logging Into ecelinux
 --------------------------------------------------------------------------
 
-Follow the same process as in the last section.
+Follow the same process as in the last section. If you are participating
+in the discussion section in-person in 225 Upson Hall, then all you need
+to do is find a free workstation and log into the workstation using your
+NetID and standard NetID password. Remote access students might also need
+to start the Cornell VPN. Then connect to `ecelinux` using X2go:
 
- - login to a workstation with your NetID and password
- - use MobaXterm to log into the `ecelinux` servers
+ - start X2go (in Upson 225 just double click the X2Go client on the desktop)
+ - double click on the `ecelinux` session or ...
+ - setup a new X2go session by configuring the _Session_ and _Media_ tabs
+    - session name: _ecelinux_
+    - host: _ecelinux.ece.cornell.edu_
+    - login: _cb535_
+    - session type: _XFCE_
+    - uncheck _enable sound support_
+    - uncheck _client side printing support_
+ - click _OK_
+ - enter your standard NetID password
+ - if asked to trust a certificate for the servers, click _yes_
+ - if asked about a Windows firewall setup, click _cancel_
+ - open a terminal using _Applications > Terminal Emulator_
+    from the _Applications_ menu
  - make sure you source the setup script
  - verify ECE2400 is in your prompt
 
@@ -27,8 +44,8 @@ copy of this repo in your own person GitHub workspace:
 
  - `https://github.com/githubid/ece2400-sec4`
 
-Where `githubid` is your GitHubID. Now clone the github repo for this
-discussion section using the following commands:
+Where `githubid` is your GitHubID. Now clone the GitHub repo we will be
+using in this section using the following commands:
 
     :::bash
     % source setup-ece2400.sh
@@ -41,9 +58,10 @@ discussion section using the following commands:
 Where again, the `githubid` is your GitHubID. The given `src` directory
 includes the following files:
 
+ - `ece2400-stdlib.h` : ECE 2400 course standard library header
+ - `ece2400-stdlib.c` : ECE 2400 course standard library implementation
  - `avg-test.c`: source and test for `avg` function
  - `sort-test.c`: source and test for `sort` function
- - `utst.h` : simple C preprocessor macros for unit testing
  - `.travis.yml` : TravisCI configuration script
 
 2. Using GDB for Debugging
@@ -54,12 +72,13 @@ and GDB debuggers. Prof. Batten used to be a printf debuggers but
 teaching this course has converted him to be a GDB advocate. He will
 share his perspectives on this in the discussion section.
 
-Let's start by compiling a single-file program that uses the `UTST` macros
-to test our ubiquitous `avg` function.
+Let's start by compiling a single-file program that uses a single test
+case and the `ECE2400_CHECK` macros to test our ubiquitous `avg`
+function.
 
     :::bash
     % cd ${HOME}/ece2400/sec4
-    % gcc -Wall -g -o avg-test avg-test.c
+    % gcc -Wall -g -o avg-test avg-test.c ece2400-stdlib.c
     % ./avg-test
 
 Notice how we include the `-g` option to turn on support for debugging.
@@ -82,8 +101,9 @@ means we can narrow our focus to line 4 in the above code snippet.
 Hopefully, you should be able to spot the bug. Fix the bug, recompile,
 and rerun the program.
 
-Let's now try tracing the execution of this program using GDB. Then you
-can start GDB like this
+Let's now try tracing the execution of this program using GDB. First,
+remove the extra printfs and undo your bug fix. Then you can start GDB
+like this
 
     :::bash
     % cd ${HOME}/ece2400/sec4
@@ -161,21 +181,21 @@ Now fix the bug and rerun the test.
 3. Using GCOV for Code Coverage
 --------------------------------------------------------------------------
 
-One you have developed your implementation and the corresponding basic,
-directed, and random tests, you can then move on to understanding the
-_quality_ of your current set of tests. One way to do this is to use code
-coverage tools. The idea here is to use a tool which will count how many
-times each line of code in your program is executed when running all of
-your tests. If there are lines of code which have never executed, then
-this is a good indicator that you need more tests to verify that part of
-your code.
+One you have developed your implementation and the corresponding directed
+and random tests, you can then move on to understanding the _quality_ of
+your current set of tests. One way to do this is to use code coverage
+tools. The idea here is to use a tool which will count how many times
+each line of code in your program is executed when running all of your
+tests. If there are lines of code which have never executed, then this is
+a good indicator that you need more tests to verify that part of your
+code.
 
 Let's start by recompiling our `avg-test.c` and turning on code coverage
 support.
 
     :::bash
     % cd ${HOME}/ece2400/sec4
-    % gcc -Wall -g --coverage -o avg-test avg-test.c
+    % gcc -Wall -g --coverage -o avg-test avg-test.c ece2400-stdlib.c
     % ./avg-test
 
 This will generate additional data in `avg-test.gcda`. To make this data
@@ -205,8 +225,8 @@ coverage does not mean your program is guaranteed to be correct!
     Try compiling `sort-test.c` and executing the resulting binary with
     support for code coverage (after you fix the bug from the previous
     section!). Use the code coverage reports to verify that the test has
-    less than 100% code coverage. Add more tests to improve the code
-    coverage to 100%.
+    less than 100% code coverage. Add another test case to improve the
+    code coverage to 100%.
 
 4. Using TravisCI and Codecov.io for Continuous Integration
 --------------------------------------------------------------------------
