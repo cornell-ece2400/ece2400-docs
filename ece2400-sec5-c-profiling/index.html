@@ -508,6 +508,7 @@ following commands:</p>
 <p>The repository includes the following files:</p>
 <ul>
 <li><code>stack-array-eval.c</code>: source and main for using an array of elements on stack</li>
+<li><code>stack-array-eval2.c</code>: source and main with more evaluation code</li>
 <li><code>heap-array-eval.c</code>: source and main for using an array of elements on heap</li>
 </ul>
 <h2 id="2-warmup-implement-array-average-functions">2. Warmup: Implement Array Average Functions<a class="headerlink" href="#2-warmup-implement-array-average-functions" title="Permanent link">&para;</a></h2>
@@ -649,8 +650,8 @@ enable a much more precise time measurement. Try running the program at
 least five times and write down the results for each trial. Is the
 execution time always the same? If not, why not?</p>
 <p>We need to do several trials and then take the average execution time to
-ensure we can get a good estimate of the execution time. Restructure your
-evaluation program to look like this:</p>
+ensure we can get a good estimate of the execution time. We want to
+restructure our evaluation program to look like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -696,57 +697,77 @@ evaluation program to look like this:</p>
 43
 44
 45
-46</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>int main( void)
-{
-  int ntrials    = 5;
-  int nsubtrials = 1e5;
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ntrials</span>    <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">nsubtrials</span> <span class="o">=</span> <span class="mf">1e5</span><span class="p">;</span>
 
-  double elapsed_avg = 0.0;
+  <span class="kt">double</span> <span class="n">elapsed_avg</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
 
-  for ( int i = 0; i &lt; ntrials; i++ ) {
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
 
-    // Track time using timers
+  <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ntrials</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 
-    struct timeval start;
-    struct timeval end;
+    <span class="c1">// Track time using timers</span>
 
-    // Start tracking time
+    <span class="k">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">timeval</span> <span class="n">end</span><span class="p">;</span>
 
-    gettimeofday( &amp;start, NULL );
+    <span class="c1">// Start tracking time</span>
 
-    // Run the experiment
+    <span class="n">gettimeofday</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="nb">NULL</span> <span class="p">);</span>
 
-    for ( int j = 0; j &lt; nsubtrials; j++ ) {
+    <span class="c1">// Run the experiment</span>
 
-      // ... run one trial ...
+    <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nsubtrials</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 
-    }
+      <span class="c1">// ... run one subtrial ...</span>
 
-    // Stop tracking time
+    <span class="p">}</span>
 
-    gettimeofday( &amp;end, NULL );
+    <span class="c1">// Stop tracking time</span>
 
-    // Calculate elapsed time
+    <span class="n">gettimeofday</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="nb">NULL</span> <span class="p">);</span>
 
-    double elapsed = ( end.tv_sec - start.tv_sec ) +
-                   ( ( end.tv_usec - start.tv_usec ) / 1000000.0 );
+    <span class="c1">// Calculate elapsed time</span>
 
-    elapsed_avg += elapsed;
+    <span class="kt">double</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="p">(</span> <span class="n">end</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="p">.</span><span class="n">tv_sec</span> <span class="p">)</span> <span class="o">+</span>
+                   <span class="p">(</span> <span class="p">(</span> <span class="n">end</span><span class="p">.</span><span class="n">tv_usec</span> <span class="o">-</span> <span class="n">start</span><span class="p">.</span><span class="n">tv_usec</span> <span class="p">)</span> <span class="o">/</span> <span class="mf">1000000.0</span> <span class="p">);</span>
 
-    printf( &quot;Elapsed time for trial %d is %f\n&quot;, i, elapsed );
-  }
+    <span class="n">elapsed_avg</span> <span class="o">+=</span> <span class="n">elapsed</span><span class="p">;</span>
 
-  // Calculate average elapsed time per trial
+    <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;Elapsed time for trial %d is %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">elapsed</span> <span class="p">);</span>
+  <span class="p">}</span>
 
-  elapsed_avg = elapsed_avg / ntrials;
+  <span class="c1">// Calculate average elapsed time per trial</span>
 
-  printf( &quot;Elapsed time (averaged) is %f\n&quot;, elapsed_avg );
-}
+  <span class="n">elapsed_avg</span> <span class="o">=</span> <span class="n">elapsed_avg</span> <span class="o">/</span> <span class="n">ntrials</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;Elapsed time (averaged) is %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">elapsed_avg</span> <span class="p">);</span>
+
+  <span class="c1">// Print results</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot; avg_array = %d, avg_parray = %d </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table>
 
-<p>Now use your evaluation program to quantitatively measure the execution
-time of this experiment.</p>
+<p>We have provided you this code in <code>stack-array-eval2.c</code>. Simply copy over
+your implementations for <code>avg_array</code> and <code>avg_parray</code>. Now use this new
+evaluation program to quantitatively measure the execution time of this
+experiment.</p>
 <div class="admonition note">
 <p class="admonition-title">To-Do On Your Own</p>
 <p>Experiment with turning optimizations on with the <code>-O3</code> command line
