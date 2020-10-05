@@ -60,20 +60,14 @@ functions:
  - `avg_parray` : find average of an array of pointers to integers
 
 The first two functions operate on an array of integers, while the second
-two functions operate on an array of _pointers_ to integers. Start by
-sketching a state diagram for the given main program assuming `size` is
-set to 3. Work through the state diagram and stop when you get to the
-call to the `avg_array` function. Use this state diagram to understand
-the difference between the array of integers vs. the array of pointers to
-integers.
-
-Now implement the `avg_array` function which should find the average of
-the integers stored in the given array. Then implement the `avg_parray`
-function which should find the average of the integers _pointed to_ by
-the given array. Compile and execute your program a couple of times,
-changing the seed passed into `srand` each time. Verify that the value
-returned by `avg_array` always equals the value returned by `avg_parray`
-and that the average is always around 500.
+two functions operate on an array of _pointers_ to integers. Implement
+the `avg_array` function which should find the average of the integers
+stored in the given array. Then implement the `avg_parray` function which
+should find the average of the integers _pointed to_ by the given array.
+Compile and execute your program a couple of times, changing the seed
+passed into `srand` each time. Verify that the value returned by
+`avg_array` always equals the value returned by `avg_parray` and that the
+average is always around 500.
 
 3. Measuring Execution Time
 --------------------------------------------------------------------------
@@ -129,7 +123,7 @@ the experiment.
 
     :::bash
     % cd ${HOME}/ece2400/sec5
-    % gcc -Wall -o stack-array-eval stack-array-eval.c
+    % gcc -Wall -O3 -o stack-array-eval stack-array-eval.c
     % ./stack-array-eval
 
 You will notice that the execution time is very short ... so short that
