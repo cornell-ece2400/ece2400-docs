@@ -8,15 +8,42 @@ evaluation program and deal with dynamic memory issues.
 1. The ecelinux Machines
 --------------------------------------------------------------------------
 
-Follow the same process as in the last section.
+Follow the same process as in the last section. If you are participating
+in the discussion section in-person in 225 Upson Hall, then all you need
+to do is find a free workstation and log into the workstation using your
+NetID and standard NetID password. Remote access students might also need
+to start the Cornell VPN. Then connect to `ecelinux` using X2go:
 
- - login to a workstation with your NetID and password
- - use MobaXterm to log into the `ecelinux` servers
+ - start X2go (in Upson 225 just double click the X2Go client on the desktop)
+ - double click on the `ecelinux` session or ...
+ - setup a new X2go session by configuring the _Session_ and _Media_ tabs
+    - session name: _ecelinux_
+    - host: _ecelinux.ece.cornell.edu_
+    - login: _cb535_
+    - session type: _XFCE_
+    - uncheck _enable sound support_
+    - uncheck _client side printing support_
+ - click _OK_
+ - enter your standard NetID password
+ - if asked to trust a certificate for the servers, click _yes_
+ - if asked about a Windows firewall setup, click _cancel_
+ - open a terminal using _Applications > Terminal Emulator_
+    from the _Applications_ menu
  - make sure you source the setup script
  - verify ECE2400 is in your prompt
 
-Now clone the GitHub repo we will be using in this section using the
-following commands:
+For this discussion section you will need to make a copy of the repo we
+will be using so you can push to it. Go to the section's repo here:
+
+ - <https://github.com/cornell-ece2400/ece2400-sec4>
+
+Click on the "Fork" button. Wait a few seconds and then visit the new
+copy of this repo in your own person GitHub workspace:
+
+ - `https://github.com/githubid/ece2400-sec4`
+
+Where `githubid` is your GitHubID. Now clone the GitHub repo we will be
+using in this section using the following commands:
 
     :::bash
     % source setup-ece2400.sh
@@ -127,14 +154,14 @@ loop like this:
 
     for ( int j = 0; j < 100000; j++ ) {
 
-      int array[size];
-      init_array( array, size );
+      int array[1000];
+      init_array( array, 1000 );
 
-      int* parray[size];
-      init_parray( parray, array, size );
+      int* parray[1000];
+      init_parray( parray, array, 1000 );
 
-      x = avg_array( array, size );
-      y = avg_parray( parray, size );
+      x = avg_array( array, 1000 );
+      y = avg_parray( parray, 1000 );
 
     }
 
