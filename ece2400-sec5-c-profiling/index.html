@@ -520,19 +520,14 @@ functions:</p>
 <li><code>avg_parray</code> : find average of an array of pointers to integers</li>
 </ul>
 <p>The first two functions operate on an array of integers, while the second
-two functions operate on an array of <em>pointers</em> to integers. Start by
-sketching a state diagram for the given main program assuming <code>size</code> is
-set to 3. Work through the state diagram and stop when you get to the
-call to the <code>avg_array</code> function. Use this state diagram to understand
-the difference between the array of integers vs. the array of pointers to
-integers.</p>
-<p>Now implement the <code>avg_array</code> function which should find the average of
-the integers stored in the given array. Then implement the <code>avg_parray</code>
-function which should find the average of the integers <em>pointed to</em> by
-the given array. Compile and execute your program a couple of times,
-changing the seed passed into <code>srand</code> each time. Verify that the value
-returned by <code>avg_array</code> always equals the value returned by <code>avg_parray</code>
-and that the average is always around 500.</p>
+two functions operate on an array of <em>pointers</em> to integers. Implement
+the <code>avg_array</code> function which should find the average of the integers
+stored in the given array. Then implement the <code>avg_parray</code> function which
+should find the average of the integers <em>pointed to</em> by the given array.
+Compile and execute your program a couple of times, changing the seed
+passed into <code>srand</code> each time. Verify that the value returned by
+<code>avg_array</code> always equals the value returned by <code>avg_parray</code> and that the
+average is always around 500.</p>
 <h2 id="3-measuring-execution-time">3. Measuring Execution Time<a class="headerlink" href="#3-measuring-execution-time" title="Permanent link">&para;</a></h2>
 <p>Now assume we want to quantitatively measure how long it takes to
 initialize both arrays and then calculate the averages. To do this, we
@@ -607,7 +602,7 @@ the experiment.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
-% gcc -Wall -o stack-array-eval stack-array-eval.c
+% gcc -Wall -O3 -o stack-array-eval stack-array-eval.c
 % ./stack-array-eval
 </pre></div>
 </td></tr></table>
