@@ -46,6 +46,7 @@ following commands:
 The repository includes the following files:
 
  - `stack-array-eval.c`: source and main for using an array of elements on stack
+ - `stack-array-eval2.c`: source and main with more evaluation code
  - `heap-array-eval.c`: source and main for using an array of elements on heap
 
 2. Warmup: Implement Array Average Functions
@@ -155,15 +156,19 @@ least five times and write down the results for each trial. Is the
 execution time always the same? If not, why not?
 
 We need to do several trials and then take the average execution time to
-ensure we can get a good estimate of the execution time. Restructure your
-evaluation program to look like this:
+ensure we can get a good estimate of the execution time. We want to
+restructure our evaluation program to look like this:
 
+    :::c
     int main( void)
     {
       int ntrials    = 5;
       int nsubtrials = 1e5;
 
       double elapsed_avg = 0.0;
+
+      int x;
+      int y;
 
       for ( int i = 0; i < ntrials; i++ ) {
 
@@ -180,7 +185,7 @@ evaluation program to look like this:
 
         for ( int j = 0; j < nsubtrials; j++ ) {
 
-          // ... run one trial ...
+          // ... run one subtrial ...
 
         }
 
@@ -203,10 +208,18 @@ evaluation program to look like this:
       elapsed_avg = elapsed_avg / ntrials;
 
       printf( "Elapsed time (averaged) is %f\n", elapsed_avg );
+
+      // Print results
+
+      printf(" avg_array = %d, avg_parray = %d \n", x, y );
+
+      return 0;
     }
 
-Now use your evaluation program to quantitatively measure the execution
-time of this experiment.
+We have provided you this code in `stack-array-eval2.c`. Simply copy over
+your implementations for `avg_array` and `avg_parray`. Now use this new
+evaluation program to quantitatively measure the execution time of this
+experiment.
 
 !!! note "To-Do On Your Own"
 
@@ -330,4 +343,3 @@ the memory leak and even identify the line in the code which allocated
 the variables which were then never deallocated. Add an approriate call
 to `free` to fix the memory leak, and then rerun Valgrind to verify that
 the problem has been fixed.
-
