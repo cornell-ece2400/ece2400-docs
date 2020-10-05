@@ -32,18 +32,8 @@ to start the Cornell VPN. Then connect to `ecelinux` using X2go:
  - make sure you source the setup script
  - verify ECE2400 is in your prompt
 
-For this discussion section you will need to make a copy of the repo we
-will be using so you can push to it. Go to the section's repo here:
-
- - <https://github.com/cornell-ece2400/ece2400-sec4>
-
-Click on the "Fork" button. Wait a few seconds and then visit the new
-copy of this repo in your own person GitHub workspace:
-
- - `https://github.com/githubid/ece2400-sec4`
-
-Where `githubid` is your GitHubID. Now clone the GitHub repo we will be
-using in this section using the following commands:
+Now clone the GitHub repo we will be using in this section using the
+following commands:
 
     :::bash
     % source setup-ece2400.sh
