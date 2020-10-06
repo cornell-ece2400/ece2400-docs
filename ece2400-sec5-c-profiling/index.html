@@ -789,14 +789,14 @@ away.</p>
 <p>Let's start by recompiling our program with support for debugging:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
-% gcc -Wall -g -o stack-array-eval stack-array-eval.c
+% gcc -Wall -g -o stack-array-eval2 stack-array-eval2.c
 </pre></div>
 </td></tr></table>
 
 <p>We can now use <code>perf</code> to profile our program:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
-% perf record --call-graph dwarf ./stack-array-eval
+% perf record --call-graph dwarf ./stack-array-eval2
 </pre></div>
 </td></tr></table>
 
@@ -821,16 +821,16 @@ like this:</p>
 11
 12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
 % perf script report stackcollapse
-stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main <span class="m">78</span>
-stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array <span class="m">8731</span>
-stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand <span class="m">1416</span>
-stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand<span class="p">;</span>__random <span class="m">4239</span>
-stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand<span class="p">;</span>__random<span class="p">;</span>__random_r <span class="m">6959</span>
-stack-array-eval<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand@plt <span class="m">4</span>
-stack-array-eval<span class="p">;</span>main <span class="m">6</span>
-stack-array-eval<span class="p">;</span>main<span class="p">;</span>avg_array <span class="m">6025</span>
-stack-array-eval<span class="p">;</span>main<span class="p">;</span>avg_parray <span class="m">5230</span>
-stack-array-eval<span class="p">;</span>main<span class="p">;</span>init_parray <span class="m">6693</span>
+stack-array-eval2<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main <span class="m">78</span>
+stack-array-eval2<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array <span class="m">8731</span>
+stack-array-eval2<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand <span class="m">1416</span>
+stack-array-eval2<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand<span class="p">;</span>__random <span class="m">4239</span>
+stack-array-eval2<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand<span class="p">;</span>__random<span class="p">;</span>__random_r <span class="m">6959</span>
+stack-array-eval2<span class="p">;</span>_start<span class="p">;</span>__libc_start_main<span class="p">;</span>main<span class="p">;</span>init_array<span class="p">;</span>rand@plt <span class="m">4</span>
+stack-array-eval2<span class="p">;</span>main <span class="m">6</span>
+stack-array-eval2<span class="p">;</span>main<span class="p">;</span>avg_array <span class="m">6025</span>
+stack-array-eval2<span class="p">;</span>main<span class="p">;</span>avg_parray <span class="m">5230</span>
+stack-array-eval2<span class="p">;</span>main<span class="p">;</span>init_parray <span class="m">6693</span>
 </pre></div>
 </td></tr></table>
 
