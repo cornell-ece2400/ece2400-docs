@@ -891,7 +891,7 @@ valgrind to detect this leak:</p>
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400/sec5
-% gcc -Wall -o heap-array-eval heap-array-eval.c
+% gcc -Wall -g -o heap-array-eval heap-array-eval.c
 % ./heap-array-eval
 % valgrind --leak-check<span class="o">=</span>yes ./heap-array-eval
 </pre></div>
