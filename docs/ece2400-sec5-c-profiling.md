@@ -246,13 +246,13 @@ Let's start by recompiling our program with support for debugging:
 
     :::bash
     % cd ${HOME}/ece2400/sec5
-    % gcc -Wall -g -o stack-array-eval stack-array-eval.c
+    % gcc -Wall -g -o stack-array-eval2 stack-array-eval2.c
 
 We can now use `perf` to profile our program:
 
     :::bash
     % cd ${HOME}/ece2400/sec5
-    % perf record --call-graph dwarf ./stack-array-eval
+    % perf record --call-graph dwarf ./stack-array-eval2
 
 `perf` works by interrupts your program several times throughout the
 execution to take a "sample". During each sample, `perf` will stop your
@@ -266,16 +266,16 @@ like this:
     :::bash
     % cd ${HOME}/ece2400/sec5
     % perf script report stackcollapse
-    stack-array-eval;_start;__libc_start_main;main 78
-    stack-array-eval;_start;__libc_start_main;main;init_array 8731
-    stack-array-eval;_start;__libc_start_main;main;init_array;rand 1416
-    stack-array-eval;_start;__libc_start_main;main;init_array;rand;__random 4239
-    stack-array-eval;_start;__libc_start_main;main;init_array;rand;__random;__random_r 6959
-    stack-array-eval;_start;__libc_start_main;main;init_array;rand@plt 4
-    stack-array-eval;main 6
-    stack-array-eval;main;avg_array 6025
-    stack-array-eval;main;avg_parray 5230
-    stack-array-eval;main;init_parray 6693
+    stack-array-eval2;_start;__libc_start_main;main 78
+    stack-array-eval2;_start;__libc_start_main;main;init_array 8731
+    stack-array-eval2;_start;__libc_start_main;main;init_array;rand 1416
+    stack-array-eval2;_start;__libc_start_main;main;init_array;rand;__random 4239
+    stack-array-eval2;_start;__libc_start_main;main;init_array;rand;__random;__random_r 6959
+    stack-array-eval2;_start;__libc_start_main;main;init_array;rand@plt 4
+    stack-array-eval2;main 6
+    stack-array-eval2;main;avg_array 6025
+    stack-array-eval2;main;avg_parray 5230
+    stack-array-eval2;main;init_parray 6693
 
 There is one line for every unique call stack which was sampled. The line
 shows the name of the call stack and how many of the samples were taken
@@ -333,7 +333,7 @@ valgrind to detect this leak:
 
     :::bash
     % cd ${HOME}/ece2400/sec5
-    % gcc -Wall -o heap-array-eval heap-array-eval.c
+    % gcc -Wall -g -o heap-array-eval heap-array-eval.c
     % ./heap-array-eval
     % valgrind --leak-check=yes ./heap-array-eval
 
