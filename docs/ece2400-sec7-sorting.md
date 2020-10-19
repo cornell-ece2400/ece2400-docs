@@ -65,13 +65,13 @@ The repository includes the following files:
 2. Implementing Sorted Insert Helper Function
 --------------------------------------------------------------------------
 
-Take a look at the `isort.c` source file to find the
-`sorted_insert` function is a helper function. It takes as input an
-array, a range to work on (`begin` to `end`), and a value to insert. The
-function can assume that the given range in the array is already sorted.
-The function should insert the given value into the correct location of
-the given range in order to preserve the invariant that this range of the
-array remains sorted. Note that `end` should be the index of one past the
+Take a look at the `isort-int.c` source file to find the `sorted_insert`
+function is a helper function. It takes as input an array, a range to
+work on (`begin` to `end`), and a value to insert. The function can
+assume that the given range in the array is already sorted. The function
+should insert the given value into the correct location of the given
+range in order to preserve the invariant that this range of the array
+remains sorted. Note that `end` should be the index of one past the
 sorted region. `a[end]` must be a valid element in the array since after
 we insert the given value the sorted region will increase by one element.
 
@@ -107,31 +107,31 @@ tricky corner case.
 4. Implementing Insertion Sort
 --------------------------------------------------------------------------
 
-Take a look at the `isort.c` source file to find the
-`insert_sort` function. It takes as input an array and the size of that
-array. Go ahead and implement `insertion_sort` using your favorite text
-editor. The function should use `sorted_insert` helper function, and you
-can use either an out-of-place or in-place implementation. When you are
-finished modify the adhoc test to test insertion sort, then quickly see
-if your algorithm is basically working:
+Take a look at the `isort-int.c` source file to find the `insert_sort`
+function. It takes as input an array and the size of that array. Go ahead
+and implement `isort_int` using your favorite text editor. The function
+should use `sorted_insert` helper function, and you can use either an
+out-of-place or in-place implementation. When you are finished modify the
+adhoc test to test insertion sort, then quickly see if your algorithm is
+basically working:
 
     :::bash
     % cd ${HOME}/sec7/src
-    % gcc -Wall -o isort-adhoc isort-adhoc.c isort.c
-    % ./isort-adhoc
+    % gcc -Wall -o isort-int-adhoc isort-int-adhoc.c isort-int.c
+    % ./isort-int-adhoc
 
 5. Testing Insertion Sort
 --------------------------------------------------------------------------
 
 Obviously, we want to do more than just ad-hoc testing. We have provided
 you a very simple directed test case to test insertion sort. Take a look
-at this directed test in `isort-directed-test.c`. You can build
-and run this test case like this:
+at this directed test in `isort-int-directed-test.c`. You can build and
+run this test case like this:
 
     :::bash
     % cd ${HOME}/sec7/build
-    % make isort-directed-test
-    % ./isort-directed-test 2
+    % make isort-int-directed-test
+    % ./isort-int-directed-test 2
 
 Add at least one more directed test before continuing. Try and think of a
 tricky corner case.
@@ -141,8 +141,8 @@ tricky corner case.
 
 We have provided you an evaluation program to quantitatively evaluating
 the execution time and space usage of your insertion sort implementation.
-Take a look at this evaluation program in `isort-eval.c`. You
-can build and run this evaluation program like this:
+Take a look at this evaluation program in `isort-int-eval.c`. You can
+build and run this evaluation program like this:
 
     :::bash
     % cd ${HOME}/sec7
