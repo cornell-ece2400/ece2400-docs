@@ -565,13 +565,13 @@ following commands:</p>
 </td></tr></table>
 
 <h2 id="2-implementing-sorted-insert-helper-function">2. Implementing Sorted Insert Helper Function<a class="headerlink" href="#2-implementing-sorted-insert-helper-function" title="Permanent link">&para;</a></h2>
-<p>Take a look at the <code>isort.c</code> source file to find the
-<code>sorted_insert</code> function is a helper function. It takes as input an
-array, a range to work on (<code>begin</code> to <code>end</code>), and a value to insert. The
-function can assume that the given range in the array is already sorted.
-The function should insert the given value into the correct location of
-the given range in order to preserve the invariant that this range of the
-array remains sorted. Note that <code>end</code> should be the index of one past the
+<p>Take a look at the <code>isort-int.c</code> source file to find the <code>sorted_insert</code>
+function is a helper function. It takes as input an array, a range to
+work on (<code>begin</code> to <code>end</code>), and a value to insert. The function can
+assume that the given range in the array is already sorted. The function
+should insert the given value into the correct location of the given
+range in order to preserve the invariant that this range of the array
+remains sorted. Note that <code>end</code> should be the index of one past the
 sorted region. <code>a[end]</code> must be a valid element in the array since after
 we insert the given value the sorted region will increase by one element.</p>
 <p>Go ahead and implement <code>sorted_insert</code> using your favorite text editor.
@@ -608,31 +608,31 @@ this test case like this:</p>
 <p>Add at least one more directed test before continuing. Try and think of a
 tricky corner case.</p>
 <h2 id="4-implementing-insertion-sort">4. Implementing Insertion Sort<a class="headerlink" href="#4-implementing-insertion-sort" title="Permanent link">&para;</a></h2>
-<p>Take a look at the <code>isort.c</code> source file to find the
-<code>insert_sort</code> function. It takes as input an array and the size of that
-array. Go ahead and implement <code>insertion_sort</code> using your favorite text
-editor. The function should use <code>sorted_insert</code> helper function, and you
-can use either an out-of-place or in-place implementation. When you are
-finished modify the adhoc test to test insertion sort, then quickly see
-if your algorithm is basically working:</p>
+<p>Take a look at the <code>isort-int.c</code> source file to find the <code>insert_sort</code>
+function. It takes as input an array and the size of that array. Go ahead
+and implement <code>isort_int</code> using your favorite text editor. The function
+should use <code>sorted_insert</code> helper function, and you can use either an
+out-of-place or in-place implementation. When you are finished modify the
+adhoc test to test insertion sort, then quickly see if your algorithm is
+basically working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/src
-% gcc -Wall -o isort-adhoc isort-adhoc.c isort.c
-% ./isort-adhoc
+% gcc -Wall -o isort-int-adhoc isort-int-adhoc.c isort-int.c
+% ./isort-int-adhoc
 </pre></div>
 </td></tr></table>
 
 <h2 id="5-testing-insertion-sort">5. Testing Insertion Sort<a class="headerlink" href="#5-testing-insertion-sort" title="Permanent link">&para;</a></h2>
 <p>Obviously, we want to do more than just ad-hoc testing. We have provided
 you a very simple directed test case to test insertion sort. Take a look
-at this directed test in <code>isort-directed-test.c</code>. You can build
-and run this test case like this:</p>
+at this directed test in <code>isort-int-directed-test.c</code>. You can build and
+run this test case like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build
-% make isort-directed-test
-% ./isort-directed-test <span class="m">2</span>
+% make isort-int-directed-test
+% ./isort-int-directed-test <span class="m">2</span>
 </pre></div>
 </td></tr></table>
 
@@ -641,8 +641,8 @@ tricky corner case.</p>
 <h2 id="6-evaluating-insertion-sort">6. Evaluating Insertion Sort<a class="headerlink" href="#6-evaluating-insertion-sort" title="Permanent link">&para;</a></h2>
 <p>We have provided you an evaluation program to quantitatively evaluating
 the execution time and space usage of your insertion sort implementation.
-Take a look at this evaluation program in <code>isort-eval.c</code>. You
-can build and run this evaluation program like this:</p>
+Take a look at this evaluation program in <code>isort-int-eval.c</code>. You can
+build and run this evaluation program like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
