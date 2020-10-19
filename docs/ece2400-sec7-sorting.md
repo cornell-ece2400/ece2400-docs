@@ -107,7 +107,7 @@ tricky corner case.
 4. Implementing Insertion Sort
 --------------------------------------------------------------------------
 
-Take a look at the `isort-int.c` source file to find the `insert_sort`
+Take a look at the `isort-int.c` source file to find the `isort_int`
 function. It takes as input an array and the size of that array. Go ahead
 and implement `isort_int` using your favorite text editor. The function
 should use `sorted_insert` helper function, and you can use either an
