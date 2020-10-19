@@ -618,11 +618,13 @@ basically working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/src
-% gcc -Wall -o isort-int-adhoc isort-int-adhoc.c isort-int.c
+% gcc -Wall -o isort-int-adhoc ece2400-stdlib.c isort-int.c isort-int-adhoc.c
 % ./isort-int-adhoc
 </pre></div>
 </td></tr></table>
 
+<p>Or feel free to just move on to using the test framework in the next
+section.</p>
 <h2 id="5-testing-insertion-sort">5. Testing Insertion Sort<a class="headerlink" href="#5-testing-insertion-sort" title="Permanent link">&para;</a></h2>
 <p>Obviously, we want to do more than just ad-hoc testing. We have provided
 you a very simple directed test case to test insertion sort. Take a look
