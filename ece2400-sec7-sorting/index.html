@@ -38,7 +38,7 @@
     
     
       
-        <title>Ece2400 sec6 sorting - ECE 2400 Section Handouts</title>
+        <title>Section 7: Sorting Lab - ECE 2400 Section Handouts</title>
       
     
     
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#section-6-sorting-lab" tabindex="1" class="md-skip">
+      <a href="../#section-7-sorting-lab" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -128,7 +128,7 @@
                 ECE 2400 Section Handouts
               </span>
               <span class="md-header-nav__topic">
-                Ece2400 sec6 sorting
+                Section 7: Sorting Lab
               </span>
             
           
@@ -203,6 +203,8 @@
 <nav class="md-tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
+      
+        
       
         
       
@@ -319,6 +321,91 @@
   </li>
 
     
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Section 7: Sorting Lab
+      </label>
+    
+    <a href="./" title="Section 7: Sorting Lab" class="md-nav__link md-nav__link--active">
+      Section 7: Sorting Lab
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
+    1. The ecelinux Machines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-implementing-sorted-insert-helper-function" title="2. Implementing Sorted Insert Helper Function" class="md-nav__link">
+    2. Implementing Sorted Insert Helper Function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-testing-sorted-insert-helper-function" title="3. Testing Sorted Insert Helper Function" class="md-nav__link">
+    3. Testing Sorted Insert Helper Function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implementing-insertion-sort" title="4. Implementing Insertion Sort" class="md-nav__link">
+    4. Implementing Insertion Sort
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-testing-insertion-sort" title="5. Testing Insertion Sort" class="md-nav__link">
+    5. Testing Insertion Sort
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-evaluating-insertion-sort" title="6. Evaluating Insertion Sort" class="md-nav__link">
+    6. Evaluating Insertion Sort
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -397,17 +484,36 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec6-sorting.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec7-sorting.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="section-6-sorting-lab">Section 6: Sorting Lab<a class="headerlink" href="#section-6-sorting-lab" title="Permanent link">&para;</a></h1>
+                <h1 id="section-7-sorting-lab">Section 7: Sorting Lab<a class="headerlink" href="#section-7-sorting-lab" title="Permanent link">&para;</a></h1>
 <p>In this discussion, we will implement, test, and evaluate a simple
 insertion sort algorithm.</p>
 <h2 id="1-the-ecelinux-machines">1. The ecelinux Machines<a class="headerlink" href="#1-the-ecelinux-machines" title="Permanent link">&para;</a></h2>
-<p>Follow the same process as in the previous sections.</p>
+<p>Follow the same process as in previous sections. If you are participating
+in the discussion section in-person in 225 Upson Hall, then all you need
+to do is find a free workstation and log into the workstation using your
+NetID and standard NetID password. Remote access students might also need
+to start the Cornell VPN. Then connect to <code>ecelinux</code> using X2go:</p>
 <ul>
-<li>login to a workstation with your NetID and password</li>
-<li>use MobaXterm to log into the <code>ecelinux</code> servers</li>
+<li>start X2go (in Upson 225 just double click the X2Go client on the desktop)</li>
+<li>double click on the <code>ecelinux</code> session or ...</li>
+<li>setup a new X2go session by configuring the <em>Session</em> and <em>Media</em> tabs<ul>
+<li>session name: <em>ecelinux</em></li>
+<li>host: <em>ecelinux.ece.cornell.edu</em></li>
+<li>login: <em>cb535</em></li>
+<li>session type: <em>XFCE</em></li>
+<li>uncheck <em>enable sound support</em></li>
+<li>uncheck <em>client side printing support</em></li>
+</ul>
+</li>
+<li>click <em>OK</em></li>
+<li>enter your standard NetID password</li>
+<li>if asked to trust a certificate for the servers, click <em>yes</em></li>
+<li>if asked about a Windows firewall setup, click <em>cancel</em></li>
+<li>open a terminal using <em>Applications &gt; Terminal Emulator</em>
+    from the <em>Applications</em> menu</li>
 <li>make sure you source the setup script</li>
 <li>verify ECE2400 is in your prompt</li>
 </ul>
@@ -421,8 +527,8 @@ following commands:</p>
 6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
 % mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
 % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% git clone git@github.com:cornell-ece2400/ece2400-sec6 sec6
-% <span class="nb">cd</span> sec6
+% git clone git@github.com:cornell-ece2400/ece2400-sec7 sec7
+% <span class="nb">cd</span> sec7
 % tree
 </pre></div>
 </td></tr></table>
@@ -446,20 +552,20 @@ following commands:</p>
 ├── src
 │   ├── ece2400-stdlib.c
 │   ├── ece2400-stdlib.h
-│   ├── insertion-sort.h
-│   ├── insertion-sort.c
-│   └── insertion-sort-adhoc.c
+│   ├── isort-int.h
+│   ├── isort-int.c
+│   └── isort-int-adhoc.c
 ├── test
 │   ├── utst.h
-│   └── insertion-sort-directed-test.c
+│   └── isort-int-directed-test.c
 └── eval
-    ├── insertion-sort-eval.c
+    ├── isort-int-eval.c
     └── sort.dat
 </pre></div>
 </td></tr></table>
 
 <h2 id="2-implementing-sorted-insert-helper-function">2. Implementing Sorted Insert Helper Function<a class="headerlink" href="#2-implementing-sorted-insert-helper-function" title="Permanent link">&para;</a></h2>
-<p>Take a look at the <code>insertion-sort.c</code> source file to find the
+<p>Take a look at the <code>isort.c</code> source file to find the
 <code>sorted_insert</code> function is a helper function. It takes as input an
 array, a range to work on (<code>begin</code> to <code>end</code>), and a value to insert. The
 function can assume that the given range in the array is already sorted.
@@ -474,35 +580,35 @@ You can use either a forward (iterate from <code>begin</code> to <code>end</code
 adhoc testing to quickly see if your algorithm is basically working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6/src
-% gcc -Wall -o insertion-sort-adhoc insertion-sort-adhoc.c insertion-sort.c
-% ./insertion-sort-adhoc
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/src
+% gcc -Wall -o isort-int-adhoc ece2400-stdlib.c isort-int.c isort-int-adhoc.c
+% ./isort-int-adhoc
 </pre></div>
 </td></tr></table>
 
 <h2 id="3-testing-sorted-insert-helper-function">3. Testing Sorted Insert Helper Function<a class="headerlink" href="#3-testing-sorted-insert-helper-function" title="Permanent link">&para;</a></h2>
 <p>Obviously, we want to do more than just ad-hoc testing. We have provided
 you a directed test case to test just the helper function. Take a look at
-this directed test in <code>insertion-sort-directed-test.c</code>. You can build and
-run this test case like this:</p>
+this directed test in <code>isort-int-directed-test.c</code>. You can build and run
+this test case like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7
 % mkdir build
 % <span class="nb">cd</span> build
 % cmake ..
-% make insertion-sort-directed-test
-% ./insertion-sort-directed-test <span class="m">1</span>
+% make isort-int-directed-test
+% ./isort-int-directed-test <span class="m">1</span>
 </pre></div>
 </td></tr></table>
 
 <p>Add at least one more directed test before continuing. Try and think of a
 tricky corner case.</p>
 <h2 id="4-implementing-insertion-sort">4. Implementing Insertion Sort<a class="headerlink" href="#4-implementing-insertion-sort" title="Permanent link">&para;</a></h2>
-<p>Take a look at the <code>insertion-sort.c</code> source file to find the
+<p>Take a look at the <code>isort.c</code> source file to find the
 <code>insert_sort</code> function. It takes as input an array and the size of that
 array. Go ahead and implement <code>insertion_sort</code> using your favorite text
 editor. The function should use <code>sorted_insert</code> helper function, and you
@@ -511,22 +617,22 @@ finished modify the adhoc test to test insertion sort, then quickly see
 if your algorithm is basically working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6/src
-% gcc -Wall -o insertion-sort-adhoc insertion-sort-adhoc.c insertion-sort.c
-% ./insertion-sort-adhoc
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/src
+% gcc -Wall -o isort-adhoc isort-adhoc.c isort.c
+% ./isort-adhoc
 </pre></div>
 </td></tr></table>
 
 <h2 id="5-testing-insertion-sort">5. Testing Insertion Sort<a class="headerlink" href="#5-testing-insertion-sort" title="Permanent link">&para;</a></h2>
 <p>Obviously, we want to do more than just ad-hoc testing. We have provided
 you a very simple directed test case to test insertion sort. Take a look
-at this directed test in <code>insertion-sort-directed-test.c</code>. You can build
+at this directed test in <code>isort-directed-test.c</code>. You can build
 and run this test case like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6/build
-% make insertion-sort-directed-test
-% ./insertion-sort-directed-test <span class="m">2</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build
+% make isort-directed-test
+% ./isort-directed-test <span class="m">2</span>
 </pre></div>
 </td></tr></table>
 
@@ -535,19 +641,19 @@ tricky corner case.</p>
 <h2 id="6-evaluating-insertion-sort">6. Evaluating Insertion Sort<a class="headerlink" href="#6-evaluating-insertion-sort" title="Permanent link">&para;</a></h2>
 <p>We have provided you an evaluation program to quantitatively evaluating
 the execution time and space usage of your insertion sort implementation.
-Take a look at this evaluation program in <code>insertion-sort-eval.c</code>. You
+Take a look at this evaluation program in <code>isort-eval.c</code>. You
 can build and run this evaluation program like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7
 % mkdir build-eval
 % <span class="nb">cd</span> build-eval
 % cmake -DCMAKE_BUILD_TYPE<span class="o">=</span><span class="nb">eval</span> ..
-% make insertion-sort-eval
-% ./insertion-sort-eval
+% make isort-int-eval
+% ./isort-int-eval
 </pre></div>
 </td></tr></table>
 
@@ -562,20 +668,20 @@ array with random input values.</p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6/build-eval
-% ./insertion-sort-eval urandom0 <span class="m">2000</span>
-% ./insertion-sort-eval urandom0 <span class="m">4000</span>
-% ./insertion-sort-eval urandom0 <span class="m">6000</span>
-% ./insertion-sort-eval urandom0 <span class="m">8000</span>
-% ./insertion-sort-eval urandom0 <span class="m">10000</span>
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build-eval
+% ./isort-int-eval urandom0 <span class="m">2000</span>
+% ./isort-int-eval urandom0 <span class="m">4000</span>
+% ./isort-int-eval urandom0 <span class="m">6000</span>
+% ./isort-int-eval urandom0 <span class="m">8000</span>
+% ./isort-int-eval urandom0 <span class="m">10000</span>
 </pre></div>
 </td></tr></table>
 
-<p>You can use <code>seq</code> and <code>xargs</code> to run a command multiple times with
+<p>You can use a Bash for loop to run a command multiple times with
 different parameters in a single step like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec6/build-eval
-% seq <span class="m">2000</span> <span class="m">2000</span> <span class="m">10000</span> <span class="p">|</span> xargs -l ./insertion-sort-eval urandom0
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build-eval
+% <span class="k">for</span> i in <span class="o">{</span><span class="m">1000</span>,2000,4000,6000,8000,10000<span class="o">}</span><span class="p">;</span> <span class="k">do</span> ./isort-int-eval urandom0 <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>
 </pre></div>
 </td></tr></table>
 
@@ -587,8 +693,15 @@ be the execution time. Then you can easily plot this data like this:</p>
 </pre></div>
 </td></tr></table>
 
-<p>Do these quantitative results match your qualitative expectations given
-what you know about the asymptotic time complexity of insertion sort?</p>
+<p>If you are using VS Code, then generate a PNG of the plot like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% eplot --png -o plot.png data.txt
+</pre></div>
+</td></tr></table>
+
+<p>Then you can download and open the PNG file on your local workstation or
+laptop. Do these quantitative results match your qualitative expectations
+given what you know about the asymptotic time complexity of insertion
+sort?</p>
                 
                   
                 
@@ -605,6 +718,27 @@ what you know about the asymptotic time complexity of insertion sort?</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ece2400-sec5-c-profiling/" title="Section 5: C Profiling for Performance and Memory Usage" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Section 5: C Profiling for Performance and Memory Usage
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
