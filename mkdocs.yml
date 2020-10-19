@@ -69,7 +69,7 @@ nav:
     - 'Section 3: C Build and Test Frameworks': ece2400-sec3-c-build-test.md
     - 'Section 4: C Testing and Debugging': ece2400-sec4-c-test-debug.md
     - 'Section 5: C Profiling for Performance and Memory Usage': ece2400-sec5-c-profiling.md
-#      - 'Section 6: Sorting Lab': ece2400-sec6-sorting.md
+    - 'Section 7: Sorting Lab': ece2400-sec7-sorting.md
 #      - 'Section 7: Object-Oriented Programming Lab': ece2400-sec7-objoriented.md
 #      - 'Section 8: Dynamic Polymorphism Lab': ece2400-sec8-dpoly.md
 #      - 'Section 9: Static Polymorphism Lab': ece2400-sec9-spoly.md

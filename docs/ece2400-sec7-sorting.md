@@ -1,5 +1,5 @@
 
-Section 6: Sorting Lab
+Section 7: Sorting Lab
 ==========================================================================
 
 In this discussion, we will implement, test, and evaluate a simple
@@ -8,10 +8,27 @@ insertion sort algorithm.
 1. The ecelinux Machines
 --------------------------------------------------------------------------
 
-Follow the same process as in the previous sections.
+Follow the same process as in previous sections. If you are participating
+in the discussion section in-person in 225 Upson Hall, then all you need
+to do is find a free workstation and log into the workstation using your
+NetID and standard NetID password. Remote access students might also need
+to start the Cornell VPN. Then connect to `ecelinux` using X2go:
 
- - login to a workstation with your NetID and password
- - use MobaXterm to log into the `ecelinux` servers
+ - start X2go (in Upson 225 just double click the X2Go client on the desktop)
+ - double click on the `ecelinux` session or ...
+ - setup a new X2go session by configuring the _Session_ and _Media_ tabs
+    - session name: _ecelinux_
+    - host: _ecelinux.ece.cornell.edu_
+    - login: _cb535_
+    - session type: _XFCE_
+    - uncheck _enable sound support_
+    - uncheck _client side printing support_
+ - click _OK_
+ - enter your standard NetID password
+ - if asked to trust a certificate for the servers, click _yes_
+ - if asked about a Windows firewall setup, click _cancel_
+ - open a terminal using _Applications > Terminal Emulator_
+    from the _Applications_ menu
  - make sure you source the setup script
  - verify ECE2400 is in your prompt
 
@@ -22,8 +39,8 @@ following commands:
     % source setup-ece2400.sh
     % mkdir -p ${HOME}/ece2400
     % cd ${HOME}/ece2400
-    % git clone git@github.com:cornell-ece2400/ece2400-sec6 sec6
-    % cd sec6
+    % git clone git@github.com:cornell-ece2400/ece2400-sec7 sec7
+    % cd sec7
     % tree
 
 The repository includes the following files:
@@ -34,21 +51,21 @@ The repository includes the following files:
 ├── src
 │   ├── ece2400-stdlib.c
 │   ├── ece2400-stdlib.h
-│   ├── insertion-sort.h
-│   ├── insertion-sort.c
-│   └── insertion-sort-adhoc.c
+│   ├── isort-int.h
+│   ├── isort-int.c
+│   └── isort-int-adhoc.c
 ├── test
 │   ├── utst.h
-│   └── insertion-sort-directed-test.c
+│   └── isort-int-directed-test.c
 └── eval
-    ├── insertion-sort-eval.c
+    ├── isort-int-eval.c
     └── sort.dat
 ```
 
 2. Implementing Sorted Insert Helper Function
 --------------------------------------------------------------------------
 
-Take a look at the `insertion-sort.c` source file to find the
+Take a look at the `isort.c` source file to find the
 `sorted_insert` function is a helper function. It takes as input an
 array, a range to work on (`begin` to `end`), and a value to insert. The
 function can assume that the given range in the array is already sorted.
@@ -64,25 +81,25 @@ You can use either a forward (iterate from `begin` to `end`) or reverse
 adhoc testing to quickly see if your algorithm is basically working:
 
     :::bash
-    % cd ${HOME}/sec6/src
-    % gcc -Wall -o insertion-sort-adhoc insertion-sort-adhoc.c insertion-sort.c
-    % ./insertion-sort-adhoc
+    % cd ${HOME}/sec7/src
+    % gcc -Wall -o isort-int-adhoc ece2400-stdlib.c isort-int.c isort-int-adhoc.c
+    % ./isort-int-adhoc
 
 3. Testing Sorted Insert Helper Function
 --------------------------------------------------------------------------
 
 Obviously, we want to do more than just ad-hoc testing. We have provided
 you a directed test case to test just the helper function. Take a look at
-this directed test in `insertion-sort-directed-test.c`. You can build and
-run this test case like this:
+this directed test in `isort-int-directed-test.c`. You can build and run
+this test case like this:
 
     :::bash
-    % cd ${HOME}/sec6
+    % cd ${HOME}/sec7
     % mkdir build
     % cd build
     % cmake ..
-    % make insertion-sort-directed-test
-    % ./insertion-sort-directed-test 1
+    % make isort-int-directed-test
+    % ./isort-int-directed-test 1
 
 Add at least one more directed test before continuing. Try and think of a
 tricky corner case.
@@ -90,7 +107,7 @@ tricky corner case.
 4. Implementing Insertion Sort
 --------------------------------------------------------------------------
 
-Take a look at the `insertion-sort.c` source file to find the
+Take a look at the `isort.c` source file to find the
 `insert_sort` function. It takes as input an array and the size of that
 array. Go ahead and implement `insertion_sort` using your favorite text
 editor. The function should use `sorted_insert` helper function, and you
@@ -99,22 +116,22 @@ finished modify the adhoc test to test insertion sort, then quickly see
 if your algorithm is basically working:
 
     :::bash
-    % cd ${HOME}/sec6/src
-    % gcc -Wall -o insertion-sort-adhoc insertion-sort-adhoc.c insertion-sort.c
-    % ./insertion-sort-adhoc
+    % cd ${HOME}/sec7/src
+    % gcc -Wall -o isort-adhoc isort-adhoc.c isort.c
+    % ./isort-adhoc
 
 5. Testing Insertion Sort
 --------------------------------------------------------------------------
 
 Obviously, we want to do more than just ad-hoc testing. We have provided
 you a very simple directed test case to test insertion sort. Take a look
-at this directed test in `insertion-sort-directed-test.c`. You can build
+at this directed test in `isort-directed-test.c`. You can build
 and run this test case like this:
 
     :::bash
-    % cd ${HOME}/sec6/build
-    % make insertion-sort-directed-test
-    % ./insertion-sort-directed-test 2
+    % cd ${HOME}/sec7/build
+    % make isort-directed-test
+    % ./isort-directed-test 2
 
 Add at least one more directed test before continuing. Try and think of a
 tricky corner case.
@@ -124,16 +141,16 @@ tricky corner case.
 
 We have provided you an evaluation program to quantitatively evaluating
 the execution time and space usage of your insertion sort implementation.
-Take a look at this evaluation program in `insertion-sort-eval.c`. You
+Take a look at this evaluation program in `isort-eval.c`. You
 can build and run this evaluation program like this:
 
     :::bash
-    % cd ${HOME}/sec6
+    % cd ${HOME}/sec7
     % mkdir build-eval
     % cd build-eval
     % cmake -DCMAKE_BUILD_TYPE=eval ..
-    % make insertion-sort-eval
-    % ./insertion-sort-eval
+    % make isort-int-eval
+    % ./isort-int-eval
 
 You will see that the evaluation program takes two command line
 arguments. The first is what pattern to use when generating the data for
@@ -143,19 +160,19 @@ implementation grows as a function of the input array size for an input
 array with random input values.
 
     :::bash
-    % cd ${HOME}/sec6/build-eval
-    % ./insertion-sort-eval urandom0 2000
-    % ./insertion-sort-eval urandom0 4000
-    % ./insertion-sort-eval urandom0 6000
-    % ./insertion-sort-eval urandom0 8000
-    % ./insertion-sort-eval urandom0 10000
+    % cd ${HOME}/sec7/build-eval
+    % ./isort-int-eval urandom0 2000
+    % ./isort-int-eval urandom0 4000
+    % ./isort-int-eval urandom0 6000
+    % ./isort-int-eval urandom0 8000
+    % ./isort-int-eval urandom0 10000
 
-You can use `seq` and `xargs` to run a command multiple times with
+You can use a Bash for loop to run a command multiple times with
 different parameters in a single step like this:
 
     :::bash
-    % cd ${HOME}/sec6/build-eval
-    % seq 2000 2000 10000 | xargs -l ./insertion-sort-eval urandom0
+    % cd ${HOME}/sec7/build-eval
+    % for i in {1000,2000,4000,6000,8000,10000}; do ./isort-int-eval urandom0 $i; done
 
 Copy down the size and average execution time for each experiment. Create
 a plain text file named `data.txt` with one row per experiment and two
@@ -165,6 +182,13 @@ be the execution time. Then you can easily plot this data like this:
     :::bash
     % eplot data.txt
 
-Do these quantitative results match your qualitative expectations given
-what you know about the asymptotic time complexity of insertion sort?
+If you are using VS Code, then generate a PNG of the plot like this:
+
+    :::bash
+    % eplot --png -o plot.png data.txt
+
+Then you can download and open the PNG file on your local workstation or
+laptop. Do these quantitative results match your qualitative expectations
+given what you know about the asymptotic time complexity of insertion
+sort?
 

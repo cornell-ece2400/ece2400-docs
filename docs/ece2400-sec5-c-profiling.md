@@ -8,7 +8,7 @@ evaluation program and deal with dynamic memory issues.
 1. The ecelinux Machines
 --------------------------------------------------------------------------
 
-Follow the same process as in the last section. If you are participating
+Follow the same process as in previous sections. If you are participating
 in the discussion section in-person in 225 Upson Hall, then all you need
 to do is find a free workstation and log into the workstation using your
 NetID and standard NetID password. Remote access students might also need
