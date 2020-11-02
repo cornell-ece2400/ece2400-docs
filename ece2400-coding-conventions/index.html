@@ -216,6 +216,8 @@
       
         
       
+        
+      
     </ul>
   </div>
 </nav>
@@ -329,6 +331,18 @@
   <li class="md-nav__item">
     <a href="../ece2400-sec7-sorting/" title="Section 7: Sorting Lab" class="md-nav__link">
       Section 7: Sorting Lab
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ece2400-sec8-objoriented/" title="Section 8: Object-Oriented Programming Lab" class="md-nav__link">
+      Section 8: Object-Oriented Programming Lab
     </a>
   </li>
 
@@ -513,22 +527,29 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-file-comments" title="4.2. File Comments" class="md-nav__link">
-    4.2. File Comments
+  <a href="#42-comment-location" title="4.2. Comment Location" class="md-nav__link">
+    4.2. Comment Location
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-function-comments" title="4.3. Function Comments" class="md-nav__link">
-    4.3. Function Comments
+  <a href="#43-file-comments" title="4.3. File Comments" class="md-nav__link">
+    4.3. File Comments
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#44-old-comments" title="4.4. Old Comments" class="md-nav__link">
-    4.4. Old Comments
+  <a href="#44-function-comments" title="4.4. Function Comments" class="md-nav__link">
+    4.4. Function Comments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-old-comments" title="4.5. Old Comments" class="md-nav__link">
+    4.5. Old Comments
   </a>
   
 </li>
@@ -1009,7 +1030,46 @@ your comment:</p>
 </pre></div>
 </td></tr></table>
 
-<h3 id="42-file-comments">4.2. File Comments<a class="headerlink" href="#42-file-comments" title="Permanent link">&para;</a></h3>
+<h3 id="42-comment-location">4.2. Comment Location<a class="headerlink" href="#42-comment-location" title="Permanent link">&para;</a></h3>
+<p>Avoid trailing comments. They make lines too long and are hard to read.
+Prefer placing each comment on its own line whenever possible. So avoid
+this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="p">)</span> <span class="p">{</span> <span class="c1">// if a is greater, subtract b</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span> <span class="c1">// if b is greater, subtract a</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Prefer this instead:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">// if a is greater, subtract b</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// if b is greater, subtract a</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="43-file-comments">4.3. File Comments<a class="headerlink" href="#43-file-comments" title="Permanent link">&para;</a></h3>
 <p>All files should include a "title block". This is a comment at the very
 beginning of the file which gives the name of the file and a brief
 description of the purpose and contents of the file. Title blocks should
@@ -1029,7 +1089,7 @@ characters (i.e., two '/' characters and 72 <code>=</code> characters). You do n
 need to duplicate comments between the <code>.h</code> and <code>.cc</code>. Often the header
 will have a description of the interface, and the source file will
 discuss the broad implementation approach.</p>
-<h3 id="43-function-comments">4.3. Function Comments<a class="headerlink" href="#43-function-comments" title="Permanent link">&para;</a></h3>
+<h3 id="44-function-comments">4.4. Function Comments<a class="headerlink" href="#44-function-comments" title="Permanent link">&para;</a></h3>
 <p>Almost every function declaration in the header should have comments
 immediately preceding it that describe what the function does and how to
 use it. These comments may be omitted only if the function is simple and
@@ -1050,7 +1110,7 @@ this:</p>
 </pre></div>
 </td></tr></table>
 
-<h3 id="44-old-comments">4.4. Old Comments<a class="headerlink" href="#44-old-comments" title="Permanent link">&para;</a></h3>
+<h3 id="45-old-comments">4.5. Old Comments<a class="headerlink" href="#45-old-comments" title="Permanent link">&para;</a></h3>
 <p>Do not leave old comments in the source file. So you must remove comments
 that were provided by the instructors.</p>
 <h2 id="5-scoping">5. Scoping<a class="headerlink" href="#5-scoping" title="Permanent link">&para;</a></h2>

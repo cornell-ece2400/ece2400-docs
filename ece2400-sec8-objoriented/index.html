@@ -38,7 +38,7 @@
     
     
       
-        <title>Ece2400 sec7 objoriented - ECE 2400 Section Handouts</title>
+        <title>Section 8: Object-Oriented Programming Lab - ECE 2400 Section Handouts</title>
       
     
     
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#section-7-object-oriented-programming-lab" tabindex="1" class="md-skip">
+      <a href="../#section-8-object-oriented-programming-lab" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -128,7 +128,7 @@
                 ECE 2400 Section Handouts
               </span>
               <span class="md-header-nav__topic">
-                Ece2400 sec7 objoriented
+                Section 8: Object-Oriented Programming Lab
               </span>
             
           
@@ -339,11 +339,77 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../ece2400-sec8-objoriented/" title="Section 8: Object-Oriented Programming Lab" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Section 8: Object-Oriented Programming Lab
+      </label>
+    
+    <a href="./" title="Section 8: Object-Oriented Programming Lab" class="md-nav__link md-nav__link--active">
       Section 8: Object-Oriented Programming Lab
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-implementing-the-constructor-destructor-push-front" title="2. Implementing the Constructor, Destructor, Push Front" class="md-nav__link">
+    2. Implementing the Constructor, Destructor, Push Front
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-testing-push-front" title="3. Testing Push Front" class="md-nav__link">
+    3. Testing Push Front
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implementing-reverse" title="4. Implementing Reverse" class="md-nav__link">
+    4. Implementing Reverse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-implementing-the-copy-constructor-and-assignment-operator" title="5. Implementing the Copy Constructor and Assignment Operator" class="md-nav__link">
+    5. Implementing the Copy Constructor and Assignment Operator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-evaluating-reverse" title="6. Evaluating Reverse" class="md-nav__link">
+    6. Evaluating Reverse
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -368,15 +434,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-the-ecelinux-machines" title="1. The ecelinux Machines" class="md-nav__link">
-    1. The ecelinux Machines
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-implementing-the-constructor-destructor-push-front-print" title="2. Implementing the Constructor, Destructor, Push Front, Print" class="md-nav__link">
-    2. Implementing the Constructor, Destructor, Push Front, Print
+  <a href="#2-implementing-the-constructor-destructor-push-front" title="2. Implementing the Constructor, Destructor, Push Front" class="md-nav__link">
+    2. Implementing the Constructor, Destructor, Push Front
   </a>
   
 </li>
@@ -425,17 +484,35 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec7-objoriented.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/cornell-ece2400/ece2400-docs/edit/master/docs/ece2400-sec8-objoriented.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="section-7-object-oriented-programming-lab">Section 7: Object-Oriented Programming Lab<a class="headerlink" href="#section-7-object-oriented-programming-lab" title="Permanent link">&para;</a></h1>
+                <h1 id="section-8-object-oriented-programming-lab">Section 8: Object-Oriented Programming Lab<a class="headerlink" href="#section-8-object-oriented-programming-lab" title="Permanent link">&para;</a></h1>
 <p>In this discussion, we will implement, test, and evaluate a simple
 list data structure using C++.</p>
-<h2 id="1-the-ecelinux-machines">1. The ecelinux Machines<a class="headerlink" href="#1-the-ecelinux-machines" title="Permanent link">&para;</a></h2>
-<p>Follow the same process as in the previous sections.</p>
+<p>Follow the same process as in previous sections. If you are participating
+in the discussion section in-person in 225 Upson Hall, then all you need
+to do is find a free workstation and log into the workstation using your
+NetID and standard NetID password. Remote access students might also need
+to start the Cornell VPN. Then connect to <code>ecelinux</code> using X2go:</p>
 <ul>
-<li>login to a workstation with your NetID and password</li>
-<li>use MobaXterm to log into the <code>ecelinux</code> servers</li>
+<li>start X2go (in Upson 225 just double click the X2Go client on the desktop)</li>
+<li>double click on the <code>ecelinux</code> session or ...</li>
+<li>setup a new X2go session by configuring the <em>Session</em> and <em>Media</em> tabs<ul>
+<li>session name: <em>ecelinux</em></li>
+<li>host: <em>ecelinux.ece.cornell.edu</em></li>
+<li>login: <em>cb535</em></li>
+<li>session type: <em>XFCE</em></li>
+<li>uncheck <em>enable sound support</em></li>
+<li>uncheck <em>client side printing support</em></li>
+</ul>
+</li>
+<li>click <em>OK</em></li>
+<li>enter your standard NetID password</li>
+<li>if asked to trust a certificate for the servers, click <em>yes</em></li>
+<li>if asked about a Windows firewall setup, click <em>cancel</em></li>
+<li>open a terminal using <em>Applications &gt; Terminal Emulator</em>
+    from the <em>Applications</em> menu</li>
 <li>make sure you source the setup script</li>
 <li>verify ECE2400 is in your prompt</li>
 </ul>
@@ -449,8 +526,8 @@ following commands:</p>
 6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">source</span> setup-ece2400.sh
 % mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
 % <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/ece2400
-% git clone git@github.com:cornell-ece2400/ece2400-sec7 sec7
-% <span class="nb">cd</span> sec7
+% git clone git@github.com:cornell-ece2400/ece2400-sec8 sec8
+% <span class="nb">cd</span> sec8
 % tree
 </pre></div>
 </td></tr></table>
@@ -468,8 +545,7 @@ following commands:</p>
 10
 11
 12
-13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>.
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>.
 ├── CMakeLists.txt
 ├── src
 │   ├── ece2400-stdlib.h
@@ -479,7 +555,6 @@ following commands:</p>
 │   ├── SListInt.cc
 │   └── slist-int-adhoc.cc
 ├── test
-│   ├── utst.h
 │   └── slist-int-directed-test.cc
 └── eval
     └── slist-int-eval.cc
@@ -498,21 +573,21 @@ public member functions we will be implementing in this lab.</p>
 <li><code>void reverse()</code>: reverse all items in list</li>
 <li><code>void print() const</code>: print the list</li>
 </ul>
-<h2 id="2-implementing-the-constructor-destructor-push-front-print">2. Implementing the Constructor, Destructor, Push Front, Print<a class="headerlink" href="#2-implementing-the-constructor-destructor-push-front-print" title="Permanent link">&para;</a></h2>
+<h2 id="2-implementing-the-constructor-destructor-push-front">2. Implementing the Constructor, Destructor, Push Front<a class="headerlink" href="#2-implementing-the-constructor-destructor-push-front" title="Permanent link">&para;</a></h2>
 <p>Let's start by implementing these functions:</p>
 <ul>
 <li><code>SListInt()</code>: default constructor</li>
 <li><code>~SListInt()</code>: destructor</li>
 <li><code>void push_front( int v )</code>: push item on front of list</li>
-<li><code>void print() const</code>: print the list</li>
 </ul>
 <p>Feel free to review the lectures notes for help on how to implement these
-functions. When you are finished use adhoc testing to quickly see if your
-data structure is basically working:</p>
+functions. We have already implemented <code>print</code> for you. When you are
+finished use adhoc testing to quickly see if your data structure is
+basically working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/src
-% g++ -Wall -o slist-int-adhoc slist-int-adhoc.cc SListInt.cc
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/src
+% g++ -Wall -o slist-int-adhoc ece2400-stdlib.c SListInt.cc slist-int-adhoc.cc
 % ./slist-int-adhoc
 </pre></div>
 </td></tr></table>
@@ -529,7 +604,7 @@ function to pass the very first directed test. Go ahead and implement
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8
 % mkdir build
 % <span class="nb">cd</span> build
 % cmake ..
@@ -538,45 +613,67 @@ function to pass the very first directed test. Go ahead and implement
 </pre></div>
 </td></tr></table>
 
+<p>Now add a new test case for push front. Try pushing more than three
+values into the list. Number this test case 6 and run it like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build
+% make slist-int-directed-test
+% ./slist-int-directed-test <span class="m">6</span>
+</pre></div>
+</td></tr></table>
+
 <h2 id="4-implementing-reverse">4. Implementing Reverse<a class="headerlink" href="#4-implementing-reverse" title="Permanent link">&para;</a></h2>
 <p>Take a look at the <code>SListInt.cc</code> source file to find the <code>reverse</code> member
 function. This function should reverse all of the items in the list. We
-recommend you use the following three steps:</p>
+recommend you use the following steps:</p>
 <ol>
 <li>Iterate through the list to count the number of items</li>
-<li>Allocate a new array of integers on the heap with size items</li>
+<li>Allocate a temporary array of integers on the heap with size items</li>
 <li>Iterate through the list and copy each item to the array</li>
 <li>Iterate through the list and copy each item from the array in reverse order</li>
+<li>Deallocate the temporary array</li>
 </ol>
 <p>You are welcome to use a different approach, but the above is probably
 the simplest. When you are finished use the corresponding directed test
 case to verify your implementation is working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build
 % make slist-int-directed-test
 % ./slist-int-directed-test <span class="m">2</span>
+</pre></div>
+</td></tr></table>
+
+<p>Now add a new test case for reverse. Try pushing more than three values
+into the list before calling reverse. Try reversing twice and verifying
+the list has the original values. Number this test case 7 and run it like
+this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build
+% make slist-int-directed-test
+% ./slist-int-directed-test <span class="m">7</span>
 </pre></div>
 </td></tr></table>
 
 <h2 id="5-implementing-the-copy-constructor-and-assignment-operator">5. Implementing the Copy Constructor and Assignment Operator<a class="headerlink" href="#5-implementing-the-copy-constructor-and-assignment-operator" title="Permanent link">&para;</a></h2>
 <p>Because we need to implement a destructor, the rule of three tells us we
 also need to implement a copy constructor and assignment operator. These
-are simliar. The key difference is that the assignment operator must
+are similar. The key difference is that the assignment operator must
 first clean up the current object before doing the copy, while the copy
 constructor can assume the current object is uninitialized. Implementing
-copy can be a little tricky. The easiest (but not the most efficient)
+the copy can be a little tricky. The easiest (but not the most efficient)
 algorithm is to just iterate through the given list and call <code>push_front</code>
 for each item. Unfortunately, this will result in the new copy being in
 the reverse order ... but then you can call the <code>reverse</code> method to make
-sure the items are in the right order. Make sure you handle self
-assignment correctly!</p>
-<p>When you are finished use the corresponding directed test cases to verify
-your implementation is working:</p>
+sure the items are in the right order. We have gone ahead and implemented
+the copy constructor and assignment operator. Take a close look and then
+verify these implementations work:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build
 % make slist-int-directed-test
 % ./slist-int-directed-test <span class="m">3</span>
 % ./slist-int-directed-test <span class="m">4</span>
@@ -586,12 +683,15 @@ your implementation is working:</p>
 <p>Run all of the test cases to make sure everything is now working:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build
 % make slist-int-directed-test
 % ./slist-int-directed-test
 </pre></div>
 </td></tr></table>
 
+<p>You should see that the test case for self assignment is failing. Modify
+the overloaded assignment operator to correctly handle self assignment
+and then verify your implementation can pass all of the tests.</p>
 <h2 id="6-evaluating-reverse">6. Evaluating Reverse<a class="headerlink" href="#6-evaluating-reverse" title="Permanent link">&para;</a></h2>
 <p>We have provided you an evaluation program to quantitatively evaluate the
 execution time of the linked list data structure and reverse algorithm.
@@ -601,7 +701,7 @@ can build and run this evaluation program like this:</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/secy
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8
 % mkdir build-eval
 % <span class="nb">cd</span> build-eval
 % cmake -DCMAKE_BUILD_TYPE<span class="o">=</span><span class="nb">eval</span> ..
@@ -618,7 +718,7 @@ input array size.</p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build-eval
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build-eval
 % ./slist-int-eval <span class="m">10000</span>
 % ./slist-int-eval <span class="m">20000</span>
 % ./slist-int-eval <span class="m">30000</span>
@@ -630,8 +730,8 @@ input array size.</p>
 <p>You can use <code>seq</code> and <code>xargs</code> to run a command multiple times with
 different parameters in a single step like this:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec7/build-eval
-% seq <span class="m">10000</span> <span class="m">10000</span> <span class="m">50000</span> <span class="p">|</span> xargs -l ./slist-int-eval
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/sec8/build-eval
+% <span class="k">for</span> i in <span class="o">{</span><span class="m">10000</span>,20000,30000,40000,50000<span class="o">}</span><span class="p">;</span> <span class="k">do</span> ./slist-int-eval <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>
 </pre></div>
 </td></tr></table>
 
@@ -643,8 +743,14 @@ be the execution time. Then you can easily plot this data like this:</p>
 </pre></div>
 </td></tr></table>
 
-<p>Do these quantitative results match your qualitative expectations given
-what you know about the asymptotic time complexity of reverse?</p>
+<p>If you are using VS Code, then generate a PNG of the plot like this:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>% eplot --png -o plot.png data.txt
+</pre></div>
+</td></tr></table>
+
+<p>Then you can download and open the PNG file on your local workstation or
+laptop. Do these quantitative results match your qualitative expectations
+given what you know about the asymptotic time complexity of reverse?</p>
                 
                   
                 
@@ -661,6 +767,27 @@ what you know about the asymptotic time complexity of reverse?</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ece2400-sec7-sorting/" title="Section 7: Sorting Lab" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Section 7: Sorting Lab
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
