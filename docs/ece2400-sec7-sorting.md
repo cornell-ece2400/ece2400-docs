@@ -117,8 +117,11 @@ basically working:
 
     :::bash
     % cd ${HOME}/sec7/src
-    % gcc -Wall -o isort-int-adhoc isort-int-adhoc.c isort-int.c
+    % gcc -Wall -o isort-int-adhoc ece2400-stdlib.c isort-int.c isort-int-adhoc.c
     % ./isort-int-adhoc
+
+Or feel free to just move on to using the test framework in the next
+section.
 
 5. Testing Insertion Sort
 --------------------------------------------------------------------------

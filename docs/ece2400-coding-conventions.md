@@ -374,7 +374,35 @@ your comment:
     //without space, incorrect formatting
     // with space, correct formatting
 
-### 4.2. File Comments
+### 4.2. Comment Location
+
+Avoid trailing comments. They make lines too long and are hard to read.
+Prefer placing each comment on its own line whenever possible. So avoid
+this:
+
+    :::c
+    if ( a > b ) { // if a is greater, subtract b
+      c = a - b;
+    }
+    else { // if b is greater, subtract a
+      c = b - a;
+    }
+
+Prefer this instead:
+
+    :::c
+    // if a is greater, subtract b
+    if ( a > b ) {
+      c = a - b;
+    }
+
+    // if b is greater, subtract a
+    else {
+      c = b - a;
+    }
+
+
+### 4.3. File Comments
 
 All files should include a "title block". This is a comment at the very
 beginning of the file which gives the name of the file and a brief
@@ -393,7 +421,7 @@ need to duplicate comments between the `.h` and `.cc`. Often the header
 will have a description of the interface, and the source file will
 discuss the broad implementation approach.
 
-### 4.3. Function Comments
+### 4.4. Function Comments
 
 Almost every function declaration in the header should have comments
 immediately preceding it that describe what the function does and how to
@@ -413,7 +441,7 @@ this:
     //------------------------------------------------------------------------
     // optional high-level discussion of implementation approach
 
-### 4.4. Old Comments
+### 4.5. Old Comments
 
 Do not leave old comments in the source file. So you must remove comments
 that were provided by the instructors.
